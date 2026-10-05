@@ -1,0 +1,38 @@
+{
+  "success": true,
+  "data": {
+    "id": "01a10683-a923-7517-86c5-21502811c375",
+    "workDate": "2026-10-04",
+    "slot": "EVENING",
+    "description": "Plastering the first floor east wall",
+    "staff": {
+      "id": "01a10655-4e48-71da-850f-01840d2004af",
+      "name": "Ravi",
+      "designation": "MASON"
+    },
+    "site": {
+      "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+      "name": "ABC Apartment Project"
+    },
+    "engineer": {
+      "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+      "name": "Arun Kumar"
+    },
+    "submittedAt": "2026-10-04T10:44:13.796Z",
+    "capturedAt": "2026-10-04T10:43:28.811Z",
+    "submittedOffline": false,
+    "location": {
+      "flag": "OK",
+      "distanceFromSiteM": 0
+    },
+    "photoSource": "CAMERA",
+    "image": {
+      "status": "AVAILABLE",
+      "expiresAt": "2026-10-05T10:44:13.796Z",
+      "deletedAt": null,
+      "deleteReason": null
+    },
+    "engineerViewedAt": "2026-10-04T14:57:58.105Z",
+    "adminViewedAt": null
+  }
+}

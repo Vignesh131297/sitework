@@ -1,0 +1,10 @@
+# Machine-local files, e.g. the local PostgreSQL superuser password.
+.local/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+
+# backend/ and mobile/ have their own .gitignore files.

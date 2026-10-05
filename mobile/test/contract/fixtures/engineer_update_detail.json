@@ -1,0 +1,23 @@
+{
+  "success": true,
+  "data": {
+    "id": "01a10655-4fff-76e8-9c30-23f2b8ae84b3",
+    "type": "DAILY_REPORT",
+    "priority": "LOW",
+    "title": null,
+    "description": "6 workers on site. Painting on the ground floor, plumbing fixtures on the first floor. No incidents.",
+    "progressPercent": null,
+    "site": {
+      "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+      "name": "Sri Lakshmi Commercial Building"
+    },
+    "engineer": {
+      "id": "01a10655-4e43-731f-a39b-d185eaf3306d",
+      "name": "Suresh"
+    },
+    "createdAt": "2026-10-03T13:00:00.000Z",
+    "adminViewedAt": null,
+    "attachmentCount": 0,
+    "attachments": []
+  }
+}

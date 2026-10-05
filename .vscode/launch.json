@@ -1,0 +1,48 @@
+{
+  // Open the sitework folder (not its parent) in VS Code for these to appear.
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Mobile: dev (emulator)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "mobile",
+      "program": "lib/main.dart",
+      "args": ["--flavor", "dev", "--dart-define-from-file=env/dev.json"]
+    },
+    {
+      "name": "Mobile: dev (USB phone, run `adb reverse tcp:3000 tcp:3000` first)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "mobile",
+      "program": "lib/main.dart",
+      "args": ["--flavor", "dev", "--dart-define-from-file=env/dev-usb.json"]
+    },
+    {
+      "name": "Mobile: staging",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "mobile",
+      "program": "lib/main.dart",
+      "args": ["--flavor", "staging", "--dart-define-from-file=env/staging.json"]
+    },
+    {
+      "name": "Mobile: prod (release)",
+      "type": "dart",
+      "request": "launch",
+      "cwd": "mobile",
+      "program": "lib/main.dart",
+      "flutterMode": "release",
+      "args": ["--flavor", "prod", "--dart-define-from-file=env/prod.json"]
+    },
+    {
+      "name": "API: dev server (watch)",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceFolder}/backend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start:dev"],
+      "console": "integratedTerminal"
+    }
+  ]
+}

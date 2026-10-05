@@ -1,0 +1,81 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+      "code": "SITE-001",
+      "name": "ABC Apartment Project",
+      "status": "IN_PROGRESS",
+      "progressPercent": 45,
+      "address": "Plot 12, 3rd Main Road, Anna Nagar West, Chennai 600040",
+      "client": {
+        "id": "01a10655-4e65-7670-8c90-afc0b3886bb4",
+        "name": "ABC Constructions"
+      },
+      "engineers": [
+        {
+          "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+          "name": "Arun Kumar"
+        }
+      ],
+      "staffCount": 2,
+      "startDate": "2026-03-02",
+      "expectedCompletionDate": "2027-07-01",
+      "contractAmount": "1500000.00"
+    },
+    {
+      "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+      "code": "SITE-002",
+      "name": "Green Valley Villa",
+      "status": "IN_PROGRESS",
+      "progressPercent": 60,
+      "address": "Green Valley Layout, Thalambur, Chennai 600130",
+      "client": {
+        "id": "01a10655-4e6c-754a-82bb-53cf36d6a1ca",
+        "name": "Green Valley Properties"
+      },
+      "engineers": [
+        {
+          "id": "01a10655-4e3e-757e-9b02-2b6ac64a90fd",
+          "name": "Prakash"
+        }
+      ],
+      "staffCount": 2,
+      "startDate": "2026-04-05",
+      "expectedCompletionDate": "2027-03-03",
+      "contractAmount": "1000000.00"
+    },
+    {
+      "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+      "code": "SITE-003",
+      "name": "Sri Lakshmi Commercial Building",
+      "status": "IN_PROGRESS",
+      "progressPercent": 80,
+      "address": "210, Velachery Main Road, Velachery, Chennai 600042",
+      "client": {
+        "id": "01a10655-4e6a-700b-8975-77dcf0cacdd7",
+        "name": "Sri Lakshmi Developers"
+      },
+      "engineers": [
+        {
+          "id": "01a10655-4e43-731f-a39b-d185eaf3306d",
+          "name": "Suresh"
+        },
+        {
+          "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+          "name": "Arun Kumar"
+        }
+      ],
+      "staffCount": 2,
+      "startDate": "2026-01-05",
+      "expectedCompletionDate": "2026-11-18",
+      "contractAmount": "800000.00"
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 3,
+    "totalPages": 1
+  }
+}

@@ -1,0 +1,1695 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for English (`en`).
+class AppLocalizationsEn extends AppLocalizations {
+  AppLocalizationsEn([String locale = 'en']) : super(locale);
+
+  @override
+  String get appTitle => 'SiteWork';
+
+  @override
+  String get appTagline => 'Site work, tracked on time.';
+
+  @override
+  String get commonOk => 'OK';
+
+  @override
+  String get commonCancel => 'Cancel';
+
+  @override
+  String get commonRetry => 'Try again';
+
+  @override
+  String get loginIdentifierLabel => 'Mobile number or e-mail';
+
+  @override
+  String get loginIdentifierRequired => 'Enter your mobile number or e-mail.';
+
+  @override
+  String get loginPasswordLabel => 'Password';
+
+  @override
+  String get loginPasswordRequired => 'Enter your password.';
+
+  @override
+  String get loginShowPassword => 'Show password';
+
+  @override
+  String get loginHidePassword => 'Hide password';
+
+  @override
+  String get loginSubmit => 'Sign in';
+
+  @override
+  String get loginForgotPassword => 'Forgot password?';
+
+  @override
+  String get loginSessionEnded => 'Your session has ended. Please sign in again.';
+
+  @override
+  String get loginDevQuickSignIn => 'Quick sign-in (development build)';
+
+  @override
+  String get forgotTitle => 'Forgot password';
+
+  @override
+  String get forgotBody =>
+      'Enter the mobile number or e-mail you sign in with. If your account has an e-mail address, we\'ll send it a 6-digit code.';
+
+  @override
+  String get forgotSend => 'Send code';
+
+  @override
+  String get forgotSendAgain => 'Send a new code';
+
+  @override
+  String get forgotHaveCode => 'I have a code';
+
+  @override
+  String get resetTitle => 'Reset password';
+
+  @override
+  String get resetCodeLabel => '6-digit code';
+
+  @override
+  String get resetCodeInvalid => 'Enter the 6-digit code from the e-mail.';
+
+  @override
+  String get resetSubmit => 'Set new password';
+
+  @override
+  String get resetDone => 'Password changed. Sign in with your new password.';
+
+  @override
+  String get changePasswordTitle => 'Change password';
+
+  @override
+  String get changePasswordForcedBody =>
+      'Your admin gave you a temporary password. Choose your own password to continue.';
+
+  @override
+  String get temporaryPasswordLabel => 'Temporary password';
+
+  @override
+  String get currentPasswordLabel => 'Current password';
+
+  @override
+  String get newPasswordLabel => 'New password';
+
+  @override
+  String get confirmPasswordLabel => 'Confirm new password';
+
+  @override
+  String get passwordHelper => 'At least 8 characters, with letters and numbers.';
+
+  @override
+  String get passwordTooShort => 'Use at least 8 characters.';
+
+  @override
+  String get passwordNeedsLettersAndNumbers => 'Use both letters and numbers.';
+
+  @override
+  String get passwordsDontMatch => 'The passwords don\'t match.';
+
+  @override
+  String get changePasswordSubmit => 'Save password';
+
+  @override
+  String get changePasswordDone => 'Your password has been changed.';
+
+  @override
+  String get roleAdmin => 'Admin';
+
+  @override
+  String get roleEngineer => 'Engineer';
+
+  @override
+  String get roleStaff => 'Staff';
+
+  @override
+  String get serverChecking => 'Checking server…';
+
+  @override
+  String get serverConnected => 'Server connected';
+
+  @override
+  String get serverUnreachable => 'Can\'t reach the server';
+
+  @override
+  String serverDetails(String environment, String version, String time) {
+    return '$environment · v$version · server time $time';
+  }
+
+  @override
+  String get navDashboard => 'Dashboard';
+
+  @override
+  String get navSites => 'Sites';
+
+  @override
+  String get navPayments => 'Payments';
+
+  @override
+  String get navPeople => 'People';
+
+  @override
+  String get navAlerts => 'Alerts';
+
+  @override
+  String get navUpdates => 'Updates';
+
+  @override
+  String get navIssues => 'Issues';
+
+  @override
+  String get navHome => 'Home';
+
+  @override
+  String get navAttendance => 'Attendance';
+
+  @override
+  String get navHistory => 'History';
+
+  @override
+  String get navProfile => 'Profile';
+
+  @override
+  String get screenNotifications => 'Notifications';
+
+  @override
+  String get profileTitle => 'Profile';
+
+  @override
+  String get profilePhone => 'Mobile';
+
+  @override
+  String get profileEmail => 'E-mail';
+
+  @override
+  String get profileEmployeeId => 'Employee ID';
+
+  @override
+  String get profileSite => 'Site';
+
+  @override
+  String get profileEngineer => 'Engineer';
+
+  @override
+  String get profileSites => 'Your sites';
+
+  @override
+  String get profileChangePassword => 'Change password';
+
+  @override
+  String get profileServerSection => 'Server';
+
+  @override
+  String get profileSignOut => 'Sign out';
+
+  @override
+  String get profileSignOutConfirmTitle => 'Sign out?';
+
+  @override
+  String get profileSignOutConfirmBody => 'You will need to sign in again to use the app.';
+
+  @override
+  String get errorOffline => 'You\'re offline. Check your internet connection and try again.';
+
+  @override
+  String get errorTimeout => 'The server is taking too long to respond. Please try again.';
+
+  @override
+  String get errorSessionExpired => 'Your session has ended. Please sign in again.';
+
+  @override
+  String get errorForbidden => 'You don\'t have permission to do that.';
+
+  @override
+  String get errorNotFound => 'We couldn\'t find what you were looking for.';
+
+  @override
+  String get errorRateLimited => 'Too many attempts. Please wait a moment and try again.';
+
+  @override
+  String get errorServiceUnavailable => 'The service is temporarily unavailable. Please try again shortly.';
+
+  @override
+  String get errorServer => 'Something went wrong on our side. Please try again.';
+
+  @override
+  String get errorBadRequest => 'Something about that request wasn\'t right. Please try again.';
+
+  @override
+  String get errorFileTooLarge => 'The file is too large.';
+
+  @override
+  String get errorUnexpected => 'Something unexpected happened. Please try again.';
+
+  @override
+  String get commonSave => 'Save';
+
+  @override
+  String get commonEdit => 'Edit';
+
+  @override
+  String get commonAdd => 'Add';
+
+  @override
+  String get commonCopy => 'Copy';
+
+  @override
+  String get commonCopied => 'Copied';
+
+  @override
+  String get commonAll => 'All';
+
+  @override
+  String get commonNone => 'None';
+
+  @override
+  String get commonActive => 'Active';
+
+  @override
+  String get commonInactive => 'Inactive';
+
+  @override
+  String get commonCall => 'Call';
+
+  @override
+  String get commonOpenMap => 'Open in Maps';
+
+  @override
+  String get commonOpenSettings => 'Open settings';
+
+  @override
+  String get validationRequired => 'Required';
+
+  @override
+  String get validationAmount => 'Enter an amount like 1500000';
+
+  @override
+  String get validationPhone => 'Enter a valid mobile number';
+
+  @override
+  String get validationEmail => 'Enter a valid e-mail address';
+
+  @override
+  String get validationNumber => 'Enter a number';
+
+  @override
+  String validationRange(int min, int max) {
+    return 'Enter a value between $min and $max';
+  }
+
+  @override
+  String get siteStatusNotStarted => 'Not started';
+
+  @override
+  String get siteStatusInProgress => 'In progress';
+
+  @override
+  String get siteStatusOnHold => 'On hold';
+
+  @override
+  String get siteStatusCompleted => 'Completed';
+
+  @override
+  String get designationMason => 'Mason';
+
+  @override
+  String get designationHelper => 'Helper';
+
+  @override
+  String get designationElectrician => 'Electrician';
+
+  @override
+  String get designationCarpenter => 'Carpenter';
+
+  @override
+  String get designationPlumber => 'Plumber';
+
+  @override
+  String get designationSupervisor => 'Supervisor';
+
+  @override
+  String get designationPainter => 'Painter';
+
+  @override
+  String get designationGeneralWorker => 'General worker';
+
+  @override
+  String get milestonePaid => 'Paid';
+
+  @override
+  String get milestonePartiallyPaid => 'Partially paid';
+
+  @override
+  String get milestonePending => 'Pending';
+
+  @override
+  String get milestoneOverdue => 'Overdue';
+
+  @override
+  String get slotMorning => 'Morning';
+
+  @override
+  String get slotAfternoon => 'Afternoon';
+
+  @override
+  String get slotEvening => 'Evening';
+
+  @override
+  String get slotStateUpcoming => 'Upcoming';
+
+  @override
+  String get slotStatePending => 'Pending';
+
+  @override
+  String get slotStateSubmitted => 'Submitted';
+
+  @override
+  String get slotStateMissing => 'Missing';
+
+  @override
+  String get slotStateNotExpected => 'Not due';
+
+  @override
+  String get attendancePresent => 'Present';
+
+  @override
+  String get attendanceLate => 'Late';
+
+  @override
+  String get attendanceHalfDay => 'Half day';
+
+  @override
+  String get attendanceAbsent => 'Absent';
+
+  @override
+  String get priorityLow => 'Low';
+
+  @override
+  String get priorityMedium => 'Medium';
+
+  @override
+  String get priorityHigh => 'High';
+
+  @override
+  String get priorityCritical => 'Critical';
+
+  @override
+  String get issueStatusOpen => 'Open';
+
+  @override
+  String get issueStatusInProgress => 'In progress';
+
+  @override
+  String get issueStatusResolved => 'Resolved';
+
+  @override
+  String dashboardHoliday(String name) {
+    return 'Today is a holiday ($name). No updates are expected.';
+  }
+
+  @override
+  String get dashboardDayOff => 'Today is not a working day. No updates are expected.';
+
+  @override
+  String get statActiveSites => 'Active sites';
+
+  @override
+  String get statClients => 'Clients';
+
+  @override
+  String get statEngineers => 'Engineers';
+
+  @override
+  String get statStaff => 'Staff';
+
+  @override
+  String get paymentsTitle => 'Payments';
+
+  @override
+  String get paymentsContract => 'Contract value';
+
+  @override
+  String get paymentsReceived => 'Received';
+
+  @override
+  String get paymentsPending => 'Pending';
+
+  @override
+  String get paymentsOverdue => 'Overdue';
+
+  @override
+  String paymentsOverdueCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count milestones', one: '1 milestone');
+    return '$_temp0';
+  }
+
+  @override
+  String get todayUpdatesTitle => 'Today\'s updates';
+
+  @override
+  String updatesSubmittedOf(int submitted, int expected) {
+    return '$submitted of $expected submitted';
+  }
+
+  @override
+  String updatesMissing(int count) {
+    return 'Missing $count';
+  }
+
+  @override
+  String updatesPending(int count) {
+    return 'Pending $count';
+  }
+
+  @override
+  String updatesUpcoming(int count) {
+    return 'Upcoming $count';
+  }
+
+  @override
+  String updatesNotCheckedIn(int count) {
+    return 'Not checked in $count';
+  }
+
+  @override
+  String get issuesOpen => 'Open issues';
+
+  @override
+  String issuesCritical(int count) {
+    return '$count critical';
+  }
+
+  @override
+  String get attentionTitle => 'Attention required';
+
+  @override
+  String get attentionNothing => 'Nothing needs attention right now.';
+
+  @override
+  String attentionMissing(int count, String names) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count missing updates',
+      one: '1 missing update',
+    );
+    return '$_temp0: $names';
+  }
+
+  @override
+  String attentionNotCheckedIn(int count, String names) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count people', one: '1 person');
+    return '$_temp0 not checked in: $names';
+  }
+
+  @override
+  String attentionOverdue(String title, String amount, String date) {
+    return 'Overdue: $title, $amount since $date';
+  }
+
+  @override
+  String attentionCritical(String title) {
+    return 'Critical issue: $title';
+  }
+
+  @override
+  String get siteActivityTitle => 'Today\'s site activity';
+
+  @override
+  String siteActivityLast(String time) {
+    return 'Last activity $time';
+  }
+
+  @override
+  String get siteActivityNone => 'No activity yet';
+
+  @override
+  String staffCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count staff',
+      one: '1 staff',
+      zero: 'No staff',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get siteNoEngineer => 'No engineer assigned';
+
+  @override
+  String get sitesTitle => 'Sites';
+
+  @override
+  String get clientsTitle => 'Clients';
+
+  @override
+  String get sitesSearch => 'Search sites';
+
+  @override
+  String get clientsSearch => 'Search clients';
+
+  @override
+  String get sitesEmpty => 'No sites found.';
+
+  @override
+  String get clientsEmpty => 'No clients found.';
+
+  @override
+  String get siteNew => 'New site';
+
+  @override
+  String get siteEdit => 'Edit site';
+
+  @override
+  String get clientNew => 'New client';
+
+  @override
+  String get clientEdit => 'Edit client';
+
+  @override
+  String get siteTabOverview => 'Overview';
+
+  @override
+  String get siteTabTeam => 'Team';
+
+  @override
+  String get siteTabPayments => 'Payments';
+
+  @override
+  String get siteTabUpdates => 'Updates';
+
+  @override
+  String get siteTabIssues => 'Issues';
+
+  @override
+  String siteProgress(int percent) {
+    return 'Progress $percent%';
+  }
+
+  @override
+  String get siteClient => 'Client';
+
+  @override
+  String get siteContact => 'Site contact';
+
+  @override
+  String get siteAddress => 'Address';
+
+  @override
+  String get siteStart => 'Start date';
+
+  @override
+  String get siteExpectedCompletion => 'Expected completion';
+
+  @override
+  String get siteLocation => 'Location';
+
+  @override
+  String siteGeofence(int meters) {
+    return 'Updates count as on site within $meters m';
+  }
+
+  @override
+  String get siteEngineers => 'Engineers';
+
+  @override
+  String get siteStaff => 'Staff';
+
+  @override
+  String get siteManageEngineers => 'Change engineers';
+
+  @override
+  String get siteAssignStaff => 'Add staff';
+
+  @override
+  String get siteNoStaff => 'No staff assigned yet.';
+
+  @override
+  String get siteNoEngineers => 'No engineers assigned yet.';
+
+  @override
+  String siteOpenIssues(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count open issues',
+      one: '1 open issue',
+      zero: 'No open issues',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fieldSiteName => 'Site name';
+
+  @override
+  String get fieldSiteCode => 'Site ID';
+
+  @override
+  String get fieldCodeHelper => 'Leave empty to use the next number';
+
+  @override
+  String get fieldClient => 'Client';
+
+  @override
+  String get fieldContactName => 'Contact name';
+
+  @override
+  String get fieldContactPhone => 'Contact phone';
+
+  @override
+  String get fieldAddress => 'Address';
+
+  @override
+  String get fieldStartDate => 'Start date';
+
+  @override
+  String get fieldExpectedCompletion => 'Expected completion';
+
+  @override
+  String get fieldContractAmount => 'Contract amount';
+
+  @override
+  String get fieldStatus => 'Status';
+
+  @override
+  String get fieldProgress => 'Progress (%)';
+
+  @override
+  String get fieldLatitude => 'Latitude';
+
+  @override
+  String get fieldLongitude => 'Longitude';
+
+  @override
+  String get fieldGeofence => 'Site radius (metres)';
+
+  @override
+  String get useCurrentLocation => 'Use my current location';
+
+  @override
+  String get fieldEngineers => 'Engineers';
+
+  @override
+  String get fieldName => 'Name';
+
+  @override
+  String get fieldCompany => 'Company';
+
+  @override
+  String get fieldPhone => 'Mobile number';
+
+  @override
+  String get fieldEmail => 'E-mail';
+
+  @override
+  String get fieldNotes => 'Notes';
+
+  @override
+  String get fieldEmployeeCode => 'Employee ID';
+
+  @override
+  String get fieldJoiningDate => 'Joining date';
+
+  @override
+  String get fieldDesignation => 'Designation';
+
+  @override
+  String get fieldSite => 'Site';
+
+  @override
+  String get fieldEngineer => 'Engineer';
+
+  @override
+  String get siteSaved => 'Site saved.';
+
+  @override
+  String get clientSaved => 'Client saved.';
+
+  @override
+  String get personSaved => 'Saved.';
+
+  @override
+  String get locationServiceOff => 'Turn on location (GPS) and try again.';
+
+  @override
+  String get locationPermissionDenied => 'Allow location access to use this.';
+
+  @override
+  String get locationPermissionForever => 'Location access is blocked. Allow it in Settings.';
+
+  @override
+  String get locationNoFix => 'Couldn\'t get your location. Move to an open area and try again.';
+
+  @override
+  String get clientSites => 'Sites';
+
+  @override
+  String get clientNoSites => 'No sites for this client yet.';
+
+  @override
+  String get peopleTitle => 'People';
+
+  @override
+  String get engineersTitle => 'Engineers';
+
+  @override
+  String get staffTitle => 'Staff';
+
+  @override
+  String get peopleSearch => 'Search by name, phone or ID';
+
+  @override
+  String get engineersEmpty => 'No engineers found.';
+
+  @override
+  String get staffEmpty => 'No staff found.';
+
+  @override
+  String get engineerNew => 'New engineer';
+
+  @override
+  String get staffNew => 'New staff member';
+
+  @override
+  String get filterActive => 'Active';
+
+  @override
+  String get filterInactive => 'Inactive';
+
+  @override
+  String get filterUnassigned => 'Unassigned';
+
+  @override
+  String get personLastSignIn => 'Last sign-in';
+
+  @override
+  String get personNeverSignedIn => 'Never signed in';
+
+  @override
+  String get personPasswordPending => 'Must set their own password at next sign-in';
+
+  @override
+  String get personSites => 'Sites';
+
+  @override
+  String get personSupervises => 'Supervises';
+
+  @override
+  String get personAssignment => 'Site and engineer';
+
+  @override
+  String get personNotAssigned => 'Not assigned to a site';
+
+  @override
+  String get personAssign => 'Assign to site';
+
+  @override
+  String get personChangeAssignment => 'Change site';
+
+  @override
+  String get personUnassign => 'Remove from site';
+
+  @override
+  String personUnassignConfirm(String name, String site) {
+    return 'Remove $name from $site?';
+  }
+
+  @override
+  String get personResetPassword => 'Reset password';
+
+  @override
+  String get personResetConfirmTitle => 'Reset password?';
+
+  @override
+  String personResetConfirmBody(String name) {
+    return '$name will be signed out and must sign in with a temporary password, then choose a new one.';
+  }
+
+  @override
+  String get personDeactivate => 'Deactivate';
+
+  @override
+  String get personActivate => 'Activate';
+
+  @override
+  String personDeactivateConfirmTitle(String name) {
+    return 'Deactivate $name?';
+  }
+
+  @override
+  String get personDeactivateConfirmBody =>
+      'They will be signed out and removed from their sites. Their history is kept.';
+
+  @override
+  String get tempPasswordTitle => 'Temporary password';
+
+  @override
+  String tempPasswordBody(String name) {
+    return 'Give this password to $name. They will choose their own password when they sign in.';
+  }
+
+  @override
+  String assignTitle(String name) {
+    return 'Assign $name';
+  }
+
+  @override
+  String get assignNoEngineers => 'This site has no engineers yet. Add one to the site first.';
+
+  @override
+  String get assignSave => 'Assign';
+
+  @override
+  String siteCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count sites',
+      one: '1 site',
+      zero: 'No sites',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String assignStaffToSite(String site) {
+    return 'Add staff to $site';
+  }
+
+  @override
+  String get fieldStaffMember => 'Staff member';
+
+  @override
+  String get assignNoUnassignedStaff => 'Everyone is already assigned to a site. Add a new staff member from People.';
+
+  @override
+  String get engineerEdit => 'Edit engineer';
+
+  @override
+  String get staffEdit => 'Edit staff member';
+
+  @override
+  String get personNoSites => 'Not assigned to any site.';
+
+  @override
+  String get personSupervisesNone => 'No staff report to them yet.';
+
+  @override
+  String personActivated(String name) {
+    return '$name is active again.';
+  }
+
+  @override
+  String personDeactivated(String name) {
+    return '$name has been deactivated.';
+  }
+
+  @override
+  String get personInactiveBanner => 'This account is deactivated. They can\'t sign in.';
+
+  @override
+  String get filterDesignation => 'Designation';
+
+  @override
+  String get personInitialSitesHelper => 'Optional. You can change this later from each site\'s Team tab.';
+
+  @override
+  String get personInitialAssignment => 'Assign to a site now (optional)';
+
+  @override
+  String get siteLocationHelp => 'Used to check that staff are at the site when they send updates.';
+
+  @override
+  String get validationCompletionBeforeStart => 'Must be on or after the start date';
+
+  @override
+  String get siteNoMilestones => 'No payment milestones yet.';
+
+  @override
+  String milestoneDue(String date) {
+    return 'Due $date';
+  }
+
+  @override
+  String milestonePaidOf(String paid, String amount) {
+    return '$paid of $amount paid';
+  }
+
+  @override
+  String get siteEngineersSaved => 'Engineers updated.';
+
+  @override
+  String staffAssigned(String name, String site) {
+    return '$name assigned to $site.';
+  }
+
+  @override
+  String staffUnassigned(String name) {
+    return '$name removed from the site.';
+  }
+
+  @override
+  String locationCaptured(int meters) {
+    return 'Location set (accurate to about $meters m).';
+  }
+
+  @override
+  String get locationMocked => 'Your phone is using a mock location app. Turn it off and try again.';
+
+  @override
+  String get locationClear => 'Clear location';
+
+  @override
+  String get siteNoLocation => 'No location set. Staff updates can\'t be checked against the site.';
+
+  @override
+  String get siteContactNone => 'No site contact';
+
+  @override
+  String personSupervisedBy(String name) {
+    return 'Reports to $name';
+  }
+
+  @override
+  String get commonActions => 'More actions';
+
+  @override
+  String get milestonesTitle => 'Payment schedule';
+
+  @override
+  String staffGreeting(String name) {
+    return 'Hello, $name';
+  }
+
+  @override
+  String get staffYourEngineer => 'Your engineer';
+
+  @override
+  String get staffNotAssigned => 'You\'re not assigned to a site yet. Please contact your engineer or admin.';
+
+  @override
+  String get attendanceTitle => 'Attendance';
+
+  @override
+  String get attendanceToday => 'Today\'s attendance';
+
+  @override
+  String get checkIn => 'Check in';
+
+  @override
+  String get checkOut => 'Check out';
+
+  @override
+  String get checkingLocation => 'Getting your location…';
+
+  @override
+  String checkedInAt(String time) {
+    return 'Checked in at $time';
+  }
+
+  @override
+  String checkedOutAt(String time) {
+    return 'Checked out at $time';
+  }
+
+  @override
+  String workedDuration(int hours, int minutes) {
+    return 'Worked $hours h $minutes min';
+  }
+
+  @override
+  String get notCheckedInYet => 'You haven\'t checked in yet.';
+
+  @override
+  String get checkInDone => 'Checked in. Have a good day!';
+
+  @override
+  String get checkOutDone => 'Checked out. See you tomorrow!';
+
+  @override
+  String get checkOutConfirmTitle => 'Check out now?';
+
+  @override
+  String get checkOutConfirmBody => 'You can\'t check in again today.';
+
+  @override
+  String get checkInNotToday => 'No check-in needed today.';
+
+  @override
+  String get locationFlagOutside => 'Away from the site';
+
+  @override
+  String get locationFlagMocked => 'Mock location';
+
+  @override
+  String get locationFlagNoPermission => 'Location not allowed';
+
+  @override
+  String get locationFlagUnavailable => 'No location';
+
+  @override
+  String get locationFlagOk => 'At the site';
+
+  @override
+  String slotWindow(String start, String end) {
+    return '$start – $end';
+  }
+
+  @override
+  String get slotTakePhoto => 'Take photo';
+
+  @override
+  String slotSentAt(String time) {
+    return 'Sent at $time';
+  }
+
+  @override
+  String get slotSentOffline => 'Sent later (offline)';
+
+  @override
+  String slotOpensAt(String time) {
+    return 'Opens at $time';
+  }
+
+  @override
+  String slotDueBy(String time) {
+    return 'Due by $time';
+  }
+
+  @override
+  String get slotCheckInFirst => 'Check in first to send this update.';
+
+  @override
+  String get slotSavedOnPhone => 'Saved on this phone, waiting to send';
+
+  @override
+  String captureTitle(String slot) {
+    return '$slot update';
+  }
+
+  @override
+  String get captureRetake => 'Retake';
+
+  @override
+  String get captureFromGallery => 'Choose from gallery';
+
+  @override
+  String get captureGalleryNote => 'Photos from the gallery are marked for review. Use the camera when you can.';
+
+  @override
+  String get captureDescriptionLabel => 'What work was done?';
+
+  @override
+  String get captureDescriptionHint => 'e.g. Plastering on the 2nd floor, east side';
+
+  @override
+  String get captureDescriptionTooShort => 'Write a few words about the work.';
+
+  @override
+  String get capturePhotoRequired => 'Take a photo of the work first.';
+
+  @override
+  String get captureSend => 'Send update';
+
+  @override
+  String captureSending(int percent) {
+    return 'Sending… $percent%';
+  }
+
+  @override
+  String captureSent(String slot) {
+    return '$slot update sent.';
+  }
+
+  @override
+  String get captureQueued => 'No connection. Your update is saved and will be sent automatically.';
+
+  @override
+  String captureLocationFound(int meters) {
+    return 'Location found (accurate to about $meters m)';
+  }
+
+  @override
+  String get captureLocationMarked => 'The update will be sent without a location and marked.';
+
+  @override
+  String get captureCameraFailed => 'Couldn\'t open the camera. Please try again.';
+
+  @override
+  String get queueTitle => 'Waiting to send';
+
+  @override
+  String get queueWaiting => 'Waiting for a connection';
+
+  @override
+  String get queueSending => 'Sending…';
+
+  @override
+  String queueFailed(String reason) {
+    return 'Not sent: $reason';
+  }
+
+  @override
+  String queueTaken(String slot, String time) {
+    return '$slot · taken $time';
+  }
+
+  @override
+  String get queueDiscard => 'Discard';
+
+  @override
+  String get queueDiscardTitle => 'Discard this update?';
+
+  @override
+  String get queueDiscardBody => 'The photo and description will be deleted from this phone.';
+
+  @override
+  String get queueSendNow => 'Send now';
+
+  @override
+  String get historyTitle => 'Your updates';
+
+  @override
+  String get historyEmpty => 'No updates yet.';
+
+  @override
+  String get attendanceHistoryTitle => 'Past days';
+
+  @override
+  String get attendanceHistoryEmpty => 'No attendance yet.';
+
+  @override
+  String get photoAwaitingReview => 'Photo waiting for review';
+
+  @override
+  String get photoReviewed => 'Photo reviewed, being removed';
+
+  @override
+  String get photoRemovedReviewed => 'Photo reviewed and removed';
+
+  @override
+  String get photoRemovedExpired => 'Photo removed after the review period';
+
+  @override
+  String get photoFromGallery => 'From gallery';
+
+  @override
+  String get notificationsEmpty => 'You\'re all caught up.';
+
+  @override
+  String get notificationsMarkAllRead => 'Mark all as read';
+
+  @override
+  String get timeJustNow => 'Just now';
+
+  @override
+  String timeMinutesAgo(int minutes) {
+    return '$minutes min ago';
+  }
+
+  @override
+  String timeHoursAgo(int hours) {
+    return '$hours h ago';
+  }
+
+  @override
+  String timeYesterday(String time) {
+    return 'Yesterday, $time';
+  }
+
+  @override
+  String get notificationUnread => 'Unread';
+
+  @override
+  String get statYourSites => 'Your sites';
+
+  @override
+  String get reviewTitle => 'Photos to review';
+
+  @override
+  String get reviewEmpty => 'All photos have been reviewed.';
+
+  @override
+  String get siteTabToday => 'Today';
+
+  @override
+  String get boardNoStaff => 'No staff on this site.';
+
+  @override
+  String get boardNotCheckedIn => 'Not checked in';
+
+  @override
+  String boardCheckedIn(String time) {
+    return 'In $time';
+  }
+
+  @override
+  String boardCheckedOut(String time) {
+    return 'Out $time';
+  }
+
+  @override
+  String get boardPreviousDay => 'Previous day';
+
+  @override
+  String get boardNextDay => 'Next day';
+
+  @override
+  String get boardToReview => 'To review';
+
+  @override
+  String photoViewerTitle(String name, String slot) {
+    return '$name · $slot';
+  }
+
+  @override
+  String get photoDeleted =>
+      'This photo has been deleted. Photos are removed once reviewed, or after a day. The update itself is kept.';
+
+  @override
+  String get photoLoadFailed => 'Couldn\'t load the photo.';
+
+  @override
+  String updateTakenAt(String time) {
+    return 'Taken $time';
+  }
+
+  @override
+  String updateSentAt(String time) {
+    return 'Sent $time';
+  }
+
+  @override
+  String updateDistance(int meters) {
+    return '$meters m from the site';
+  }
+
+  @override
+  String get reviewEngineerDone => 'Engineer reviewed';
+
+  @override
+  String get reviewEngineerPending => 'Engineer hasn\'t reviewed';
+
+  @override
+  String get reviewAdminDone => 'Admin reviewed';
+
+  @override
+  String get reviewAdminPending => 'Admin hasn\'t reviewed';
+
+  @override
+  String get engineerUpdatesTitle => 'Updates to admin';
+
+  @override
+  String get engineerUpdateNew => 'New update';
+
+  @override
+  String get engineerUpdatesEmpty => 'No updates yet.';
+
+  @override
+  String get engineerUpdateSent => 'Update sent to the admin.';
+
+  @override
+  String engineerUpdateSeen(String time) {
+    return 'Seen by admin $time';
+  }
+
+  @override
+  String get engineerUpdateNotSeen => 'Not seen by the admin yet';
+
+  @override
+  String get engineerUpdateTypeProgress => 'Progress';
+
+  @override
+  String get engineerUpdateTypeCompletedWork => 'Completed work';
+
+  @override
+  String get engineerUpdateTypeMaterialsRequired => 'Materials required';
+
+  @override
+  String get engineerUpdateTypeSafetyConcern => 'Safety concern';
+
+  @override
+  String get engineerUpdateTypeClientRequirement => 'Client requirement';
+
+  @override
+  String get engineerUpdateTypeRemark => 'Remark';
+
+  @override
+  String get engineerUpdateTypeDailyReport => 'Daily report';
+
+  @override
+  String get fieldType => 'Type';
+
+  @override
+  String get fieldPriority => 'Priority';
+
+  @override
+  String get fieldTitle => 'Title';
+
+  @override
+  String get fieldTitleOptional => 'Title (optional)';
+
+  @override
+  String get fieldDescription => 'Description';
+
+  @override
+  String get fieldPhotos => 'Photos';
+
+  @override
+  String fieldProgressValue(int percent) {
+    return 'Site progress: $percent%';
+  }
+
+  @override
+  String get photosAdd => 'Add photo';
+
+  @override
+  String photosLimit(int max) {
+    return 'Up to $max photos';
+  }
+
+  @override
+  String get photoCamera => 'Camera';
+
+  @override
+  String get photoGallery => 'Gallery';
+
+  @override
+  String get commonRemove => 'Remove';
+
+  @override
+  String get commonSend => 'Send';
+
+  @override
+  String get issuesTitle => 'Issues';
+
+  @override
+  String get issueNew => 'Report issue';
+
+  @override
+  String get issuesEmpty => 'No issues here.';
+
+  @override
+  String get issueReportedDone => 'Issue reported.';
+
+  @override
+  String issueReportedBy(String name, String time) {
+    return 'Reported by $name · $time';
+  }
+
+  @override
+  String issueResolvedBy(String name, String time) {
+    return 'Resolved by $name · $time';
+  }
+
+  @override
+  String get issueStartWork => 'Start work';
+
+  @override
+  String get issueResolve => 'Mark resolved';
+
+  @override
+  String get issueReopen => 'Reopen';
+
+  @override
+  String get issueResolveTitle => 'Resolve issue';
+
+  @override
+  String get issueResolutionLabel => 'What was done?';
+
+  @override
+  String get issueUpdatedDone => 'Issue updated.';
+
+  @override
+  String get issueFilterUnresolved => 'Unresolved';
+
+  @override
+  String attachmentsCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count photos', one: '1 photo');
+    return '$_temp0';
+  }
+
+  @override
+  String get commonView => 'View';
+
+  @override
+  String get paymentsAll => 'All payments';
+
+  @override
+  String get paymentsRecord => 'Record payment';
+
+  @override
+  String get paymentRecorded => 'Payment recorded.';
+
+  @override
+  String get paymentVoid => 'Void payment';
+
+  @override
+  String get paymentVoidTitle => 'Void this payment?';
+
+  @override
+  String get paymentVoidBody => 'It stays in the history, marked void, and stops counting toward the site\'s total.';
+
+  @override
+  String get paymentVoidReason => 'Reason';
+
+  @override
+  String get paymentVoided => 'Payment voided.';
+
+  @override
+  String paymentVoidedBy(String name, String reason) {
+    return 'Voided by $name: $reason';
+  }
+
+  @override
+  String get paymentVoidChip => 'Void';
+
+  @override
+  String paymentRecordedBy(String name) {
+    return 'Recorded by $name';
+  }
+
+  @override
+  String get paymentMethodCash => 'Cash';
+
+  @override
+  String get paymentMethodUpi => 'UPI';
+
+  @override
+  String get paymentMethodBankTransfer => 'Bank transfer';
+
+  @override
+  String get paymentMethodCheque => 'Cheque';
+
+  @override
+  String get paymentMethodOther => 'Other';
+
+  @override
+  String get fieldAmount => 'Amount';
+
+  @override
+  String get fieldPaidOn => 'Paid on';
+
+  @override
+  String get fieldMethod => 'Method';
+
+  @override
+  String get fieldReference => 'Reference (cheque or UTR no.)';
+
+  @override
+  String get fieldRemarks => 'Remarks';
+
+  @override
+  String get fieldDueDate => 'Due date';
+
+  @override
+  String get milestoneAdd => 'Add milestone';
+
+  @override
+  String get milestoneEdit => 'Edit milestone';
+
+  @override
+  String get milestoneSaved => 'Milestone saved.';
+
+  @override
+  String get milestoneDelete => 'Delete milestone';
+
+  @override
+  String get milestoneDeleteTitle => 'Delete this milestone?';
+
+  @override
+  String get milestoneDeleteBody => 'Payments stay recorded and count toward the remaining milestones.';
+
+  @override
+  String get milestoneDeleted => 'Milestone deleted.';
+
+  @override
+  String get paymentsEmpty => 'No payments yet.';
+
+  @override
+  String paymentsReceivedOf(String received, String contract) {
+    return '$received of $contract received';
+  }
+
+  @override
+  String paymentsNextDue(String title, String amount, String date) {
+    return 'Next: $title · $amount due $date';
+  }
+
+  @override
+  String get paymentsShowVoided => 'Show voided';
+
+  @override
+  String get paymentsReceivedTitle => 'Payments received';
+
+  @override
+  String get paymentsBySite => 'By site';
+
+  @override
+  String get paymentsNoSites => 'No sites yet.';
+
+  @override
+  String get reportsTitle => 'Reports';
+
+  @override
+  String get reportsEntrySubtitle => 'Attendance, photo updates and more, for any dates';
+
+  @override
+  String get reportsExport => 'Export CSV';
+
+  @override
+  String reportsTooLong(int days) {
+    return 'Choose at most $days days.';
+  }
+
+  @override
+  String reportsRange(String from, String to) {
+    return '$from – $to';
+  }
+
+  @override
+  String get reportsAllSites => 'All sites';
+
+  @override
+  String get reportKindSites => 'Sites';
+
+  @override
+  String get reportKindStaff => 'Staff';
+
+  @override
+  String get reportKindEngineers => 'Engineers';
+
+  @override
+  String get reportKindPayments => 'Payments';
+
+  @override
+  String get reportPeriodThisWeek => 'This week';
+
+  @override
+  String get reportPeriodThisMonth => 'This month';
+
+  @override
+  String get reportPeriodLastMonth => 'Last month';
+
+  @override
+  String get reportPeriodCustom => 'Pick dates';
+
+  @override
+  String get reportsEmpty => 'Nothing to report for these dates.';
+
+  @override
+  String get reportsGroupUpdates => 'Photo updates';
+
+  @override
+  String get reportsGroupAttendance => 'Attendance';
+
+  @override
+  String get reportsGroupWork => 'Updates and issues';
+
+  @override
+  String get reportsGroupReviews => 'Photo reviews';
+
+  @override
+  String get reportsUpdatesSent => 'Sent';
+
+  @override
+  String get reportsUpdatesMissed => 'Missed';
+
+  @override
+  String get reportsSentOffline => 'Sent offline';
+
+  @override
+  String get reportsLocationFlagged => 'Location flagged';
+
+  @override
+  String get reportsEngineerUpdates => 'Updates to admin';
+
+  @override
+  String get reportsIssuesOpened => 'Issues opened';
+
+  @override
+  String get reportsIssuesResolved => 'Issues resolved';
+
+  @override
+  String get reportsIssuesOpenNow => 'Open now';
+
+  @override
+  String get reportsIssuesReported => 'Issues reported';
+
+  @override
+  String get reportsPhotos => 'Photos';
+
+  @override
+  String get reportsReviewed => 'Reviewed';
+
+  @override
+  String get reportsReviewRate => 'Review rate';
+
+  @override
+  String get reportsReviewMinutes => 'Minutes to review';
+
+  @override
+  String reportsCompliance(int percent) {
+    return '$percent% sent';
+  }
+
+  @override
+  String get reportsNothingDue => 'Nothing due';
+
+  @override
+  String get reportsReceivedInRange => 'Received in these dates';
+
+  @override
+  String reportsPaymentCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count payments', one: '1 payment');
+    return '$_temp0';
+  }
+
+  @override
+  String get reportsInRange => 'In these dates';
+
+  @override
+  String get reportsReceivedToDate => 'Received to date';
+
+  @override
+  String get reportsPaymentsInRange => 'Payments in these dates';
+
+  @override
+  String get reportsNoPayments => 'No payments in these dates.';
+
+  @override
+  String get locationApproximate =>
+      'Only approximate location is allowed, so this may be marked away from the site. Turn on \"Use precise location\" for this app.';
+}

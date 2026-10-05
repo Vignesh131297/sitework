@@ -1,0 +1,186 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a10683-a923-7517-86c5-21502811c375",
+      "workDate": "2026-10-04",
+      "slot": "EVENING",
+      "description": "Plastering the first floor east wall",
+      "staff": {
+        "id": "01a10655-4e48-71da-850f-01840d2004af",
+        "name": "Ravi",
+        "designation": "MASON"
+      },
+      "site": {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "name": "ABC Apartment Project"
+      },
+      "engineer": {
+        "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+        "name": "Arun Kumar"
+      },
+      "submittedAt": "2026-10-04T10:44:13.796Z",
+      "capturedAt": "2026-10-04T10:43:28.811Z",
+      "submittedOffline": false,
+      "location": {
+        "flag": "OK",
+        "distanceFromSiteM": 0
+      },
+      "photoSource": "CAMERA",
+      "image": {
+        "status": "AVAILABLE",
+        "expiresAt": "2026-10-05T10:44:13.796Z",
+        "deletedAt": null,
+        "deleteReason": null
+      },
+      "engineerViewedAt": "2026-10-04T14:57:58.105Z",
+      "adminViewedAt": null
+    },
+    {
+      "id": "c18d3f20-a065-4f1f-8b30-6257b91ab4bb",
+      "workDate": "2026-10-03",
+      "slot": "EVENING",
+      "description": "Shuttering for the staircase waist slab.",
+      "staff": {
+        "id": "01a10655-4e56-76ac-8329-a55c519a0462",
+        "name": "Sathish",
+        "designation": "CARPENTER"
+      },
+      "site": {
+        "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+        "name": "Green Valley Villa"
+      },
+      "engineer": {
+        "id": "01a10655-4e3e-757e-9b02-2b6ac64a90fd",
+        "name": "Prakash"
+      },
+      "submittedAt": "2026-10-03T13:17:00.000Z",
+      "capturedAt": "2026-10-03T13:15:00.000Z",
+      "submittedOffline": false,
+      "location": {
+        "flag": "OK",
+        "distanceFromSiteM": 52
+      },
+      "photoSource": "CAMERA",
+      "image": {
+        "status": "DELETED",
+        "expiresAt": "2026-10-04T13:17:00.000Z",
+        "deletedAt": "2026-10-03T15:25:00.000Z",
+        "deleteReason": "ALL_VIEWED"
+      },
+      "engineerViewedAt": "2026-10-03T14:52:00.000Z",
+      "adminViewedAt": "2026-10-03T14:45:00.000Z"
+    },
+    {
+      "id": "93111a9a-f757-4d3d-880e-860a718d8734",
+      "workDate": "2026-10-03",
+      "slot": "EVENING",
+      "description": "Fixing CPVC lines for the kitchen.",
+      "staff": {
+        "id": "01a10655-4e5a-722f-818b-3e321470638d",
+        "name": "Vijay",
+        "designation": "PLUMBER"
+      },
+      "site": {
+        "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+        "name": "Sri Lakshmi Commercial Building"
+      },
+      "engineer": {
+        "id": "01a10655-4e43-731f-a39b-d185eaf3306d",
+        "name": "Suresh"
+      },
+      "submittedAt": "2026-10-03T13:08:00.000Z",
+      "capturedAt": "2026-10-03T13:07:00.000Z",
+      "submittedOffline": false,
+      "location": {
+        "flag": "OK",
+        "distanceFromSiteM": 37
+      },
+      "photoSource": "CAMERA",
+      "image": {
+        "status": "DELETED",
+        "expiresAt": "2026-10-04T13:08:00.000Z",
+        "deletedAt": "2026-10-03T15:06:00.000Z",
+        "deleteReason": "ALL_VIEWED"
+      },
+      "engineerViewedAt": "2026-10-03T13:42:00.000Z",
+      "adminViewedAt": "2026-10-03T14:32:00.000Z"
+    },
+    {
+      "id": "0a4ee25d-2d34-437f-b303-219f31d918b7",
+      "workDate": "2026-10-03",
+      "slot": "EVENING",
+      "description": "Curing of yesterday's plaster work and minor touch-ups.",
+      "staff": {
+        "id": "01a10655-4e48-71da-850f-01840d2004af",
+        "name": "Ravi",
+        "designation": "MASON"
+      },
+      "site": {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "name": "ABC Apartment Project"
+      },
+      "engineer": {
+        "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+        "name": "Arun Kumar"
+      },
+      "submittedAt": "2026-10-03T12:06:00.000Z",
+      "capturedAt": "2026-10-03T12:02:00.000Z",
+      "submittedOffline": false,
+      "location": {
+        "flag": "OK",
+        "distanceFromSiteM": 6
+      },
+      "photoSource": "CAMERA",
+      "image": {
+        "status": "DELETED",
+        "expiresAt": "2026-10-04T12:06:00.000Z",
+        "deletedAt": "2026-10-03T17:35:00.000Z",
+        "deleteReason": "ALL_VIEWED"
+      },
+      "engineerViewedAt": "2026-10-03T13:11:00.000Z",
+      "adminViewedAt": "2026-10-03T17:04:00.000Z"
+    },
+    {
+      "id": "18ebba29-0ada-4df0-a05b-a9b04d900899",
+      "workDate": "2026-10-03",
+      "slot": "EVENING",
+      "description": "Watering the slab for curing.",
+      "staff": {
+        "id": "01a10655-4e4d-746b-a6f9-6d46d2337692",
+        "name": "Kumar",
+        "designation": "HELPER"
+      },
+      "site": {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "name": "ABC Apartment Project"
+      },
+      "engineer": {
+        "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+        "name": "Arun Kumar"
+      },
+      "submittedAt": "2026-10-03T11:46:00.000Z",
+      "capturedAt": "2026-10-03T11:42:00.000Z",
+      "submittedOffline": false,
+      "location": {
+        "flag": "OK",
+        "distanceFromSiteM": 59
+      },
+      "photoSource": "CAMERA",
+      "image": {
+        "status": "DELETED",
+        "expiresAt": "2026-10-04T11:46:00.000Z",
+        "deletedAt": "2026-10-03T14:01:00.000Z",
+        "deleteReason": "ALL_VIEWED"
+      },
+      "engineerViewedAt": "2026-10-03T13:30:00.000Z",
+      "adminViewedAt": "2026-10-03T12:13:00.000Z"
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 173,
+    "totalPages": 35
+  }
+}

@@ -1,0 +1,700 @@
+// SiteWork database schema.
+//
+// Conventions
+// - Primary keys are UUIDv7 (time-ordered, index friendly).
+// - Tables and columns are snake_case; Prisma fields are camelCase.
+// - Instants are timestamptz (UTC). Business dates (work_date, due_date, ...) are
+//   plain DATE values computed on the server in the configured business time zone.
+// - Money is numeric(14,2). Derived amounts (received, pending, milestone status)
+//   are never stored; the server calculates them.
+// - Integrity rules Prisma cannot express (CHECK constraints) live in the
+//   migration SQL; see prisma/migrations/*_init/migration.sql.
+
+generator client {
+  provider               = "prisma-client"
+  output                 = "../src/generated/prisma"
+  moduleFormat           = "esm"
+  generatedFileExtension = "ts"
+  importFileExtension    = "js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ───────────────────────────── Enums ─────────────────────────────
+
+enum Role {
+  ADMIN
+  ENGINEER
+  STAFF
+}
+
+enum Designation {
+  MASON
+  HELPER
+  ELECTRICIAN
+  CARPENTER
+  PLUMBER
+  SUPERVISOR
+  PAINTER
+  GENERAL_WORKER
+}
+
+enum SiteStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  ON_HOLD
+  COMPLETED
+}
+
+enum AssignmentKind {
+  ENGINEER
+  STAFF
+}
+
+enum TimeSlot {
+  MORNING
+  AFTERNOON
+  EVENING
+}
+
+enum ImageStatus {
+  AVAILABLE
+  READY_FOR_DELETION
+  DELETED
+}
+
+enum ImageDeleteReason {
+  ALL_VIEWED
+  EXPIRED
+}
+
+enum PhotoSource {
+  CAMERA
+  GALLERY
+}
+
+enum LocationFlag {
+  OK
+  PERMISSION_DENIED
+  UNAVAILABLE
+  MOCKED
+  OUTSIDE_SITE
+}
+
+enum AttendanceStatus {
+  PRESENT
+  LATE
+  HALF_DAY
+  ABSENT
+}
+
+enum PaymentMethod {
+  CASH
+  UPI
+  BANK_TRANSFER
+  CHEQUE
+  OTHER
+}
+
+enum EngineerUpdateType {
+  PROGRESS
+  COMPLETED_WORK
+  MATERIALS_REQUIRED
+  SAFETY_CONCERN
+  CLIENT_REQUIREMENT
+  REMARK
+  DAILY_REPORT
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum IssueStatus {
+  OPEN
+  IN_PROGRESS
+  RESOLVED
+}
+
+enum NotificationType {
+  STAFF_UPDATE
+  ENGINEER_UPDATE
+  MISSING_UPDATE
+  PAYMENT
+  ISSUE
+  ATTENDANCE
+  SYSTEM
+}
+
+enum ReferenceType {
+  STAFF_UPDATE
+  MISSED_UPDATE
+  ENGINEER_UPDATE
+  ISSUE
+  SITE
+  PAYMENT_MILESTONE
+  PAYMENT
+  ATTENDANCE
+}
+
+enum PushStatus {
+  PENDING
+  SENT
+  FAILED
+  NO_DEVICE
+}
+
+// ─────────────────────────── Identity ────────────────────────────
+
+model User {
+  id                 String       @id @default(uuid(7)) @db.Uuid
+  role               Role
+  name               String
+  /// E.164 format (+91XXXXXXXXXX). Login identifier.
+  phone              String       @unique
+  /// Stored lower-case. Optional login identifier.
+  email              String?      @unique
+  passwordHash       String       @map("password_hash")
+  /// Employee ID (engineers/admins) or Staff ID (staff), e.g. ENG-001, STF-014.
+  employeeCode       String       @unique @map("employee_code")
+  /// Staff only (enforced by a CHECK constraint).
+  designation        Designation?
+  joiningDate        DateTime?    @map("joining_date") @db.Date
+  photoKey           String?      @map("photo_key")
+  isActive           Boolean      @default(true) @map("is_active")
+  mustChangePassword Boolean      @default(false) @map("must_change_password")
+  failedLoginCount   Int          @default(0) @map("failed_login_count")
+  lockedUntil        DateTime?    @map("locked_until") @db.Timestamptz(3)
+  lastLoginAt        DateTime?    @map("last_login_at") @db.Timestamptz(3)
+  createdAt          DateTime     @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt          DateTime     @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  sessions           AuthSession[]
+  deviceTokens       DeviceToken[]
+  passwordResetCodes PasswordResetCode[]
+  notifications      Notification[]
+
+  sitesCreated                Site[]               @relation("SiteCreatedBy")
+  engineerAssignments         EngineerAssignment[] @relation("EngineerAssignmentEngineer")
+  engineerAssignmentsMade     EngineerAssignment[] @relation("EngineerAssignmentAssignedBy")
+  staffAssignment             StaffAssignment?     @relation("StaffAssignmentStaff")
+  supervisedStaff             StaffAssignment[]    @relation("StaffAssignmentEngineer")
+  staffAssignmentsMade        StaffAssignment[]    @relation("StaffAssignmentAssignedBy")
+  assignmentHistory           AssignmentHistory[]  @relation("AssignmentHistoryUser")
+  assignmentHistoryAsEngineer AssignmentHistory[]  @relation("AssignmentHistoryEngineer")
+  assignmentHistoryEnded      AssignmentHistory[]  @relation("AssignmentHistoryEndedBy")
+  attendance                  Attendance[]         @relation("AttendanceStaff")
+  attendanceCorrections       Attendance[]         @relation("AttendanceCorrectedBy")
+  staffUpdates                StaffUpdate[]        @relation("StaffUpdateStaff")
+  staffUpdatesToReview        StaffUpdate[]        @relation("StaffUpdateEngineer")
+  staffUpdatesAdminViewed     StaffUpdate[]        @relation("StaffUpdateAdminViewedBy")
+  missedUpdates               MissedUpdate[]       @relation("MissedUpdateStaff")
+  missedUpdatesAsEngineer     MissedUpdate[]       @relation("MissedUpdateEngineer")
+  engineerUpdates             EngineerUpdate[]     @relation("EngineerUpdateEngineer")
+  engineerUpdatesAdminViewed  EngineerUpdate[]     @relation("EngineerUpdateAdminViewedBy")
+  issuesReported              Issue[]              @relation("IssueReportedBy")
+  issuesResolved              Issue[]              @relation("IssueResolvedBy")
+  attachmentsUploaded         Attachment[]
+  milestonesCreated           PaymentMilestone[]
+  paymentsRecorded            Payment[]            @relation("PaymentRecordedBy")
+  paymentsVoided              Payment[]            @relation("PaymentVoidedBy")
+
+  @@index([role, isActive])
+  @@map("users")
+}
+
+/// One row per signed-in device. The refresh token itself is never stored, only its hash.
+model AuthSession {
+  id               String    @id @default(uuid(7)) @db.Uuid
+  userId           String    @map("user_id") @db.Uuid
+  refreshTokenHash String    @map("refresh_token_hash")
+  deviceName       String?   @map("device_name")
+  ipAddress        String?   @map("ip_address")
+  expiresAt        DateTime  @map("expires_at") @db.Timestamptz(3)
+  revokedAt        DateTime? @map("revoked_at") @db.Timestamptz(3)
+  lastUsedAt       DateTime  @default(now()) @map("last_used_at") @db.Timestamptz(3)
+  createdAt        DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt        DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("auth_sessions")
+}
+
+model DeviceToken {
+  id         String   @id @default(uuid(7)) @db.Uuid
+  userId     String   @map("user_id") @db.Uuid
+  fcmToken   String   @unique @map("fcm_token")
+  platform   String   @default("android")
+  appVersion String?  @map("app_version")
+  lastSeenAt DateTime @default(now()) @map("last_seen_at") @db.Timestamptz(3)
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt  DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("device_tokens")
+}
+
+model PasswordResetCode {
+  id        String    @id @default(uuid(7)) @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  codeHash  String    @map("code_hash")
+  expiresAt DateTime  @map("expires_at") @db.Timestamptz(3)
+  usedAt    DateTime? @map("used_at") @db.Timestamptz(3)
+  attempts  Int       @default(0)
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+  @@map("password_reset_codes")
+}
+
+// ─────────────────── Clients, sites, assignments ──────────────────
+
+model Client {
+  id        String   @id @default(uuid(7)) @db.Uuid
+  name      String
+  company   String?
+  phone     String
+  email     String?
+  address   String?
+  notes     String?
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  sites Site[]
+
+  @@index([name])
+  @@map("clients")
+}
+
+model Site {
+  id                     String     @id @default(uuid(7)) @db.Uuid
+  /// Human-readable "Site ID", e.g. SITE-001.
+  code                   String     @unique
+  name                   String
+  clientId               String     @map("client_id") @db.Uuid
+  contactName            String?    @map("contact_name")
+  contactPhone           String?    @map("contact_phone")
+  address                String
+  latitude               Float?
+  longitude              Float?
+  geofenceRadiusM        Int?       @map("geofence_radius_m")
+  startDate              DateTime   @map("start_date") @db.Date
+  expectedCompletionDate DateTime?  @map("expected_completion_date") @db.Date
+  contractAmount         Decimal    @map("contract_amount") @db.Decimal(14, 2)
+  status                 SiteStatus @default(NOT_STARTED)
+  /// Latest progress reported by an engineer (0-100).
+  progressPercent        Int        @default(0) @map("progress_percent") @db.SmallInt
+  createdById            String     @map("created_by") @db.Uuid
+  createdAt              DateTime   @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt              DateTime   @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  client    Client @relation(fields: [clientId], references: [id], onDelete: Restrict)
+  createdBy User   @relation("SiteCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+
+  engineerAssignments EngineerAssignment[]
+  staffAssignments    StaffAssignment[]
+  assignmentHistory   AssignmentHistory[]
+  attendance          Attendance[]
+  staffUpdates        StaffUpdate[]
+  missedUpdates       MissedUpdate[]
+  engineerUpdates     EngineerUpdate[]
+  issues              Issue[]
+  paymentMilestones   PaymentMilestone[]
+  payments            Payment[]
+
+  @@index([clientId])
+  @@index([status])
+  @@map("sites")
+}
+
+/// Current engineer-to-site assignments. Ended assignments move to assignment_history.
+model EngineerAssignment {
+  id           String   @id @default(uuid(7)) @db.Uuid
+  siteId       String   @map("site_id") @db.Uuid
+  engineerId   String   @map("engineer_id") @db.Uuid
+  assignedAt   DateTime @default(now()) @map("assigned_at") @db.Timestamptz(3)
+  assignedById String?  @map("assigned_by") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  site       Site  @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  engineer   User  @relation("EngineerAssignmentEngineer", fields: [engineerId], references: [id], onDelete: Restrict)
+  assignedBy User? @relation("EngineerAssignmentAssignedBy", fields: [assignedById], references: [id], onDelete: SetNull)
+
+  staffAssignments StaffAssignment[]
+
+  @@unique([siteId, engineerId])
+  @@index([engineerId])
+  @@map("engineer_assignments")
+}
+
+/// Current staff assignment: one per staff member. Ended assignments move to assignment_history.
+model StaffAssignment {
+  id           String   @id @default(uuid(7)) @db.Uuid
+  staffId      String   @unique @map("staff_id") @db.Uuid
+  siteId       String   @map("site_id") @db.Uuid
+  /// Responsible engineer: the one who must view this staff member's photos.
+  engineerId   String   @map("engineer_id") @db.Uuid
+  assignedAt   DateTime @default(now()) @map("assigned_at") @db.Timestamptz(3)
+  assignedById String?  @map("assigned_by") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  staff      User  @relation("StaffAssignmentStaff", fields: [staffId], references: [id], onDelete: Restrict)
+  site       Site  @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  engineer   User  @relation("StaffAssignmentEngineer", fields: [engineerId], references: [id], onDelete: Restrict)
+  assignedBy User? @relation("StaffAssignmentAssignedBy", fields: [assignedById], references: [id], onDelete: SetNull)
+
+  /// Composite FK: the responsible engineer must currently be assigned to the same site,
+  /// so an engineer can't be removed from a site while they still have staff there.
+  engineerAssignment EngineerAssignment @relation(fields: [siteId, engineerId], references: [siteId, engineerId], onDelete: Restrict)
+
+  @@index([siteId, engineerId])
+  @@index([engineerId])
+  @@map("staff_assignments")
+}
+
+model AssignmentHistory {
+  id           String         @id @default(uuid(7)) @db.Uuid
+  kind         AssignmentKind
+  /// The engineer (kind = ENGINEER) or staff member (kind = STAFF).
+  userId       String         @map("user_id") @db.Uuid
+  siteId       String         @map("site_id") @db.Uuid
+  /// kind = STAFF only: the responsible engineer during this assignment.
+  engineerId   String?        @map("engineer_id") @db.Uuid
+  assignedAt   DateTime       @map("assigned_at") @db.Timestamptz(3)
+  unassignedAt DateTime       @map("unassigned_at") @db.Timestamptz(3)
+  endedById    String?        @map("ended_by") @db.Uuid
+  createdAt    DateTime       @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  user     User  @relation("AssignmentHistoryUser", fields: [userId], references: [id], onDelete: Restrict)
+  site     Site  @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  engineer User? @relation("AssignmentHistoryEngineer", fields: [engineerId], references: [id], onDelete: Restrict)
+  endedBy  User? @relation("AssignmentHistoryEndedBy", fields: [endedById], references: [id], onDelete: SetNull)
+
+  @@index([userId, assignedAt])
+  @@index([siteId, assignedAt])
+  @@map("assignment_history")
+}
+
+// ───────────────────────── Field activity ─────────────────────────
+
+model Attendance {
+  id                   String           @id @default(uuid(7)) @db.Uuid
+  staffId              String           @map("staff_id") @db.Uuid
+  siteId               String           @map("site_id") @db.Uuid
+  workDate             DateTime         @map("work_date") @db.Date
+  status               AttendanceStatus
+  checkInAt            DateTime?        @map("check_in_at") @db.Timestamptz(3)
+  checkInLatitude      Float?           @map("check_in_latitude")
+  checkInLongitude     Float?           @map("check_in_longitude")
+  checkInAccuracyM     Float?           @map("check_in_accuracy_m")
+  checkInLocationFlag  LocationFlag?    @map("check_in_location_flag")
+  checkOutAt           DateTime?        @map("check_out_at") @db.Timestamptz(3)
+  checkOutLatitude     Float?           @map("check_out_latitude")
+  checkOutLongitude    Float?           @map("check_out_longitude")
+  checkOutAccuracyM    Float?           @map("check_out_accuracy_m")
+  checkOutLocationFlag LocationFlag?    @map("check_out_location_flag")
+  correctedById        String?          @map("corrected_by") @db.Uuid
+  correctionNote       String?          @map("correction_note")
+  createdAt            DateTime         @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt            DateTime         @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  staff       User  @relation("AttendanceStaff", fields: [staffId], references: [id], onDelete: Restrict)
+  site        Site  @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  correctedBy User? @relation("AttendanceCorrectedBy", fields: [correctedById], references: [id], onDelete: SetNull)
+
+  @@unique([staffId, workDate])
+  @@index([siteId, workDate])
+  @@index([workDate])
+  @@map("attendance")
+}
+
+/// One official photo update per staff member, site, day and slot.
+/// The record is permanent; the photo itself is temporary (see image_* columns).
+model StaffUpdate {
+  id                  String             @id @default(uuid(7)) @db.Uuid
+  /// Idempotency key generated on the phone, so offline retries never duplicate.
+  clientSubmissionId  String             @unique @map("client_submission_id") @db.Uuid
+  staffId             String             @map("staff_id") @db.Uuid
+  siteId              String             @map("site_id") @db.Uuid
+  /// Responsible engineer at submit time (snapshot). Only their view counts.
+  engineerId          String             @map("engineer_id") @db.Uuid
+  workDate            DateTime           @map("work_date") @db.Date
+  slot                TimeSlot
+  description         String
+  latitude            Float?
+  longitude           Float?
+  accuracyM           Float?             @map("accuracy_m")
+  locationFlag        LocationFlag       @map("location_flag")
+  distanceFromSiteM   Int?               @map("distance_from_site_m")
+  photoSource         PhotoSource        @map("photo_source")
+  /// Phone clock, informational only.
+  capturedAt          DateTime           @map("captured_at") @db.Timestamptz(3)
+  /// Server clock; this is the time that counts.
+  submittedAt         DateTime           @default(now()) @map("submitted_at") @db.Timestamptz(3)
+  submittedOffline    Boolean            @default(false) @map("submitted_offline")
+  /// Object path in the private bucket. NULL once the photo is deleted.
+  imageKey            String?            @map("image_key")
+  imageBytes          Int                @map("image_bytes")
+  imageMime           String             @map("image_mime")
+  imageStatus         ImageStatus        @default(AVAILABLE) @map("image_status")
+  imageExpiresAt      DateTime           @map("image_expires_at") @db.Timestamptz(3)
+  imageReadyAt        DateTime?          @map("image_ready_at") @db.Timestamptz(3)
+  imageDeletedAt      DateTime?          @map("image_deleted_at") @db.Timestamptz(3)
+  imageDeleteReason   ImageDeleteReason? @map("image_delete_reason")
+  imageDeleteAttempts Int                @default(0) @map("image_delete_attempts")
+  engineerViewedAt    DateTime?          @map("engineer_viewed_at") @db.Timestamptz(3)
+  adminViewedAt       DateTime?          @map("admin_viewed_at") @db.Timestamptz(3)
+  adminViewedById     String?            @map("admin_viewed_by") @db.Uuid
+  createdAt           DateTime           @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt           DateTime           @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  staff         User  @relation("StaffUpdateStaff", fields: [staffId], references: [id], onDelete: Restrict)
+  site          Site  @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  engineer      User  @relation("StaffUpdateEngineer", fields: [engineerId], references: [id], onDelete: Restrict)
+  adminViewedBy User? @relation("StaffUpdateAdminViewedBy", fields: [adminViewedById], references: [id], onDelete: SetNull)
+
+  resolvedMiss MissedUpdate?
+
+  @@unique([staffId, siteId, workDate, slot])
+  @@index([siteId, workDate])
+  @@index([engineerId, workDate])
+  @@index([workDate, slot])
+  @@index([imageStatus, imageExpiresAt])
+  // Lists are newest first: everyone's (admin), a site's, and one person's history.
+  @@index([submittedAt])
+  @@index([staffId, submittedAt])
+  @@map("staff_updates")
+}
+
+/// A slot that closed without an update. The unique key makes missed-update alerts
+/// idempotent: the detection job inserts with ON CONFLICT DO NOTHING and only
+/// newly inserted rows produce notifications.
+model MissedUpdate {
+  id                 String    @id @default(uuid(7)) @db.Uuid
+  staffId            String    @map("staff_id") @db.Uuid
+  siteId             String    @map("site_id") @db.Uuid
+  engineerId         String    @map("engineer_id") @db.Uuid
+  workDate           DateTime  @map("work_date") @db.Date
+  slot               TimeSlot
+  detectedAt         DateTime  @default(now()) @map("detected_at") @db.Timestamptz(3)
+  /// Set when an offline submission for this slot arrives later and is accepted.
+  resolvedAt         DateTime? @map("resolved_at") @db.Timestamptz(3)
+  resolvedByUpdateId String?   @unique @map("resolved_by_update_id") @db.Uuid
+  createdAt          DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt          DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  staff            User         @relation("MissedUpdateStaff", fields: [staffId], references: [id], onDelete: Restrict)
+  site             Site         @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  engineer         User         @relation("MissedUpdateEngineer", fields: [engineerId], references: [id], onDelete: Restrict)
+  resolvedByUpdate StaffUpdate? @relation(fields: [resolvedByUpdateId], references: [id], onDelete: SetNull)
+
+  @@unique([staffId, workDate, slot])
+  @@index([siteId, workDate])
+  @@index([engineerId, workDate])
+  @@index([workDate, slot])
+  @@map("missed_updates")
+}
+
+model EngineerUpdate {
+  id              String             @id @default(uuid(7)) @db.Uuid
+  engineerId      String             @map("engineer_id") @db.Uuid
+  siteId          String             @map("site_id") @db.Uuid
+  type            EngineerUpdateType
+  priority        Priority           @default(MEDIUM)
+  title           String?
+  description     String
+  /// PROGRESS updates only (0-100).
+  progressPercent Int?               @map("progress_percent") @db.SmallInt
+  adminViewedAt   DateTime?          @map("admin_viewed_at") @db.Timestamptz(3)
+  adminViewedById String?            @map("admin_viewed_by") @db.Uuid
+  createdAt       DateTime           @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt       DateTime           @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  engineer      User  @relation("EngineerUpdateEngineer", fields: [engineerId], references: [id], onDelete: Restrict)
+  site          Site  @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  adminViewedBy User? @relation("EngineerUpdateAdminViewedBy", fields: [adminViewedById], references: [id], onDelete: SetNull)
+
+  attachments Attachment[]
+
+  @@index([siteId, createdAt])
+  @@index([engineerId, createdAt])
+  @@index([createdAt])
+  @@map("engineer_updates")
+}
+
+model Issue {
+  id             String      @id @default(uuid(7)) @db.Uuid
+  siteId         String      @map("site_id") @db.Uuid
+  reportedById   String      @map("reported_by") @db.Uuid
+  title          String
+  description    String
+  priority       Priority    @default(MEDIUM)
+  status         IssueStatus @default(OPEN)
+  resolvedAt     DateTime?   @map("resolved_at") @db.Timestamptz(3)
+  resolvedById   String?     @map("resolved_by") @db.Uuid
+  resolutionNote String?     @map("resolution_note")
+  createdAt      DateTime    @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt      DateTime    @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  site       Site  @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  reportedBy User  @relation("IssueReportedBy", fields: [reportedById], references: [id], onDelete: Restrict)
+  resolvedBy User? @relation("IssueResolvedBy", fields: [resolvedById], references: [id], onDelete: SetNull)
+
+  attachments Attachment[]
+
+  @@index([siteId, status])
+  @@index([status, priority])
+  @@index([createdAt])
+  @@map("issues")
+}
+
+/// Permanent photos attached to an engineer update or an issue (exactly one owner).
+model Attachment {
+  id               String   @id @default(uuid(7)) @db.Uuid
+  engineerUpdateId String?  @map("engineer_update_id") @db.Uuid
+  issueId          String?  @map("issue_id") @db.Uuid
+  objectKey        String   @unique @map("object_key")
+  mime             String
+  bytes            Int
+  uploadedById     String   @map("uploaded_by") @db.Uuid
+  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  engineerUpdate EngineerUpdate? @relation(fields: [engineerUpdateId], references: [id], onDelete: Cascade)
+  issue          Issue?          @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  uploadedBy     User            @relation(fields: [uploadedById], references: [id], onDelete: Restrict)
+
+  @@index([engineerUpdateId])
+  @@index([issueId])
+  @@map("attachments")
+}
+
+// ───────────────────────────── Money ─────────────────────────────
+
+/// Payment schedule for a site. Status (PAID / PARTIALLY_PAID / PENDING / OVERDUE) is
+/// derived: received payments are applied to milestones in due-date order.
+model PaymentMilestone {
+  id          String   @id @default(uuid(7)) @db.Uuid
+  siteId      String   @map("site_id") @db.Uuid
+  title       String
+  amount      Decimal  @db.Decimal(14, 2)
+  dueDate     DateTime @map("due_date") @db.Date
+  notes       String?
+  createdById String   @map("created_by") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  site      Site @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  createdBy User @relation(fields: [createdById], references: [id], onDelete: Restrict)
+
+  @@index([siteId, dueDate])
+  @@index([dueDate])
+  @@map("payment_milestones")
+}
+
+/// Money received from the client. Never deleted: mistakes are voided (and audited).
+model Payment {
+  id           String        @id @default(uuid(7)) @db.Uuid
+  siteId       String        @map("site_id") @db.Uuid
+  amount       Decimal       @db.Decimal(14, 2)
+  paidOn       DateTime      @map("paid_on") @db.Date
+  method       PaymentMethod
+  reference    String?
+  remarks      String?
+  recordedById String        @map("recorded_by") @db.Uuid
+  voidedAt     DateTime?     @map("voided_at") @db.Timestamptz(3)
+  voidedById   String?       @map("voided_by") @db.Uuid
+  voidReason   String?       @map("void_reason")
+  createdAt    DateTime      @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt    DateTime      @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  site       Site  @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  recordedBy User  @relation("PaymentRecordedBy", fields: [recordedById], references: [id], onDelete: Restrict)
+  voidedBy   User? @relation("PaymentVoidedBy", fields: [voidedById], references: [id], onDelete: SetNull)
+
+  @@index([siteId, paidOn])
+  @@index([paidOn])
+  @@map("payments")
+}
+
+// ──────────────────────────── Platform ────────────────────────────
+
+/// In-app inbox and push outbox in one table. push_status drives the dispatcher.
+model Notification {
+  id            String           @id @default(uuid(7)) @db.Uuid
+  recipientId   String           @map("recipient_id") @db.Uuid
+  type          NotificationType
+  title         String
+  message       String
+  referenceType ReferenceType?   @map("reference_type")
+  referenceId   String?          @map("reference_id") @db.Uuid
+  data          Json?
+  /// e.g. "missed:{siteId}:{date}:{slot}". Unique per recipient, which prevents repeat alerts.
+  dedupeKey     String?          @map("dedupe_key")
+  isRead        Boolean          @default(false) @map("is_read")
+  readAt        DateTime?        @map("read_at") @db.Timestamptz(3)
+  pushStatus    PushStatus       @default(PENDING) @map("push_status")
+  pushAttempts  Int              @default(0) @map("push_attempts")
+  pushSentAt    DateTime?        @map("push_sent_at") @db.Timestamptz(3)
+  pushError     String?          @map("push_error")
+  createdAt     DateTime         @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt     DateTime         @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  recipient User @relation(fields: [recipientId], references: [id], onDelete: Cascade)
+
+  @@unique([recipientId, dedupeKey])
+  @@index([recipientId, isRead, createdAt(sort: Desc)])
+  @@index([pushStatus, createdAt])
+  @@map("notifications")
+}
+
+/// Business rules editable without a redeploy. Keys and value shapes are defined
+/// (and validated) in src/settings/settings.schema.ts.
+model AppSetting {
+  key         String   @id
+  value       Json
+  updatedById String?  @map("updated_by") @db.Uuid
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@map("app_settings")
+}
+
+model Holiday {
+  id        String   @id @default(uuid(7)) @db.Uuid
+  date      DateTime @unique @db.Date
+  name      String
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  @@map("holidays")
+}
+
+/// Append-only record of sensitive changes (payments, assignments, attendance
+/// corrections, settings). actor_id is deliberately not a foreign key.
+model AuditLog {
+  id         String   @id @default(uuid(7)) @db.Uuid
+  actorId    String?  @map("actor_id") @db.Uuid
+  action     String
+  entityType String   @map("entity_type")
+  entityId   String   @map("entity_id")
+  changes    Json?
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+
+  @@index([entityType, entityId])
+  @@index([actorId, createdAt])
+  @@index([createdAt])
+  @@map("audit_logs")
+}

@@ -1,0 +1,161 @@
+{
+  "success": true,
+  "data": [
+    {
+      "staff": {
+        "id": "01a10655-4e4d-746b-a6f9-6d46d2337692",
+        "name": "Kumar",
+        "employeeCode": "STF-002",
+        "designation": "HELPER",
+        "isActive": true
+      },
+      "site": {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "name": "ABC Apartment Project"
+      },
+      "attendance": {
+        "present": 6,
+        "late": 3,
+        "halfDay": 0,
+        "absent": 2
+      },
+      "updates": {
+        "submitted": 21,
+        "missed": 6,
+        "offline": 1,
+        "locationFlagged": 2,
+        "compliancePercent": 78
+      }
+    },
+    {
+      "staff": {
+        "id": "01a10655-4e52-77ca-b7a9-cb4b2bab0f78",
+        "name": "Manoj",
+        "employeeCode": "STF-003",
+        "designation": "ELECTRICIAN",
+        "isActive": true
+      },
+      "site": {
+        "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+        "name": "Green Valley Villa"
+      },
+      "attendance": {
+        "present": 8,
+        "late": 2,
+        "halfDay": 1,
+        "absent": 0
+      },
+      "updates": {
+        "submitted": 30,
+        "missed": 3,
+        "offline": 4,
+        "locationFlagged": 3,
+        "compliancePercent": 91
+      }
+    },
+    {
+      "staff": {
+        "id": "01a10655-4e62-7114-96d5-1ad5577d5e0b",
+        "name": "Muthu",
+        "employeeCode": "STF-006",
+        "designation": "PAINTER",
+        "isActive": true
+      },
+      "site": {
+        "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+        "name": "Sri Lakshmi Commercial Building"
+      },
+      "attendance": {
+        "present": 8,
+        "late": 2,
+        "halfDay": 1,
+        "absent": 0
+      },
+      "updates": {
+        "submitted": 29,
+        "missed": 4,
+        "offline": 0,
+        "locationFlagged": 2,
+        "compliancePercent": 88
+      }
+    },
+    {
+      "staff": {
+        "id": "01a10655-4e48-71da-850f-01840d2004af",
+        "name": "Ravi",
+        "employeeCode": "STF-001",
+        "designation": "MASON",
+        "isActive": true
+      },
+      "site": {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "name": "ABC Apartment Project"
+      },
+      "attendance": {
+        "present": 10,
+        "late": 2,
+        "halfDay": 0,
+        "absent": 0
+      },
+      "updates": {
+        "submitted": 34,
+        "missed": 2,
+        "offline": 3,
+        "locationFlagged": 2,
+        "compliancePercent": 94
+      }
+    },
+    {
+      "staff": {
+        "id": "01a10655-4e56-76ac-8329-a55c519a0462",
+        "name": "Sathish",
+        "employeeCode": "STF-004",
+        "designation": "CARPENTER",
+        "isActive": true
+      },
+      "site": {
+        "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+        "name": "Green Valley Villa"
+      },
+      "attendance": {
+        "present": 8,
+        "late": 2,
+        "halfDay": 1,
+        "absent": 0
+      },
+      "updates": {
+        "submitted": 29,
+        "missed": 4,
+        "offline": 2,
+        "locationFlagged": 2,
+        "compliancePercent": 88
+      }
+    },
+    {
+      "staff": {
+        "id": "01a10655-4e5a-722f-818b-3e321470638d",
+        "name": "Vijay",
+        "employeeCode": "STF-005",
+        "designation": "PLUMBER",
+        "isActive": true
+      },
+      "site": {
+        "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+        "name": "Sri Lakshmi Commercial Building"
+      },
+      "attendance": {
+        "present": 11,
+        "late": 0,
+        "halfDay": 0,
+        "absent": 0
+      },
+      "updates": {
+        "submitted": 30,
+        "missed": 3,
+        "offline": 1,
+        "locationFlagged": 1,
+        "compliancePercent": 91
+      }
+    }
+  ]
+}

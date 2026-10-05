@@ -1,0 +1,82 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a1078d-ddbc-71bd-8dca-b3f4498aad32",
+      "type": "PAYMENT",
+      "title": "Payment overdue: First floor slab",
+      "message": "ABC Apartment Project · ₹1,00,000 due since Mon 14 Sep",
+      "referenceType": "PAYMENT_MILESTONE",
+      "referenceId": "01a10655-4eac-7704-9a3c-84590eed6d96",
+      "data": {
+        "siteId": "01a10655-4e71-71c4-991e-21d37335e32e"
+      },
+      "isRead": false,
+      "createdAt": "2026-10-04T15:35:00.284Z"
+    },
+    {
+      "id": "01a1078d-ddbc-71bd-8dca-b7ed3e351945",
+      "type": "PAYMENT",
+      "title": "Payment overdue: Brickwork and lintel",
+      "message": "Green Valley Villa · ₹50,000 due since Thu 24 Sep",
+      "referenceType": "PAYMENT_MILESTONE",
+      "referenceId": "01a10655-4ebe-7298-9709-b870fccc8584",
+      "data": {
+        "siteId": "01a10655-4e7d-7309-a9b9-4227daab858f"
+      },
+      "isRead": false,
+      "createdAt": "2026-10-04T15:35:00.284Z"
+    },
+    {
+      "id": "01a10683-a94b-75eb-a96f-b59747d06a83",
+      "type": "STAFF_UPDATE",
+      "title": "Ravi submitted Evening Update",
+      "message": "ABC Apartment Project · 4:14 PM",
+      "referenceType": "STAFF_UPDATE",
+      "referenceId": "01a10683-a923-7517-86c5-21502811c375",
+      "data": {
+        "slot": "EVENING",
+        "siteId": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "staffId": "01a10655-4e48-71da-850f-01840d2004af"
+      },
+      "isRead": false,
+      "createdAt": "2026-10-04T10:44:14.283Z"
+    },
+    {
+      "id": "01a1067f-cc1c-720e-a679-75de67401d96",
+      "type": "MISSING_UPDATE",
+      "title": "Ravi has not submitted the Afternoon Update",
+      "message": "ABC Apartment Project · Sun 4 Oct",
+      "referenceType": "SITE",
+      "referenceId": "01a10655-4e71-71c4-991e-21d37335e32e",
+      "data": {
+        "date": "2026-10-04",
+        "slot": "AFTERNOON",
+        "siteId": "01a10655-4e71-71c4-991e-21d37335e32e"
+      },
+      "isRead": false,
+      "createdAt": "2026-10-04T10:40:01.052Z"
+    },
+    {
+      "id": "01a1066f-4e57-748e-91dc-8dacd671ca2a",
+      "type": "MISSING_UPDATE",
+      "title": "Ravi has not submitted the Morning Update",
+      "message": "ABC Apartment Project · Sun 4 Oct",
+      "referenceType": "SITE",
+      "referenceId": "01a10655-4e71-71c4-991e-21d37335e32e",
+      "data": {
+        "date": "2026-10-04",
+        "slot": "MORNING",
+        "siteId": "01a10655-4e71-71c4-991e-21d37335e32e"
+      },
+      "isRead": false,
+      "createdAt": "2026-10-04T10:22:00.279Z"
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 40,
+    "totalPages": 8
+  }
+}

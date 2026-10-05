@@ -1,0 +1,76 @@
+# Builds the Play Store bundle when a version tag is pushed (e.g. v1.0.0+1:
+# version name 1.0.0, version code 1). Upload the .aab from the run's artifacts
+# to Google Play Console. See docs/RELEASE.md for the secrets this needs.
+name: Release Android
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  bundle:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.x
+          cache: true
+      - run: flutter pub get
+
+      - name: Upload key (from secrets, never committed)
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_UPLOAD_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.ANDROID_UPLOAD_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_UPLOAD_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_UPLOAD_KEY_PASSWORD }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/keys"
+          echo "$KEYSTORE_BASE64" | base64 --decode > "$RUNNER_TEMP/keys/upload.jks"
+          {
+            echo "storeFile=$RUNNER_TEMP/keys/upload.jks"
+            echo "storePassword=$STORE_PASSWORD"
+            echo "keyAlias=$KEY_ALIAS"
+            echo "keyPassword=$KEY_PASSWORD"
+          } > android/key.properties
+
+      - name: Production settings (API address from env/prod.json, Firebase from variables)
+        env:
+          FIREBASE_API_KEY: ${{ vars.FIREBASE_API_KEY }}
+          FIREBASE_APP_ID: ${{ vars.FIREBASE_APP_ID }}
+          FIREBASE_MESSAGING_SENDER_ID: ${{ vars.FIREBASE_MESSAGING_SENDER_ID }}
+          FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+        run: |
+          jq '.FIREBASE_API_KEY = env.FIREBASE_API_KEY
+            | .FIREBASE_APP_ID = env.FIREBASE_APP_ID
+            | .FIREBASE_MESSAGING_SENDER_ID = env.FIREBASE_MESSAGING_SENDER_ID
+            | .FIREBASE_PROJECT_ID = env.FIREBASE_PROJECT_ID' env/prod.json > "$RUNNER_TEMP/prod.json"
+
+      - name: Version from the tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          echo "BUILD_NAME=${VERSION%%+*}" >> "$GITHUB_ENV"
+          # Without "+N" the version code comes from pubspec.yaml.
+          if [[ "$VERSION" == *+* ]]; then echo "BUILD_NUMBER=${VERSION##*+}" >> "$GITHUB_ENV"; fi
+
+      - name: Build the bundle
+        run: |
+          flutter build appbundle --release --flavor prod \
+            --dart-define-from-file="$RUNNER_TEMP/prod.json" \
+            ${BUILD_NAME:+--build-name="$BUILD_NAME"} ${BUILD_NUMBER:+--build-number="$BUILD_NUMBER"}
+
+      - name: Remove signing material
+        if: always()
+        run: rm -f android/key.properties "$RUNNER_TEMP/keys/upload.jks"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sitework-android-bundle
+          path: mobile/build/app/outputs/bundle/prodRelease/*.aab
+          if-no-files-found: error

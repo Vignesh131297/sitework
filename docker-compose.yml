@@ -1,0 +1,27 @@
+# PostgreSQL 17 for local development, as an alternative to scripts/local-postgres.ps1.
+#
+#   docker compose up -d
+#
+# Then in backend/.env:
+#   DATABASE_URL=postgresql://sitework:sitework_dev@localhost:5432/sitework?schema=public
+#   TEST_DATABASE_URL=postgresql://sitework:sitework_dev@localhost:5432/sitework_test?schema=public
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_USER: sitework
+      POSTGRES_PASSWORD: sitework_dev # local development only
+      POSTGRES_DB: sitework
+    ports:
+      - '127.0.0.1:5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./scripts/docker/create-test-database.sql:/docker-entrypoint-initdb.d/create-test-database.sql:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U sitework -d sitework']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  postgres-data:

@@ -1,0 +1,86 @@
+# Every push and pull request: the API's checks and tests (against a real
+# PostgreSQL), and the app's analysis and tests. No secrets needed: the JWT
+# secrets are generated for each run.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: sitework
+          POSTGRES_PASSWORD: sitework
+          POSTGRES_DB: sitework_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U sitework"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgresql://sitework:sitework@localhost:5432/sitework_test
+      TEST_DATABASE_URL: postgresql://sitework:sitework@localhost:5432/sitework_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - name: Generate per-run secrets
+        run: |
+          echo "JWT_SECRET=$(openssl rand -hex 32)" >> "$GITHUB_ENV"
+          echo "JWT_REFRESH_SECRET=$(openssl rand -hex 32)" >> "$GITHUB_ENV"
+      - run: npm ci
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npx prettier --check "src/**/*.ts" "test/**/*.ts" "prisma/**/*.ts"
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npx vitest run
+      - run: npx vitest run --config vitest.config.e2e.ts
+      - name: Seed data loads
+        run: npx prisma db seed
+      - run: npm run build
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: API image
+        run: docker build --target api -t sitework-api backend
+      - name: Migration image
+        run: docker build --target migrate -t sitework-migrate backend
+
+  mobile:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.x
+          cache: true
+      - run: flutter pub get
+      - name: Generated code is up to date
+        run: |
+          flutter gen-l10n
+          dart run build_runner build --delete-conflicting-outputs
+          git diff --exit-code -- lib
+      - run: dart format --output=none --set-exit-if-changed lib test tool
+      - run: flutter analyze
+      - run: flutter test

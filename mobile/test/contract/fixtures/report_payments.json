@@ -1,0 +1,110 @@
+{
+  "success": true,
+  "data": {
+    "totals": {
+      "received": "500000.00",
+      "count": 3,
+      "byMethod": {
+        "UPI": "400000.00",
+        "CASH": "100000.00"
+      }
+    },
+    "sites": [
+      {
+        "site": {
+          "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+          "code": "SITE-001",
+          "name": "ABC Apartment Project"
+        },
+        "client": {
+          "id": "01a10655-4e65-7670-8c90-afc0b3886bb4",
+          "name": "ABC Constructions"
+        },
+        "receivedInRange": "200000.00",
+        "contract": "1500000.00",
+        "receivedToDate": "1100000.00",
+        "pending": "400000.00",
+        "overdue": "100000.00"
+      },
+      {
+        "site": {
+          "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+          "code": "SITE-002",
+          "name": "Green Valley Villa"
+        },
+        "client": {
+          "id": "01a10655-4e6c-754a-82bb-53cf36d6a1ca",
+          "name": "Green Valley Properties"
+        },
+        "receivedInRange": "200000.00",
+        "contract": "1000000.00",
+        "receivedToDate": "650000.00",
+        "pending": "350000.00",
+        "overdue": "50000.00"
+      },
+      {
+        "site": {
+          "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+          "code": "SITE-003",
+          "name": "Sri Lakshmi Commercial Building"
+        },
+        "client": {
+          "id": "01a10655-4e6a-700b-8975-77dcf0cacdd7",
+          "name": "Sri Lakshmi Developers"
+        },
+        "receivedInRange": "100000.00",
+        "contract": "800000.00",
+        "receivedToDate": "700000.00",
+        "pending": "100000.00",
+        "overdue": "0.00"
+      }
+    ],
+    "payments": [
+      {
+        "id": "01a10655-4eb5-721c-9d1e-14aeb8954ce4",
+        "paidOn": "2026-09-19",
+        "amount": "200000.00",
+        "method": "UPI",
+        "reference": "UPI 6283 1145 0921",
+        "site": {
+          "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+          "name": "ABC Apartment Project"
+        },
+        "client": {
+          "id": "01a10655-4e65-7670-8c90-afc0b3886bb4",
+          "name": "ABC Constructions"
+        }
+      },
+      {
+        "id": "01a10655-4ec2-7140-b917-19df1e91a3f9",
+        "paidOn": "2026-09-22",
+        "amount": "200000.00",
+        "method": "UPI",
+        "reference": "UPI 5521 9087 3310",
+        "site": {
+          "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+          "name": "Green Valley Villa"
+        },
+        "client": {
+          "id": "01a10655-4e6c-754a-82bb-53cf36d6a1ca",
+          "name": "Green Valley Properties"
+        }
+      },
+      {
+        "id": "01a10655-4ecd-75b9-b5ac-e6533bded53d",
+        "paidOn": "2026-09-28",
+        "amount": "100000.00",
+        "method": "CASH",
+        "reference": "Receipt SL-104",
+        "site": {
+          "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+          "name": "Sri Lakshmi Commercial Building"
+        },
+        "client": {
+          "id": "01a10655-4e6a-700b-8975-77dcf0cacdd7",
+          "name": "Sri Lakshmi Developers"
+        }
+      }
+    ]
+  }
+}

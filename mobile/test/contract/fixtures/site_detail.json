@@ -1,0 +1,109 @@
+{
+  "success": true,
+  "data": {
+    "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+    "code": "SITE-001",
+    "name": "ABC Apartment Project",
+    "status": "IN_PROGRESS",
+    "progressPercent": 45,
+    "address": "Plot 12, 3rd Main Road, Anna Nagar West, Chennai 600040",
+    "client": {
+      "id": "01a10655-4e65-7670-8c90-afc0b3886bb4",
+      "name": "ABC Constructions",
+      "phone": "+919000001001",
+      "email": "accounts@abcconstructions.test"
+    },
+    "engineers": [
+      {
+        "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+        "name": "Arun Kumar"
+      }
+    ],
+    "staffCount": 2,
+    "startDate": "2026-03-02",
+    "expectedCompletionDate": "2027-07-01",
+    "contractAmount": "1500000.00",
+    "contactName": "Ramesh Babu",
+    "contactPhone": "+919000002001",
+    "latitude": 13.0878,
+    "longitude": 80.2008,
+    "geofenceRadiusM": 300,
+    "staff": [
+      {
+        "id": "01a10655-4e4d-746b-a6f9-6d46d2337692",
+        "name": "Kumar",
+        "phone": "+919000000102",
+        "designation": "HELPER",
+        "engineer": {
+          "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+          "name": "Arun Kumar"
+        }
+      },
+      {
+        "id": "01a10655-4e48-71da-850f-01840d2004af",
+        "name": "Ravi",
+        "phone": "+919000000101",
+        "designation": "MASON",
+        "engineer": {
+          "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+          "name": "Arun Kumar"
+        }
+      }
+    ],
+    "financials": {
+      "contract": "1500000.00",
+      "received": "1100000.00",
+      "pending": "400000.00",
+      "overdue": "100000.00",
+      "overdueCount": 1,
+      "milestones": [
+        {
+          "id": "01a10655-4eab-7721-a817-a15555fa3d8e",
+          "title": "Advance",
+          "amount": "300000.00",
+          "dueDate": "2026-03-02",
+          "paid": "300000.00",
+          "outstanding": "0.00",
+          "status": "PAID"
+        },
+        {
+          "id": "01a10655-4eac-7704-9a3c-7dccf9697894",
+          "title": "Foundation",
+          "amount": "300000.00",
+          "dueDate": "2026-05-07",
+          "paid": "300000.00",
+          "outstanding": "0.00",
+          "status": "PAID"
+        },
+        {
+          "id": "01a10655-4eac-7704-9a3c-824f2c0d4e76",
+          "title": "Plinth beam",
+          "amount": "300000.00",
+          "dueDate": "2026-07-06",
+          "paid": "300000.00",
+          "outstanding": "0.00",
+          "status": "PAID"
+        },
+        {
+          "id": "01a10655-4eac-7704-9a3c-84590eed6d96",
+          "title": "First floor slab",
+          "amount": "300000.00",
+          "dueDate": "2026-09-14",
+          "paid": "200000.00",
+          "outstanding": "100000.00",
+          "status": "OVERDUE"
+        },
+        {
+          "id": "01a10655-4eac-7704-9a3c-8a270651b9b6",
+          "title": "Second floor slab",
+          "amount": "300000.00",
+          "dueDate": "2026-11-13",
+          "paid": "0.00",
+          "outstanding": "300000.00",
+          "status": "PENDING"
+        }
+      ]
+    },
+    "openIssues": 2
+  }
+}

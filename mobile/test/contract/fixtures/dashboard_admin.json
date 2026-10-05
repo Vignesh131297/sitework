@@ -1,0 +1,139 @@
+{
+  "success": true,
+  "data": {
+    "date": "2026-10-04",
+    "isWorkingDay": false,
+    "holiday": null,
+    "counts": {
+      "activeSites": 3,
+      "clients": 3,
+      "engineers": 3,
+      "staff": 6
+    },
+    "payments": {
+      "contract": "3300000.00",
+      "received": "2450000.00",
+      "pending": "850000.00",
+      "overdue": "150000.00",
+      "overdueCount": 2
+    },
+    "updates": {
+      "expected": 1,
+      "submitted": 1,
+      "missing": 0,
+      "pending": 0,
+      "upcoming": 0,
+      "notCheckedIn": 0
+    },
+    "toReview": 1,
+    "issues": {
+      "open": 3,
+      "critical": 1
+    },
+    "attention": [
+      {
+        "type": "OVERDUE_PAYMENT",
+        "site": {
+          "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+          "name": "ABC Apartment Project"
+        },
+        "milestone": {
+          "id": "01a10655-4eac-7704-9a3c-84590eed6d96",
+          "title": "First floor slab"
+        },
+        "outstanding": "100000.00",
+        "dueDate": "2026-09-14"
+      },
+      {
+        "type": "OVERDUE_PAYMENT",
+        "site": {
+          "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+          "name": "Green Valley Villa"
+        },
+        "milestone": {
+          "id": "01a10655-4ebe-7298-9709-b870fccc8584",
+          "title": "Brickwork and lintel"
+        },
+        "outstanding": "50000.00",
+        "dueDate": "2026-09-24"
+      },
+      {
+        "type": "CRITICAL_ISSUE",
+        "site": {
+          "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+          "name": "Sri Lakshmi Commercial Building"
+        },
+        "issue": {
+          "id": "01a10655-5010-747c-8880-9e04da6f9e3c",
+          "title": "Crack in terrace parapet wall"
+        }
+      }
+    ],
+    "sites": [
+      {
+        "site": {
+          "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+          "code": "SITE-001",
+          "name": "ABC Apartment Project",
+          "status": "IN_PROGRESS"
+        },
+        "engineers": [
+          "Arun Kumar"
+        ],
+        "staffCount": 2,
+        "updates": {
+          "expected": 1,
+          "submitted": 1,
+          "missing": 0,
+          "pending": 0,
+          "upcoming": 0,
+          "notCheckedIn": 0
+        },
+        "lastActivityAt": "2026-10-04T10:44:13.796Z"
+      },
+      {
+        "site": {
+          "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+          "code": "SITE-002",
+          "name": "Green Valley Villa",
+          "status": "IN_PROGRESS"
+        },
+        "engineers": [
+          "Prakash"
+        ],
+        "staffCount": 2,
+        "updates": {
+          "expected": 0,
+          "submitted": 0,
+          "missing": 0,
+          "pending": 0,
+          "upcoming": 0,
+          "notCheckedIn": 0
+        },
+        "lastActivityAt": "2026-10-03T13:17:00.000Z"
+      },
+      {
+        "site": {
+          "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+          "code": "SITE-003",
+          "name": "Sri Lakshmi Commercial Building",
+          "status": "IN_PROGRESS"
+        },
+        "engineers": [
+          "Suresh",
+          "Arun Kumar"
+        ],
+        "staffCount": 2,
+        "updates": {
+          "expected": 0,
+          "submitted": 0,
+          "missing": 0,
+          "pending": 0,
+          "upcoming": 0,
+          "notCheckedIn": 0
+        },
+        "lastActivityAt": "2026-10-03T13:08:00.000Z"
+      }
+    ]
+  }
+}

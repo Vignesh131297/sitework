@@ -1,0 +1,101 @@
+{
+  "success": true,
+  "data": [
+    {
+      "site": {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project",
+        "status": "IN_PROGRESS"
+      },
+      "client": {
+        "id": "01a10655-4e65-7670-8c90-afc0b3886bb4",
+        "name": "ABC Constructions"
+      },
+      "updates": {
+        "submitted": 55,
+        "missed": 8,
+        "offline": 4,
+        "locationFlagged": 4,
+        "compliancePercent": 87
+      },
+      "attendance": {
+        "present": 16,
+        "late": 5,
+        "halfDay": 0,
+        "absent": 2
+      },
+      "engineerUpdates": 3,
+      "issues": {
+        "opened": 2,
+        "resolved": 0,
+        "openNow": 2
+      },
+      "received": "200000.00"
+    },
+    {
+      "site": {
+        "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+        "code": "SITE-002",
+        "name": "Green Valley Villa",
+        "status": "IN_PROGRESS"
+      },
+      "client": {
+        "id": "01a10655-4e6c-754a-82bb-53cf36d6a1ca",
+        "name": "Green Valley Properties"
+      },
+      "updates": {
+        "submitted": 59,
+        "missed": 7,
+        "offline": 6,
+        "locationFlagged": 5,
+        "compliancePercent": 89
+      },
+      "attendance": {
+        "present": 16,
+        "late": 4,
+        "halfDay": 2,
+        "absent": 0
+      },
+      "engineerUpdates": 2,
+      "issues": {
+        "opened": 1,
+        "resolved": 1,
+        "openNow": 0
+      },
+      "received": "200000.00"
+    },
+    {
+      "site": {
+        "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+        "code": "SITE-003",
+        "name": "Sri Lakshmi Commercial Building",
+        "status": "IN_PROGRESS"
+      },
+      "client": {
+        "id": "01a10655-4e6a-700b-8975-77dcf0cacdd7",
+        "name": "Sri Lakshmi Developers"
+      },
+      "updates": {
+        "submitted": 59,
+        "missed": 7,
+        "offline": 1,
+        "locationFlagged": 3,
+        "compliancePercent": 89
+      },
+      "attendance": {
+        "present": 19,
+        "late": 2,
+        "halfDay": 1,
+        "absent": 0
+      },
+      "engineerUpdates": 3,
+      "issues": {
+        "opened": 1,
+        "resolved": 0,
+        "openNow": 1
+      },
+      "received": "100000.00"
+    }
+  ]
+}
