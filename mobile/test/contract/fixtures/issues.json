@@ -1,0 +1,98 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a10655-5010-747c-8880-9e04da6f9e3c",
+      "title": "Crack in terrace parapet wall",
+      "description": "A 1.5 m hairline crack has appeared on the east parapet wall. Structural check needed.",
+      "priority": "CRITICAL",
+      "status": "OPEN",
+      "site": {
+        "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+        "name": "Sri Lakshmi Commercial Building"
+      },
+      "reportedBy": {
+        "id": "01a10655-4e43-731f-a39b-d185eaf3306d",
+        "name": "Suresh",
+        "role": "ENGINEER"
+      },
+      "createdAt": "2026-10-03T05:00:00.000Z",
+      "resolvedAt": null,
+      "resolvedBy": null,
+      "resolutionNote": null,
+      "attachmentCount": 0
+    },
+    {
+      "id": "01a10655-5003-76e0-a509-70fd128f439e",
+      "title": "Water seepage in basement retaining wall",
+      "description": "Seepage on the north retaining wall after the rain. Needs waterproofing before backfilling.",
+      "priority": "HIGH",
+      "status": "OPEN",
+      "site": {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "name": "ABC Apartment Project"
+      },
+      "reportedBy": {
+        "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+        "name": "Arun Kumar",
+        "role": "ENGINEER"
+      },
+      "createdAt": "2026-09-30T05:00:00.000Z",
+      "resolvedAt": null,
+      "resolvedBy": null,
+      "resolutionNote": null,
+      "attachmentCount": 0
+    },
+    {
+      "id": "01a10655-5008-7551-9880-23f8bc9719cc",
+      "title": "Delay in TMT steel delivery",
+      "description": "Supplier has postponed delivery of 12 mm bars by a week. Slab work may slip.",
+      "priority": "MEDIUM",
+      "status": "IN_PROGRESS",
+      "site": {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "name": "ABC Apartment Project"
+      },
+      "reportedBy": {
+        "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+        "name": "Arun Kumar",
+        "role": "ENGINEER"
+      },
+      "createdAt": "2026-09-26T05:00:00.000Z",
+      "resolvedAt": null,
+      "resolvedBy": null,
+      "resolutionNote": null,
+      "attachmentCount": 0
+    },
+    {
+      "id": "01a10655-500c-70fc-a8a5-6c531dca4258",
+      "title": "Conduit damaged during plastering",
+      "description": "Electrical conduit in bedroom 2 was crushed during plastering.",
+      "priority": "MEDIUM",
+      "status": "RESOLVED",
+      "site": {
+        "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+        "name": "Green Valley Villa"
+      },
+      "reportedBy": {
+        "id": "01a10655-4e3e-757e-9b02-2b6ac64a90fd",
+        "name": "Prakash",
+        "role": "ENGINEER"
+      },
+      "createdAt": "2026-09-24T05:00:00.000Z",
+      "resolvedAt": "2026-09-27T11:30:00.000Z",
+      "resolvedBy": {
+        "id": "01a10655-4e31-724d-a8ae-459d8d64c475",
+        "name": "Admin User"
+      },
+      "resolutionNote": "Damaged section replaced and plaster patched.",
+      "attachmentCount": 0
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 4,
+    "totalPages": 1
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "data": {
+    "id": "01a10655-4e31-724d-a8ae-459d8d64c475",
+    "name": "Admin User",
+    "role": "ADMIN",
+    "phone": "+919000000001",
+    "email": "admin@sitework.test",
+    "employeeCode": "ADM-001",
+    "designation": null,
+    "joiningDate": "2024-04-17",
+    "mustChangePassword": false,
+    "assignment": null,
+    "sites": []
+  }
+}

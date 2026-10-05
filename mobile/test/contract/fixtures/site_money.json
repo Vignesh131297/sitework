@@ -1,0 +1,69 @@
+{
+  "success": true,
+  "data": {
+    "site": {
+      "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+      "code": "SITE-001",
+      "name": "ABC Apartment Project",
+      "status": "IN_PROGRESS"
+    },
+    "client": {
+      "id": "01a10655-4e65-7670-8c90-afc0b3886bb4",
+      "name": "ABC Constructions"
+    },
+    "financials": {
+      "contract": "1500000.00",
+      "received": "1100000.00",
+      "pending": "400000.00",
+      "overdue": "100000.00",
+      "overdueCount": 1,
+      "milestones": [
+        {
+          "id": "01a10655-4eab-7721-a817-a15555fa3d8e",
+          "title": "Advance",
+          "amount": "300000.00",
+          "dueDate": "2026-03-02",
+          "paid": "300000.00",
+          "outstanding": "0.00",
+          "status": "PAID"
+        },
+        {
+          "id": "01a10655-4eac-7704-9a3c-7dccf9697894",
+          "title": "Foundation",
+          "amount": "300000.00",
+          "dueDate": "2026-05-07",
+          "paid": "300000.00",
+          "outstanding": "0.00",
+          "status": "PAID"
+        },
+        {
+          "id": "01a10655-4eac-7704-9a3c-824f2c0d4e76",
+          "title": "Plinth beam",
+          "amount": "300000.00",
+          "dueDate": "2026-07-06",
+          "paid": "300000.00",
+          "outstanding": "0.00",
+          "status": "PAID"
+        },
+        {
+          "id": "01a10655-4eac-7704-9a3c-84590eed6d96",
+          "title": "First floor slab",
+          "amount": "300000.00",
+          "dueDate": "2026-09-14",
+          "paid": "200000.00",
+          "outstanding": "100000.00",
+          "status": "OVERDUE"
+        },
+        {
+          "id": "01a10655-4eac-7704-9a3c-8a270651b9b6",
+          "title": "Second floor slab",
+          "amount": "300000.00",
+          "dueDate": "2026-11-13",
+          "paid": "0.00",
+          "outstanding": "300000.00",
+          "status": "PENDING"
+        }
+      ]
+    }
+  }
+}

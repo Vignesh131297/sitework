@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "data": {
+    "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+    "name": "Arun Kumar",
+    "role": "ENGINEER",
+    "phone": "+919000000011",
+    "email": "arun@sitework.test",
+    "employeeCode": "ENG-001",
+    "designation": null,
+    "joiningDate": "2024-10-14",
+    "mustChangePassword": false,
+    "assignment": null,
+    "sites": [
+      {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      {
+        "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+        "code": "SITE-003",
+        "name": "Sri Lakshmi Commercial Building"
+      }
+    ]
+  }
+}

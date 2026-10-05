@@ -1,0 +1,9 @@
+{
+  "APP_ENV": "dev",
+  "API_BASE_URL": "http://10.0.2.2:3000/api/v1",
+  "DEV_LOGINS": "Admin|+919000000001|Admin@123;Engineer|+919000000011|Engineer@123;Staff|+919000000101|Staff@123",
+  "FIREBASE_API_KEY": "",
+  "FIREBASE_APP_ID": "",
+  "FIREBASE_MESSAGING_SENDER_ID": "",
+  "FIREBASE_PROJECT_ID": ""
+}

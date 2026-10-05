@@ -1,0 +1,136 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a10655-4e4d-746b-a6f9-6d46d2337692",
+      "role": "STAFF",
+      "name": "Kumar",
+      "phone": "+919000000102",
+      "email": null,
+      "employeeCode": "STF-002",
+      "designation": "HELPER",
+      "joiningDate": "2025-12-08",
+      "isActive": true,
+      "lastLoginAt": null,
+      "sites": [],
+      "staffCount": 0,
+      "assignment": {
+        "site": {
+          "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+          "code": "SITE-001",
+          "name": "ABC Apartment Project"
+        },
+        "engineer": {
+          "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+          "name": "Arun Kumar"
+        }
+      }
+    },
+    {
+      "id": "01a10655-4e52-77ca-b7a9-cb4b2bab0f78",
+      "role": "STAFF",
+      "name": "Manoj",
+      "phone": "+919000000103",
+      "email": null,
+      "employeeCode": "STF-003",
+      "designation": "ELECTRICIAN",
+      "joiningDate": "2025-07-11",
+      "isActive": true,
+      "lastLoginAt": null,
+      "sites": [],
+      "staffCount": 0,
+      "assignment": {
+        "site": {
+          "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+          "code": "SITE-002",
+          "name": "Green Valley Villa"
+        },
+        "engineer": {
+          "id": "01a10655-4e3e-757e-9b02-2b6ac64a90fd",
+          "name": "Prakash"
+        }
+      }
+    },
+    {
+      "id": "01a10655-4e62-7114-96d5-1ad5577d5e0b",
+      "role": "STAFF",
+      "name": "Muthu",
+      "phone": "+919000000106",
+      "email": null,
+      "employeeCode": "STF-006",
+      "designation": "PAINTER",
+      "joiningDate": "2026-03-18",
+      "isActive": true,
+      "lastLoginAt": null,
+      "sites": [],
+      "staffCount": 0,
+      "assignment": {
+        "site": {
+          "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+          "code": "SITE-003",
+          "name": "Sri Lakshmi Commercial Building"
+        },
+        "engineer": {
+          "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+          "name": "Arun Kumar"
+        }
+      }
+    },
+    {
+      "id": "01a10655-4e48-71da-850f-01840d2004af",
+      "role": "STAFF",
+      "name": "Ravi",
+      "phone": "+919000000101",
+      "email": null,
+      "employeeCode": "STF-001",
+      "designation": "MASON",
+      "joiningDate": "2025-02-01",
+      "isActive": true,
+      "lastLoginAt": "2026-10-04T16:03:43.889Z",
+      "sites": [],
+      "staffCount": 0,
+      "assignment": {
+        "site": {
+          "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+          "code": "SITE-001",
+          "name": "ABC Apartment Project"
+        },
+        "engineer": {
+          "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+          "name": "Arun Kumar"
+        }
+      }
+    },
+    {
+      "id": "01a10655-4e56-76ac-8329-a55c519a0462",
+      "role": "STAFF",
+      "name": "Sathish",
+      "phone": "+919000000104",
+      "email": null,
+      "employeeCode": "STF-004",
+      "designation": "CARPENTER",
+      "joiningDate": "2025-09-19",
+      "isActive": true,
+      "lastLoginAt": null,
+      "sites": [],
+      "staffCount": 0,
+      "assignment": {
+        "site": {
+          "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+          "code": "SITE-002",
+          "name": "Green Valley Villa"
+        },
+        "engineer": {
+          "id": "01a10655-4e3e-757e-9b02-2b6ac64a90fd",
+          "name": "Prakash"
+        }
+      }
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 6,
+    "totalPages": 2
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a10655-4ecd-75b9-b5ac-e6533bded53d",
+      "amount": "100000.00",
+      "paidOn": "2026-09-28",
+      "method": "CASH",
+      "reference": "Receipt SL-104",
+      "remarks": "Collected at site office.",
+      "site": {
+        "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+        "code": "SITE-003",
+        "name": "Sri Lakshmi Commercial Building"
+      },
+      "client": {
+        "id": "01a10655-4e6a-700b-8975-77dcf0cacdd7",
+        "name": "Sri Lakshmi Developers"
+      },
+      "recordedBy": {
+        "id": "01a10655-4e31-724d-a8ae-459d8d64c475",
+        "name": "Admin User"
+      },
+      "createdAt": "2026-09-28T10:30:00.000Z",
+      "voidedAt": null,
+      "voidedBy": null,
+      "voidReason": null
+    },
+    {
+      "id": "01a10655-4ec2-7140-b917-19df1e91a3f9",
+      "amount": "200000.00",
+      "paidOn": "2026-09-22",
+      "method": "UPI",
+      "reference": "UPI 5521 9087 3310",
+      "remarks": null,
+      "site": {
+        "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+        "code": "SITE-002",
+        "name": "Green Valley Villa"
+      },
+      "client": {
+        "id": "01a10655-4e6c-754a-82bb-53cf36d6a1ca",
+        "name": "Green Valley Properties"
+      },
+      "recordedBy": {
+        "id": "01a10655-4e31-724d-a8ae-459d8d64c475",
+        "name": "Admin User"
+      },
+      "createdAt": "2026-09-22T10:30:00.000Z",
+      "voidedAt": null,
+      "voidedBy": null,
+      "voidReason": null
+    },
+    {
+      "id": "01a10655-4eb5-721c-9d1e-14aeb8954ce4",
+      "amount": "200000.00",
+      "paidOn": "2026-09-19",
+      "method": "UPI",
+      "reference": "UPI 6283 1145 0921",
+      "remarks": "Part payment for first floor slab.",
+      "site": {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      "client": {
+        "id": "01a10655-4e65-7670-8c90-afc0b3886bb4",
+        "name": "ABC Constructions"
+      },
+      "recordedBy": {
+        "id": "01a10655-4e31-724d-a8ae-459d8d64c475",
+        "name": "Admin User"
+      },
+      "createdAt": "2026-09-19T10:30:00.000Z",
+      "voidedAt": null,
+      "voidedBy": null,
+      "voidReason": null
+    },
+    {
+      "id": "01a10655-4eb5-721c-9d1e-134bcca26546",
+      "amount": "100000.00",
+      "paidOn": "2026-09-04",
+      "method": "CHEQUE",
+      "reference": "CHQ 004561",
+      "remarks": null,
+      "site": {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      "client": {
+        "id": "01a10655-4e65-7670-8c90-afc0b3886bb4",
+        "name": "ABC Constructions"
+      },
+      "recordedBy": {
+        "id": "01a10655-4e31-724d-a8ae-459d8d64c475",
+        "name": "Admin User"
+      },
+      "createdAt": "2026-09-04T10:30:00.000Z",
+      "voidedAt": "2026-09-08T05:30:00.000Z",
+      "voidedBy": {
+        "id": "01a10655-4e31-724d-a8ae-459d8d64c475",
+        "name": "Admin User"
+      },
+      "voidReason": "Cheque returned unpaid (insufficient funds)."
+    },
+    {
+      "id": "01a10655-4eb5-721c-9d1e-0c81e339fa69",
+      "amount": "300000.00",
+      "paidOn": "2026-07-11",
+      "method": "BANK_TRANSFER",
+      "reference": "NEFT/ABC/0477",
+      "remarks": null,
+      "site": {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      "client": {
+        "id": "01a10655-4e65-7670-8c90-afc0b3886bb4",
+        "name": "ABC Constructions"
+      },
+      "recordedBy": {
+        "id": "01a10655-4e31-724d-a8ae-459d8d64c475",
+        "name": "Admin User"
+      },
+      "createdAt": "2026-07-11T10:30:00.000Z",
+      "voidedAt": null,
+      "voidedBy": null,
+      "voidReason": null
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 12,
+    "totalPages": 3
+  }
+}

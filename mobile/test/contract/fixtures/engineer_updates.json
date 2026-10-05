@@ -1,0 +1,106 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a10655-4fff-76e8-9c30-23f2b8ae84b3",
+      "type": "DAILY_REPORT",
+      "priority": "LOW",
+      "title": null,
+      "description": "6 workers on site. Painting on the ground floor, plumbing fixtures on the first floor. No incidents.",
+      "progressPercent": null,
+      "site": {
+        "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+        "name": "Sri Lakshmi Commercial Building"
+      },
+      "engineer": {
+        "id": "01a10655-4e43-731f-a39b-d185eaf3306d",
+        "name": "Suresh"
+      },
+      "createdAt": "2026-10-03T13:00:00.000Z",
+      "adminViewedAt": null,
+      "attachmentCount": 0
+    },
+    {
+      "id": "01a10655-4fef-71b9-b781-a9b15703a7ef",
+      "type": "SAFETY_CONCERN",
+      "priority": "HIGH",
+      "title": "Scaffolding bracing",
+      "description": "East side scaffolding needs additional bracing before plastering continues.",
+      "progressPercent": null,
+      "site": {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "name": "ABC Apartment Project"
+      },
+      "engineer": {
+        "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+        "name": "Arun Kumar"
+      },
+      "createdAt": "2026-10-03T04:10:00.000Z",
+      "adminViewedAt": null,
+      "attachmentCount": 0
+    },
+    {
+      "id": "01a10655-4ff6-7059-a247-8ff05eab0afc",
+      "type": "CLIENT_REQUIREMENT",
+      "priority": "MEDIUM",
+      "title": "Extra window in master bedroom",
+      "description": "Client asked for an additional window in the master bedroom. Waiting for the revised drawing.",
+      "progressPercent": null,
+      "site": {
+        "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+        "name": "Green Valley Villa"
+      },
+      "engineer": {
+        "id": "01a10655-4e3e-757e-9b02-2b6ac64a90fd",
+        "name": "Prakash"
+      },
+      "createdAt": "2026-10-02T10:00:00.000Z",
+      "adminViewedAt": null,
+      "attachmentCount": 0
+    },
+    {
+      "id": "01a10655-4ffc-739f-a989-2d1d4ac0d3a1",
+      "type": "COMPLETED_WORK",
+      "priority": "LOW",
+      "title": "Terrace waterproofing",
+      "description": "Terrace waterproofing completed and flood-tested for 24 hours. No leaks.",
+      "progressPercent": null,
+      "site": {
+        "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+        "name": "Sri Lakshmi Commercial Building"
+      },
+      "engineer": {
+        "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+        "name": "Arun Kumar"
+      },
+      "createdAt": "2026-10-01T10:45:00.000Z",
+      "adminViewedAt": "2026-10-01T12:45:00.000Z",
+      "attachmentCount": 0
+    },
+    {
+      "id": "01a10655-4fec-77a5-b8e6-50de975bb9a0",
+      "type": "MATERIALS_REQUIRED",
+      "priority": "HIGH",
+      "title": "Cement and TMT bars",
+      "description": "Need 150 bags of OPC 53 cement and 2 tonnes of 12 mm TMT bars by Thursday.",
+      "progressPercent": null,
+      "site": {
+        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "name": "ABC Apartment Project"
+      },
+      "engineer": {
+        "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+        "name": "Arun Kumar"
+      },
+      "createdAt": "2026-10-01T05:35:00.000Z",
+      "adminViewedAt": "2026-10-01T07:35:00.000Z",
+      "attachmentCount": 0
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 8,
+    "totalPages": 2
+  }
+}

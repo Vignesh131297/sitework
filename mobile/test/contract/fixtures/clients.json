@@ -1,0 +1,41 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a10655-4e65-7670-8c90-afc0b3886bb4",
+      "name": "ABC Constructions",
+      "company": "ABC Constructions Pvt. Ltd.",
+      "phone": "+919000001001",
+      "email": "accounts@abcconstructions.test",
+      "address": "No. 45, 2nd Avenue, Anna Nagar, Chennai 600040",
+      "notes": "Prefers payment reminders on WhatsApp.",
+      "siteCount": 1
+    },
+    {
+      "id": "01a10655-4e6c-754a-82bb-53cf36d6a1ca",
+      "name": "Green Valley Properties",
+      "company": "Green Valley Properties LLP",
+      "phone": "+919000001003",
+      "email": "projects@greenvalley.test",
+      "address": "88, Rajiv Gandhi Salai (OMR), Sholinganallur, Chennai 600119",
+      "notes": "Site visits by appointment only.",
+      "siteCount": 1
+    },
+    {
+      "id": "01a10655-4e6a-700b-8975-77dcf0cacdd7",
+      "name": "Sri Lakshmi Developers",
+      "company": "Sri Lakshmi Developers",
+      "phone": "+919000001002",
+      "email": "info@srilakshmidevelopers.test",
+      "address": "18, Usman Road, T. Nagar, Chennai 600017",
+      "notes": null,
+      "siteCount": 1
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 3,
+    "totalPages": 1
+  }
+}

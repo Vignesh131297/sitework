@@ -1,0 +1,7 @@
+# Copy to android/key.properties (git-ignored) to sign release builds for Google Play.
+# Paths are relative to the android/ folder. Keep the keystore and passwords out of git
+# and in a password manager: losing the upload key means asking Google to reset it.
+storeFile=../../keys/sitework-upload.jks
+storePassword=
+keyAlias=upload
+keyPassword=

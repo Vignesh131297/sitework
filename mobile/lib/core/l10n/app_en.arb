@@ -1,0 +1,1068 @@
+{
+  "@@locale": "en",
+  "appTitle": "SiteWork",
+  "appTagline": "Site work, tracked on time.",
+  "commonOk": "OK",
+  "commonCancel": "Cancel",
+  "commonRetry": "Try again",
+  "loginIdentifierLabel": "Mobile number or e-mail",
+  "loginIdentifierRequired": "Enter your mobile number or e-mail.",
+  "loginPasswordLabel": "Password",
+  "loginPasswordRequired": "Enter your password.",
+  "loginShowPassword": "Show password",
+  "loginHidePassword": "Hide password",
+  "loginSubmit": "Sign in",
+  "loginForgotPassword": "Forgot password?",
+  "loginSessionEnded": "Your session has ended. Please sign in again.",
+  "loginDevQuickSignIn": "Quick sign-in (development build)",
+  "forgotTitle": "Forgot password",
+  "forgotBody": "Enter the mobile number or e-mail you sign in with. If your account has an e-mail address, we'll send it a 6-digit code.",
+  "forgotSend": "Send code",
+  "forgotSendAgain": "Send a new code",
+  "forgotHaveCode": "I have a code",
+  "resetTitle": "Reset password",
+  "resetCodeLabel": "6-digit code",
+  "resetCodeInvalid": "Enter the 6-digit code from the e-mail.",
+  "resetSubmit": "Set new password",
+  "resetDone": "Password changed. Sign in with your new password.",
+  "changePasswordTitle": "Change password",
+  "changePasswordForcedBody": "Your admin gave you a temporary password. Choose your own password to continue.",
+  "temporaryPasswordLabel": "Temporary password",
+  "currentPasswordLabel": "Current password",
+  "newPasswordLabel": "New password",
+  "confirmPasswordLabel": "Confirm new password",
+  "passwordHelper": "At least 8 characters, with letters and numbers.",
+  "passwordTooShort": "Use at least 8 characters.",
+  "passwordNeedsLettersAndNumbers": "Use both letters and numbers.",
+  "passwordsDontMatch": "The passwords don't match.",
+  "changePasswordSubmit": "Save password",
+  "changePasswordDone": "Your password has been changed.",
+  "roleAdmin": "Admin",
+  "roleEngineer": "Engineer",
+  "roleStaff": "Staff",
+  "serverChecking": "Checking server…",
+  "serverConnected": "Server connected",
+  "serverUnreachable": "Can't reach the server",
+  "serverDetails": "{environment} · v{version} · server time {time}",
+  "@serverDetails": {
+    "placeholders": {
+      "environment": {
+        "type": "String"
+      },
+      "version": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "navDashboard": "Dashboard",
+  "navSites": "Sites",
+  "navPayments": "Payments",
+  "navPeople": "People",
+  "navAlerts": "Alerts",
+  "navUpdates": "Updates",
+  "navIssues": "Issues",
+  "navHome": "Home",
+  "navAttendance": "Attendance",
+  "navHistory": "History",
+  "navProfile": "Profile",
+  "screenNotifications": "Notifications",
+  "profileTitle": "Profile",
+  "profilePhone": "Mobile",
+  "profileEmail": "E-mail",
+  "profileEmployeeId": "Employee ID",
+  "profileSite": "Site",
+  "profileEngineer": "Engineer",
+  "profileSites": "Your sites",
+  "profileChangePassword": "Change password",
+  "profileServerSection": "Server",
+  "profileSignOut": "Sign out",
+  "profileSignOutConfirmTitle": "Sign out?",
+  "profileSignOutConfirmBody": "You will need to sign in again to use the app.",
+  "errorOffline": "You're offline. Check your internet connection and try again.",
+  "errorTimeout": "The server is taking too long to respond. Please try again.",
+  "errorSessionExpired": "Your session has ended. Please sign in again.",
+  "errorForbidden": "You don't have permission to do that.",
+  "errorNotFound": "We couldn't find what you were looking for.",
+  "errorRateLimited": "Too many attempts. Please wait a moment and try again.",
+  "errorServiceUnavailable": "The service is temporarily unavailable. Please try again shortly.",
+  "errorServer": "Something went wrong on our side. Please try again.",
+  "errorBadRequest": "Something about that request wasn't right. Please try again.",
+  "errorFileTooLarge": "The file is too large.",
+  "errorUnexpected": "Something unexpected happened. Please try again.",
+  "commonSave": "Save",
+  "commonEdit": "Edit",
+  "commonAdd": "Add",
+  "commonCopy": "Copy",
+  "commonCopied": "Copied",
+  "commonAll": "All",
+  "commonNone": "None",
+  "commonActive": "Active",
+  "commonInactive": "Inactive",
+  "commonCall": "Call",
+  "commonOpenMap": "Open in Maps",
+  "commonOpenSettings": "Open settings",
+  "validationRequired": "Required",
+  "validationAmount": "Enter an amount like 1500000",
+  "validationPhone": "Enter a valid mobile number",
+  "validationEmail": "Enter a valid e-mail address",
+  "validationNumber": "Enter a number",
+  "validationRange": "Enter a value between {min} and {max}",
+  "siteStatusNotStarted": "Not started",
+  "siteStatusInProgress": "In progress",
+  "siteStatusOnHold": "On hold",
+  "siteStatusCompleted": "Completed",
+  "designationMason": "Mason",
+  "designationHelper": "Helper",
+  "designationElectrician": "Electrician",
+  "designationCarpenter": "Carpenter",
+  "designationPlumber": "Plumber",
+  "designationSupervisor": "Supervisor",
+  "designationPainter": "Painter",
+  "designationGeneralWorker": "General worker",
+  "milestonePaid": "Paid",
+  "milestonePartiallyPaid": "Partially paid",
+  "milestonePending": "Pending",
+  "milestoneOverdue": "Overdue",
+  "slotMorning": "Morning",
+  "slotAfternoon": "Afternoon",
+  "slotEvening": "Evening",
+  "slotStateUpcoming": "Upcoming",
+  "slotStatePending": "Pending",
+  "slotStateSubmitted": "Submitted",
+  "slotStateMissing": "Missing",
+  "slotStateNotExpected": "Not due",
+  "attendancePresent": "Present",
+  "attendanceLate": "Late",
+  "attendanceHalfDay": "Half day",
+  "attendanceAbsent": "Absent",
+  "priorityLow": "Low",
+  "priorityMedium": "Medium",
+  "priorityHigh": "High",
+  "priorityCritical": "Critical",
+  "issueStatusOpen": "Open",
+  "issueStatusInProgress": "In progress",
+  "issueStatusResolved": "Resolved",
+  "dashboardHoliday": "Today is a holiday ({name}). No updates are expected.",
+  "dashboardDayOff": "Today is not a working day. No updates are expected.",
+  "statActiveSites": "Active sites",
+  "statClients": "Clients",
+  "statEngineers": "Engineers",
+  "statStaff": "Staff",
+  "paymentsTitle": "Payments",
+  "paymentsContract": "Contract value",
+  "paymentsReceived": "Received",
+  "paymentsPending": "Pending",
+  "paymentsOverdue": "Overdue",
+  "paymentsOverdueCount": "{count, plural, =1{1 milestone} other{{count} milestones}}",
+  "todayUpdatesTitle": "Today's updates",
+  "updatesSubmittedOf": "{submitted} of {expected} submitted",
+  "updatesMissing": "Missing {count}",
+  "updatesPending": "Pending {count}",
+  "updatesUpcoming": "Upcoming {count}",
+  "updatesNotCheckedIn": "Not checked in {count}",
+  "issuesOpen": "Open issues",
+  "issuesCritical": "{count} critical",
+  "attentionTitle": "Attention required",
+  "attentionNothing": "Nothing needs attention right now.",
+  "attentionMissing": "{count, plural, =1{1 missing update} other{{count} missing updates}}: {names}",
+  "attentionNotCheckedIn": "{count, plural, =1{1 person} other{{count} people}} not checked in: {names}",
+  "attentionOverdue": "Overdue: {title}, {amount} since {date}",
+  "attentionCritical": "Critical issue: {title}",
+  "siteActivityTitle": "Today's site activity",
+  "siteActivityLast": "Last activity {time}",
+  "siteActivityNone": "No activity yet",
+  "staffCount": "{count, plural, =0{No staff} =1{1 staff} other{{count} staff}}",
+  "siteNoEngineer": "No engineer assigned",
+  "sitesTitle": "Sites",
+  "clientsTitle": "Clients",
+  "sitesSearch": "Search sites",
+  "clientsSearch": "Search clients",
+  "sitesEmpty": "No sites found.",
+  "clientsEmpty": "No clients found.",
+  "siteNew": "New site",
+  "siteEdit": "Edit site",
+  "clientNew": "New client",
+  "clientEdit": "Edit client",
+  "siteTabOverview": "Overview",
+  "siteTabTeam": "Team",
+  "siteTabPayments": "Payments",
+  "siteTabUpdates": "Updates",
+  "siteTabIssues": "Issues",
+  "siteProgress": "Progress {percent}%",
+  "siteClient": "Client",
+  "siteContact": "Site contact",
+  "siteAddress": "Address",
+  "siteStart": "Start date",
+  "siteExpectedCompletion": "Expected completion",
+  "siteLocation": "Location",
+  "siteGeofence": "Updates count as on site within {meters} m",
+  "siteEngineers": "Engineers",
+  "siteStaff": "Staff",
+  "siteManageEngineers": "Change engineers",
+  "siteAssignStaff": "Add staff",
+  "siteNoStaff": "No staff assigned yet.",
+  "siteNoEngineers": "No engineers assigned yet.",
+  "siteOpenIssues": "{count, plural, =0{No open issues} =1{1 open issue} other{{count} open issues}}",
+  "fieldSiteName": "Site name",
+  "fieldSiteCode": "Site ID",
+  "fieldCodeHelper": "Leave empty to use the next number",
+  "fieldClient": "Client",
+  "fieldContactName": "Contact name",
+  "fieldContactPhone": "Contact phone",
+  "fieldAddress": "Address",
+  "fieldStartDate": "Start date",
+  "fieldExpectedCompletion": "Expected completion",
+  "fieldContractAmount": "Contract amount",
+  "fieldStatus": "Status",
+  "fieldProgress": "Progress (%)",
+  "fieldLatitude": "Latitude",
+  "fieldLongitude": "Longitude",
+  "fieldGeofence": "Site radius (metres)",
+  "useCurrentLocation": "Use my current location",
+  "fieldEngineers": "Engineers",
+  "fieldName": "Name",
+  "fieldCompany": "Company",
+  "fieldPhone": "Mobile number",
+  "fieldEmail": "E-mail",
+  "fieldNotes": "Notes",
+  "fieldEmployeeCode": "Employee ID",
+  "fieldJoiningDate": "Joining date",
+  "fieldDesignation": "Designation",
+  "fieldSite": "Site",
+  "fieldEngineer": "Engineer",
+  "siteSaved": "Site saved.",
+  "clientSaved": "Client saved.",
+  "personSaved": "Saved.",
+  "locationServiceOff": "Turn on location (GPS) and try again.",
+  "locationPermissionDenied": "Allow location access to use this.",
+  "locationPermissionForever": "Location access is blocked. Allow it in Settings.",
+  "locationNoFix": "Couldn't get your location. Move to an open area and try again.",
+  "clientSites": "Sites",
+  "clientNoSites": "No sites for this client yet.",
+  "peopleTitle": "People",
+  "engineersTitle": "Engineers",
+  "staffTitle": "Staff",
+  "peopleSearch": "Search by name, phone or ID",
+  "engineersEmpty": "No engineers found.",
+  "staffEmpty": "No staff found.",
+  "engineerNew": "New engineer",
+  "staffNew": "New staff member",
+  "filterActive": "Active",
+  "filterInactive": "Inactive",
+  "filterUnassigned": "Unassigned",
+  "personLastSignIn": "Last sign-in",
+  "personNeverSignedIn": "Never signed in",
+  "personPasswordPending": "Must set their own password at next sign-in",
+  "personSites": "Sites",
+  "personSupervises": "Supervises",
+  "personAssignment": "Site and engineer",
+  "personNotAssigned": "Not assigned to a site",
+  "personAssign": "Assign to site",
+  "personChangeAssignment": "Change site",
+  "personUnassign": "Remove from site",
+  "personUnassignConfirm": "Remove {name} from {site}?",
+  "personResetPassword": "Reset password",
+  "personResetConfirmTitle": "Reset password?",
+  "personResetConfirmBody": "{name} will be signed out and must sign in with a temporary password, then choose a new one.",
+  "personDeactivate": "Deactivate",
+  "personActivate": "Activate",
+  "personDeactivateConfirmTitle": "Deactivate {name}?",
+  "personDeactivateConfirmBody": "They will be signed out and removed from their sites. Their history is kept.",
+  "tempPasswordTitle": "Temporary password",
+  "tempPasswordBody": "Give this password to {name}. They will choose their own password when they sign in.",
+  "assignTitle": "Assign {name}",
+  "assignNoEngineers": "This site has no engineers yet. Add one to the site first.",
+  "assignSave": "Assign",
+  "@personResetConfirmBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@paymentsOverdueCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@staffCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@updatesMissing": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@personUnassignConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "site": {
+        "type": "String"
+      }
+    }
+  },
+  "@updatesSubmittedOf": {
+    "placeholders": {
+      "submitted": {
+        "type": "int"
+      },
+      "expected": {
+        "type": "int"
+      }
+    }
+  },
+  "@personDeactivateConfirmTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@updatesPending": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@updatesUpcoming": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@attentionNotCheckedIn": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "@updatesNotCheckedIn": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@siteOpenIssues": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@attentionOverdue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "@siteActivityLast": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "@attentionMissing": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "@issuesCritical": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@attentionCritical": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "@dashboardHoliday": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@tempPasswordBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@assignTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "@siteProgress": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "@siteGeofence": {
+    "placeholders": {
+      "meters": {
+        "type": "int"
+      }
+    }
+  },
+  "@validationRange": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "siteCount": "{count, plural, =0{No sites} =1{1 site} other{{count} sites}}",
+  "@siteCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "assignStaffToSite": "Add staff to {site}",
+  "@assignStaffToSite": {
+    "placeholders": {
+      "site": {
+        "type": "String"
+      }
+    }
+  },
+  "fieldStaffMember": "Staff member",
+  "assignNoUnassignedStaff": "Everyone is already assigned to a site. Add a new staff member from People.",
+  "engineerEdit": "Edit engineer",
+  "staffEdit": "Edit staff member",
+  "personNoSites": "Not assigned to any site.",
+  "personSupervisesNone": "No staff report to them yet.",
+  "personActivated": "{name} is active again.",
+  "@personActivated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "personDeactivated": "{name} has been deactivated.",
+  "@personDeactivated": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "personInactiveBanner": "This account is deactivated. They can't sign in.",
+  "filterDesignation": "Designation",
+  "personInitialSitesHelper": "Optional. You can change this later from each site's Team tab.",
+  "personInitialAssignment": "Assign to a site now (optional)",
+  "siteLocationHelp": "Used to check that staff are at the site when they send updates.",
+  "validationCompletionBeforeStart": "Must be on or after the start date",
+  "siteNoMilestones": "No payment milestones yet.",
+  "milestoneDue": "Due {date}",
+  "@milestoneDue": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "milestonePaidOf": "{paid} of {amount} paid",
+  "@milestonePaidOf": {
+    "placeholders": {
+      "paid": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "siteEngineersSaved": "Engineers updated.",
+  "staffAssigned": "{name} assigned to {site}.",
+  "@staffAssigned": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "site": {
+        "type": "String"
+      }
+    }
+  },
+  "staffUnassigned": "{name} removed from the site.",
+  "@staffUnassigned": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "locationCaptured": "Location set (accurate to about {meters} m).",
+  "@locationCaptured": {
+    "placeholders": {
+      "meters": {
+        "type": "int"
+      }
+    }
+  },
+  "locationMocked": "Your phone is using a mock location app. Turn it off and try again.",
+  "locationClear": "Clear location",
+  "siteNoLocation": "No location set. Staff updates can't be checked against the site.",
+  "siteContactNone": "No site contact",
+  "personSupervisedBy": "Reports to {name}",
+  "@personSupervisedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "commonActions": "More actions",
+  "milestonesTitle": "Payment schedule",
+  "staffGreeting": "Hello, {name}",
+  "@staffGreeting": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "staffYourEngineer": "Your engineer",
+  "staffNotAssigned": "You're not assigned to a site yet. Please contact your engineer or admin.",
+  "attendanceTitle": "Attendance",
+  "attendanceToday": "Today's attendance",
+  "checkIn": "Check in",
+  "checkOut": "Check out",
+  "checkingLocation": "Getting your location…",
+  "checkedInAt": "Checked in at {time}",
+  "@checkedInAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "checkedOutAt": "Checked out at {time}",
+  "@checkedOutAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "workedDuration": "Worked {hours} h {minutes} min",
+  "@workedDuration": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "notCheckedInYet": "You haven't checked in yet.",
+  "checkInDone": "Checked in. Have a good day!",
+  "checkOutDone": "Checked out. See you tomorrow!",
+  "checkOutConfirmTitle": "Check out now?",
+  "checkOutConfirmBody": "You can't check in again today.",
+  "checkInNotToday": "No check-in needed today.",
+  "locationFlagOutside": "Away from the site",
+  "locationFlagMocked": "Mock location",
+  "locationFlagNoPermission": "Location not allowed",
+  "locationFlagUnavailable": "No location",
+  "locationFlagOk": "At the site",
+  "slotWindow": "{start} – {end}",
+  "@slotWindow": {
+    "placeholders": {
+      "start": {
+        "type": "String"
+      },
+      "end": {
+        "type": "String"
+      }
+    }
+  },
+  "slotTakePhoto": "Take photo",
+  "slotSentAt": "Sent at {time}",
+  "@slotSentAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "slotSentOffline": "Sent later (offline)",
+  "slotOpensAt": "Opens at {time}",
+  "@slotOpensAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "slotDueBy": "Due by {time}",
+  "@slotDueBy": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "slotCheckInFirst": "Check in first to send this update.",
+  "slotSavedOnPhone": "Saved on this phone, waiting to send",
+  "captureTitle": "{slot} update",
+  "@captureTitle": {
+    "placeholders": {
+      "slot": {
+        "type": "String"
+      }
+    }
+  },
+  "captureRetake": "Retake",
+  "captureFromGallery": "Choose from gallery",
+  "captureGalleryNote": "Photos from the gallery are marked for review. Use the camera when you can.",
+  "captureDescriptionLabel": "What work was done?",
+  "captureDescriptionHint": "e.g. Plastering on the 2nd floor, east side",
+  "captureDescriptionTooShort": "Write a few words about the work.",
+  "capturePhotoRequired": "Take a photo of the work first.",
+  "captureSend": "Send update",
+  "captureSending": "Sending… {percent}%",
+  "@captureSending": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "captureSent": "{slot} update sent.",
+  "@captureSent": {
+    "placeholders": {
+      "slot": {
+        "type": "String"
+      }
+    }
+  },
+  "captureQueued": "No connection. Your update is saved and will be sent automatically.",
+  "captureLocationFound": "Location found (accurate to about {meters} m)",
+  "@captureLocationFound": {
+    "placeholders": {
+      "meters": {
+        "type": "int"
+      }
+    }
+  },
+  "captureLocationMarked": "The update will be sent without a location and marked.",
+  "captureCameraFailed": "Couldn't open the camera. Please try again.",
+  "queueTitle": "Waiting to send",
+  "queueWaiting": "Waiting for a connection",
+  "queueSending": "Sending…",
+  "queueFailed": "Not sent: {reason}",
+  "@queueFailed": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "queueTaken": "{slot} · taken {time}",
+  "@queueTaken": {
+    "placeholders": {
+      "slot": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "queueDiscard": "Discard",
+  "queueDiscardTitle": "Discard this update?",
+  "queueDiscardBody": "The photo and description will be deleted from this phone.",
+  "queueSendNow": "Send now",
+  "historyTitle": "Your updates",
+  "historyEmpty": "No updates yet.",
+  "attendanceHistoryTitle": "Past days",
+  "attendanceHistoryEmpty": "No attendance yet.",
+  "photoAwaitingReview": "Photo waiting for review",
+  "photoReviewed": "Photo reviewed, being removed",
+  "photoRemovedReviewed": "Photo reviewed and removed",
+  "photoRemovedExpired": "Photo removed after the review period",
+  "photoFromGallery": "From gallery",
+  "notificationsEmpty": "You're all caught up.",
+  "notificationsMarkAllRead": "Mark all as read",
+  "timeJustNow": "Just now",
+  "timeMinutesAgo": "{minutes} min ago",
+  "@timeMinutesAgo": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "timeHoursAgo": "{hours} h ago",
+  "@timeHoursAgo": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "timeYesterday": "Yesterday, {time}",
+  "@timeYesterday": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationUnread": "Unread",
+  "statYourSites": "Your sites",
+  "reviewTitle": "Photos to review",
+  "reviewEmpty": "All photos have been reviewed.",
+  "siteTabToday": "Today",
+  "boardNoStaff": "No staff on this site.",
+  "boardNotCheckedIn": "Not checked in",
+  "boardCheckedIn": "In {time}",
+  "@boardCheckedIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "boardCheckedOut": "Out {time}",
+  "@boardCheckedOut": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "boardPreviousDay": "Previous day",
+  "boardNextDay": "Next day",
+  "boardToReview": "To review",
+  "photoViewerTitle": "{name} · {slot}",
+  "@photoViewerTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "slot": {
+        "type": "String"
+      }
+    }
+  },
+  "photoDeleted": "This photo has been deleted. Photos are removed once reviewed, or after a day. The update itself is kept.",
+  "photoLoadFailed": "Couldn't load the photo.",
+  "updateTakenAt": "Taken {time}",
+  "@updateTakenAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "updateSentAt": "Sent {time}",
+  "@updateSentAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "updateDistance": "{meters} m from the site",
+  "@updateDistance": {
+    "placeholders": {
+      "meters": {
+        "type": "int"
+      }
+    }
+  },
+  "reviewEngineerDone": "Engineer reviewed",
+  "reviewEngineerPending": "Engineer hasn't reviewed",
+  "reviewAdminDone": "Admin reviewed",
+  "reviewAdminPending": "Admin hasn't reviewed",
+  "engineerUpdatesTitle": "Updates to admin",
+  "engineerUpdateNew": "New update",
+  "engineerUpdatesEmpty": "No updates yet.",
+  "engineerUpdateSent": "Update sent to the admin.",
+  "engineerUpdateSeen": "Seen by admin {time}",
+  "@engineerUpdateSeen": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "engineerUpdateNotSeen": "Not seen by the admin yet",
+  "engineerUpdateTypeProgress": "Progress",
+  "engineerUpdateTypeCompletedWork": "Completed work",
+  "engineerUpdateTypeMaterialsRequired": "Materials required",
+  "engineerUpdateTypeSafetyConcern": "Safety concern",
+  "engineerUpdateTypeClientRequirement": "Client requirement",
+  "engineerUpdateTypeRemark": "Remark",
+  "engineerUpdateTypeDailyReport": "Daily report",
+  "fieldType": "Type",
+  "fieldPriority": "Priority",
+  "fieldTitle": "Title",
+  "fieldTitleOptional": "Title (optional)",
+  "fieldDescription": "Description",
+  "fieldPhotos": "Photos",
+  "fieldProgressValue": "Site progress: {percent}%",
+  "@fieldProgressValue": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "photosAdd": "Add photo",
+  "photosLimit": "Up to {max} photos",
+  "@photosLimit": {
+    "placeholders": {
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "photoCamera": "Camera",
+  "photoGallery": "Gallery",
+  "commonRemove": "Remove",
+  "commonSend": "Send",
+  "issuesTitle": "Issues",
+  "issueNew": "Report issue",
+  "issuesEmpty": "No issues here.",
+  "issueReportedDone": "Issue reported.",
+  "issueReportedBy": "Reported by {name} · {time}",
+  "@issueReportedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "issueResolvedBy": "Resolved by {name} · {time}",
+  "@issueResolvedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "issueStartWork": "Start work",
+  "issueResolve": "Mark resolved",
+  "issueReopen": "Reopen",
+  "issueResolveTitle": "Resolve issue",
+  "issueResolutionLabel": "What was done?",
+  "issueUpdatedDone": "Issue updated.",
+  "issueFilterUnresolved": "Unresolved",
+  "attachmentsCount": "{count, plural, =1{1 photo} other{{count} photos}}",
+  "@attachmentsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "commonView": "View",
+  "paymentsAll": "All payments",
+  "paymentsRecord": "Record payment",
+  "paymentRecorded": "Payment recorded.",
+  "paymentVoid": "Void payment",
+  "paymentVoidTitle": "Void this payment?",
+  "paymentVoidBody": "It stays in the history, marked void, and stops counting toward the site's total.",
+  "paymentVoidReason": "Reason",
+  "paymentVoided": "Payment voided.",
+  "paymentVoidedBy": "Voided by {name}: {reason}",
+  "@paymentVoidedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentVoidChip": "Void",
+  "paymentRecordedBy": "Recorded by {name}",
+  "@paymentRecordedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentMethodCash": "Cash",
+  "paymentMethodUpi": "UPI",
+  "paymentMethodBankTransfer": "Bank transfer",
+  "paymentMethodCheque": "Cheque",
+  "paymentMethodOther": "Other",
+  "fieldAmount": "Amount",
+  "fieldPaidOn": "Paid on",
+  "fieldMethod": "Method",
+  "fieldReference": "Reference (cheque or UTR no.)",
+  "fieldRemarks": "Remarks",
+  "fieldDueDate": "Due date",
+  "milestoneAdd": "Add milestone",
+  "milestoneEdit": "Edit milestone",
+  "milestoneSaved": "Milestone saved.",
+  "milestoneDelete": "Delete milestone",
+  "milestoneDeleteTitle": "Delete this milestone?",
+  "milestoneDeleteBody": "Payments stay recorded and count toward the remaining milestones.",
+  "milestoneDeleted": "Milestone deleted.",
+  "paymentsEmpty": "No payments yet.",
+  "paymentsReceivedOf": "{received} of {contract} received",
+  "@paymentsReceivedOf": {
+    "placeholders": {
+      "received": {
+        "type": "String"
+      },
+      "contract": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentsNextDue": "Next: {title} · {amount} due {date}",
+  "@paymentsNextDue": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "amount": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "paymentsShowVoided": "Show voided",
+  "paymentsReceivedTitle": "Payments received",
+  "paymentsBySite": "By site",
+  "paymentsNoSites": "No sites yet.",
+  "reportsTitle": "Reports",
+  "reportsEntrySubtitle": "Attendance, photo updates and more, for any dates",
+  "reportsExport": "Export CSV",
+  "reportsTooLong": "Choose at most {days} days.",
+  "@reportsTooLong": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "reportsRange": "{from} – {to}",
+  "@reportsRange": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "reportsAllSites": "All sites",
+  "reportKindSites": "Sites",
+  "reportKindStaff": "Staff",
+  "reportKindEngineers": "Engineers",
+  "reportKindPayments": "Payments",
+  "reportPeriodThisWeek": "This week",
+  "reportPeriodThisMonth": "This month",
+  "reportPeriodLastMonth": "Last month",
+  "reportPeriodCustom": "Pick dates",
+  "reportsEmpty": "Nothing to report for these dates.",
+  "reportsGroupUpdates": "Photo updates",
+  "reportsGroupAttendance": "Attendance",
+  "reportsGroupWork": "Updates and issues",
+  "reportsGroupReviews": "Photo reviews",
+  "reportsUpdatesSent": "Sent",
+  "reportsUpdatesMissed": "Missed",
+  "reportsSentOffline": "Sent offline",
+  "reportsLocationFlagged": "Location flagged",
+  "reportsEngineerUpdates": "Updates to admin",
+  "reportsIssuesOpened": "Issues opened",
+  "reportsIssuesResolved": "Issues resolved",
+  "reportsIssuesOpenNow": "Open now",
+  "reportsIssuesReported": "Issues reported",
+  "reportsPhotos": "Photos",
+  "reportsReviewed": "Reviewed",
+  "reportsReviewRate": "Review rate",
+  "reportsReviewMinutes": "Minutes to review",
+  "reportsCompliance": "{percent}% sent",
+  "@reportsCompliance": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "reportsNothingDue": "Nothing due",
+  "reportsReceivedInRange": "Received in these dates",
+  "reportsPaymentCount": "{count, plural, =1{1 payment} other{{count} payments}}",
+  "@reportsPaymentCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reportsInRange": "In these dates",
+  "reportsReceivedToDate": "Received to date",
+  "reportsPaymentsInRange": "Payments in these dates",
+  "reportsNoPayments": "No payments in these dates.",
+  "locationApproximate": "Only approximate location is allowed, so this may be marked away from the site. Turn on \"Use precise location\" for this app."
+}
