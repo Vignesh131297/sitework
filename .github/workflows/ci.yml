@@ -80,6 +80,8 @@ jobs:
         run: |
           flutter gen-l10n
           dart run build_runner build --delete-conflicting-outputs
+          # Generators write 80-column code; the committed copies use the project's width.
+          dart format lib
           git diff --exit-code -- lib
       - run: dart format --output=none --set-exit-if-changed lib test tool
       - run: flutter analyze
