@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:sitework/core/config/app_config.dart';
 import 'package:sitework/core/network/app_exception.dart';
@@ -110,6 +111,19 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('Admin User'), findsOneWidget);
     expect(find.byType(BackButton), findsOneWidget);
+  });
+
+  testWidgets('an unknown link shows a friendly page that leads back home', (tester) async {
+    await pumpSiteWorkApp(tester);
+    await signIn(tester, '+919000000101', FakeAuthRepository.password);
+
+    GoRouter.of(tester.element(find.text('Home').first)).go('/staff/no-such-page');
+    await tester.pumpAndSettle();
+    expect(find.text("This page isn't available"), findsOneWidget);
+
+    await tapText(tester, 'Go to home');
+    expect(find.text("This page isn't available"), findsNothing);
+    expect(find.text('Attendance'), findsWidgets);
   });
 
   testWidgets('development builds offer one-tap seeded sign-in; others do not', (tester) async {

@@ -3102,6 +3102,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Only approximate location is allowed, so this may be marked away from the site. Turn on \"Use precise location\" for this app.'**
   String get locationApproximate;
+
+  /// No description provided for @notFoundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This page isn\'t available'**
+  String get notFoundTitle;
+
+  /// No description provided for @notFoundMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The link may be old or mistyped.'**
+  String get notFoundMessage;
+
+  /// No description provided for @notFoundGoHome.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to home'**
+  String get notFoundGoHome;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
