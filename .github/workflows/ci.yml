@@ -107,6 +107,15 @@ jobs:
       - name: Skip until production is set up
         if: env.PRODUCTION_DATABASE_URL == ''
         run: echo "::warning::PRODUCTION_DATABASE_URL is not set, so no migrations ran. See docs/DEPLOY-FREE.md."
+      # Checkout comes first: every run step starts in backend/, which exists only after it.
+      - uses: actions/checkout@v4
+        if: env.PRODUCTION_DATABASE_URL != ''
+      - uses: actions/setup-node@v4
+        if: env.PRODUCTION_DATABASE_URL != ''
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
       - name: Session connection for Prisma Migrate
         if: env.PRODUCTION_DATABASE_URL != ''
         run: |
@@ -116,14 +125,6 @@ jobs:
           url="${url/:6543\//:5432/}?sslmode=require"
           echo "::add-mask::$url"
           echo "DATABASE_URL=$url" >> "$GITHUB_ENV"
-      - uses: actions/checkout@v4
-        if: env.PRODUCTION_DATABASE_URL != ''
-      - uses: actions/setup-node@v4
-        if: env.PRODUCTION_DATABASE_URL != ''
-        with:
-          node-version: 24
-          cache: npm
-          cache-dependency-path: backend/package-lock.json
       - if: env.PRODUCTION_DATABASE_URL != ''
         run: npm ci
       - if: env.PRODUCTION_DATABASE_URL != ''
