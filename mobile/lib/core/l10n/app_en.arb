@@ -1064,5 +1064,8 @@
   "reportsReceivedToDate": "Received to date",
   "reportsPaymentsInRange": "Payments in these dates",
   "reportsNoPayments": "No payments in these dates.",
-  "locationApproximate": "Only approximate location is allowed, so this may be marked away from the site. Turn on \"Use precise location\" for this app."
+  "locationApproximate": "Only approximate location is allowed, so this may be marked away from the site. Turn on \"Use precise location\" for this app.",
+  "notFoundTitle": "This page isn't available",
+  "notFoundMessage": "The link may be old or mistyped.",
+  "notFoundGoHome": "Go to home"
 }
