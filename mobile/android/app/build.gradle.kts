@@ -7,7 +7,7 @@ plugins {
 }
 
 // Release signing comes from android/key.properties, which is never committed
-// (see key.properties.example and docs/RELEASE.md). CI writes it from secrets.
+//  (see key.properties.example and docs/RELEASE.md). CI writes it from secrets.
 val keyProperties = Properties().apply {
     val file = rootProject.file("key.properties")
     if (file.exists()) file.inputStream().use { load(it) }
