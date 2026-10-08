@@ -1692,4 +1692,13 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get locationApproximate =>
       'Only approximate location is allowed, so this may be marked away from the site. Turn on \"Use precise location\" for this app.';
+
+  @override
+  String get notFoundTitle => 'This page isn\'t available';
+
+  @override
+  String get notFoundMessage => 'The link may be old or mistyped.';
+
+  @override
+  String get notFoundGoHome => 'Go to home';
 }

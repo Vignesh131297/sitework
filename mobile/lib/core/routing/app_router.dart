@@ -9,6 +9,7 @@ import '../../features/auth/presentation/reset_password_screen.dart';
 import '../../features/auth/presentation/session_controller.dart';
 import '../../features/auth/presentation/splash_screen.dart';
 import 'app_routes.dart';
+import 'not_found_screen.dart';
 import 'role_routes.dart';
 import 'route_guard.dart';
 
@@ -21,6 +22,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     initialLocation: AppRoutes.splash,
     refreshListenable: sessionChanges,
     redirect: (context, state) => redirectFor(session: ref.read(sessionProvider), location: state.uri.path),
+    errorBuilder: (context, state) => const NotFoundScreen(),
     routes: [
       GoRoute(path: AppRoutes.splash, builder: (context, state) => const SplashScreen()),
       GoRoute(path: AppRoutes.login, builder: (context, state) => const LoginScreen()),
