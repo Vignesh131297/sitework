@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { existsSync } from 'node:fs';
-import { rm } from 'node:fs/promises';
+import { rm, utimes } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import sharp from 'sharp';
 import { AttendanceService } from '../src/attendance/attendance.service.js';
@@ -507,7 +507,13 @@ describe('Field work: attendance, staff updates, photos (e2e)', () => {
       const storage = t.app.get(
         (await import('../src/storage/storage.provider.js')).StorageProvider,
       );
-      await storage.put(`staff/${DAY}/orphan.jpg`, photo, 'image/jpeg');
+      const orphan = `staff/${DAY}/orphan.jpg`;
+      await storage.put(orphan, photo, 'image/jpeg');
+      // Date the file on the test's clock; it was really written just now.
+      const uploadedAt = ist('11:00');
+      await utimes(resolve('.test-storage', orphan), uploadedAt, uploadedAt);
+      // Under an hour old, so it may belong to an upload still in progress.
+      expect(await cleanup.sweepOrphans(ist('11:30'))).toBe(0);
       // Looks back from the given day; the file is old enough not to be a live upload.
       expect(await cleanup.sweepOrphans(ist('12:00', '2026-10-06'))).toBe(1);
       expect(await cleanup.sweepOrphans(ist('12:00', '2026-10-06'))).toBe(0);
