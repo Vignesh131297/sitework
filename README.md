@@ -10,6 +10,7 @@ and admins review.
 | App | Flutter 3.47 · Riverpod · GoRouter · Dio | [`mobile/`](mobile/) |
 | Design | Architecture, schema, rules, security, performance | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |
 | Going live | Accounts, deployment, Play Store | [`docs/RELEASE.md`](docs/RELEASE.md) |
+| Free hosting | The API on free plans (Render, Supabase, Firebase) | [`docs/DEPLOY-FREE.md`](docs/DEPLOY-FREE.md) |
 
 **Status:** all ten phases are built and tested. Going live needs the owner's accounts
 and keys; see [RELEASE.md](docs/RELEASE.md).

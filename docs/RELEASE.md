@@ -4,6 +4,9 @@ How to put the API online and publish the Android app. Everything in the code is
 ready; what is left needs accounts and keys that only the owner can create. Nothing
 on this list is stored in the repository.
 
+To host the API for free on Render, Supabase and Firebase, follow
+[DEPLOY-FREE.md](DEPLOY-FREE.md) instead of section 2.
+
 ## 1. What you need
 
 | Item | Used for | Where it goes |

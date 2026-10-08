@@ -84,7 +84,11 @@ export class SupabaseStorageProvider extends StorageProvider {
       ...init,
       headers: {
         ...init.headers,
-        authorization: `Bearer ${this.serviceKey}`,
+        // New secret keys (sb_secret_...) are not JWTs and go only in `apikey`;
+        // legacy service_role keys are JWTs and are also sent as a bearer token.
+        ...(this.serviceKey.startsWith('sb_')
+          ? {}
+          : { authorization: `Bearer ${this.serviceKey}` }),
         apikey: this.serviceKey,
       },
       signal: AbortSignal.timeout(30_000),
