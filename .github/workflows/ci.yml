@@ -1,16 +1,20 @@
 # Every push and pull request: the API's checks and tests (against a real
 # PostgreSQL), and the app's analysis and tests. No secrets needed: the JWT
-# secrets are generated for each run.
+# secrets are generated for each run. On main, the migrate job also applies
+# production migrations (secret PRODUCTION_DATABASE_URL; skipped until set).
 name: CI
 
 on:
   push:
     branches: [main]
   pull_request:
+  # Re-runs everything, including production migrations when run on main.
+  workflow_dispatch:
 
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  # Never cancel a run on main: it may be applying production migrations.
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   backend:
@@ -86,3 +90,41 @@ jobs:
       - run: dart format --output=none --set-exit-if-changed lib test tool
       - run: flutter analyze
       - run: flutter test
+
+  # Applies database migrations to production once everything above passes on main.
+  # Render deploys only after these checks pass (autoDeployTrigger: checksPass in
+  # render.yaml), so the schema is always ready before new code starts.
+  migrate:
+    needs: [backend, docker, mobile]
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    env:
+      PRODUCTION_DATABASE_URL: ${{ secrets.PRODUCTION_DATABASE_URL }}
+    steps:
+      - name: Skip until production is set up
+        if: env.PRODUCTION_DATABASE_URL == ''
+        run: echo "::warning::PRODUCTION_DATABASE_URL is not set, so no migrations ran. See docs/DEPLOY-FREE.md."
+      - name: Session connection for Prisma Migrate
+        if: env.PRODUCTION_DATABASE_URL != ''
+        run: |
+          # The secret is the API's transaction-pooler URL. Prisma Migrate needs a session,
+          # which the same Supabase pooler serves on port 5432.
+          url="${PRODUCTION_DATABASE_URL%%\?*}"
+          url="${url/:6543\//:5432/}?sslmode=require"
+          echo "::add-mask::$url"
+          echo "DATABASE_URL=$url" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+        if: env.PRODUCTION_DATABASE_URL != ''
+      - uses: actions/setup-node@v4
+        if: env.PRODUCTION_DATABASE_URL != ''
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+      - if: env.PRODUCTION_DATABASE_URL != ''
+        run: npm ci
+      - if: env.PRODUCTION_DATABASE_URL != ''
+        run: npx prisma migrate deploy

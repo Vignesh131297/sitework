@@ -1,0 +1,59 @@
+# Render Blueprint for the SiteWork API on Render's free plan.
+# Setup steps (Supabase, Firebase, uptime ping): docs/DEPLOY-FREE.md
+#
+# Free-plan notes:
+# - The service sleeps after 15 minutes without requests, which would also stop the
+#   scheduled jobs. An external uptime check on /api/v1/health keeps it awake.
+# - There is no pre-deploy step, so CI applies database migrations (the migrate job in
+#   .github/workflows/ci.yml) and Render deploys only after those checks pass.
+services:
+  - type: web
+    name: sitework-api
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerContext: ./backend
+    dockerfilePath: ./backend/Dockerfile
+    healthCheckPath: /api/v1/health
+    autoDeployTrigger: checksPass
+    buildFilter:
+      paths:
+        - backend/**
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: HOST
+        value: 0.0.0.0
+      - key: LOG_LEVEL
+        value: info
+      # Render's proxy appends the address it saw; trust only that last hop.
+      - key: TRUST_PROXY
+        value: '1'
+      - key: JOBS_ENABLED
+        value: 'true'
+      - key: STORAGE_DRIVER
+        value: supabase
+      - key: SUPABASE_BUCKET
+        value: sitework-private
+      - key: PUSH_DRIVER
+        value: fcm
+      # Free instances can't send mail (SMTP ports are blocked); admins reset passwords.
+      - key: MAIL_DRIVER
+        value: disabled
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      # Asked for once, when the Blueprint is created.
+      - key: DATABASE_URL
+        sync: false
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: FIREBASE_PROJECT_ID
+        sync: false
+      - key: FIREBASE_CLIENT_EMAIL
+        sync: false
+      - key: FIREBASE_PRIVATE_KEY
+        sync: false
