@@ -20,4 +20,9 @@ Map<String, dynamic> _$AppSessionToJson(_AppSession instance) => <String, dynami
   'mustChangePassword': instance.mustChangePassword,
 };
 
-const _$UserRoleEnumMap = {UserRole.admin: 'ADMIN', UserRole.engineer: 'ENGINEER', UserRole.staff: 'STAFF'};
+const _$UserRoleEnumMap = {
+  UserRole.admin: 'ADMIN',
+  UserRole.engineer: 'ENGINEER',
+  UserRole.staff: 'STAFF',
+  UserRole.godownManager: 'GODOWN_MANAGER',
+};

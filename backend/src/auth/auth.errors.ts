@@ -92,3 +92,10 @@ export const invalidResetCode = () =>
     'The code is incorrect or has expired. Request a new one.',
     HttpStatus.BAD_REQUEST,
   );
+
+export const signupClosed = () =>
+  new AppException(
+    ErrorCode.SIGNUP_CLOSED,
+    'This app is already set up. Ask your admin to create your account.',
+    HttpStatus.FORBIDDEN,
+  );

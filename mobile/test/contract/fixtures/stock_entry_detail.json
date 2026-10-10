@@ -1,0 +1,113 @@
+{
+  "success": true,
+  "data": {
+    "id": "01a11c52-5435-76de-9b89-550670b90dc7",
+    "requestId": "2118467c-5998-4fdb-9846-1be7817ab505",
+    "kind": "USAGE",
+    "from": {
+      "place": "SITE",
+      "site": {
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      "godown": null
+    },
+    "to": {
+      "place": "USED",
+      "site": null,
+      "godown": null
+    },
+    "status": "DONE",
+    "movedOn": "2026-10-07",
+    "dcNumber": null,
+    "supplier": null,
+    "billNo": null,
+    "note": "First floor columns and slab.",
+    "lines": [
+      {
+        "id": "01a11c52-5436-73d0-9c5e-773512a6aff0",
+        "material": {
+          "id": "01a11c52-5385-771f-8454-9683c609d4b0",
+          "name": "Blue metal 20mm",
+          "unit": "cft"
+        },
+        "quantity": "40",
+        "receivedQuantity": "40",
+        "shortQuantity": null,
+        "rate": null,
+        "amount": null
+      },
+      {
+        "id": "01a11c52-5436-73d0-9c5e-6b41b3ae57f9",
+        "material": {
+          "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+          "name": "Cement OPC 53",
+          "unit": "bag"
+        },
+        "quantity": "8",
+        "receivedQuantity": "8",
+        "shortQuantity": null,
+        "rate": null,
+        "amount": null
+      },
+      {
+        "id": "01a11c52-5436-73d0-9c5e-7224eaab0d86",
+        "material": {
+          "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+          "name": "M-Sand",
+          "unit": "cft"
+        },
+        "quantity": "60",
+        "receivedQuantity": "60",
+        "shortQuantity": null,
+        "rate": null,
+        "amount": null
+      },
+      {
+        "id": "01a11c52-5436-73d0-9c5e-78af5f899bdf",
+        "material": {
+          "id": "01a11c52-5387-72c0-a7f2-f113520703e6",
+          "name": "Red bricks",
+          "unit": "nos"
+        },
+        "quantity": "900",
+        "receivedQuantity": "900",
+        "shortQuantity": null,
+        "rate": null,
+        "amount": null
+      },
+      {
+        "id": "01a11c52-5436-73d0-9c5e-6db28d50a0cf",
+        "material": {
+          "id": "01a11c52-5381-735c-8b63-4354c3bde9e6",
+          "name": "TMT Steel 12mm",
+          "unit": "kg"
+        },
+        "quantity": "150",
+        "receivedQuantity": "150",
+        "shortQuantity": null,
+        "rate": null,
+        "amount": null
+      }
+    ],
+    "totalAmount": null,
+    "receivedOn": "2026-10-07",
+    "receivedAt": null,
+    "receivedBy": null,
+    "receiveNote": null,
+    "createdBy": {
+      "id": "01a11c52-51a9-726e-813a-f1fa901ee64b",
+      "name": "Arun Kumar"
+    },
+    "createdAt": "2026-10-07T12:45:00.000Z",
+    "voidedAt": null,
+    "voidedBy": null,
+    "voidReason": null,
+    "photoCount": 0,
+    "request": null,
+    "photos": [],
+    "canReceive": false,
+    "canVoid": true
+  }
+}

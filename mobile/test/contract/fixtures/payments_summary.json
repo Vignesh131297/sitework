@@ -11,13 +11,13 @@
     "sites": [
       {
         "site": {
-          "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+          "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
           "code": "SITE-001",
           "name": "ABC Apartment Project",
           "status": "IN_PROGRESS"
         },
         "client": {
-          "id": "01a10655-4e65-7670-8c90-afc0b3886bb4",
+          "id": "01a11c52-51cb-74d7-b529-e4de2322e276",
           "name": "ABC Constructions"
         },
         "financials": {
@@ -28,10 +28,10 @@
           "overdueCount": 1
         },
         "nextDue": {
-          "id": "01a10655-4eac-7704-9a3c-84590eed6d96",
+          "id": "01a11c52-5214-7722-9a31-6d5b587ce5e9",
           "title": "First floor slab",
           "amount": "300000.00",
-          "dueDate": "2026-09-14",
+          "dueDate": "2026-09-18",
           "paid": "200000.00",
           "outstanding": "100000.00",
           "status": "OVERDUE"
@@ -39,13 +39,13 @@
       },
       {
         "site": {
-          "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+          "id": "01a11c52-51ec-772b-ac1a-96a6a41f6962",
           "code": "SITE-002",
           "name": "Green Valley Villa",
           "status": "IN_PROGRESS"
         },
         "client": {
-          "id": "01a10655-4e6c-754a-82bb-53cf36d6a1ca",
+          "id": "01a11c52-51d2-7115-9c8a-976239ad36e8",
           "name": "Green Valley Properties"
         },
         "financials": {
@@ -56,10 +56,10 @@
           "overdueCount": 1
         },
         "nextDue": {
-          "id": "01a10655-4ebe-7298-9709-b870fccc8584",
+          "id": "01a11c52-5227-7428-8f39-07acd8dcc79b",
           "title": "Brickwork and lintel",
           "amount": "250000.00",
-          "dueDate": "2026-09-24",
+          "dueDate": "2026-09-28",
           "paid": "200000.00",
           "outstanding": "50000.00",
           "status": "OVERDUE"
@@ -67,13 +67,13 @@
       },
       {
         "site": {
-          "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+          "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
           "code": "SITE-003",
           "name": "Sri Lakshmi Commercial Building",
           "status": "IN_PROGRESS"
         },
         "client": {
-          "id": "01a10655-4e6a-700b-8975-77dcf0cacdd7",
+          "id": "01a11c52-51d0-763a-9834-8b04afdfd4eb",
           "name": "Sri Lakshmi Developers"
         },
         "financials": {
@@ -84,10 +84,10 @@
           "overdueCount": 0
         },
         "nextDue": {
-          "id": "01a10655-4ec8-71f8-97f9-0ec47016208b",
+          "id": "01a11c52-5230-7401-8246-875158b1300f",
           "title": "Handover",
           "amount": "200000.00",
-          "dueDate": "2026-10-29",
+          "dueDate": "2026-11-02",
           "paid": "100000.00",
           "outstanding": "100000.00",
           "status": "PARTIALLY_PAID"

@@ -1,56 +1,57 @@
 {
   "success": true,
   "data": {
-    "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+    "id": "01a11c52-51a9-726e-813a-f1fa901ee64b",
     "role": "ENGINEER",
     "name": "Arun Kumar",
     "phone": "+919000000011",
     "email": "arun@sitework.test",
     "employeeCode": "ENG-001",
     "designation": null,
-    "joiningDate": "2024-10-14",
+    "joiningDate": "2024-10-18",
     "isActive": true,
-    "lastLoginAt": "2026-10-04T16:03:43.812Z",
+    "lastLoginAt": null,
     "sites": [
       {
-        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
         "code": "SITE-001",
         "name": "ABC Apartment Project"
       },
       {
-        "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+        "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
         "code": "SITE-003",
         "name": "Sri Lakshmi Commercial Building"
       }
     ],
     "staffCount": 3,
+    "godowns": [],
     "assignment": null,
     "mustChangePassword": false,
     "supervisedStaff": [
       {
-        "id": "01a10655-4e4d-746b-a6f9-6d46d2337692",
+        "id": "01a11c52-51b5-72d9-aae5-9d4741999db1",
         "name": "Kumar",
         "designation": "HELPER",
         "site": {
-          "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+          "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
           "name": "ABC Apartment Project"
         }
       },
       {
-        "id": "01a10655-4e62-7114-96d5-1ad5577d5e0b",
+        "id": "01a11c52-51c3-721c-bcda-c51d7aa8ee06",
         "name": "Muthu",
         "designation": "PAINTER",
         "site": {
-          "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+          "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
           "name": "Sri Lakshmi Commercial Building"
         }
       },
       {
-        "id": "01a10655-4e48-71da-850f-01840d2004af",
+        "id": "01a11c52-51b2-7218-a487-03eb31ca94b7",
         "name": "Ravi",
         "designation": "MASON",
         "site": {
-          "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+          "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
           "name": "ABC Apartment Project"
         }
       }

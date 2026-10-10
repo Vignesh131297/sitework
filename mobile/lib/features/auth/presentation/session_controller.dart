@@ -24,6 +24,15 @@ class SessionController extends AsyncNotifier<AppSession?> {
     state = AsyncData(user);
   }
 
+  /// The first admin creates their account and is signed in.
+  Future<void> signUp({required String name, required String phone, String? email, required String password}) async {
+    final user = await ref
+        .read(authRepositoryProvider)
+        .signUp(name: name, phone: phone, email: email, password: password);
+    ref.read(sessionNoticeProvider.notifier).clear();
+    state = AsyncData(user);
+  }
+
   Future<void> signOut() async {
     // While still signed in, so the server accepts it.
     await ref.read(pushRegistrationProvider).unregister();

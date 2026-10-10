@@ -11,6 +11,7 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/status_colors.dart';
 import '../../../core/widgets/inline_message.dart';
 import '../../system/presentation/server_status.dart';
+import '../data/auth_repository.dart';
 import 'password_field.dart';
 import 'session_controller.dart';
 
@@ -122,6 +123,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             ? const SizedBox.square(dimension: 22, child: CircularProgressIndicator(strokeWidth: 2.5))
                             : Text(l10n.loginSubmit),
                       ),
+                      // A new server with no admin yet: the first one sets it up.
+                      if (ref.watch(signUpOpenProvider).value ?? false) ...[
+                        const SizedBox(height: AppSpacing.md),
+                        OutlinedButton.icon(
+                          onPressed: _submitting ? null : () => context.push(AppRoutes.signUp),
+                          icon: const Icon(Icons.admin_panel_settings_outlined),
+                          label: Text(l10n.signUpLink),
+                        ),
+                      ],
                       const SizedBox(height: AppSpacing.xl),
                       const ServerStatus(),
                       if (devLogins.isNotEmpty) ...[

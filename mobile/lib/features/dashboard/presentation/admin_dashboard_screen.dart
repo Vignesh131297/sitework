@@ -112,6 +112,28 @@ class _DashboardBody extends StatelessWidget {
           onTap: () => context.push(AppRoutes.issues(area)),
         ),
         CountTile(
+          icon: Icons.inventory_2_outlined,
+          tone: d.stock.lowStock > 0 || d.stock.toReceive > 0 ? StatusTone.warning : StatusTone.neutral,
+          title: l10n.stockTitle,
+          subtitle: d.stock.lowStock == 0 && d.stock.toReceive == 0
+              ? l10n.stockEntrySubtitle
+              : [
+                  if (d.stock.lowStock > 0) l10n.stockLowCount(d.stock.lowStock),
+                  if (d.stock.toReceive > 0) l10n.stockToConfirmCount(d.stock.toReceive),
+                ].join(' · '),
+          onTap: () => context.push(AppRoutes.stock(area)),
+        ),
+        CountTile(
+          icon: Icons.assignment_outlined,
+          tone: d.stock.requestsToApprove > 0 ? StatusTone.warning : StatusTone.neutral,
+          title: l10n.requestsTitle,
+          subtitle: d.stock.requestsToApprove > 0
+              ? l10n.requestsToApproveCount(d.stock.requestsToApprove)
+              : l10n.requestsAdminSubtitle,
+          count: d.stock.requestsToApprove > 0 ? d.stock.requestsToApprove : null,
+          onTap: () => context.push(AppRoutes.requests(area)),
+        ),
+        CountTile(
           icon: Icons.insert_chart_outlined,
           tone: StatusTone.neutral,
           title: l10n.reportsTitle,

@@ -205,6 +205,7 @@ extension ReportKindLabel on ReportKind {
     ReportKind.staff => l10n.reportKindStaff,
     ReportKind.engineers => l10n.reportKindEngineers,
     ReportKind.payments => l10n.reportKindPayments,
+    ReportKind.stock => l10n.reportKindStock,
   };
 }
 

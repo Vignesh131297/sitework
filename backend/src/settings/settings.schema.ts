@@ -70,6 +70,12 @@ export const settingsSchemas = {
     adminStaffUpdatePush: z.enum(['EACH', 'DIGEST', 'OFF']),
     missedUpdateDigest: z.boolean(),
   }),
+  stock: z.object({
+    /** Remind site engineers when a site holding stock has no usage recorded today. */
+    usageReminders: z.boolean(),
+    /** When, on working days (business time). */
+    usageReminderAt: timeOfDay,
+  }),
 };
 
 export type SettingsKey = keyof typeof settingsSchemas;
@@ -116,6 +122,10 @@ export const DEFAULT_SETTINGS: Settings = {
   notifications: {
     adminStaffUpdatePush: 'EACH',
     missedUpdateDigest: true,
+  },
+  stock: {
+    usageReminders: true,
+    usageReminderAt: '18:30',
   },
 };
 

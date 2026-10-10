@@ -135,7 +135,8 @@ enum NotificationType {
   payment('PAYMENT'),
   issue('ISSUE'),
   attendance('ATTENDANCE'),
-  system('SYSTEM');
+  system('SYSTEM'),
+  stock('STOCK');
 
   const NotificationType(this.apiValue);
   final String apiValue;
@@ -150,7 +151,9 @@ enum ReferenceType {
   site('SITE'),
   paymentMilestone('PAYMENT_MILESTONE'),
   payment('PAYMENT'),
-  attendance('ATTENDANCE');
+  attendance('ATTENDANCE'),
+  stockEntry('STOCK_ENTRY'),
+  materialRequest('MATERIAL_REQUEST');
 
   const ReferenceType(this.apiValue);
   final String apiValue;
@@ -185,5 +188,76 @@ enum ImageDeleteReason {
   expired('EXPIRED');
 
   const ImageDeleteReason(this.apiValue);
+  final String apiValue;
+}
+
+/// Where stock is, comes from or goes. Only godowns and sites hold stock.
+@JsonEnum(valueField: 'apiValue')
+enum StockPlace {
+  supplier('SUPPLIER'),
+  godown('GODOWN'),
+  site('SITE'),
+  used('USED'),
+  waste('WASTE'),
+  adjustment('ADJUSTMENT');
+
+  const StockPlace(this.apiValue);
+  final String apiValue;
+}
+
+@JsonEnum(valueField: 'apiValue')
+enum StockMovementStatus {
+  inTransit('IN_TRANSIT'),
+  done('DONE'),
+  voided('VOIDED');
+
+  const StockMovementStatus(this.apiValue);
+  final String apiValue;
+}
+
+/// What a stock movement is, as the server names it.
+@JsonEnum(valueField: 'apiValue')
+enum StockKind {
+  purchase('PURCHASE'),
+  transfer('TRANSFER'),
+  usage('USAGE'),
+  writeOff('WRITE_OFF'),
+  adjustment('ADJUSTMENT');
+
+  const StockKind(this.apiValue);
+  final String apiValue;
+}
+
+/// Where a material request is: waiting for an admin, approved (being sent
+/// and used), turned down, withdrawn, or closed by the site.
+@JsonEnum(valueField: 'apiValue')
+enum MaterialRequestStatus {
+  pending('PENDING'),
+  approved('APPROVED'),
+  rejected('REJECTED'),
+  cancelled('CANCELLED'),
+  closed('CLOSED');
+
+  const MaterialRequestStatus(this.apiValue);
+  final String apiValue;
+}
+
+/// How the site closed a request.
+@JsonEnum(valueField: 'apiValue')
+enum MaterialRequestOutcome {
+  allUsed('ALL_USED'),
+  leftoverReturned('LEFTOVER_RETURNED');
+
+  const MaterialRequestOutcome(this.apiValue);
+  final String apiValue;
+}
+
+/// Who took a stock photo: the sender (DC, bill) or the receiver.
+@JsonEnum(valueField: 'apiValue')
+enum StockPhotoStage {
+  sent('SENT'),
+  received('RECEIVED');
+
+  const StockPhotoStage(this.apiValue);
   final String apiValue;
 }

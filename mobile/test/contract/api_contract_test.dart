@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:sitework/core/models/enums.dart';
 import 'package:sitework/features/attendance/domain/attendance_models.dart';
 import 'package:sitework/features/auth/domain/auth_models.dart';
 import 'package:sitework/features/clients/domain/client_models.dart';
@@ -15,6 +16,7 @@ import 'package:sitework/features/reports/domain/report_models.dart';
 import 'package:sitework/features/sites/domain/site_day.dart';
 import 'package:sitework/features/sites/domain/site_models.dart';
 import 'package:sitework/features/staff_updates/domain/staff_update_models.dart';
+import 'package:sitework/features/stock/domain/stock_models.dart';
 
 // Responses recorded from the real API (seed data) decode into the app's
 // models. Refresh the fixtures when the API changes: see test/contract/README.md.
@@ -30,7 +32,7 @@ List<Map<String, dynamic>> _rows(String name) => [
 
 void main() {
   test('profiles for each role', () {
-    for (final role in ['admin', 'engineer', 'staff']) {
+    for (final role in ['admin', 'engineer', 'staff', 'godown_manager']) {
       expect(MeProfile.fromJson(_data('me_$role')).name, isNotEmpty, reason: role);
     }
   });
@@ -88,6 +90,55 @@ void main() {
     expect(summary.sites, isNotEmpty);
     expect(_rows('payments').map(Payment.fromJson), isNotEmpty);
     expect(SiteMoney.fromJson(_data('site_money')).financials.milestones, isNotEmpty);
+  });
+
+  test('stock: overview, godown, site, entries, material and reports', () {
+    final overview = StockOverview.fromJson(_data('stock_overview'));
+    expect(overview.godowns, isNotEmpty);
+    expect(overview.materials, isNotEmpty);
+    expect(overview.sites, isNotEmpty);
+    expect(StockOverview.fromJson(_data('stock_overview_engineer')).godowns, isNotEmpty);
+    final godown = GodownStock.fromJson(_data('godown_stock'));
+    expect(godown.items, isNotEmpty);
+    expect(godown.value, isNotNull, reason: 'admins see values');
+    final site = SiteStock.fromJson(_data('site_stock'));
+    expect(site.items, isNotEmpty);
+    expect(site.items.first.usedValue, isNotNull, reason: 'admins see values');
+    final staffSite = SiteStock.fromJson(_data('site_stock_staff'));
+    expect(staffSite.value, isNull, reason: 'staff never see money');
+    expect(_rows('stock_entries').map(StockEntry.fromJson), isNotEmpty);
+    expect(StockEntry.fromJson(_data('stock_entry_detail')).lines, isNotEmpty);
+    expect(MaterialDetail.fromJson(_data('material_detail')).material.name, isNotEmpty);
+    expect(_rows('report_stock').map(StockReportRow.fromJson), isNotEmpty);
+    expect(_rows('report_stock_engineer').map(StockReportRow.fromJson).every((r) => r.usedValue == null), isTrue);
+  });
+
+  test('material requests, godown managers and sign-up', () {
+    final requests = _rows('material_requests').map(MaterialRequest.fromJson).toList();
+    expect(requests, isNotEmpty);
+    expect(requests.map((r) => r.status).toSet(), contains(MaterialRequestStatus.pending));
+    final detail = MaterialRequest.fromJson(_data('material_request_detail'));
+    expect(detail.godown, isNotNull);
+    expect(detail.entries, isNotEmpty);
+    expect(detail.entries.first.request?.code, detail.code);
+    expect(
+      _rows('material_requests_godown')
+          .map(MaterialRequest.fromJson)
+          .every((r) => r.status != MaterialRequestStatus.pending),
+      isTrue,
+      reason: 'godowns see requests once approved',
+    );
+    final godown = GodownDashboard.fromJson(_data('dashboard_godown'));
+    expect(godown.godowns, isNotEmpty);
+    expect(StockOverview.fromJson(_data('stock_overview_godown')).sites, isEmpty);
+    expect(GodownStock.fromJson(_data('godown_stock')).managers, isNotEmpty);
+    final managers = _rows('godown_managers').map(PersonSummary.fromJson).toList();
+    expect(managers.first.godowns, isNotEmpty);
+    expect(PersonDetail.fromJson(_data('godown_manager_detail')).godowns, isNotEmpty);
+    expect(_rows('admins').map(PersonSummary.fromJson), isNotEmpty);
+    expect(_data('signup_status'), {'open': false});
+    expect(AdminDashboard.fromJson(_data('dashboard_admin')).stock.requestsToApprove, greaterThan(0));
+    expect(EngineerDashboard.fromJson(_data('dashboard_engineer')).stock.openRequests, greaterThan(0));
   });
 
   test('reports: sites, staff, engineers and payments', () {

@@ -24,6 +24,9 @@ _PersonSummary _$PersonSummaryFromJson(Map<String, dynamic> json) => _PersonSumm
   assignment: json['assignment'] == null
       ? null
       : StaffAssignmentInfo.fromJson(json['assignment'] as Map<String, dynamic>),
+  godowns:
+      (json['godowns'] as List<dynamic>?)?.map((e) => IdName.fromJson(e as Map<String, dynamic>)).toList() ??
+      const <IdName>[],
 );
 
 Map<String, dynamic> _$PersonSummaryToJson(_PersonSummary instance) => <String, dynamic>{
@@ -40,9 +43,15 @@ Map<String, dynamic> _$PersonSummaryToJson(_PersonSummary instance) => <String, 
   'sites': instance.sites,
   'staffCount': instance.staffCount,
   'assignment': instance.assignment,
+  'godowns': instance.godowns,
 };
 
-const _$UserRoleEnumMap = {UserRole.admin: 'ADMIN', UserRole.engineer: 'ENGINEER', UserRole.staff: 'STAFF'};
+const _$UserRoleEnumMap = {
+  UserRole.admin: 'ADMIN',
+  UserRole.engineer: 'ENGINEER',
+  UserRole.staff: 'STAFF',
+  UserRole.godownManager: 'GODOWN_MANAGER',
+};
 
 const _$DesignationEnumMap = {
   Designation.mason: 'MASON',
@@ -93,6 +102,9 @@ _PersonDetail _$PersonDetailFromJson(Map<String, dynamic> json) => _PersonDetail
           ?.map((e) => SupervisedStaff.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const <SupervisedStaff>[],
+  godowns:
+      (json['godowns'] as List<dynamic>?)?.map((e) => IdName.fromJson(e as Map<String, dynamic>)).toList() ??
+      const <IdName>[],
 );
 
 Map<String, dynamic> _$PersonDetailToJson(_PersonDetail instance) => <String, dynamic>{
@@ -111,6 +123,7 @@ Map<String, dynamic> _$PersonDetailToJson(_PersonDetail instance) => <String, dy
   'assignment': instance.assignment,
   'mustChangePassword': instance.mustChangePassword,
   'supervisedStaff': instance.supervisedStaff,
+  'godowns': instance.godowns,
 };
 
 _CreatedPerson _$CreatedPersonFromJson(Map<String, dynamic> json) => _CreatedPerson(

@@ -98,6 +98,7 @@
   "commonCopy": "Copy",
   "commonCopied": "Copied",
   "commonAll": "All",
+  "commonMore": "More",
   "commonNone": "None",
   "commonActive": "Active",
   "commonInactive": "Inactive",
@@ -105,6 +106,7 @@
   "commonOpenMap": "Open in Maps",
   "commonOpenSettings": "Open settings",
   "validationRequired": "Required",
+  "validationQuantity": "Enter a quantity like 60 or 12.5.",
   "validationAmount": "Enter an amount like 1500000",
   "validationPhone": "Enter a valid mobile number",
   "validationEmail": "Enter a valid e-mail address",
@@ -191,6 +193,7 @@
   "siteTabPayments": "Payments",
   "siteTabUpdates": "Updates",
   "siteTabIssues": "Issues",
+  "siteTabStock": "Stock",
   "siteProgress": "Progress {percent}%",
   "siteClient": "Client",
   "siteContact": "Site contact",
@@ -1020,6 +1023,7 @@
   "reportKindStaff": "Staff",
   "reportKindEngineers": "Engineers",
   "reportKindPayments": "Payments",
+  "reportKindStock": "Stock",
   "reportPeriodThisWeek": "This week",
   "reportPeriodThisMonth": "This month",
   "reportPeriodLastMonth": "Last month",
@@ -1067,5 +1071,698 @@
   "locationApproximate": "Only approximate location is allowed, so this may be marked away from the site. Turn on \"Use precise location\" for this app.",
   "notFoundTitle": "This page isn't available",
   "notFoundMessage": "The link may be old or mistyped.",
-  "notFoundGoHome": "Go to home"
+  "notFoundGoHome": "Go to home",
+  "fieldDate": "Date",
+  "fieldNoteOptional": "Note (optional)",
+  "stockTitle": "Stock",
+  "stockEntrySubtitle": "Godowns, materials and deliveries",
+  "stockEngineerSubtitle": "What the godowns hold",
+  "stockDeliveriesToConfirm": "Deliveries to confirm",
+  "stockLowCount": "{count, plural, =1{1 low on stock} other{{count} low on stock}}",
+  "@stockLowCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "stockToConfirmCount": "{count, plural, =1{1 to confirm} other{{count} to confirm}}",
+  "@stockToConfirmCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "stockGodowns": "Godowns",
+  "stockGodownLabel": "Godown",
+  "stockSiteLabel": "Site",
+  "stockNoGodowns": "No godowns yet.",
+  "stockNoGodownsAdmin": "No godowns yet. Add one from the menu above.",
+  "stockArrivingCount": "{count} on the way",
+  "@stockArrivingCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "stockPlaceSupplier": "Supplier",
+  "stockPlaceUsed": "Used",
+  "stockPlaceWaste": "Written off",
+  "stockPlaceCount": "Count correction",
+  "stockKindPurchase": "Bought",
+  "stockKindTransfer": "Sent",
+  "stockKindUsage": "Used",
+  "stockKindWriteOff": "Written off",
+  "stockKindAdjustment": "Count correction",
+  "stockStatusOnTheWay": "On the way",
+  "stockStatusCancelled": "Cancelled",
+  "stockStatusShort": "Short",
+  "stockShortChip": "{quantity} short",
+  "@stockShortChip": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stockLow": "Low",
+  "stockAndMore": "{first} and {count} more",
+  "@stockAndMore": {
+    "placeholders": {
+      "first": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "stockCountNoDifference": "Counted: no difference",
+  "stockEntryTitle": "Stock entry",
+  "stockConfirm": "Confirm",
+  "stockConfirmReceived": "Confirm received",
+  "stockReceiveIntro": "Sent from {from} on {date}. Enter what actually arrived.",
+  "@stockReceiveIntro": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "stockWhatArrived": "What arrived",
+  "stockSentQuantity": "Sent: {quantity}",
+  "@stockSentQuantity": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stockReceiveTooMuch": "Only {quantity} was sent.",
+  "@stockReceiveTooMuch": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stockShortNote": "What happened to the rest?",
+  "stockReceivePhotos": "Photos of what arrived",
+  "stockPhotoRequired": "Add at least one photo of what arrived.",
+  "stockReceived": "Stock received.",
+  "stockReceivedTitle": "Received",
+  "stockReceivedOf": "{received} of {sent} arrived",
+  "@stockReceivedOf": {
+    "placeholders": {
+      "received": {
+        "type": "String"
+      },
+      "sent": {
+        "type": "String"
+      }
+    }
+  },
+  "stockReceivedBy": "Confirmed by {name}",
+  "@stockReceivedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stockRecordedBy": "Recorded by {name}",
+  "@stockRecordedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stockDcNumberIs": "DC {number}",
+  "@stockDcNumberIs": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "stockBillNoIs": "Bill {number}",
+  "@stockBillNoIs": {
+    "placeholders": {
+      "number": {
+        "type": "String"
+      }
+    }
+  },
+  "stockAtRate": "{price} per {unit}",
+  "@stockAtRate": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "stockTotalAmount": "Total",
+  "stockDcPhotos": "Delivery challan photo",
+  "stockBillPhotos": "Bill photos",
+  "stockBillPhotosOptional": "Bill photos (optional)",
+  "stockPhotosOptional": "Photos (optional)",
+  "stockDcPhotoRequired": "Add a photo of the delivery challan.",
+  "stockCancel": "Cancel entry",
+  "stockCancelTitle": "Cancel this entry?",
+  "stockCancelBody": "The stock goes back to where it came from. The entry stays in the history, marked cancelled.",
+  "stockCancelReason": "Why?",
+  "stockCancelled": "Entry cancelled.",
+  "stockCancelledBy": "Cancelled by {name}: {reason}",
+  "@stockCancelledBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "stockActionPurchase": "Stock in",
+  "stockActionSend": "Send stock",
+  "stockActionSendOn": "Return to godown",
+  "stockActionUse": "Record usage",
+  "stockActionWriteOff": "Write off",
+  "stockActionCount": "Stock count",
+  "stockIntoGodown": "Into godown",
+  "stockSendFrom": "Send from",
+  "stockSendTo": "Send to",
+  "stockAt": "At",
+  "stockChooseSource": "Choose where the stock comes from first.",
+  "stockCountedOn": "Counted on",
+  "stockSupplier": "Supplier (optional)",
+  "stockBillNo": "Bill or invoice number (optional)",
+  "stockDcNumber": "DC number",
+  "stockMaterials": "Materials",
+  "stockMaterial": "Material",
+  "stockQuantity": "Quantity",
+  "stockCountedQuantity": "Counted quantity",
+  "stockRate": "Price per unit (₹)",
+  "stockRatePer": "Price per {unit} (₹)",
+  "@stockRatePer": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "stockAvailable": "Available: {quantity}",
+  "@stockAvailable": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stockOnBooks": "On the books: {quantity}",
+  "@stockOnBooks": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stockOnlyAvailable": "Only {quantity} available.",
+  "@stockOnlyAvailable": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stockAddMaterial": "Add material",
+  "stockRemoveLine": "Remove",
+  "stockNothingToChoose": "There is no stock here to choose from.",
+  "stockUsedFor": "Used for, e.g. first floor slab (optional)",
+  "stockWhatHappened": "What happened to it",
+  "stockCountNote": "Why the count differs",
+  "stockSaved": "Stock saved.",
+  "stockCountMatched": "The count matches the books. Nothing to correct.",
+  "stockSendHere": "Send stock here",
+  "stockSendEverything": "Return everything to a godown",
+  "stockArrivingHere": "On the way here",
+  "stockLeavingHere": "Sent, not yet confirmed",
+  "stockOnSite": "On site",
+  "stockInGodown": "In this godown",
+  "stockUsedUp": "Used up or sent on",
+  "stockNothingHere": "Nothing here now.",
+  "stockSiteEmpty": "No stock at this site yet",
+  "stockSiteEmptyBody": "Stock sent from a godown shows here once the site confirms it.",
+  "godownEmpty": "Nothing in this godown yet",
+  "stockReceivedTotal": "Received {quantity}",
+  "@stockReceivedTotal": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stockUsedTotal": "used {quantity}",
+  "@stockUsedTotal": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stockSentOutTotal": "sent on {quantity}",
+  "@stockSentOutTotal": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stockWastedTotal": "wasted {quantity}",
+  "@stockWastedTotal": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stockWorth": "worth {amount}",
+  "@stockWorth": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "stockValueUsed": "Material used",
+  "stockValueOnSite": "On site now",
+  "stockValueOnHand": "Stock value",
+  "stockHistory": "History",
+  "stockToConfirm": "To confirm",
+  "stockNothingToConfirm": "Nothing waiting for you to confirm.",
+  "stockNoEntries": "No stock entries yet.",
+  "stockSearch": "Search materials",
+  "stockNoMaterials": "No materials yet",
+  "stockNoMaterialsBody": "Add the materials you keep in stock. You can add more at any time.",
+  "stockNoMatch": "No materials match.",
+  "stockOnSitesTotal": "{quantity} at sites",
+  "@stockOnSitesTotal": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stockInGodowns": "In the godowns",
+  "stockMinimum": "Minimum {quantity}",
+  "@stockMinimum": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stockInTransitTotal": "{quantity} on the way",
+  "@stockInTransitTotal": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "stockAveragePrice": "Average {price} per {unit}",
+  "@stockAveragePrice": {
+    "placeholders": {
+      "price": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "stockNoneInGodowns": "None in the godowns now.",
+  "stockAtSites": "At sites",
+  "stockNotAtSites": "None at sites now.",
+  "stockLatest": "Latest",
+  "stockStaffUsageTitle": "Today's material use",
+  "stockUsageRecorded": "Recorded",
+  "stockUsageNotRecorded": "Not recorded yet",
+  "stockRecord": "Record",
+  "stockLeftTitle": "Stock is still at this site",
+  "stockLeftMore": "and {count} more",
+  "@stockLeftMore": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "stockLeftOnTheWay": "Some stock is also on the way to or from this site.",
+  "stockLeftBody": "Send it back to a godown from the site's Stock tab first, or complete the site now and deal with it later.",
+  "stockLeftComplete": "Complete anyway",
+  "godownNew": "New godown",
+  "godownEdit": "Edit godown",
+  "godownSaved": "Godown saved.",
+  "godownName": "Name",
+  "godownNameHint": "e.g. Main godown",
+  "godownAddress": "Address (optional)",
+  "godownActive": "Open",
+  "godownActiveHelper": "A closed godown takes no new stock. Its history stays. Move its stock out before closing it.",
+  "godownClosed": "Closed",
+  "materialNew": "New material",
+  "materialEdit": "Edit material",
+  "materialSaved": "Material saved.",
+  "materialName": "Name",
+  "materialNameHint": "e.g. Cement OPC 53",
+  "materialUnit": "Unit",
+  "materialUnitHelper": "How it is counted. It can't change once stock is recorded.",
+  "materialCategory": "Category (optional)",
+  "materialCategoryHint": "e.g. Cement, Steel",
+  "materialMinimum": "Minimum in godowns (optional)",
+  "materialMinimumHelper": "Admins are alerted when all godowns together drop below this.",
+  "materialActive": "In use",
+  "materialActiveHelper": "Switched off, it can't be bought or sent from godowns. Its history stays.",
+  "materialInactive": "Not in use",
+  "reportsStockOpening": "Opening",
+  "reportsStockReceived": "Received",
+  "reportsStockUsed": "Used",
+  "reportsStockClosing": "Closing",
+  "reportsStockSentOut": "Sent out",
+  "reportsStockWasted": "Wasted",
+  "reportsStockAdjusted": "Count corrections",
+  "reportsStockUsedValue": "Used value",
+  "roleGodownManager": "Godown manager",
+  "navRequests": "Requests",
+  "navStock": "Stock",
+  "signUpLink": "Set up SiteWork (first admin)",
+  "signUpTitle": "Set up SiteWork",
+  "signUpIntro": "Create the first admin account. After this, admins add everyone else (engineers, staff, godown managers and other admins) from People.",
+  "signUpSubmit": "Create admin account",
+  "godownManagersTitle": "Godown managers",
+  "godownManagersEmpty": "No godown managers yet.",
+  "godownManagerNew": "New godown manager",
+  "godownManagerEdit": "Edit godown manager",
+  "adminsTitle": "Admins",
+  "adminsEmpty": "No admins found.",
+  "adminNew": "New admin",
+  "adminEdit": "Edit admin",
+  "personGodowns": "Godowns",
+  "personGodownsHelper": "They buy stock in, send it to sites against approved requests, and confirm returns at these godowns.",
+  "personNoGodowns": "No godown yet",
+  "godownManagedBy": "Managed by {names}",
+  "@godownManagedBy": {
+    "placeholders": {
+      "names": {
+        "type": "String"
+      }
+    }
+  },
+  "godownNoManager": "No manager yet: admins confirm what arrives here.",
+  "godownsYours": "Your godowns",
+  "stockReturnTo": "Return to",
+  "stockSendSitesHint": "Sites get stock only against an approved material request: open the request to send it.",
+  "stockNoGodownsManager": "No godown is assigned to you yet. Ask your admin.",
+  "stockReturnsToConfirm": "Returns to confirm",
+  "stockLowTitle": "Low stock",
+  "stockLowSubtitle": "All godowns together, below the minimum",
+  "stockForRequest": "For {code}",
+  "@stockForRequest": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "requestsTitle": "Material requests",
+  "requestTitle": "Material request",
+  "requestsAdminSubtitle": "Approve what sites ask for",
+  "requestsEngineerSubtitle": "Ask for material for your sites",
+  "requestsToApproveCount": "{count, plural, =1{1 waiting for approval} other{{count} waiting for approval}}",
+  "@requestsToApproveCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "requestsToSend": "Requests to send",
+  "requestsEmpty": "No material requests here.",
+  "requestsEmptyManager": "Nothing to send. Approved requests for your godowns show up here.",
+  "requestsOpenTitle": "Material requests",
+  "requestsAll": "All requests",
+  "requestsNoneOpen": "No open requests.",
+  "requestFilterOpen": "Open",
+  "requestFilterApproved": "Approved",
+  "requestStagePending": "Waiting for approval",
+  "requestStageToSend": "Approved · to send",
+  "requestStagePartSent": "Part sent",
+  "requestStageOnTheWay": "On the way",
+  "requestStageAtSite": "At site",
+  "requestStageRejected": "Rejected",
+  "requestStageWithdrawn": "Withdrawn",
+  "requestStageClosed": "Closed",
+  "requestAskedBy": "Asked by {name} · {date}",
+  "@requestAskedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "requestFromGodown": "From {godown}",
+  "@requestFromGodown": {
+    "placeholders": {
+      "godown": {
+        "type": "String"
+      }
+    }
+  },
+  "requestNeededBy": "Needed by {date}",
+  "@requestNeededBy": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "requestSiteStock": "Site's stock",
+  "requestMaterial": "Request material",
+  "requestNew": "New request",
+  "requestNeededByOptional": "Needed by (optional)",
+  "requestQuantityNeeded": "Quantity needed",
+  "requestWhatFor": "What is it for? (optional)",
+  "requestSubmit": "Send request",
+  "requestSent": "{code} sent for approval.",
+  "@requestSent": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "requestApprove": "Approve",
+  "requestApproveTitle": "Approve {code}",
+  "@requestApproveTitle": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "requestApproveIntro": "{site} asked for this ({name}). Choose the godown that sends it and how much of each material.",
+  "@requestApproveIntro": {
+    "placeholders": {
+      "site": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "requestSupplyFrom": "Send from godown",
+  "requestApprovedQuantities": "Approved quantities",
+  "requestApproveZeroHint": "Enter 0 for a material that won't be sent.",
+  "requestApprovedQuantity": "Approved quantity",
+  "requestInGodown": "In godown: {quantity}",
+  "@requestInGodown": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "requestNoteForSite": "Note for the site (optional)",
+  "requestApproveSomething": "Approve at least one material, or reject the request.",
+  "requestApproved": "{code} approved. The godown will send it.",
+  "@requestApproved": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "requestReject": "Reject",
+  "requestRejectTitle": "Reject this request?",
+  "requestRejectReason": "Why? The site will see this.",
+  "requestRejected": "{code} rejected.",
+  "@requestRejected": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "requestRejectedBecause": "Rejected by {name}: {reason}",
+  "@requestRejectedBecause": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "requestApprovedFrom": "Approved by {name} · sent from {godown}",
+  "@requestApprovedFrom": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "godown": {
+        "type": "String"
+      }
+    }
+  },
+  "requestWithdraw": "Withdraw request",
+  "requestWithdrawTitle": "Withdraw {code}?",
+  "@requestWithdrawTitle": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "requestWithdrawBody": "It has not been approved yet. Withdrawing it means nothing will be sent.",
+  "requestWithdrawn": "{code} withdrawn.",
+  "@requestWithdrawn": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "requestSendNow": "Send material",
+  "requestSendTitle": "Send {code}",
+  "@requestSendTitle": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "requestDeliveries": "Deliveries and returns",
+  "requestAsked": "Asked {quantity}",
+  "@requestAsked": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "requestNotSupplied": "Not supplied",
+  "requestSentAmount": "Sent {quantity}",
+  "@requestSentAmount": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "requestOnTheWayAmount": "{quantity} on the way",
+  "@requestOnTheWayAmount": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "requestArrivedAmount": "Arrived {quantity}",
+  "@requestArrivedAmount": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "requestLeftAmount": "{quantity} left to send",
+  "@requestLeftAmount": {
+    "placeholders": {
+      "quantity": {
+        "type": "String"
+      }
+    }
+  },
+  "requestConfirmFirst": "Confirm the delivery on its way before closing this request.",
+  "requestClose": "Close request",
+  "requestCloseTitle": "Close {code}",
+  "@requestCloseTitle": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "requestCloseIntro": "Is the work done? Say whether everything was used, or send what is left back to the godown.",
+  "requestOutcomeAllUsed": "All used",
+  "requestOutcomeReturn": "Return the leftover to {godown}",
+  "@requestOutcomeReturn": {
+    "placeholders": {
+      "godown": {
+        "type": "String"
+      }
+    }
+  },
+  "requestGoingBack": "Going back",
+  "requestNothingToReturn": "Nothing from this request is left at the site.",
+  "requestReturnZeroHint": "Enter 0 for anything staying at the site.",
+  "requestReturnSomething": "Enter what is going back, or choose \"All used\".",
+  "requestClosed": "{code} closed.",
+  "@requestClosed": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "requestClosedAllUsed": "Closed by {name}: all used.",
+  "@requestClosedAllUsed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "requestClosedLeftover": "Closed by {name}: leftover sent back to the godown.",
+  "@requestClosedLeftover": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
 }

@@ -5,6 +5,7 @@ import type {
   Priority,
   TimeSlot,
 } from '../generated/prisma/enums.js';
+import { summarizeLines } from '../stock/stock-ledger.js';
 
 /** Notification wording in one place, shared by the API and the seed data. */
 
@@ -124,5 +125,121 @@ export function slotSummary(input: {
   return {
     title: `${SLOT_LABEL[input.slot]} Updates: ${input.submitted} of ${input.expected} submitted`,
     message: input.siteName,
+  };
+}
+
+/**
+ * Stock sent between godowns and sites, for whoever confirms it at the other
+ * end (and admins, when an engineer sent it).
+ */
+export function stockSent(input: {
+  toName: string;
+  fromName: string;
+  items: readonly string[];
+  byName: string;
+}): NotificationText {
+  return {
+    title: `Stock on the way to ${input.toName}`,
+    message: `${summarizeLines(input.items)} · from ${input.fromName} by ${input.byName}`,
+  };
+}
+
+/** One line per material that came up short, e.g. "Cement: 58 of 60 bag". */
+export function stockShort(input: {
+  placeName: string;
+  items: readonly string[];
+}): NotificationText {
+  return {
+    title: `Short delivery at ${input.placeName}`,
+    message: `${summarizeLines(input.items)} arrived`,
+  };
+}
+
+export function stockWrittenOff(input: {
+  placeName: string;
+  items: readonly string[];
+  note: string;
+  byName: string;
+}): NotificationText {
+  return {
+    title: `Stock written off at ${input.placeName}`,
+    message: `${summarizeLines(input.items)} · ${input.note} · by ${input.byName}`,
+  };
+}
+
+export function stockLow(input: {
+  material: string;
+  left: string;
+  minimum: string;
+}): NotificationText {
+  return {
+    title: `Low stock: ${input.material}`,
+    message: `${input.left} left in the godowns (minimum ${input.minimum})`,
+  };
+}
+
+/** Evening nudge to a site's engineers when no usage was recorded that day. */
+export function stockUsageReminder(input: {
+  siteName: string;
+}): NotificationText {
+  return {
+    title: `Record today's material use at ${input.siteName}`,
+    message: 'No usage has been entered for today yet.',
+  };
+}
+
+/** A new material request, for admins to approve. */
+export function requestCreated(input: {
+  code: string;
+  siteName: string;
+  byName: string;
+  items: readonly string[];
+}): NotificationText {
+  return {
+    title: `${input.code}: material request from ${input.siteName}`,
+    message: `${summarizeLines(input.items)} · by ${input.byName}`,
+  };
+}
+
+/** For the site: approved, and who sends it. */
+export function requestApproved(input: {
+  code: string;
+  godownName: string;
+}): NotificationText {
+  return {
+    title: `${input.code} approved`,
+    message: `${input.godownName} will send it.`,
+  };
+}
+
+/** For the godown's managers: an approved request to send. */
+export function requestToSend(input: {
+  code: string;
+  siteName: string;
+  items: readonly string[];
+}): NotificationText {
+  return {
+    title: `Send ${input.code} to ${input.siteName}`,
+    message: summarizeLines(input.items),
+  };
+}
+
+export function requestRejected(input: {
+  code: string;
+  reason: string;
+}): NotificationText {
+  return { title: `${input.code} rejected`, message: input.reason };
+}
+
+export function requestClosed(input: {
+  code: string;
+  siteName: string;
+  leftover: boolean;
+}): NotificationText {
+  return {
+    title: `${input.code} closed at ${input.siteName}`,
+    message: input.leftover
+      ? 'Leftover sent back to the godown.'
+      : 'All of it was used.',
   };
 }

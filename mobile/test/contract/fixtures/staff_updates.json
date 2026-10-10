@@ -2,185 +2,185 @@
   "success": true,
   "data": [
     {
-      "id": "01a10683-a923-7517-86c5-21502811c375",
-      "workDate": "2026-10-04",
+      "id": "9196482a-105c-4944-8186-7925cf8a2a7b",
+      "workDate": "2026-10-08",
       "slot": "EVENING",
-      "description": "Plastering the first floor east wall",
+      "description": "Plastering of the ground floor ceiling in progress.",
       "staff": {
-        "id": "01a10655-4e48-71da-850f-01840d2004af",
+        "id": "01a11c52-51b2-7218-a487-03eb31ca94b7",
         "name": "Ravi",
         "designation": "MASON"
       },
       "site": {
-        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
         "name": "ABC Apartment Project"
       },
       "engineer": {
-        "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+        "id": "01a11c52-51a9-726e-813a-f1fa901ee64b",
         "name": "Arun Kumar"
       },
-      "submittedAt": "2026-10-04T10:44:13.796Z",
-      "capturedAt": "2026-10-04T10:43:28.811Z",
+      "submittedAt": "2026-10-08T12:50:00.000Z",
+      "capturedAt": "2026-10-08T12:49:00.000Z",
       "submittedOffline": false,
       "location": {
         "flag": "OK",
-        "distanceFromSiteM": 0
+        "distanceFromSiteM": 44
       },
       "photoSource": "CAMERA",
       "image": {
         "status": "AVAILABLE",
-        "expiresAt": "2026-10-05T10:44:13.796Z",
+        "expiresAt": "2026-10-09T12:50:00.000Z",
         "deletedAt": null,
         "deleteReason": null
       },
-      "engineerViewedAt": "2026-10-04T14:57:58.105Z",
+      "engineerViewedAt": "2026-10-08T13:28:00.000Z",
       "adminViewedAt": null
     },
     {
-      "id": "c18d3f20-a065-4f1f-8b30-6257b91ab4bb",
-      "workDate": "2026-10-03",
+      "id": "dbef3786-8941-43a8-bd70-e3b858264959",
+      "workDate": "2026-10-08",
       "slot": "EVENING",
-      "description": "Shuttering for the staircase waist slab.",
+      "description": "Pressure testing of water supply lines.",
       "staff": {
-        "id": "01a10655-4e56-76ac-8329-a55c519a0462",
-        "name": "Sathish",
-        "designation": "CARPENTER"
-      },
-      "site": {
-        "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
-        "name": "Green Valley Villa"
-      },
-      "engineer": {
-        "id": "01a10655-4e3e-757e-9b02-2b6ac64a90fd",
-        "name": "Prakash"
-      },
-      "submittedAt": "2026-10-03T13:17:00.000Z",
-      "capturedAt": "2026-10-03T13:15:00.000Z",
-      "submittedOffline": false,
-      "location": {
-        "flag": "OK",
-        "distanceFromSiteM": 52
-      },
-      "photoSource": "CAMERA",
-      "image": {
-        "status": "DELETED",
-        "expiresAt": "2026-10-04T13:17:00.000Z",
-        "deletedAt": "2026-10-03T15:25:00.000Z",
-        "deleteReason": "ALL_VIEWED"
-      },
-      "engineerViewedAt": "2026-10-03T14:52:00.000Z",
-      "adminViewedAt": "2026-10-03T14:45:00.000Z"
-    },
-    {
-      "id": "93111a9a-f757-4d3d-880e-860a718d8734",
-      "workDate": "2026-10-03",
-      "slot": "EVENING",
-      "description": "Fixing CPVC lines for the kitchen.",
-      "staff": {
-        "id": "01a10655-4e5a-722f-818b-3e321470638d",
+        "id": "01a11c52-51c0-70aa-89cf-2278339927e6",
         "name": "Vijay",
         "designation": "PLUMBER"
       },
       "site": {
-        "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+        "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
         "name": "Sri Lakshmi Commercial Building"
       },
       "engineer": {
-        "id": "01a10655-4e43-731f-a39b-d185eaf3306d",
+        "id": "01a11c52-51af-712c-a92c-b631a875841d",
         "name": "Suresh"
       },
-      "submittedAt": "2026-10-03T13:08:00.000Z",
-      "capturedAt": "2026-10-03T13:07:00.000Z",
+      "submittedAt": "2026-10-08T12:27:00.000Z",
+      "capturedAt": "2026-10-08T12:23:00.000Z",
       "submittedOffline": false,
       "location": {
         "flag": "OK",
-        "distanceFromSiteM": 37
+        "distanceFromSiteM": 42
       },
       "photoSource": "CAMERA",
       "image": {
-        "status": "DELETED",
-        "expiresAt": "2026-10-04T13:08:00.000Z",
-        "deletedAt": "2026-10-03T15:06:00.000Z",
-        "deleteReason": "ALL_VIEWED"
+        "status": "READY_FOR_DELETION",
+        "expiresAt": "2026-10-08T16:32:00.000Z",
+        "deletedAt": null,
+        "deleteReason": null
       },
-      "engineerViewedAt": "2026-10-03T13:42:00.000Z",
-      "adminViewedAt": "2026-10-03T14:32:00.000Z"
+      "engineerViewedAt": "2026-10-08T14:15:00.000Z",
+      "adminViewedAt": "2026-10-08T16:02:00.000Z"
     },
     {
-      "id": "0a4ee25d-2d34-437f-b303-219f31d918b7",
-      "workDate": "2026-10-03",
-      "slot": "EVENING",
-      "description": "Curing of yesterday's plaster work and minor touch-ups.",
+      "id": "f0fbc3f6-259d-493d-888f-5506964c7792",
+      "workDate": "2026-10-08",
+      "slot": "AFTERNOON",
+      "description": "Fixing floor traps in the bathrooms.",
       "staff": {
-        "id": "01a10655-4e48-71da-850f-01840d2004af",
-        "name": "Ravi",
-        "designation": "MASON"
+        "id": "01a11c52-51c0-70aa-89cf-2278339927e6",
+        "name": "Vijay",
+        "designation": "PLUMBER"
       },
       "site": {
-        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
-        "name": "ABC Apartment Project"
+        "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
+        "name": "Sri Lakshmi Commercial Building"
       },
       "engineer": {
-        "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
-        "name": "Arun Kumar"
+        "id": "01a11c52-51af-712c-a92c-b631a875841d",
+        "name": "Suresh"
       },
-      "submittedAt": "2026-10-03T12:06:00.000Z",
-      "capturedAt": "2026-10-03T12:02:00.000Z",
+      "submittedAt": "2026-10-08T08:07:00.000Z",
+      "capturedAt": "2026-10-08T08:05:00.000Z",
       "submittedOffline": false,
       "location": {
         "flag": "OK",
-        "distanceFromSiteM": 6
+        "distanceFromSiteM": 12
       },
       "photoSource": "CAMERA",
       "image": {
         "status": "DELETED",
-        "expiresAt": "2026-10-04T12:06:00.000Z",
-        "deletedAt": "2026-10-03T17:35:00.000Z",
+        "expiresAt": "2026-10-09T08:07:00.000Z",
+        "deletedAt": "2026-10-08T13:12:00.000Z",
         "deleteReason": "ALL_VIEWED"
       },
-      "engineerViewedAt": "2026-10-03T13:11:00.000Z",
-      "adminViewedAt": "2026-10-03T17:04:00.000Z"
+      "engineerViewedAt": "2026-10-08T09:58:00.000Z",
+      "adminViewedAt": "2026-10-08T12:39:00.000Z"
     },
     {
-      "id": "18ebba29-0ada-4df0-a05b-a9b04d900899",
-      "workDate": "2026-10-03",
-      "slot": "EVENING",
-      "description": "Watering the slab for curing.",
+      "id": "2213648e-e0be-41a3-938b-de6e3612f0e5",
+      "workDate": "2026-10-08",
+      "slot": "AFTERNOON",
+      "description": "Fixing switch boxes in the kitchen.",
       "staff": {
-        "id": "01a10655-4e4d-746b-a6f9-6d46d2337692",
-        "name": "Kumar",
-        "designation": "HELPER"
+        "id": "01a11c52-51b9-74fb-855b-55f622049ce0",
+        "name": "Manoj",
+        "designation": "ELECTRICIAN"
       },
       "site": {
-        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
-        "name": "ABC Apartment Project"
+        "id": "01a11c52-51ec-772b-ac1a-96a6a41f6962",
+        "name": "Green Valley Villa"
       },
       "engineer": {
-        "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
-        "name": "Arun Kumar"
+        "id": "01a11c52-51ac-70e4-bf87-b4e50f2569e0",
+        "name": "Prakash"
       },
-      "submittedAt": "2026-10-03T11:46:00.000Z",
-      "capturedAt": "2026-10-03T11:42:00.000Z",
+      "submittedAt": "2026-10-08T08:04:00.000Z",
+      "capturedAt": "2026-10-08T08:01:00.000Z",
       "submittedOffline": false,
       "location": {
         "flag": "OK",
-        "distanceFromSiteM": 59
+        "distanceFromSiteM": 12
       },
-      "photoSource": "CAMERA",
+      "photoSource": "GALLERY",
       "image": {
         "status": "DELETED",
-        "expiresAt": "2026-10-04T11:46:00.000Z",
-        "deletedAt": "2026-10-03T14:01:00.000Z",
+        "expiresAt": "2026-10-09T08:04:00.000Z",
+        "deletedAt": "2026-10-08T12:59:00.000Z",
         "deleteReason": "ALL_VIEWED"
       },
-      "engineerViewedAt": "2026-10-03T13:30:00.000Z",
-      "adminViewedAt": "2026-10-03T12:13:00.000Z"
+      "engineerViewedAt": "2026-10-08T09:04:00.000Z",
+      "adminViewedAt": "2026-10-08T12:28:00.000Z"
+    },
+    {
+      "id": "7f1b549b-4ea0-4b89-b349-3b7ead7df7a4",
+      "workDate": "2026-10-08",
+      "slot": "MORNING",
+      "description": "Sump to overhead tank connection.",
+      "staff": {
+        "id": "01a11c52-51c0-70aa-89cf-2278339927e6",
+        "name": "Vijay",
+        "designation": "PLUMBER"
+      },
+      "site": {
+        "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
+        "name": "Sri Lakshmi Commercial Building"
+      },
+      "engineer": {
+        "id": "01a11c52-51af-712c-a92c-b631a875841d",
+        "name": "Suresh"
+      },
+      "submittedAt": "2026-10-08T07:22:00.000Z",
+      "capturedAt": "2026-10-08T06:00:00.000Z",
+      "submittedOffline": true,
+      "location": {
+        "flag": "OK",
+        "distanceFromSiteM": 12
+      },
+      "photoSource": "GALLERY",
+      "image": {
+        "status": "DELETED",
+        "expiresAt": "2026-10-09T07:22:00.000Z",
+        "deletedAt": "2026-10-08T09:51:00.000Z",
+        "deleteReason": "ALL_VIEWED"
+      },
+      "engineerViewedAt": "2026-10-08T09:18:00.000Z",
+      "adminViewedAt": "2026-10-08T08:53:00.000Z"
     }
   ],
   "meta": {
     "page": 1,
     "limit": 5,
-    "total": 173,
-    "totalPages": 35
+    "total": 180,
+    "totalPages": 36
   }
 }

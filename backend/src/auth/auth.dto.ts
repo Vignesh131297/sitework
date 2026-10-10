@@ -56,3 +56,28 @@ export class ResetPasswordDto {
   @Length(1, 128)
   newPassword: string;
 }
+
+/** The first admin's own account (only while no admin exists). */
+export class SignUpDto {
+  @IsString()
+  @Length(2, 120)
+  name: string;
+
+  @IsString()
+  @Length(6, 20)
+  phone: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(254)
+  email?: string | null;
+
+  @IsString()
+  @Length(1, 128)
+  password: string;
+
+  @IsOptional()
+  @IsString()
+  @MaxLength(100)
+  deviceName?: string;
+}

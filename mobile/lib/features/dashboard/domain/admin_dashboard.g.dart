@@ -62,6 +62,20 @@ Map<String, dynamic> _$IssueCountsToJson(_IssueCounts instance) => <String, dyna
   'critical': instance.critical,
 };
 
+_StockCounts _$StockCountsFromJson(Map<String, dynamic> json) => _StockCounts(
+  lowStock: (json['lowStock'] as num?)?.toInt() ?? 0,
+  toReceive: (json['toReceive'] as num?)?.toInt() ?? 0,
+  requestsToApprove: (json['requestsToApprove'] as num?)?.toInt() ?? 0,
+  openRequests: (json['openRequests'] as num?)?.toInt() ?? 0,
+);
+
+Map<String, dynamic> _$StockCountsToJson(_StockCounts instance) => <String, dynamic>{
+  'lowStock': instance.lowStock,
+  'toReceive': instance.toReceive,
+  'requestsToApprove': instance.requestsToApprove,
+  'openRequests': instance.openRequests,
+};
+
 MissingUpdatesItem _$MissingUpdatesItemFromJson(Map<String, dynamic> json) => MissingUpdatesItem(
   site: IdName.fromJson(json['site'] as Map<String, dynamic>),
   count: (json['count'] as num).toInt(),
@@ -171,6 +185,7 @@ _AdminDashboard _$AdminDashboardFromJson(Map<String, dynamic> json) => _AdminDas
   updates: DayTotals.fromJson(json['updates'] as Map<String, dynamic>),
   toReview: (json['toReview'] as num?)?.toInt() ?? 0,
   issues: IssueCounts.fromJson(json['issues'] as Map<String, dynamic>),
+  stock: json['stock'] == null ? const StockCounts() : StockCounts.fromJson(json['stock'] as Map<String, dynamic>),
   attention: (json['attention'] as List<dynamic>)
       .map((e) => AttentionItem.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -186,6 +201,7 @@ Map<String, dynamic> _$AdminDashboardToJson(_AdminDashboard instance) => <String
   'updates': instance.updates,
   'toReview': instance.toReview,
   'issues': instance.issues,
+  'stock': instance.stock,
   'attention': instance.attention,
   'sites': instance.sites,
 };
@@ -197,6 +213,7 @@ _EngineerDashboard _$EngineerDashboardFromJson(Map<String, dynamic> json) => _En
   updates: DayTotals.fromJson(json['updates'] as Map<String, dynamic>),
   toReview: (json['toReview'] as num).toInt(),
   issues: IssueCounts.fromJson(json['issues'] as Map<String, dynamic>),
+  stock: json['stock'] == null ? const StockCounts() : StockCounts.fromJson(json['stock'] as Map<String, dynamic>),
   attention: (json['attention'] as List<dynamic>)
       .map((e) => AttentionItem.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -210,6 +227,23 @@ Map<String, dynamic> _$EngineerDashboardToJson(_EngineerDashboard instance) => <
   'updates': instance.updates,
   'toReview': instance.toReview,
   'issues': instance.issues,
+  'stock': instance.stock,
   'attention': instance.attention,
   'sites': instance.sites,
+};
+
+_GodownDashboard _$GodownDashboardFromJson(Map<String, dynamic> json) => _GodownDashboard(
+  date: json['date'] as String,
+  godowns: (json['godowns'] as List<dynamic>).map((e) => GodownSummary.fromJson(e as Map<String, dynamic>)).toList(),
+  toSend: (json['toSend'] as num?)?.toInt() ?? 0,
+  toReceive: (json['toReceive'] as num?)?.toInt() ?? 0,
+  lowStock: (json['lowStock'] as num?)?.toInt() ?? 0,
+);
+
+Map<String, dynamic> _$GodownDashboardToJson(_GodownDashboard instance) => <String, dynamic>{
+  'date': instance.date,
+  'godowns': instance.godowns,
+  'toSend': instance.toSend,
+  'toReceive': instance.toReceive,
+  'lowStock': instance.lowStock,
 };

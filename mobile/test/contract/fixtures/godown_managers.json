@@ -1,0 +1,53 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a11c52-51c8-7769-a467-311bedde2183",
+      "role": "GODOWN_MANAGER",
+      "name": "Karthik",
+      "phone": "+919000000202",
+      "email": null,
+      "employeeCode": "GDM-002",
+      "designation": null,
+      "joiningDate": "2025-11-22",
+      "isActive": true,
+      "lastLoginAt": null,
+      "sites": [],
+      "staffCount": 0,
+      "godowns": [
+        {
+          "id": "01a11c52-5378-71e9-9215-156b47566776",
+          "name": "Porur godown"
+        }
+      ],
+      "assignment": null
+    },
+    {
+      "id": "01a11c52-51c6-71ca-932e-4422f8d77749",
+      "role": "GODOWN_MANAGER",
+      "name": "Selvam",
+      "phone": "+919000000201",
+      "email": null,
+      "employeeCode": "GDM-001",
+      "designation": null,
+      "joiningDate": "2025-05-26",
+      "isActive": true,
+      "lastLoginAt": null,
+      "sites": [],
+      "staffCount": 0,
+      "godowns": [
+        {
+          "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+          "name": "Main godown"
+        }
+      ],
+      "assignment": null
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 2,
+    "totalPages": 1
+  }
+}

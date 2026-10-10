@@ -6,5 +6,6 @@ extension UserRoleLabel on UserRole {
     UserRole.admin => l10n.roleAdmin,
     UserRole.engineer => l10n.roleEngineer,
     UserRole.staff => l10n.roleStaff,
+    UserRole.godownManager => l10n.roleGodownManager,
   };
 }

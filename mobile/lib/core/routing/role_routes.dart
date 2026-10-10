@@ -7,6 +7,7 @@ import '../../features/clients/presentation/client_detail_screen.dart';
 import '../../features/clients/presentation/client_form_screen.dart';
 import '../../features/dashboard/presentation/admin_dashboard_screen.dart';
 import '../../features/dashboard/presentation/engineer_dashboard_screen.dart';
+import '../../features/dashboard/presentation/godown_dashboard_screen.dart';
 import '../../features/engineer_updates/presentation/engineer_update_detail_screen.dart';
 import '../../features/engineer_updates/presentation/engineer_update_form_screen.dart';
 import '../../features/engineer_updates/presentation/engineer_updates_screen.dart';
@@ -34,6 +35,14 @@ import '../../features/staff_updates/presentation/staff_history_screen.dart';
 import '../../features/staff_updates/presentation/staff_home_screen.dart';
 import '../../features/staff_updates/presentation/staff_update_screen.dart';
 import '../../features/staff_updates/presentation/staff_updates_screen.dart';
+import '../../features/stock/presentation/entry_detail_screen.dart';
+import '../../features/stock/presentation/godown_screen.dart';
+import '../../features/stock/presentation/material_detail_screen.dart';
+import '../../features/stock/presentation/request_detail_screen.dart';
+import '../../features/stock/presentation/request_form_screen.dart';
+import '../../features/stock/presentation/requests_screen.dart';
+import '../../features/stock/presentation/stock_history_screen.dart';
+import '../../features/stock/presentation/stock_screen.dart';
 import '../models/enums.dart';
 import 'app_routes.dart';
 import 'role_shell.dart';
@@ -103,16 +112,34 @@ final List<RouteBase> adminRoutes = [
   ),
   ..._personRoutes(UserRole.engineer, '${AppRoutes.adminPeople}/engineers'),
   ..._personRoutes(UserRole.staff, '${AppRoutes.adminPeople}/staff'),
+  ..._personRoutes(UserRole.godownManager, '${AppRoutes.adminPeople}/godown-managers'),
+  ..._personRoutes(UserRole.admin, '${AppRoutes.adminPeople}/admins'),
   GoRoute(path: AppRoutes.issues(AppRoutes.adminArea), builder: (context, state) => const IssuesScreen()),
   GoRoute(
     path: AppRoutes.adminPaymentsAll,
     builder: (context, state) => AllPaymentsScreen(clientId: state.uri.queryParameters['clientId']),
   ),
+  GoRoute(
+    path: '${AppRoutes.adminArea}/stock/materials/:id',
+    builder: (context, state) => MaterialDetailScreen(id: state.pathParameters['id']!),
+  ),
   ..._reviewRoutes(AppRoutes.adminArea),
 ];
 
-/// Photos, reports and issues: the same screens for admins and engineers.
+/// Photos, reports, issues, stock and material requests: the same screens for
+/// admins and engineers.
 List<RouteBase> _reviewRoutes(String area) => [
+  GoRoute(path: AppRoutes.stock(area), builder: (context, state) => const StockScreen()),
+  GoRoute(
+    path: '$area/requests',
+    builder: (context, state) => RequestsScreen(siteId: state.uri.queryParameters['siteId']),
+  ),
+  // "new" before ":id".
+  GoRoute(
+    path: '$area/requests/new',
+    builder: (context, state) => RequestFormScreen(siteId: state.uri.queryParameters['siteId']),
+  ),
+  ..._stockRoutes(area),
   GoRoute(
     path: '$area/staff-updates/:id',
     builder: (context, state) => StaffUpdateScreen(id: state.pathParameters['id']!),
@@ -130,6 +157,35 @@ List<RouteBase> _reviewRoutes(String area) => [
   GoRoute(
     path: '$area/issues/:id',
     builder: (context, state) => IssueDetailScreen(id: state.pathParameters['id']!),
+  ),
+];
+
+/// A request, stock entries, godowns and history: for admins, engineers and
+/// godown managers (whose Stock and Requests lists are tabs).
+List<RouteBase> _stockRoutes(String area) => [
+  GoRoute(
+    path: '$area/requests/:id',
+    builder: (context, state) => RequestDetailScreen(id: state.pathParameters['id']!),
+  ),
+  GoRoute(
+    path: '$area/stock/history',
+    builder: (context, state) {
+      final query = state.uri.queryParameters;
+      return StockHistoryScreen(
+        siteId: query['siteId'],
+        godownId: query['godownId'],
+        materialId: query['materialId'],
+        receivable: query['receivable'] == 'true',
+      );
+    },
+  ),
+  GoRoute(
+    path: '$area/stock/godowns/:id',
+    builder: (context, state) => GodownScreen(id: state.pathParameters['id']!),
+  ),
+  GoRoute(
+    path: '$area/stock/entries/:id',
+    builder: (context, state) => EntryDetailScreen(id: state.pathParameters['id']!),
   ),
 ];
 
@@ -249,7 +305,38 @@ final List<RouteBase> staffRoutes = [
   ),
 ];
 
-/// The Alerts tab (admin and engineer), with the unread count on its icon.
+/// Godown managers: their godowns' requests to send, stock in and out, and
+/// returns to confirm.
+final List<RouteBase> godownRoutes = [
+  roleShellRoute([
+    ShellTab(
+      path: AppRoutes.godownHome,
+      icon: Icons.home_outlined,
+      selectedIcon: Icons.home,
+      label: (l10n) => l10n.navHome,
+      screen: const GodownDashboardScreen(),
+    ),
+    ShellTab(
+      path: AppRoutes.godownRequests,
+      icon: Icons.assignment_outlined,
+      selectedIcon: Icons.assignment,
+      label: (l10n) => l10n.navRequests,
+      screen: const RequestsScreen(showProfileAction: true),
+    ),
+    ShellTab(
+      path: AppRoutes.godownStock,
+      icon: Icons.warehouse_outlined,
+      selectedIcon: Icons.warehouse,
+      label: (l10n) => l10n.navStock,
+      screen: const StockScreen(showProfileAction: true),
+    ),
+    _alertsTab(AppRoutes.godownNotifications),
+  ], wrap: (shell) => NotificationsPoller(child: PushListener(child: shell))),
+  GoRoute(path: AppRoutes.godownProfile, builder: (context, state) => const ProfileScreen()),
+  ..._stockRoutes(AppRoutes.godownArea),
+];
+
+/// The Alerts tab (admin, engineer and godown manager), with the unread count on its icon.
 ShellTab _alertsTab(String path) => ShellTab(
   path: path,
   icon: Icons.notifications_outlined,

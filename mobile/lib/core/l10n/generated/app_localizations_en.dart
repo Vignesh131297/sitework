@@ -269,6 +269,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonAll => 'All';
 
   @override
+  String get commonMore => 'More';
+
+  @override
   String get commonNone => 'None';
 
   @override
@@ -288,6 +291,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get validationRequired => 'Required';
+
+  @override
+  String get validationQuantity => 'Enter a quantity like 60 or 12.5.';
 
   @override
   String get validationAmount => 'Enter an amount like 1500000';
@@ -591,6 +597,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get siteTabIssues => 'Issues';
+
+  @override
+  String get siteTabStock => 'Stock';
 
   @override
   String siteProgress(int percent) {
@@ -1595,6 +1604,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get reportKindPayments => 'Payments';
 
   @override
+  String get reportKindStock => 'Stock';
+
+  @override
   String get reportPeriodThisWeek => 'This week';
 
   @override
@@ -1701,4 +1713,949 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get notFoundGoHome => 'Go to home';
+
+  @override
+  String get fieldDate => 'Date';
+
+  @override
+  String get fieldNoteOptional => 'Note (optional)';
+
+  @override
+  String get stockTitle => 'Stock';
+
+  @override
+  String get stockEntrySubtitle => 'Godowns, materials and deliveries';
+
+  @override
+  String get stockEngineerSubtitle => 'What the godowns hold';
+
+  @override
+  String get stockDeliveriesToConfirm => 'Deliveries to confirm';
+
+  @override
+  String stockLowCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count low on stock',
+      one: '1 low on stock',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String stockToConfirmCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count to confirm', one: '1 to confirm');
+    return '$_temp0';
+  }
+
+  @override
+  String get stockGodowns => 'Godowns';
+
+  @override
+  String get stockGodownLabel => 'Godown';
+
+  @override
+  String get stockSiteLabel => 'Site';
+
+  @override
+  String get stockNoGodowns => 'No godowns yet.';
+
+  @override
+  String get stockNoGodownsAdmin => 'No godowns yet. Add one from the menu above.';
+
+  @override
+  String stockArrivingCount(int count) {
+    return '$count on the way';
+  }
+
+  @override
+  String get stockPlaceSupplier => 'Supplier';
+
+  @override
+  String get stockPlaceUsed => 'Used';
+
+  @override
+  String get stockPlaceWaste => 'Written off';
+
+  @override
+  String get stockPlaceCount => 'Count correction';
+
+  @override
+  String get stockKindPurchase => 'Bought';
+
+  @override
+  String get stockKindTransfer => 'Sent';
+
+  @override
+  String get stockKindUsage => 'Used';
+
+  @override
+  String get stockKindWriteOff => 'Written off';
+
+  @override
+  String get stockKindAdjustment => 'Count correction';
+
+  @override
+  String get stockStatusOnTheWay => 'On the way';
+
+  @override
+  String get stockStatusCancelled => 'Cancelled';
+
+  @override
+  String get stockStatusShort => 'Short';
+
+  @override
+  String stockShortChip(String quantity) {
+    return '$quantity short';
+  }
+
+  @override
+  String get stockLow => 'Low';
+
+  @override
+  String stockAndMore(String first, int count) {
+    return '$first and $count more';
+  }
+
+  @override
+  String get stockCountNoDifference => 'Counted: no difference';
+
+  @override
+  String get stockEntryTitle => 'Stock entry';
+
+  @override
+  String get stockConfirm => 'Confirm';
+
+  @override
+  String get stockConfirmReceived => 'Confirm received';
+
+  @override
+  String stockReceiveIntro(String from, String date) {
+    return 'Sent from $from on $date. Enter what actually arrived.';
+  }
+
+  @override
+  String get stockWhatArrived => 'What arrived';
+
+  @override
+  String stockSentQuantity(String quantity) {
+    return 'Sent: $quantity';
+  }
+
+  @override
+  String stockReceiveTooMuch(String quantity) {
+    return 'Only $quantity was sent.';
+  }
+
+  @override
+  String get stockShortNote => 'What happened to the rest?';
+
+  @override
+  String get stockReceivePhotos => 'Photos of what arrived';
+
+  @override
+  String get stockPhotoRequired => 'Add at least one photo of what arrived.';
+
+  @override
+  String get stockReceived => 'Stock received.';
+
+  @override
+  String get stockReceivedTitle => 'Received';
+
+  @override
+  String stockReceivedOf(String received, String sent) {
+    return '$received of $sent arrived';
+  }
+
+  @override
+  String stockReceivedBy(String name) {
+    return 'Confirmed by $name';
+  }
+
+  @override
+  String stockRecordedBy(String name) {
+    return 'Recorded by $name';
+  }
+
+  @override
+  String stockDcNumberIs(String number) {
+    return 'DC $number';
+  }
+
+  @override
+  String stockBillNoIs(String number) {
+    return 'Bill $number';
+  }
+
+  @override
+  String stockAtRate(String price, String unit) {
+    return '$price per $unit';
+  }
+
+  @override
+  String get stockTotalAmount => 'Total';
+
+  @override
+  String get stockDcPhotos => 'Delivery challan photo';
+
+  @override
+  String get stockBillPhotos => 'Bill photos';
+
+  @override
+  String get stockBillPhotosOptional => 'Bill photos (optional)';
+
+  @override
+  String get stockPhotosOptional => 'Photos (optional)';
+
+  @override
+  String get stockDcPhotoRequired => 'Add a photo of the delivery challan.';
+
+  @override
+  String get stockCancel => 'Cancel entry';
+
+  @override
+  String get stockCancelTitle => 'Cancel this entry?';
+
+  @override
+  String get stockCancelBody =>
+      'The stock goes back to where it came from. The entry stays in the history, marked cancelled.';
+
+  @override
+  String get stockCancelReason => 'Why?';
+
+  @override
+  String get stockCancelled => 'Entry cancelled.';
+
+  @override
+  String stockCancelledBy(String name, String reason) {
+    return 'Cancelled by $name: $reason';
+  }
+
+  @override
+  String get stockActionPurchase => 'Stock in';
+
+  @override
+  String get stockActionSend => 'Send stock';
+
+  @override
+  String get stockActionSendOn => 'Return to godown';
+
+  @override
+  String get stockActionUse => 'Record usage';
+
+  @override
+  String get stockActionWriteOff => 'Write off';
+
+  @override
+  String get stockActionCount => 'Stock count';
+
+  @override
+  String get stockIntoGodown => 'Into godown';
+
+  @override
+  String get stockSendFrom => 'Send from';
+
+  @override
+  String get stockSendTo => 'Send to';
+
+  @override
+  String get stockAt => 'At';
+
+  @override
+  String get stockChooseSource => 'Choose where the stock comes from first.';
+
+  @override
+  String get stockCountedOn => 'Counted on';
+
+  @override
+  String get stockSupplier => 'Supplier (optional)';
+
+  @override
+  String get stockBillNo => 'Bill or invoice number (optional)';
+
+  @override
+  String get stockDcNumber => 'DC number';
+
+  @override
+  String get stockMaterials => 'Materials';
+
+  @override
+  String get stockMaterial => 'Material';
+
+  @override
+  String get stockQuantity => 'Quantity';
+
+  @override
+  String get stockCountedQuantity => 'Counted quantity';
+
+  @override
+  String get stockRate => 'Price per unit (₹)';
+
+  @override
+  String stockRatePer(String unit) {
+    return 'Price per $unit (₹)';
+  }
+
+  @override
+  String stockAvailable(String quantity) {
+    return 'Available: $quantity';
+  }
+
+  @override
+  String stockOnBooks(String quantity) {
+    return 'On the books: $quantity';
+  }
+
+  @override
+  String stockOnlyAvailable(String quantity) {
+    return 'Only $quantity available.';
+  }
+
+  @override
+  String get stockAddMaterial => 'Add material';
+
+  @override
+  String get stockRemoveLine => 'Remove';
+
+  @override
+  String get stockNothingToChoose => 'There is no stock here to choose from.';
+
+  @override
+  String get stockUsedFor => 'Used for, e.g. first floor slab (optional)';
+
+  @override
+  String get stockWhatHappened => 'What happened to it';
+
+  @override
+  String get stockCountNote => 'Why the count differs';
+
+  @override
+  String get stockSaved => 'Stock saved.';
+
+  @override
+  String get stockCountMatched => 'The count matches the books. Nothing to correct.';
+
+  @override
+  String get stockSendHere => 'Send stock here';
+
+  @override
+  String get stockSendEverything => 'Return everything to a godown';
+
+  @override
+  String get stockArrivingHere => 'On the way here';
+
+  @override
+  String get stockLeavingHere => 'Sent, not yet confirmed';
+
+  @override
+  String get stockOnSite => 'On site';
+
+  @override
+  String get stockInGodown => 'In this godown';
+
+  @override
+  String get stockUsedUp => 'Used up or sent on';
+
+  @override
+  String get stockNothingHere => 'Nothing here now.';
+
+  @override
+  String get stockSiteEmpty => 'No stock at this site yet';
+
+  @override
+  String get stockSiteEmptyBody => 'Stock sent from a godown shows here once the site confirms it.';
+
+  @override
+  String get godownEmpty => 'Nothing in this godown yet';
+
+  @override
+  String stockReceivedTotal(String quantity) {
+    return 'Received $quantity';
+  }
+
+  @override
+  String stockUsedTotal(String quantity) {
+    return 'used $quantity';
+  }
+
+  @override
+  String stockSentOutTotal(String quantity) {
+    return 'sent on $quantity';
+  }
+
+  @override
+  String stockWastedTotal(String quantity) {
+    return 'wasted $quantity';
+  }
+
+  @override
+  String stockWorth(String amount) {
+    return 'worth $amount';
+  }
+
+  @override
+  String get stockValueUsed => 'Material used';
+
+  @override
+  String get stockValueOnSite => 'On site now';
+
+  @override
+  String get stockValueOnHand => 'Stock value';
+
+  @override
+  String get stockHistory => 'History';
+
+  @override
+  String get stockToConfirm => 'To confirm';
+
+  @override
+  String get stockNothingToConfirm => 'Nothing waiting for you to confirm.';
+
+  @override
+  String get stockNoEntries => 'No stock entries yet.';
+
+  @override
+  String get stockSearch => 'Search materials';
+
+  @override
+  String get stockNoMaterials => 'No materials yet';
+
+  @override
+  String get stockNoMaterialsBody => 'Add the materials you keep in stock. You can add more at any time.';
+
+  @override
+  String get stockNoMatch => 'No materials match.';
+
+  @override
+  String stockOnSitesTotal(String quantity) {
+    return '$quantity at sites';
+  }
+
+  @override
+  String get stockInGodowns => 'In the godowns';
+
+  @override
+  String stockMinimum(String quantity) {
+    return 'Minimum $quantity';
+  }
+
+  @override
+  String stockInTransitTotal(String quantity) {
+    return '$quantity on the way';
+  }
+
+  @override
+  String stockAveragePrice(String price, String unit) {
+    return 'Average $price per $unit';
+  }
+
+  @override
+  String get stockNoneInGodowns => 'None in the godowns now.';
+
+  @override
+  String get stockAtSites => 'At sites';
+
+  @override
+  String get stockNotAtSites => 'None at sites now.';
+
+  @override
+  String get stockLatest => 'Latest';
+
+  @override
+  String get stockStaffUsageTitle => 'Today\'s material use';
+
+  @override
+  String get stockUsageRecorded => 'Recorded';
+
+  @override
+  String get stockUsageNotRecorded => 'Not recorded yet';
+
+  @override
+  String get stockRecord => 'Record';
+
+  @override
+  String get stockLeftTitle => 'Stock is still at this site';
+
+  @override
+  String stockLeftMore(int count) {
+    return 'and $count more';
+  }
+
+  @override
+  String get stockLeftOnTheWay => 'Some stock is also on the way to or from this site.';
+
+  @override
+  String get stockLeftBody =>
+      'Send it back to a godown from the site\'s Stock tab first, or complete the site now and deal with it later.';
+
+  @override
+  String get stockLeftComplete => 'Complete anyway';
+
+  @override
+  String get godownNew => 'New godown';
+
+  @override
+  String get godownEdit => 'Edit godown';
+
+  @override
+  String get godownSaved => 'Godown saved.';
+
+  @override
+  String get godownName => 'Name';
+
+  @override
+  String get godownNameHint => 'e.g. Main godown';
+
+  @override
+  String get godownAddress => 'Address (optional)';
+
+  @override
+  String get godownActive => 'Open';
+
+  @override
+  String get godownActiveHelper =>
+      'A closed godown takes no new stock. Its history stays. Move its stock out before closing it.';
+
+  @override
+  String get godownClosed => 'Closed';
+
+  @override
+  String get materialNew => 'New material';
+
+  @override
+  String get materialEdit => 'Edit material';
+
+  @override
+  String get materialSaved => 'Material saved.';
+
+  @override
+  String get materialName => 'Name';
+
+  @override
+  String get materialNameHint => 'e.g. Cement OPC 53';
+
+  @override
+  String get materialUnit => 'Unit';
+
+  @override
+  String get materialUnitHelper => 'How it is counted. It can\'t change once stock is recorded.';
+
+  @override
+  String get materialCategory => 'Category (optional)';
+
+  @override
+  String get materialCategoryHint => 'e.g. Cement, Steel';
+
+  @override
+  String get materialMinimum => 'Minimum in godowns (optional)';
+
+  @override
+  String get materialMinimumHelper => 'Admins are alerted when all godowns together drop below this.';
+
+  @override
+  String get materialActive => 'In use';
+
+  @override
+  String get materialActiveHelper => 'Switched off, it can\'t be bought or sent from godowns. Its history stays.';
+
+  @override
+  String get materialInactive => 'Not in use';
+
+  @override
+  String get reportsStockOpening => 'Opening';
+
+  @override
+  String get reportsStockReceived => 'Received';
+
+  @override
+  String get reportsStockUsed => 'Used';
+
+  @override
+  String get reportsStockClosing => 'Closing';
+
+  @override
+  String get reportsStockSentOut => 'Sent out';
+
+  @override
+  String get reportsStockWasted => 'Wasted';
+
+  @override
+  String get reportsStockAdjusted => 'Count corrections';
+
+  @override
+  String get reportsStockUsedValue => 'Used value';
+
+  @override
+  String get roleGodownManager => 'Godown manager';
+
+  @override
+  String get navRequests => 'Requests';
+
+  @override
+  String get navStock => 'Stock';
+
+  @override
+  String get signUpLink => 'Set up SiteWork (first admin)';
+
+  @override
+  String get signUpTitle => 'Set up SiteWork';
+
+  @override
+  String get signUpIntro =>
+      'Create the first admin account. After this, admins add everyone else (engineers, staff, godown managers and other admins) from People.';
+
+  @override
+  String get signUpSubmit => 'Create admin account';
+
+  @override
+  String get godownManagersTitle => 'Godown managers';
+
+  @override
+  String get godownManagersEmpty => 'No godown managers yet.';
+
+  @override
+  String get godownManagerNew => 'New godown manager';
+
+  @override
+  String get godownManagerEdit => 'Edit godown manager';
+
+  @override
+  String get adminsTitle => 'Admins';
+
+  @override
+  String get adminsEmpty => 'No admins found.';
+
+  @override
+  String get adminNew => 'New admin';
+
+  @override
+  String get adminEdit => 'Edit admin';
+
+  @override
+  String get personGodowns => 'Godowns';
+
+  @override
+  String get personGodownsHelper =>
+      'They buy stock in, send it to sites against approved requests, and confirm returns at these godowns.';
+
+  @override
+  String get personNoGodowns => 'No godown yet';
+
+  @override
+  String godownManagedBy(String names) {
+    return 'Managed by $names';
+  }
+
+  @override
+  String get godownNoManager => 'No manager yet: admins confirm what arrives here.';
+
+  @override
+  String get godownsYours => 'Your godowns';
+
+  @override
+  String get stockReturnTo => 'Return to';
+
+  @override
+  String get stockSendSitesHint =>
+      'Sites get stock only against an approved material request: open the request to send it.';
+
+  @override
+  String get stockNoGodownsManager => 'No godown is assigned to you yet. Ask your admin.';
+
+  @override
+  String get stockReturnsToConfirm => 'Returns to confirm';
+
+  @override
+  String get stockLowTitle => 'Low stock';
+
+  @override
+  String get stockLowSubtitle => 'All godowns together, below the minimum';
+
+  @override
+  String stockForRequest(String code) {
+    return 'For $code';
+  }
+
+  @override
+  String get requestsTitle => 'Material requests';
+
+  @override
+  String get requestTitle => 'Material request';
+
+  @override
+  String get requestsAdminSubtitle => 'Approve what sites ask for';
+
+  @override
+  String get requestsEngineerSubtitle => 'Ask for material for your sites';
+
+  @override
+  String requestsToApproveCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count waiting for approval',
+      one: '1 waiting for approval',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get requestsToSend => 'Requests to send';
+
+  @override
+  String get requestsEmpty => 'No material requests here.';
+
+  @override
+  String get requestsEmptyManager => 'Nothing to send. Approved requests for your godowns show up here.';
+
+  @override
+  String get requestsOpenTitle => 'Material requests';
+
+  @override
+  String get requestsAll => 'All requests';
+
+  @override
+  String get requestsNoneOpen => 'No open requests.';
+
+  @override
+  String get requestFilterOpen => 'Open';
+
+  @override
+  String get requestFilterApproved => 'Approved';
+
+  @override
+  String get requestStagePending => 'Waiting for approval';
+
+  @override
+  String get requestStageToSend => 'Approved · to send';
+
+  @override
+  String get requestStagePartSent => 'Part sent';
+
+  @override
+  String get requestStageOnTheWay => 'On the way';
+
+  @override
+  String get requestStageAtSite => 'At site';
+
+  @override
+  String get requestStageRejected => 'Rejected';
+
+  @override
+  String get requestStageWithdrawn => 'Withdrawn';
+
+  @override
+  String get requestStageClosed => 'Closed';
+
+  @override
+  String requestAskedBy(String name, String date) {
+    return 'Asked by $name · $date';
+  }
+
+  @override
+  String requestFromGodown(String godown) {
+    return 'From $godown';
+  }
+
+  @override
+  String requestNeededBy(String date) {
+    return 'Needed by $date';
+  }
+
+  @override
+  String get requestSiteStock => 'Site\'s stock';
+
+  @override
+  String get requestMaterial => 'Request material';
+
+  @override
+  String get requestNew => 'New request';
+
+  @override
+  String get requestNeededByOptional => 'Needed by (optional)';
+
+  @override
+  String get requestQuantityNeeded => 'Quantity needed';
+
+  @override
+  String get requestWhatFor => 'What is it for? (optional)';
+
+  @override
+  String get requestSubmit => 'Send request';
+
+  @override
+  String requestSent(String code) {
+    return '$code sent for approval.';
+  }
+
+  @override
+  String get requestApprove => 'Approve';
+
+  @override
+  String requestApproveTitle(String code) {
+    return 'Approve $code';
+  }
+
+  @override
+  String requestApproveIntro(String site, String name) {
+    return '$site asked for this ($name). Choose the godown that sends it and how much of each material.';
+  }
+
+  @override
+  String get requestSupplyFrom => 'Send from godown';
+
+  @override
+  String get requestApprovedQuantities => 'Approved quantities';
+
+  @override
+  String get requestApproveZeroHint => 'Enter 0 for a material that won\'t be sent.';
+
+  @override
+  String get requestApprovedQuantity => 'Approved quantity';
+
+  @override
+  String requestInGodown(String quantity) {
+    return 'In godown: $quantity';
+  }
+
+  @override
+  String get requestNoteForSite => 'Note for the site (optional)';
+
+  @override
+  String get requestApproveSomething => 'Approve at least one material, or reject the request.';
+
+  @override
+  String requestApproved(String code) {
+    return '$code approved. The godown will send it.';
+  }
+
+  @override
+  String get requestReject => 'Reject';
+
+  @override
+  String get requestRejectTitle => 'Reject this request?';
+
+  @override
+  String get requestRejectReason => 'Why? The site will see this.';
+
+  @override
+  String requestRejected(String code) {
+    return '$code rejected.';
+  }
+
+  @override
+  String requestRejectedBecause(String name, String reason) {
+    return 'Rejected by $name: $reason';
+  }
+
+  @override
+  String requestApprovedFrom(String name, String godown) {
+    return 'Approved by $name · sent from $godown';
+  }
+
+  @override
+  String get requestWithdraw => 'Withdraw request';
+
+  @override
+  String requestWithdrawTitle(String code) {
+    return 'Withdraw $code?';
+  }
+
+  @override
+  String get requestWithdrawBody => 'It has not been approved yet. Withdrawing it means nothing will be sent.';
+
+  @override
+  String requestWithdrawn(String code) {
+    return '$code withdrawn.';
+  }
+
+  @override
+  String get requestSendNow => 'Send material';
+
+  @override
+  String requestSendTitle(String code) {
+    return 'Send $code';
+  }
+
+  @override
+  String get requestDeliveries => 'Deliveries and returns';
+
+  @override
+  String requestAsked(String quantity) {
+    return 'Asked $quantity';
+  }
+
+  @override
+  String get requestNotSupplied => 'Not supplied';
+
+  @override
+  String requestSentAmount(String quantity) {
+    return 'Sent $quantity';
+  }
+
+  @override
+  String requestOnTheWayAmount(String quantity) {
+    return '$quantity on the way';
+  }
+
+  @override
+  String requestArrivedAmount(String quantity) {
+    return 'Arrived $quantity';
+  }
+
+  @override
+  String requestLeftAmount(String quantity) {
+    return '$quantity left to send';
+  }
+
+  @override
+  String get requestConfirmFirst => 'Confirm the delivery on its way before closing this request.';
+
+  @override
+  String get requestClose => 'Close request';
+
+  @override
+  String requestCloseTitle(String code) {
+    return 'Close $code';
+  }
+
+  @override
+  String get requestCloseIntro =>
+      'Is the work done? Say whether everything was used, or send what is left back to the godown.';
+
+  @override
+  String get requestOutcomeAllUsed => 'All used';
+
+  @override
+  String requestOutcomeReturn(String godown) {
+    return 'Return the leftover to $godown';
+  }
+
+  @override
+  String get requestGoingBack => 'Going back';
+
+  @override
+  String get requestNothingToReturn => 'Nothing from this request is left at the site.';
+
+  @override
+  String get requestReturnZeroHint => 'Enter 0 for anything staying at the site.';
+
+  @override
+  String get requestReturnSomething => 'Enter what is going back, or choose \"All used\".';
+
+  @override
+  String requestClosed(String code) {
+    return '$code closed.';
+  }
+
+  @override
+  String requestClosedAllUsed(String name) {
+    return 'Closed by $name: all used.';
+  }
+
+  @override
+  String requestClosedLeftover(String name) {
+    return 'Closed by $name: leftover sent back to the godown.';
+  }
 }

@@ -1,5 +1,7 @@
 node_modules/
 dist/
+# Extra build copies, e.g. one kept running for a demo
+/dist-*/
 coverage/
 *.log
 *.tsbuildinfo

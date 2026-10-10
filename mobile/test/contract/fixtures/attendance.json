@@ -2,105 +2,105 @@
   "success": true,
   "data": [
     {
-      "id": "01a1066e-f314-77cf-922c-af5bdf4d83c3",
-      "workDate": "2026-10-04",
-      "status": "LATE",
+      "id": "01a11c52-526b-714d-9f18-8d25e745eccf",
+      "workDate": "2026-10-08",
+      "status": "HALF_DAY",
       "staff": {
-        "id": "01a10655-4e48-71da-850f-01840d2004af",
-        "name": "Ravi"
-      },
-      "site": {
-        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
-        "name": "ABC Apartment Project"
-      },
-      "checkInAt": "2026-10-04T10:21:36.887Z",
-      "checkInLocationFlag": "UNAVAILABLE",
-      "checkOutAt": null,
-      "checkOutLocationFlag": null,
-      "workedMinutes": null,
-      "correctionNote": null
-    },
-    {
-      "id": "01a10655-4f14-713b-9c93-b2d8285f4904",
-      "workDate": "2026-10-03",
-      "status": "LATE",
-      "staff": {
-        "id": "01a10655-4e4d-746b-a6f9-6d46d2337692",
+        "id": "01a11c52-51b5-72d9-aae5-9d4741999db1",
         "name": "Kumar"
       },
       "site": {
-        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
         "name": "ABC Apartment Project"
       },
-      "checkInAt": "2026-10-03T03:46:00.000Z",
+      "checkInAt": "2026-10-08T03:36:00.000Z",
       "checkInLocationFlag": "OK",
-      "checkOutAt": "2026-10-03T12:50:00.000Z",
+      "checkOutAt": "2026-10-08T07:19:00.000Z",
       "checkOutLocationFlag": "OK",
-      "workedMinutes": 544,
+      "workedMinutes": 223,
       "correctionNote": null
     },
     {
-      "id": "01a10655-4f14-713b-9c93-b5d8db02ac56",
-      "workDate": "2026-10-03",
-      "status": "HALF_DAY",
+      "id": "01a11c52-526b-714d-9f18-932348359796",
+      "workDate": "2026-10-08",
+      "status": "PRESENT",
       "staff": {
-        "id": "01a10655-4e52-77ca-b7a9-cb4b2bab0f78",
+        "id": "01a11c52-51b9-74fb-855b-55f622049ce0",
         "name": "Manoj"
       },
       "site": {
-        "id": "01a10655-4e7d-7309-a9b9-4227daab858f",
+        "id": "01a11c52-51ec-772b-ac1a-96a6a41f6962",
         "name": "Green Valley Villa"
       },
-      "checkInAt": "2026-10-03T03:25:00.000Z",
+      "checkInAt": "2026-10-08T03:13:00.000Z",
       "checkInLocationFlag": "OK",
-      "checkOutAt": "2026-10-03T07:03:00.000Z",
+      "checkOutAt": "2026-10-08T12:26:00.000Z",
       "checkOutLocationFlag": "OK",
-      "workedMinutes": 218,
+      "workedMinutes": 553,
       "correctionNote": null
     },
     {
-      "id": "01a10655-4f14-713b-9c93-c245d1bfc50e",
-      "workDate": "2026-10-03",
+      "id": "01a11c52-526b-714d-9f18-8ae67f6514c4",
+      "workDate": "2026-10-08",
       "status": "PRESENT",
       "staff": {
-        "id": "01a10655-4e62-7114-96d5-1ad5577d5e0b",
-        "name": "Muthu"
-      },
-      "site": {
-        "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
-        "name": "Sri Lakshmi Commercial Building"
-      },
-      "checkInAt": "2026-10-03T03:11:00.000Z",
-      "checkInLocationFlag": "OK",
-      "checkOutAt": "2026-10-03T12:32:00.000Z",
-      "checkOutLocationFlag": "OK",
-      "workedMinutes": 561,
-      "correctionNote": null
-    },
-    {
-      "id": "01a10655-4f14-713b-9c93-af9f079b63fd",
-      "workDate": "2026-10-03",
-      "status": "LATE",
-      "staff": {
-        "id": "01a10655-4e48-71da-850f-01840d2004af",
+        "id": "01a11c52-51b2-7218-a487-03eb31ca94b7",
         "name": "Ravi"
       },
       "site": {
-        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
         "name": "ABC Apartment Project"
       },
-      "checkInAt": "2026-10-03T04:15:00.000Z",
+      "checkInAt": "2026-10-08T03:19:00.000Z",
       "checkInLocationFlag": "OK",
-      "checkOutAt": "2026-10-03T12:23:00.000Z",
+      "checkOutAt": "2026-10-08T12:30:00.000Z",
       "checkOutLocationFlag": "OK",
-      "workedMinutes": 488,
+      "workedMinutes": 551,
+      "correctionNote": null
+    },
+    {
+      "id": "01a11c52-526b-714d-9f18-9701fa33474b",
+      "workDate": "2026-10-08",
+      "status": "HALF_DAY",
+      "staff": {
+        "id": "01a11c52-51bc-719e-857d-ccc32a934436",
+        "name": "Sathish"
+      },
+      "site": {
+        "id": "01a11c52-51ec-772b-ac1a-96a6a41f6962",
+        "name": "Green Valley Villa"
+      },
+      "checkInAt": "2026-10-08T03:30:00.000Z",
+      "checkInLocationFlag": "OK",
+      "checkOutAt": "2026-10-08T07:00:00.000Z",
+      "checkOutLocationFlag": "OK",
+      "workedMinutes": 210,
+      "correctionNote": null
+    },
+    {
+      "id": "01a11c52-526b-714d-9f18-98312b0263d9",
+      "workDate": "2026-10-08",
+      "status": "PRESENT",
+      "staff": {
+        "id": "01a11c52-51c0-70aa-89cf-2278339927e6",
+        "name": "Vijay"
+      },
+      "site": {
+        "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
+        "name": "Sri Lakshmi Commercial Building"
+      },
+      "checkInAt": "2026-10-08T03:14:00.000Z",
+      "checkInLocationFlag": "OK",
+      "checkOutAt": "2026-10-08T12:43:00.000Z",
+      "checkOutLocationFlag": "OK",
+      "workedMinutes": 569,
       "correctionNote": null
     }
   ],
   "meta": {
     "page": 1,
     "limit": 5,
-    "total": 67,
-    "totalPages": 14
+    "total": 71,
+    "totalPages": 15
   }
 }

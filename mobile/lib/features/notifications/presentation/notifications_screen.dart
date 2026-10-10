@@ -28,7 +28,25 @@ import '../domain/notification_models.dart';
   if (role == UserRole.staff) {
     return n.type == NotificationType.missingUpdate ? (path: AppRoutes.staffHome, isTab: true) : null;
   }
+  final materialId = n.data?['materialId'];
+  final godownId = n.data?['godownId'];
+  final requestId = n.data?['requestId'];
   final path = switch (n.referenceType) {
+    // Material requests open the request.
+    _ when requestId != null => AppRoutes.request(area, requestId),
+    // Stock: low-stock alerts open the material; stock on its way to a godown
+    // opens the godown; anything at a site opens its Stock tab.
+    _ when n.type == NotificationType.stock && role == UserRole.admin && materialId != null => AppRoutes.adminMaterial(
+      materialId,
+    ),
+    _ when n.type == NotificationType.stock && n.data?['to'] == 'GODOWN' && godownId != null => AppRoutes.stockGodown(
+      area,
+      godownId,
+    ),
+    // Godown managers have no site screens: they open the entry itself.
+    ReferenceType.stockEntry when role == UserRole.godownManager && id != null => AppRoutes.stockEntry(area, id),
+    _ when role == UserRole.godownManager => null,
+    _ when n.type == NotificationType.stock && siteId != null => AppRoutes.site(area, siteId, tab: 'stock'),
     ReferenceType.staffUpdate when id != null => AppRoutes.staffUpdate(area, id),
     ReferenceType.engineerUpdate when id != null => AppRoutes.engineerUpdate(area, id),
     ReferenceType.issue when id != null => AppRoutes.issue(area, id),
@@ -125,6 +143,7 @@ class NotificationTile extends ConsumerWidget {
       NotificationType.issue => (Icons.report_problem_outlined, StatusTone.danger),
       NotificationType.attendance => (Icons.how_to_reg_outlined, StatusTone.neutral),
       NotificationType.system => (Icons.info_outline, StatusTone.neutral),
+      NotificationType.stock => (Icons.inventory_2_outlined, StatusTone.warning),
     };
     final colors = context.tone(tone);
     return ListTile(

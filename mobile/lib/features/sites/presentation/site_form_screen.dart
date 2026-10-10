@@ -9,16 +9,21 @@ import '../../../core/l10n/labels.dart';
 import '../../../core/location/location_messages.dart';
 import '../../../core/location/location_service.dart';
 import '../../../core/models/enums.dart';
+import '../../../core/network/app_exception.dart';
 import '../../../core/routing/app_routes.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/utils/formatters.dart';
 import '../../../core/utils/validators.dart';
 import '../../../core/widgets/async_value_view.dart';
+import '../../../core/widgets/confirm_dialog.dart';
 import '../../../core/widgets/form_fields.dart';
 import '../../../core/widgets/info_widgets.dart';
 import '../../../core/widgets/inline_message.dart';
 import '../../../core/widgets/submit_state.dart';
 import '../../clients/data/clients_repository.dart';
 import '../../people/data/people_repository.dart';
+import '../../stock/data/stock_repository.dart';
+import '../../stock/domain/stock_models.dart';
 import '../data/sites_repository.dart';
 import '../domain/site_models.dart';
 import 'engineer_picker.dart';
@@ -151,6 +156,38 @@ class _SiteFormState extends ConsumerState<_SiteForm> with SubmitState {
     return number.abs() > limit ? l10n.validationRange(-limit.toInt(), limit.toInt()) : null;
   }
 
+  /// Completing a site that still holds stock: true to go ahead anyway. The
+  /// stock stays on the books until someone returns or writes it off.
+  Future<bool> _confirmStockLeft(String siteId) async {
+    final l10n = AppLocalizations.of(context);
+    final SiteStock stock;
+    try {
+      stock = await ref.read(stockRepositoryProvider).site(siteId);
+    } on AppException {
+      return true; // Can't check now; completing a site never loses stock.
+    }
+    final left = [
+      for (final item in stock.items)
+        if (item.hasStock) item,
+    ];
+    if (left.isEmpty && stock.arriving.isEmpty && stock.leaving.isEmpty) return true;
+    if (!mounted) return false;
+    final items = [
+      for (final item in left.take(5)) '${item.material.name}: ${formatQuantity(item.onHand, item.material.unit)}',
+    ];
+    return showConfirmDialog(
+      context,
+      title: l10n.stockLeftTitle,
+      message: [
+        if (items.isNotEmpty) items.join('\n'),
+        if (left.length > items.length) l10n.stockLeftMore(left.length - items.length),
+        if (stock.arriving.isNotEmpty || stock.leaving.isNotEmpty) l10n.stockLeftOnTheWay,
+        l10n.stockLeftBody,
+      ].join('\n\n'),
+      confirmLabel: l10n.stockLeftComplete,
+    );
+  }
+
   Future<void> _save() async {
     if (!_formKey.currentState!.validate()) return;
     final l10n = AppLocalizations.of(context);
@@ -177,6 +214,13 @@ class _SiteFormState extends ConsumerState<_SiteForm> with SubmitState {
     // Left empty on a new site, the server applies its default radius.
     if (_creating && radius == null) body.remove('geofenceRadiusM');
     final initial = _initial;
+    if (initial != null &&
+        initial.status != SiteStatus.completed &&
+        _status == SiteStatus.completed &&
+        !await _confirmStockLeft(initial.id)) {
+      return;
+    }
+    if (!mounted) return;
     final saved = await runSubmit(
       () => initial == null ? repository.create(body) : repository.update(initial.id, body),
     );

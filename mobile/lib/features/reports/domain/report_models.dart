@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../core/models/enums.dart';
 import '../../../core/models/refs.dart';
+import '../../stock/domain/stock_models.dart';
 
 part 'report_models.freezed.dart';
 part 'report_models.g.dart';
@@ -11,7 +12,8 @@ enum ReportKind {
   sites('sites'),
   staff('staff'),
   engineers('engineers'),
-  payments('payments');
+  payments('payments'),
+  stock('stock');
 
   const ReportKind(this.path);
   final String path;
@@ -215,4 +217,9 @@ class EngineersReport extends ReportResult {
 class PaymentsReport extends ReportResult {
   const PaymentsReport(this.report);
   final PaymentReport report;
+}
+
+class StockReport extends ReportResult {
+  const StockReport(this.rows);
+  final List<StockReportRow> rows;
 }

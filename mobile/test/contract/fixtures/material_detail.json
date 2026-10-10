@@ -1,0 +1,46 @@
+{
+  "success": true,
+  "data": {
+    "material": {
+      "id": "01a11c52-5385-771f-8454-9683c609d4b0",
+      "name": "Blue metal 20mm",
+      "unit": "cft",
+      "category": "Sand & aggregates",
+      "minStock": "300",
+      "isActive": true
+    },
+    "averageRate": "46.00",
+    "godowns": [
+      {
+        "godown": {
+          "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+          "name": "Main godown"
+        },
+        "onHand": "500"
+      }
+    ],
+    "sites": [
+      {
+        "site": {
+          "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+          "code": "SITE-001",
+          "name": "ABC Apartment Project",
+          "status": "IN_PROGRESS"
+        },
+        "onHand": "320"
+      },
+      {
+        "site": {
+          "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
+          "code": "SITE-003",
+          "name": "Sri Lakshmi Commercial Building",
+          "status": "IN_PROGRESS"
+        },
+        "onHand": "155"
+      }
+    ],
+    "inGodowns": "500",
+    "onSites": "475",
+    "inTransit": "0"
+  }
+}

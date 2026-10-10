@@ -5,6 +5,7 @@ import {
   DashboardService,
   type AdminDashboard,
   type EngineerDashboard,
+  type GodownDashboard,
 } from './dashboard.service.js';
 
 @Controller('dashboard')
@@ -21,5 +22,11 @@ export class DashboardController {
   @Get('engineer')
   engineer(@CurrentUser() user: AuthUser): Promise<EngineerDashboard> {
     return this.dashboard.engineer(user);
+  }
+
+  @Roles('GODOWN_MANAGER')
+  @Get('godown')
+  godown(@CurrentUser() user: AuthUser): Promise<GodownDashboard> {
+    return this.dashboard.godown(user);
   }
 }

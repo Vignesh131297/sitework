@@ -4,20 +4,26 @@ Android app and API for a construction / site-work contractor. This document is 
 reference for how the system is built and why. When a decision changes, update it here.
 
 - **Approved:** 2026-10-04 (all clarification defaults accepted).
-- **Status:** all ten phases built and tested. Going live needs the owner's accounts
-  and keys; see [RELEASE.md](RELEASE.md) and [§12 Phases](#12-phases).
+- **Status:** all ten phases built and tested, plus stock management (phase 11,
+  [§15](#15-stock)) and material requests with godown managers (phase 12,
+  [§15.5](#155-material-requests)). Going live needs the owner's accounts and keys; see
+  [RELEASE.md](RELEASE.md) and [§12 Phases](#12-phases).
 
 ---
 
 ## 1. What the product is
 
-Three roles share one app:
+Four roles share one app:
 
 | Role | Scope |
 |---|---|
-| **Admin** | Everything: clients, sites, people, payments, reports. Receives staff and engineer notifications. |
-| **Engineer** | Only their assigned sites and the staff on them. Reviews staff updates, reports progress and issues. |
+| **Admin** | Everything: clients, sites, people, payments, reports, stock. Receives staff and engineer notifications. Approves material requests. |
+| **Engineer** | Only their assigned sites and the staff on them. Reviews staff updates, reports progress and issues. Requests material for their sites. |
 | **Staff** | Only their own site and records. Marks attendance and sends three photo updates a day. |
+| **Godown manager** | Only the godowns an admin assigned them. Buys stock in, sends approved requests to sites, confirms returns. |
+
+Only the first admin signs up in the app. After that, admins create every account, other
+admins included.
 
 The core is a **daily compliance loop**. Every active staff member sends a geotagged
 photo update in each of three server-defined windows (Morning, Afternoon, Evening).
@@ -50,6 +56,10 @@ Decisions from the approval. Business rules marked ⚙ are stored in `app_settin
 | 15 | Report export | On screen plus CSV in v1. |
 | 16 | Navigation | Admin and Engineer get five bottom tabs, with Profile opened from the app-bar avatar. The notifications tab is labelled **Alerts** so it fits. Staff get five tabs, Profile included. |
 | 17 ⚙ | Gallery uploads | Allowed but marked *from gallery* for reviewers, and can be switched off. No watermark in v1. |
+| 18 | Stock (added 2026-10-08) | Several **godowns**. Moves between godowns and sites take two steps: a DC photo when leaving a godown, and the receiver confirms what arrived with a photo. Purchases carry a price per unit, shown to **admins**, and to a godown manager on the purchases they entered; site costs use the weighted average price. Engineers **and site staff** record usage daily. Materials are added at any time (no fixed list). See [§15](#15-stock). |
+| 19 ⚙ | Usage reminder | 18:30 on working days, to the engineers of each running site that holds stock but has no usage recorded that day. |
+| 20 | Material requests (added 2026-10-08) | Stock reaches a site **only** through an approved request sent from a godown: the engineer asks, an admin approves (choosing the godown and quantities) or rejects, the godown's manager sends it (in parts if needed), the site confirms with a photo, and the engineer closes it as *all used* or returns the leftover to that godown. No site-to-site moves; engineers return stock to a godown only. See [§15.5](#155-material-requests). |
+| 21 | Accounts | Only the first admin signs up (`POST /auth/signup`, closed once any admin exists). Admins create engineers, staff, **godown managers** (assigned to godowns) and other admins. |
 
 ## 3. System overview
 
@@ -139,6 +149,7 @@ backend/
     engineer-updates/        engineer reports to admins (permanent photos via attachments/)
     issues/                  site issues, resolve and reopen
     payments/                milestones, payments, voids, site money, overdue alerts
+    stock/                   godowns, materials, stock entries and balances (see §15)
     reports/                 date-range reports and CSV export
     dashboard/               admin and engineer dashboards
     notifications/ push/     inbox (also the push outbox), device tokens, FCM
@@ -202,6 +213,7 @@ values fall back to the defaults, and invalid ones are logged. Values are cached
 | `location` | required; fix timeout 10 s; site radius 300 m; outside-site FLAG; mock FLAG |
 | `attendance` | shift 09:00; late after 15 min; half day under 4 h; auto-absent |
 | `notifications` | admin staff-update push EACH; missed-update digest on |
+| `stock` | usage reminders on, at 18:30 |
 
 ### 5.7 Time
 
@@ -249,16 +261,19 @@ The source of truth is [`backend/prisma/schema.prisma`](../backend/prisma/schema
   - only ABSENT attendance may lack a check-in
   - check-out not before check-in
   - `image_key IS NULL` exactly when the photo is DELETED
-  - an attachment has exactly one owner
+  - an attachment has exactly one owner (an engineer update, an issue or a stock entry)
+  - stock: places match their godown or site id, stock always goes somewhere else, only moves between godowns and sites wait for the receiver, a line never receives more than was sent, only purchases carry a price
+  - material requests: quantities above zero, approved ones name a godown, rejected ones a reason, closed ones an outcome
 
 ### 6.2 Tables
 
 | Group | Tables |
 |---|---|
-| Identity | `users` (role enum: ADMIN, ENGINEER, STAFF), `auth_sessions`, `device_tokens`, `password_reset_codes` |
+| Identity | `users` (role enum: ADMIN, ENGINEER, STAFF, GODOWN_MANAGER), `auth_sessions`, `device_tokens`, `password_reset_codes` |
 | Sites | `clients`, `sites`, `engineer_assignments`, `staff_assignments`, `assignment_history` |
 | Field activity | `attendance`, `staff_updates`, `missed_updates`, `engineer_updates`, `issues`, `attachments` |
 | Money | `payment_milestones`, `payments` |
+| Stock | `godowns`, `godown_assignments` (managers), `materials`, `stock_entries` (one per form), `stock_movements` (one line per material), `material_requests`, `material_request_lines` |
 | Platform | `notifications` (inbox and push outbox), `app_settings`, `holidays`, `audit_logs` |
 
 Refinements made during implementation, relative to the approved proposal:
@@ -294,6 +309,7 @@ to today:
 - photos in every lifecycle state
 - payment milestones totalling ₹24,50,000 received and ₹8,50,000 pending, two of them overdue
 - engineer updates, issues and the notifications they would have produced
+- two godowns, each with a manager, three weeks of stock, and material requests in every state (one waiting for approval, one part sent with its delivery on the way, one rejected, two closed with leftovers returned)
 
 Development logins:
 
@@ -302,6 +318,8 @@ Development logins:
 | Admin | `+919000000001` or `admin@sitework.test` | `Admin@123` |
 | Engineer (Arun Kumar) | `+919000000011` or `arun@sitework.test` | `Engineer@123` |
 | Staff (Ravi) | `+919000000101` | `Staff@123` |
+| Godown manager (Selvam, Main godown) | `+919000000201` | `Godown@123` |
+| Godown manager (Karthik, Porur godown) | `+919000000202` | `Godown@123` |
 
 ## 7. Mobile app
 
@@ -339,7 +357,7 @@ mobile/
       theme/ utils/ widgets/
     features/              auth, profile, system, dashboard, sites, clients, people,
                            attendance, staff_updates, engineer_updates, issues,
-                           notifications (with push), payments, reports;
+                           notifications (with push), payments, reports, stock;
                            each with data / domain / presentation
   test/                    unit and widget tests; contract/ holds responses recorded from
                            the real API (refresh with tool/capture_contract_fixtures.dart)
@@ -356,7 +374,8 @@ overflows, and requests the recording can't answer.
 
 ### 7.3 Routing
 
-Each role's screens live under its area: `/admin/*`, `/engineer/*` or `/staff/*`.
+Each role's screens live under its area: `/admin/*`, `/engineer/*`, `/staff/*` or `/godown/*`
+(godown managers: Home, Requests, Stock and Alerts tabs).
 `redirectFor` (pure and unit-tested) sends signed-out users to `/login`, sends signed-in users
 to their home, and keeps them inside their own area. This only shapes navigation: the API
 enforces every permission.
@@ -444,6 +463,12 @@ LOGOUT / CHANGE PASSWORD
 The role is never taken from the app. It comes from the server-signed token and is re-checked
 against the database on every request, so deactivation is immediate.
 
+**First admin.** `GET /auth/signup` says whether sign-up is open, which is only while no admin
+exists; the login screen then offers "Set up SiteWork". `POST /auth/signup` creates that admin
+and signs them in. An advisory lock makes two simultaneous sign-ups produce one admin; after
+that it answers `SIGNUP_CLOSED`. Admins can't deactivate themselves, so one active admin
+always remains.
+
 ## 9. Staff photo lifecycle (Phase 4)
 
 ```
@@ -493,6 +518,15 @@ App: foreground snack bar with "View"; tap → route by reference_type
 | Issue status changed | reporting engineer | — |
 | Slot missed | each missing staff member's engineer, plus admins | one summary per recipient, site and slot |
 | Milestone overdue | admins | once per milestone |
+| Stock sent between godowns and sites | the receiving site's engineers, or the receiving godown's managers (admins when it has none) | once per entry |
+| Stock written off by an engineer or godown manager | admins | once per entry |
+| Delivery confirmed short | admins and the sending godown's managers | once per entry |
+| Material request made | admins | once per request |
+| Request approved | the site's engineers; the godown's managers ("Send MR-0012 to …") | once per request |
+| Request rejected | the site's engineers | once per request |
+| Request closed | admins and the godown's managers | once per request |
+| All godowns below a material's minimum | admins | once per drop below it |
+| No usage recorded today (18:30) | the site's engineers | once per site and day |
 
 Wording lives in `src/notifications/notification-messages.ts`, shared with the seed.
 Pushes use Android's default channel at high priority. Android's automatic bundling groups
@@ -509,6 +543,7 @@ polls the unread count every minute, so alerts arrive without Firebase.
 | absentees | every 15 min, after day end | mark staff who never checked in as Absent |
 | overdue | hourly | overdue-milestone alerts |
 | orphans | daily 03:17 | delete storage objects no record points to |
+| stock-usage | every 15 min | after the reminder time on working days, the daily usage reminder |
 
 ## 11. Security
 
@@ -550,6 +585,8 @@ Left to the owner before going live (details in [RELEASE.md](RELEASE.md)):
 | 8 | Reports, with CSV export | **Done** |
 | 9 | Hardening: integration and permission tests, performance | **Done** |
 | 10 | Release: signing, Crashlytics, logging, security review, Play Store | **Done** (publishing needs the owner's accounts: [RELEASE.md](RELEASE.md)) |
+| 11 | Stock: godowns, materials, purchases with prices, deliveries with DC and photos, usage, returns, write-offs, counts, reports | **Done** |
+| 12 | Material requests, godown managers, first-admin sign-up, admins creating admins | **Done** |
 
 Each phase ends runnable and with tests for its rules.
 
@@ -582,3 +619,108 @@ Two problems were found and fixed:
 
 Responses over 1 KB are gzipped. A contractor's real load is tens to a few hundred users,
 polling once a minute, which is far below these figures.
+
+## 15. Stock
+
+Added on 2026-10-08 at the client's request: materials, how much is in each godown and at
+each site, what sites use, and what is left over going back.
+
+### 15.1 Model
+
+Every stock change is an **entry** (one form: a purchase, a delivery, a day's usage, a
+write-off or a count) with **lines**, one per material. Each line moves a quantity from one
+place to another. Places are a godown, a site, or the outside world: the supplier, *used*,
+*waste*, and count corrections.
+
+```
+ Supplier ──buy──▶ GODOWN ──send against an approved request (DC photo)──▶ SITE ──use──▶ Used
+                   ▲   ▲                                                    │  │
+                   │   └──── return (leftover, or closing the request) ─────┘  └── write off ──▶ Waste
+                   └── godown to godown
+```
+
+Sites never send to each other: a site returns what it doesn't need to a godown, and
+another site requests it.
+
+- **Balances are never stored.** A place holds what arrived there minus what left it, summed
+  in one query over `stock_movements` (see `src/stock/stock-ledger.ts`, unit-tested). The
+  lines repeat their entry's places, status and dates so that the sum needs no join.
+- **Two steps between holders.** Stock leaving a godown or site is gone from the sender at
+  once (`IN_TRANSIT`). It counts at the receiver only once they confirm it, with what actually
+  arrived and at least one photo. Anything short needs a note, and admins are told.
+- **Quantities are exact.** `numeric(12,3)`, integer thousandths in code
+  (`src/common/quantity/quantity.ts`), and decimal strings in JSON.
+- **Nothing is deleted.** Mistakes are cancelled (voided) with a reason. A cancellation that
+  would leave a receiver below zero is refused.
+- **No place gives more than it holds.** The materials' rows are locked (`FOR UPDATE`, in id
+  order) while a form is checked and written, so two forms can't both take the last bag.
+- **Retries are safe.** Every form carries a `requestId` made on the phone.
+
+### 15.2 Who does what
+
+| | Admin | Godown manager (own godowns) | Engineer (own sites) | Site staff (own site) |
+|---|---|---|---|---|
+| Godowns, assigning managers | ✓ | | | |
+| Materials (added at any time) | ✓ | ✓ | | |
+| Buy into a godown, with price per unit | ✓ | ✓ | | |
+| Request material for a site | ✓ | | ✓ | |
+| Approve or reject a request | ✓ | | | |
+| Send to a site against an approved request (DC photo) | ✓ | ✓ | | |
+| Send between godowns (DC photo) | ✓ | ✓ (from theirs) | | |
+| Return from a site to a godown | ✓ | | ✓ | |
+| Confirm a delivery or return (photo required) | ✓ | at their godowns | at their sites | |
+| Record usage | ✓ | | ✓ | ✓ |
+| Close a request (all used, or leftover returned) | ✓ | | ✓ | |
+| Write off | ✓ | ✓ (admins are told) | ✓ (admins are told) | |
+| Count, recording the difference | ✓ | ✓ | | |
+| See godown stock | ✓ | their godowns | quantities | |
+| Prices and values | ✓ | their own purchases | | |
+
+Admins cancel anything (with a reason). Others cancel only what they recorded themselves, on
+the same day: staff their usage, engineers their usage and write-offs, godown managers their
+purchases, write-offs and counts. Engineers and godown managers may also cancel stock sent
+from their site or godown while it is on the way.
+
+### 15.3 Prices
+
+Purchase lines carry a `rate` (₹ per unit). A material's price is the **weighted average**
+of its purchases: everything paid divided by everything bought, up to the report's end date.
+Site values, the stock report's *Used value* and material pages use it. Prices and values
+are left out of every response for non-admins, except that a godown manager sees the prices
+on purchases they entered themselves.
+
+### 15.4 Low stock
+
+A material with a minimum is *low* when all godowns together, plus whatever is on its way to
+a godown, fall below it. Admins get one alert each time a drop takes it below the minimum.
+Moving stock between godowns never looks like a drop.
+
+### 15.5 Material requests
+
+Added on 2026-10-08: stock reaches a site only through a request.
+
+```
+ engineer asks ──▶ PENDING ──admin approves (godown + quantities)──▶ APPROVED ──engineer closes──▶ CLOSED
+                     │  │                                              │            (all used, or leftover
+                     │  └── admin rejects (reason) ──▶ REJECTED         │             returned to the godown)
+                     └── site or admin withdraws ──▶ CANCELLED          │
+                                                                        ▼
+                         godown manager sends (DC photo; in parts if needed) ──▶ site confirms (photo)
+```
+
+- **Numbered** `MR-0001` onwards (`material_requests.number`), so people can quote them.
+- **Approval** names the godown and an approved quantity per material (zero: not supplied).
+  The godown's managers are told what to send; the site is told who sends it.
+- **Sending** is an ordinary transfer from that godown to that site carrying the request's id.
+  The request row is locked while a delivery is checked, so deliveries never add up to more
+  than was approved (`REQUEST_EXCEEDED`). How much has been sent, has arrived, is on the way
+  and is left to send is worked out from the deliveries (`src/stock/request-progress.ts`),
+  never stored. Cancelling a delivery frees its quantity again.
+- **Closing** waits until nothing is on the way. With a leftover, the return to the
+  request's godown and the close are written in one transaction, so neither happens without
+  the other; the godown's manager confirms the return like any delivery.
+- **Who sees what.** Admins see every request; engineers their sites'; godown managers the
+  approved and closed requests of their godowns. The server says what the caller may do with
+  each one (`canApprove`, `canCancel`, `canSend`, `canClose`).
+- **Dashboards.** Admins see requests to approve, engineers their open requests, and godown
+  managers requests still to send, returns to confirm and low stock (`GET /dashboard/godown`).

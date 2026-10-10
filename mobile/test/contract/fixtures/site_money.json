@@ -2,13 +2,13 @@
   "success": true,
   "data": {
     "site": {
-      "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+      "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
       "code": "SITE-001",
       "name": "ABC Apartment Project",
       "status": "IN_PROGRESS"
     },
     "client": {
-      "id": "01a10655-4e65-7670-8c90-afc0b3886bb4",
+      "id": "01a11c52-51cb-74d7-b529-e4de2322e276",
       "name": "ABC Constructions"
     },
     "financials": {
@@ -19,46 +19,46 @@
       "overdueCount": 1,
       "milestones": [
         {
-          "id": "01a10655-4eab-7721-a817-a15555fa3d8e",
+          "id": "01a11c52-5214-7722-9a31-61cee08b2ee6",
           "title": "Advance",
           "amount": "300000.00",
-          "dueDate": "2026-03-02",
+          "dueDate": "2026-03-06",
           "paid": "300000.00",
           "outstanding": "0.00",
           "status": "PAID"
         },
         {
-          "id": "01a10655-4eac-7704-9a3c-7dccf9697894",
+          "id": "01a11c52-5214-7722-9a31-64f52e016baa",
           "title": "Foundation",
           "amount": "300000.00",
-          "dueDate": "2026-05-07",
+          "dueDate": "2026-05-11",
           "paid": "300000.00",
           "outstanding": "0.00",
           "status": "PAID"
         },
         {
-          "id": "01a10655-4eac-7704-9a3c-824f2c0d4e76",
+          "id": "01a11c52-5214-7722-9a31-69e5723cae4c",
           "title": "Plinth beam",
           "amount": "300000.00",
-          "dueDate": "2026-07-06",
+          "dueDate": "2026-07-10",
           "paid": "300000.00",
           "outstanding": "0.00",
           "status": "PAID"
         },
         {
-          "id": "01a10655-4eac-7704-9a3c-84590eed6d96",
+          "id": "01a11c52-5214-7722-9a31-6d5b587ce5e9",
           "title": "First floor slab",
           "amount": "300000.00",
-          "dueDate": "2026-09-14",
+          "dueDate": "2026-09-18",
           "paid": "200000.00",
           "outstanding": "100000.00",
           "status": "OVERDUE"
         },
         {
-          "id": "01a10655-4eac-7704-9a3c-8a270651b9b6",
+          "id": "01a11c52-5214-7722-9a31-725e8af2ac09",
           "title": "Second floor slab",
           "amount": "300000.00",
-          "dueDate": "2026-11-13",
+          "dueDate": "2026-11-17",
           "paid": "0.00",
           "outstanding": "300000.00",
           "status": "PENDING"

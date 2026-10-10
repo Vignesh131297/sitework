@@ -20,6 +20,7 @@ import '../../../core/widgets/inline_message.dart';
 import '../../../core/widgets/status_chip.dart';
 import '../../../core/widgets/submit_state.dart';
 import '../../auth/domain/user_role.dart';
+import '../../auth/presentation/session_controller.dart';
 import '../../auth/presentation/user_role_label.dart';
 import '../data/people_repository.dart';
 import '../domain/person_models.dart';
@@ -28,7 +29,8 @@ import 'temporary_password_dialog.dart';
 
 enum _Action { edit, resetPassword, deactivate, activate }
 
-/// An engineer's or staff member's profile, with the admin's actions.
+/// A person's profile (engineer, staff member, godown manager or admin), with
+/// the admin's actions.
 class PersonDetailScreen extends ConsumerStatefulWidget {
   const PersonDetailScreen({super.key, required this.role, required this.id});
 
@@ -52,7 +54,8 @@ class _PersonDetailScreenState extends ConsumerState<PersonDetailScreen> {
       final result = await change();
       ref
         ..bump(DataSet.people)
-        ..bump(DataSet.sites);
+        ..bump(DataSet.sites)
+        ..bump(DataSet.stock);
       return result;
     } on AppException catch (error) {
       if (mounted) showErrorSnack(context, error);
@@ -67,11 +70,7 @@ class _PersonDetailScreenState extends ConsumerState<PersonDetailScreen> {
     final repository = ref.read(peopleRepositoryProvider);
     switch (action) {
       case _Action.edit:
-        await context.push(
-          widget.role == UserRole.staff
-              ? AppRoutes.adminStaffMemberEdit(person.id)
-              : AppRoutes.adminEngineerEdit(person.id),
-        );
+        await context.push(AppRoutes.adminPersonEdit(personSegment(widget.role), person.id));
       case _Action.resetPassword:
         final confirmed = await showConfirmDialog(
           context,
@@ -120,6 +119,8 @@ class _PersonDetailScreenState extends ConsumerState<PersonDetailScreen> {
     final l10n = AppLocalizations.of(context);
     final person = ref.watch(personDetailProvider(_key));
     final loaded = person.value;
+    // Admins can't switch off their own account.
+    final isSelf = loaded?.id == ref.watch(sessionProvider).value?.userId;
     return Scaffold(
       appBar: AppBar(
         title: Text(loaded?.name ?? ''),
@@ -133,9 +134,9 @@ class _PersonDetailScreenState extends ConsumerState<PersonDetailScreen> {
               itemBuilder: (context) => [
                 PopupMenuItem(value: _Action.edit, child: Text(l10n.commonEdit)),
                 if (loaded.isActive) PopupMenuItem(value: _Action.resetPassword, child: Text(l10n.personResetPassword)),
-                if (loaded.isActive)
+                if (loaded.isActive && !isSelf)
                   PopupMenuItem(value: _Action.deactivate, child: Text(l10n.personDeactivate))
-                else
+                else if (!loaded.isActive)
                   PopupMenuItem(value: _Action.activate, child: Text(l10n.personActivate)),
               ],
             ),
@@ -177,10 +178,12 @@ class _PersonDetailScreenState extends ConsumerState<PersonDetailScreen> {
                 label: l10n.personLastSignIn,
                 value: person.lastLoginAt == null ? l10n.personNeverSignedIn : formatDateTime(person.lastLoginAt!),
               ),
-              if (person.role == UserRole.staff)
-                ..._staffSection(context, person)
-              else
-                ..._engineerSection(context, person),
+              ...switch (person.role) {
+                UserRole.staff => _staffSection(context, person),
+                UserRole.engineer => _engineerSection(context, person),
+                UserRole.godownManager => _godownSection(context, person),
+                UserRole.admin => const <Widget>[],
+              },
             ],
           ),
         ),
@@ -223,6 +226,27 @@ class _PersonDetailScreenState extends ConsumerState<PersonDetailScreen> {
                 OutlinedButton(onPressed: _busy ? null : () => _unassign(person), child: Text(l10n.personUnassign)),
             ],
           ),
+        ),
+    ];
+  }
+
+  List<Widget> _godownSection(BuildContext context, PersonDetail person) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    return [
+      _Padded(SectionHeader(l10n.personGodowns)),
+      if (person.godowns.isEmpty)
+        _Padded(
+          Text(
+            l10n.personNoGodowns,
+            style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant),
+          ),
+        ),
+      for (final godown in person.godowns)
+        ListTile(
+          leading: const Icon(Icons.warehouse_outlined),
+          title: Text(godown.name),
+          onTap: () => context.push(AppRoutes.stockGodown(AppRoutes.adminArea, godown.id)),
         ),
     ];
   }

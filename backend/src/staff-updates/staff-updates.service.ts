@@ -476,6 +476,7 @@ function pendingReview(user: AuthUser): Prisma.StaffUpdateWhereInput {
         imageStatus: 'AVAILABLE',
       };
     case 'STAFF':
+    case 'GODOWN_MANAGER':
       return {};
   }
 }

@@ -38,6 +38,23 @@ class FakeAuthRepository implements AuthRepository {
     return current = user;
   }
 
+  /// No admin yet: the first one may sign up.
+  var signUpIsOpen = false;
+
+  @override
+  Future<bool> signUpOpen() async => signUpIsOpen;
+
+  @override
+  Future<AppSession> signUp({
+    required String name,
+    required String phone,
+    String? email,
+    required String password,
+  }) async {
+    signUpIsOpen = false;
+    return current = AppSession(userId: 'admin-1', name: name, role: UserRole.admin);
+  }
+
   @override
   Future<void> signOut() async {
     signOuts += 1;

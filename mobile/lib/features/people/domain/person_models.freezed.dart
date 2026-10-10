@@ -16,7 +16,8 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$PersonSummary {
 
- String get id; UserRole get role; String get name; String get phone; String? get email; String get employeeCode; Designation? get designation; String? get joiningDate; bool get isActive; DateTime? get lastLoginAt; List<SiteRef> get sites; int get staffCount; StaffAssignmentInfo? get assignment;
+ String get id; UserRole get role; String get name; String get phone; String? get email; String get employeeCode; Designation? get designation; String? get joiningDate; bool get isActive; DateTime? get lastLoginAt; List<SiteRef> get sites; int get staffCount; StaffAssignmentInfo? get assignment;/// Godown managers: the godowns they run.
+ List<IdName> get godowns;
 /// Create a copy of PersonSummary
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,20 +31,20 @@ $PersonSummaryCopyWith<PersonSummary> get copyWith => _$PersonSummaryCopyWithImp
 @override
 bool operator ==(Object other) {
   final _this = this as PersonSummary;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PersonSummary&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.role, _this.role) || other.role == _this.role)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.employeeCode, _this.employeeCode) || other.employeeCode == _this.employeeCode)&&(identical(other.designation, _this.designation) || other.designation == _this.designation)&&(identical(other.joiningDate, _this.joiningDate) || other.joiningDate == _this.joiningDate)&&(identical(other.isActive, _this.isActive) || other.isActive == _this.isActive)&&(identical(other.lastLoginAt, _this.lastLoginAt) || other.lastLoginAt == _this.lastLoginAt)&&const DeepCollectionEquality().equals(other.sites, _this.sites)&&(identical(other.staffCount, _this.staffCount) || other.staffCount == _this.staffCount)&&(identical(other.assignment, _this.assignment) || other.assignment == _this.assignment));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PersonSummary&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.role, _this.role) || other.role == _this.role)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.employeeCode, _this.employeeCode) || other.employeeCode == _this.employeeCode)&&(identical(other.designation, _this.designation) || other.designation == _this.designation)&&(identical(other.joiningDate, _this.joiningDate) || other.joiningDate == _this.joiningDate)&&(identical(other.isActive, _this.isActive) || other.isActive == _this.isActive)&&(identical(other.lastLoginAt, _this.lastLoginAt) || other.lastLoginAt == _this.lastLoginAt)&&const DeepCollectionEquality().equals(other.sites, _this.sites)&&(identical(other.staffCount, _this.staffCount) || other.staffCount == _this.staffCount)&&(identical(other.assignment, _this.assignment) || other.assignment == _this.assignment)&&const DeepCollectionEquality().equals(other.godowns, _this.godowns));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as PersonSummary;
-  return Object.hash(runtimeType,_this.id,_this.role,_this.name,_this.phone,_this.email,_this.employeeCode,_this.designation,_this.joiningDate,_this.isActive,_this.lastLoginAt,const DeepCollectionEquality().hash(_this.sites),_this.staffCount,_this.assignment);
+  return Object.hash(runtimeType,_this.id,_this.role,_this.name,_this.phone,_this.email,_this.employeeCode,_this.designation,_this.joiningDate,_this.isActive,_this.lastLoginAt,const DeepCollectionEquality().hash(_this.sites),_this.staffCount,_this.assignment,const DeepCollectionEquality().hash(_this.godowns));
 }
 
 @override
 String toString() {
   final _this = this as PersonSummary;
-  return 'PersonSummary(id: ${_this.id}, role: ${_this.role}, name: ${_this.name}, phone: ${_this.phone}, email: ${_this.email}, employeeCode: ${_this.employeeCode}, designation: ${_this.designation}, joiningDate: ${_this.joiningDate}, isActive: ${_this.isActive}, lastLoginAt: ${_this.lastLoginAt}, sites: ${_this.sites}, staffCount: ${_this.staffCount}, assignment: ${_this.assignment})';
+  return 'PersonSummary(id: ${_this.id}, role: ${_this.role}, name: ${_this.name}, phone: ${_this.phone}, email: ${_this.email}, employeeCode: ${_this.employeeCode}, designation: ${_this.designation}, joiningDate: ${_this.joiningDate}, isActive: ${_this.isActive}, lastLoginAt: ${_this.lastLoginAt}, sites: ${_this.sites}, staffCount: ${_this.staffCount}, assignment: ${_this.assignment}, godowns: ${_this.godowns})';
 }
 
 
@@ -54,7 +55,7 @@ abstract mixin class $PersonSummaryCopyWith<$Res>  {
   factory $PersonSummaryCopyWith(PersonSummary value, $Res Function(PersonSummary) _then) = _$PersonSummaryCopyWithImpl;
 @useResult
 $Res call({
- String id, UserRole role, String name, String phone, String? email, String employeeCode, Designation? designation, String? joiningDate, bool isActive, DateTime? lastLoginAt, List<SiteRef> sites, int staffCount, StaffAssignmentInfo? assignment
+ String id, UserRole role, String name, String phone, String? email, String employeeCode, Designation? designation, String? joiningDate, bool isActive, DateTime? lastLoginAt, List<SiteRef> sites, int staffCount, StaffAssignmentInfo? assignment, List<IdName> godowns
 });
 
 
@@ -71,7 +72,7 @@ class _$PersonSummaryCopyWithImpl<$Res>
 
 /// Create a copy of PersonSummary
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? role = null,Object? name = null,Object? phone = null,Object? email = freezed,Object? employeeCode = null,Object? designation = freezed,Object? joiningDate = freezed,Object? isActive = null,Object? lastLoginAt = freezed,Object? sites = null,Object? staffCount = null,Object? assignment = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? role = null,Object? name = null,Object? phone = null,Object? email = freezed,Object? employeeCode = null,Object? designation = freezed,Object? joiningDate = freezed,Object? isActive = null,Object? lastLoginAt = freezed,Object? sites = null,Object? staffCount = null,Object? assignment = freezed,Object? godowns = null,}) {
   return _then(PersonSummary(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
@@ -86,7 +87,8 @@ as bool,lastLoginAt: freezed == lastLoginAt ? _self.lastLoginAt : lastLoginAt //
 as DateTime?,sites: null == sites ? _self.sites : sites // ignore: cast_nullable_to_non_nullable
 as List<SiteRef>,staffCount: null == staffCount ? _self.staffCount : staffCount // ignore: cast_nullable_to_non_nullable
 as int,assignment: freezed == assignment ? _self.assignment : assignment // ignore: cast_nullable_to_non_nullable
-as StaffAssignmentInfo?,
+as StaffAssignmentInfo?,godowns: null == godowns ? _self.godowns : godowns // ignore: cast_nullable_to_non_nullable
+as List<IdName>,
   ));
 }
 /// Create a copy of PersonSummary
@@ -183,10 +185,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  List<IdName> godowns)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PersonSummary() when $default != null:
-return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment);case _:
+return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.godowns);case _:
   return orElse();
 
 }
@@ -204,10 +206,10 @@ return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.emp
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  List<IdName> godowns)  $default,) {final _that = this;
 switch (_that) {
 case _PersonSummary():
-return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment);case _:
+return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.godowns);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -224,10 +226,10 @@ return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.emp
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  List<IdName> godowns)?  $default,) {final _that = this;
 switch (_that) {
 case _PersonSummary() when $default != null:
-return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment);case _:
+return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.godowns);case _:
   return null;
 
 }
@@ -239,7 +241,7 @@ return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.emp
 @JsonSerializable()
 
 class _PersonSummary implements PersonSummary {
-  const _PersonSummary({required this.id, required this.role, required this.name, required this.phone, this.email, required this.employeeCode, this.designation, this.joiningDate, required this.isActive, this.lastLoginAt,  List<SiteRef> sites = const <SiteRef>[], this.staffCount = 0, this.assignment}): _sites = sites;
+  const _PersonSummary({required this.id, required this.role, required this.name, required this.phone, this.email, required this.employeeCode, this.designation, this.joiningDate, required this.isActive, this.lastLoginAt,  List<SiteRef> sites = const <SiteRef>[], this.staffCount = 0, this.assignment,  List<IdName> godowns = const <IdName>[]}): _sites = sites,_godowns = godowns;
   factory _PersonSummary.fromJson(Map<String, dynamic> json) => _$PersonSummaryFromJson(json);
 
 @override final  String id;
@@ -261,6 +263,15 @@ class _PersonSummary implements PersonSummary {
 
 @override@JsonKey() final  int staffCount;
 @override final  StaffAssignmentInfo? assignment;
+/// Godown managers: the godowns they run.
+ final  List<IdName> _godowns;
+/// Godown managers: the godowns they run.
+@override@JsonKey() List<IdName> get godowns {
+  if (_godowns is EqualUnmodifiableListView) return _godowns;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_godowns);
+}
+
 
 /// Create a copy of PersonSummary
 /// with the given fields replaced by the non-null parameter values.
@@ -275,18 +286,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PersonSummary&&(identical(other.id, id) || other.id == id)&&(identical(other.role, role) || other.role == role)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.employeeCode, employeeCode) || other.employeeCode == employeeCode)&&(identical(other.designation, designation) || other.designation == designation)&&(identical(other.joiningDate, joiningDate) || other.joiningDate == joiningDate)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.lastLoginAt, lastLoginAt) || other.lastLoginAt == lastLoginAt)&&const DeepCollectionEquality().equals(other.sites, _sites)&&(identical(other.staffCount, staffCount) || other.staffCount == staffCount)&&(identical(other.assignment, assignment) || other.assignment == assignment));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PersonSummary&&(identical(other.id, id) || other.id == id)&&(identical(other.role, role) || other.role == role)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.employeeCode, employeeCode) || other.employeeCode == employeeCode)&&(identical(other.designation, designation) || other.designation == designation)&&(identical(other.joiningDate, joiningDate) || other.joiningDate == joiningDate)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.lastLoginAt, lastLoginAt) || other.lastLoginAt == lastLoginAt)&&const DeepCollectionEquality().equals(other.sites, _sites)&&(identical(other.staffCount, staffCount) || other.staffCount == staffCount)&&(identical(other.assignment, assignment) || other.assignment == assignment)&&const DeepCollectionEquality().equals(other.godowns, _godowns));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,id,role,name,phone,email,employeeCode,designation,joiningDate,isActive,lastLoginAt,const DeepCollectionEquality().hash(_sites),staffCount,assignment);
+    return Object.hash(runtimeType,id,role,name,phone,email,employeeCode,designation,joiningDate,isActive,lastLoginAt,const DeepCollectionEquality().hash(_sites),staffCount,assignment,const DeepCollectionEquality().hash(_godowns));
 }
 
 @override
 String toString() {
-    return 'PersonSummary(id: $id, role: $role, name: $name, phone: $phone, email: $email, employeeCode: $employeeCode, designation: $designation, joiningDate: $joiningDate, isActive: $isActive, lastLoginAt: $lastLoginAt, sites: $sites, staffCount: $staffCount, assignment: $assignment)';
+    return 'PersonSummary(id: $id, role: $role, name: $name, phone: $phone, email: $email, employeeCode: $employeeCode, designation: $designation, joiningDate: $joiningDate, isActive: $isActive, lastLoginAt: $lastLoginAt, sites: $sites, staffCount: $staffCount, assignment: $assignment, godowns: $godowns)';
 }
 
 
@@ -297,7 +308,7 @@ abstract mixin class _$PersonSummaryCopyWith<$Res> implements $PersonSummaryCopy
   factory _$PersonSummaryCopyWith(_PersonSummary value, $Res Function(_PersonSummary) _then) = __$PersonSummaryCopyWithImpl;
 @override @useResult
 $Res call({
- String id, UserRole role, String name, String phone, String? email, String employeeCode, Designation? designation, String? joiningDate, bool isActive, DateTime? lastLoginAt, List<SiteRef> sites, int staffCount, StaffAssignmentInfo? assignment
+ String id, UserRole role, String name, String phone, String? email, String employeeCode, Designation? designation, String? joiningDate, bool isActive, DateTime? lastLoginAt, List<SiteRef> sites, int staffCount, StaffAssignmentInfo? assignment, List<IdName> godowns
 });
 
 
@@ -314,7 +325,7 @@ class __$PersonSummaryCopyWithImpl<$Res>
 
 /// Create a copy of PersonSummary
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? role = null,Object? name = null,Object? phone = null,Object? email = freezed,Object? employeeCode = null,Object? designation = freezed,Object? joiningDate = freezed,Object? isActive = null,Object? lastLoginAt = freezed,Object? sites = null,Object? staffCount = null,Object? assignment = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? role = null,Object? name = null,Object? phone = null,Object? email = freezed,Object? employeeCode = null,Object? designation = freezed,Object? joiningDate = freezed,Object? isActive = null,Object? lastLoginAt = freezed,Object? sites = null,Object? staffCount = null,Object? assignment = freezed,Object? godowns = null,}) {
   return _then(_PersonSummary(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
@@ -329,7 +340,8 @@ as bool,lastLoginAt: freezed == lastLoginAt ? _self.lastLoginAt : lastLoginAt //
 as DateTime?,sites: null == sites ? _self._sites : sites // ignore: cast_nullable_to_non_nullable
 as List<SiteRef>,staffCount: null == staffCount ? _self.staffCount : staffCount // ignore: cast_nullable_to_non_nullable
 as int,assignment: freezed == assignment ? _self.assignment : assignment // ignore: cast_nullable_to_non_nullable
-as StaffAssignmentInfo?,
+as StaffAssignmentInfo?,godowns: null == godowns ? _self._godowns : godowns // ignore: cast_nullable_to_non_nullable
+as List<IdName>,
   ));
 }
 
@@ -649,7 +661,8 @@ $IdNameCopyWith<$Res> get site {
 /// @nodoc
 mixin _$PersonDetail {
 
- String get id; UserRole get role; String get name; String get phone; String? get email; String get employeeCode; Designation? get designation; String? get joiningDate; bool get isActive; DateTime? get lastLoginAt; List<SiteRef> get sites; int get staffCount; StaffAssignmentInfo? get assignment; bool get mustChangePassword; List<SupervisedStaff> get supervisedStaff;
+ String get id; UserRole get role; String get name; String get phone; String? get email; String get employeeCode; Designation? get designation; String? get joiningDate; bool get isActive; DateTime? get lastLoginAt; List<SiteRef> get sites; int get staffCount; StaffAssignmentInfo? get assignment; bool get mustChangePassword; List<SupervisedStaff> get supervisedStaff;/// Godown managers: the godowns they run.
+ List<IdName> get godowns;
 /// Create a copy of PersonDetail
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -663,20 +676,20 @@ $PersonDetailCopyWith<PersonDetail> get copyWith => _$PersonDetailCopyWithImpl<P
 @override
 bool operator ==(Object other) {
   final _this = this as PersonDetail;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PersonDetail&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.role, _this.role) || other.role == _this.role)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.employeeCode, _this.employeeCode) || other.employeeCode == _this.employeeCode)&&(identical(other.designation, _this.designation) || other.designation == _this.designation)&&(identical(other.joiningDate, _this.joiningDate) || other.joiningDate == _this.joiningDate)&&(identical(other.isActive, _this.isActive) || other.isActive == _this.isActive)&&(identical(other.lastLoginAt, _this.lastLoginAt) || other.lastLoginAt == _this.lastLoginAt)&&const DeepCollectionEquality().equals(other.sites, _this.sites)&&(identical(other.staffCount, _this.staffCount) || other.staffCount == _this.staffCount)&&(identical(other.assignment, _this.assignment) || other.assignment == _this.assignment)&&(identical(other.mustChangePassword, _this.mustChangePassword) || other.mustChangePassword == _this.mustChangePassword)&&const DeepCollectionEquality().equals(other.supervisedStaff, _this.supervisedStaff));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PersonDetail&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.role, _this.role) || other.role == _this.role)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.employeeCode, _this.employeeCode) || other.employeeCode == _this.employeeCode)&&(identical(other.designation, _this.designation) || other.designation == _this.designation)&&(identical(other.joiningDate, _this.joiningDate) || other.joiningDate == _this.joiningDate)&&(identical(other.isActive, _this.isActive) || other.isActive == _this.isActive)&&(identical(other.lastLoginAt, _this.lastLoginAt) || other.lastLoginAt == _this.lastLoginAt)&&const DeepCollectionEquality().equals(other.sites, _this.sites)&&(identical(other.staffCount, _this.staffCount) || other.staffCount == _this.staffCount)&&(identical(other.assignment, _this.assignment) || other.assignment == _this.assignment)&&(identical(other.mustChangePassword, _this.mustChangePassword) || other.mustChangePassword == _this.mustChangePassword)&&const DeepCollectionEquality().equals(other.supervisedStaff, _this.supervisedStaff)&&const DeepCollectionEquality().equals(other.godowns, _this.godowns));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as PersonDetail;
-  return Object.hash(runtimeType,_this.id,_this.role,_this.name,_this.phone,_this.email,_this.employeeCode,_this.designation,_this.joiningDate,_this.isActive,_this.lastLoginAt,const DeepCollectionEquality().hash(_this.sites),_this.staffCount,_this.assignment,_this.mustChangePassword,const DeepCollectionEquality().hash(_this.supervisedStaff));
+  return Object.hash(runtimeType,_this.id,_this.role,_this.name,_this.phone,_this.email,_this.employeeCode,_this.designation,_this.joiningDate,_this.isActive,_this.lastLoginAt,const DeepCollectionEquality().hash(_this.sites),_this.staffCount,_this.assignment,_this.mustChangePassword,const DeepCollectionEquality().hash(_this.supervisedStaff),const DeepCollectionEquality().hash(_this.godowns));
 }
 
 @override
 String toString() {
   final _this = this as PersonDetail;
-  return 'PersonDetail(id: ${_this.id}, role: ${_this.role}, name: ${_this.name}, phone: ${_this.phone}, email: ${_this.email}, employeeCode: ${_this.employeeCode}, designation: ${_this.designation}, joiningDate: ${_this.joiningDate}, isActive: ${_this.isActive}, lastLoginAt: ${_this.lastLoginAt}, sites: ${_this.sites}, staffCount: ${_this.staffCount}, assignment: ${_this.assignment}, mustChangePassword: ${_this.mustChangePassword}, supervisedStaff: ${_this.supervisedStaff})';
+  return 'PersonDetail(id: ${_this.id}, role: ${_this.role}, name: ${_this.name}, phone: ${_this.phone}, email: ${_this.email}, employeeCode: ${_this.employeeCode}, designation: ${_this.designation}, joiningDate: ${_this.joiningDate}, isActive: ${_this.isActive}, lastLoginAt: ${_this.lastLoginAt}, sites: ${_this.sites}, staffCount: ${_this.staffCount}, assignment: ${_this.assignment}, mustChangePassword: ${_this.mustChangePassword}, supervisedStaff: ${_this.supervisedStaff}, godowns: ${_this.godowns})';
 }
 
 
@@ -687,7 +700,7 @@ abstract mixin class $PersonDetailCopyWith<$Res>  {
   factory $PersonDetailCopyWith(PersonDetail value, $Res Function(PersonDetail) _then) = _$PersonDetailCopyWithImpl;
 @useResult
 $Res call({
- String id, UserRole role, String name, String phone, String? email, String employeeCode, Designation? designation, String? joiningDate, bool isActive, DateTime? lastLoginAt, List<SiteRef> sites, int staffCount, StaffAssignmentInfo? assignment, bool mustChangePassword, List<SupervisedStaff> supervisedStaff
+ String id, UserRole role, String name, String phone, String? email, String employeeCode, Designation? designation, String? joiningDate, bool isActive, DateTime? lastLoginAt, List<SiteRef> sites, int staffCount, StaffAssignmentInfo? assignment, bool mustChangePassword, List<SupervisedStaff> supervisedStaff, List<IdName> godowns
 });
 
 
@@ -704,7 +717,7 @@ class _$PersonDetailCopyWithImpl<$Res>
 
 /// Create a copy of PersonDetail
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? role = null,Object? name = null,Object? phone = null,Object? email = freezed,Object? employeeCode = null,Object? designation = freezed,Object? joiningDate = freezed,Object? isActive = null,Object? lastLoginAt = freezed,Object? sites = null,Object? staffCount = null,Object? assignment = freezed,Object? mustChangePassword = null,Object? supervisedStaff = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? role = null,Object? name = null,Object? phone = null,Object? email = freezed,Object? employeeCode = null,Object? designation = freezed,Object? joiningDate = freezed,Object? isActive = null,Object? lastLoginAt = freezed,Object? sites = null,Object? staffCount = null,Object? assignment = freezed,Object? mustChangePassword = null,Object? supervisedStaff = null,Object? godowns = null,}) {
   return _then(PersonDetail(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
@@ -721,7 +734,8 @@ as List<SiteRef>,staffCount: null == staffCount ? _self.staffCount : staffCount 
 as int,assignment: freezed == assignment ? _self.assignment : assignment // ignore: cast_nullable_to_non_nullable
 as StaffAssignmentInfo?,mustChangePassword: null == mustChangePassword ? _self.mustChangePassword : mustChangePassword // ignore: cast_nullable_to_non_nullable
 as bool,supervisedStaff: null == supervisedStaff ? _self.supervisedStaff : supervisedStaff // ignore: cast_nullable_to_non_nullable
-as List<SupervisedStaff>,
+as List<SupervisedStaff>,godowns: null == godowns ? _self.godowns : godowns // ignore: cast_nullable_to_non_nullable
+as List<IdName>,
   ));
 }
 /// Create a copy of PersonDetail
@@ -818,10 +832,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  bool mustChangePassword,  List<SupervisedStaff> supervisedStaff)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  bool mustChangePassword,  List<SupervisedStaff> supervisedStaff,  List<IdName> godowns)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PersonDetail() when $default != null:
-return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.mustChangePassword,_that.supervisedStaff);case _:
+return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.mustChangePassword,_that.supervisedStaff,_that.godowns);case _:
   return orElse();
 
 }
@@ -839,10 +853,10 @@ return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.emp
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  bool mustChangePassword,  List<SupervisedStaff> supervisedStaff)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  bool mustChangePassword,  List<SupervisedStaff> supervisedStaff,  List<IdName> godowns)  $default,) {final _that = this;
 switch (_that) {
 case _PersonDetail():
-return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.mustChangePassword,_that.supervisedStaff);case _:
+return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.mustChangePassword,_that.supervisedStaff,_that.godowns);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -859,10 +873,10 @@ return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.emp
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  bool mustChangePassword,  List<SupervisedStaff> supervisedStaff)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  bool mustChangePassword,  List<SupervisedStaff> supervisedStaff,  List<IdName> godowns)?  $default,) {final _that = this;
 switch (_that) {
 case _PersonDetail() when $default != null:
-return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.mustChangePassword,_that.supervisedStaff);case _:
+return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.mustChangePassword,_that.supervisedStaff,_that.godowns);case _:
   return null;
 
 }
@@ -874,7 +888,7 @@ return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.emp
 @JsonSerializable()
 
 class _PersonDetail implements PersonDetail {
-  const _PersonDetail({required this.id, required this.role, required this.name, required this.phone, this.email, required this.employeeCode, this.designation, this.joiningDate, required this.isActive, this.lastLoginAt,  List<SiteRef> sites = const <SiteRef>[], this.staffCount = 0, this.assignment, required this.mustChangePassword,  List<SupervisedStaff> supervisedStaff = const <SupervisedStaff>[]}): _sites = sites,_supervisedStaff = supervisedStaff;
+  const _PersonDetail({required this.id, required this.role, required this.name, required this.phone, this.email, required this.employeeCode, this.designation, this.joiningDate, required this.isActive, this.lastLoginAt,  List<SiteRef> sites = const <SiteRef>[], this.staffCount = 0, this.assignment, required this.mustChangePassword,  List<SupervisedStaff> supervisedStaff = const <SupervisedStaff>[],  List<IdName> godowns = const <IdName>[]}): _sites = sites,_supervisedStaff = supervisedStaff,_godowns = godowns;
   factory _PersonDetail.fromJson(Map<String, dynamic> json) => _$PersonDetailFromJson(json);
 
 @override final  String id;
@@ -904,6 +918,15 @@ class _PersonDetail implements PersonDetail {
   return EqualUnmodifiableListView(_supervisedStaff);
 }
 
+/// Godown managers: the godowns they run.
+ final  List<IdName> _godowns;
+/// Godown managers: the godowns they run.
+@override@JsonKey() List<IdName> get godowns {
+  if (_godowns is EqualUnmodifiableListView) return _godowns;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_godowns);
+}
+
 
 /// Create a copy of PersonDetail
 /// with the given fields replaced by the non-null parameter values.
@@ -918,18 +941,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PersonDetail&&(identical(other.id, id) || other.id == id)&&(identical(other.role, role) || other.role == role)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.employeeCode, employeeCode) || other.employeeCode == employeeCode)&&(identical(other.designation, designation) || other.designation == designation)&&(identical(other.joiningDate, joiningDate) || other.joiningDate == joiningDate)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.lastLoginAt, lastLoginAt) || other.lastLoginAt == lastLoginAt)&&const DeepCollectionEquality().equals(other.sites, _sites)&&(identical(other.staffCount, staffCount) || other.staffCount == staffCount)&&(identical(other.assignment, assignment) || other.assignment == assignment)&&(identical(other.mustChangePassword, mustChangePassword) || other.mustChangePassword == mustChangePassword)&&const DeepCollectionEquality().equals(other.supervisedStaff, _supervisedStaff));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PersonDetail&&(identical(other.id, id) || other.id == id)&&(identical(other.role, role) || other.role == role)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.employeeCode, employeeCode) || other.employeeCode == employeeCode)&&(identical(other.designation, designation) || other.designation == designation)&&(identical(other.joiningDate, joiningDate) || other.joiningDate == joiningDate)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.lastLoginAt, lastLoginAt) || other.lastLoginAt == lastLoginAt)&&const DeepCollectionEquality().equals(other.sites, _sites)&&(identical(other.staffCount, staffCount) || other.staffCount == staffCount)&&(identical(other.assignment, assignment) || other.assignment == assignment)&&(identical(other.mustChangePassword, mustChangePassword) || other.mustChangePassword == mustChangePassword)&&const DeepCollectionEquality().equals(other.supervisedStaff, _supervisedStaff)&&const DeepCollectionEquality().equals(other.godowns, _godowns));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,id,role,name,phone,email,employeeCode,designation,joiningDate,isActive,lastLoginAt,const DeepCollectionEquality().hash(_sites),staffCount,assignment,mustChangePassword,const DeepCollectionEquality().hash(_supervisedStaff));
+    return Object.hash(runtimeType,id,role,name,phone,email,employeeCode,designation,joiningDate,isActive,lastLoginAt,const DeepCollectionEquality().hash(_sites),staffCount,assignment,mustChangePassword,const DeepCollectionEquality().hash(_supervisedStaff),const DeepCollectionEquality().hash(_godowns));
 }
 
 @override
 String toString() {
-    return 'PersonDetail(id: $id, role: $role, name: $name, phone: $phone, email: $email, employeeCode: $employeeCode, designation: $designation, joiningDate: $joiningDate, isActive: $isActive, lastLoginAt: $lastLoginAt, sites: $sites, staffCount: $staffCount, assignment: $assignment, mustChangePassword: $mustChangePassword, supervisedStaff: $supervisedStaff)';
+    return 'PersonDetail(id: $id, role: $role, name: $name, phone: $phone, email: $email, employeeCode: $employeeCode, designation: $designation, joiningDate: $joiningDate, isActive: $isActive, lastLoginAt: $lastLoginAt, sites: $sites, staffCount: $staffCount, assignment: $assignment, mustChangePassword: $mustChangePassword, supervisedStaff: $supervisedStaff, godowns: $godowns)';
 }
 
 
@@ -940,7 +963,7 @@ abstract mixin class _$PersonDetailCopyWith<$Res> implements $PersonDetailCopyWi
   factory _$PersonDetailCopyWith(_PersonDetail value, $Res Function(_PersonDetail) _then) = __$PersonDetailCopyWithImpl;
 @override @useResult
 $Res call({
- String id, UserRole role, String name, String phone, String? email, String employeeCode, Designation? designation, String? joiningDate, bool isActive, DateTime? lastLoginAt, List<SiteRef> sites, int staffCount, StaffAssignmentInfo? assignment, bool mustChangePassword, List<SupervisedStaff> supervisedStaff
+ String id, UserRole role, String name, String phone, String? email, String employeeCode, Designation? designation, String? joiningDate, bool isActive, DateTime? lastLoginAt, List<SiteRef> sites, int staffCount, StaffAssignmentInfo? assignment, bool mustChangePassword, List<SupervisedStaff> supervisedStaff, List<IdName> godowns
 });
 
 
@@ -957,7 +980,7 @@ class __$PersonDetailCopyWithImpl<$Res>
 
 /// Create a copy of PersonDetail
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? role = null,Object? name = null,Object? phone = null,Object? email = freezed,Object? employeeCode = null,Object? designation = freezed,Object? joiningDate = freezed,Object? isActive = null,Object? lastLoginAt = freezed,Object? sites = null,Object? staffCount = null,Object? assignment = freezed,Object? mustChangePassword = null,Object? supervisedStaff = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? role = null,Object? name = null,Object? phone = null,Object? email = freezed,Object? employeeCode = null,Object? designation = freezed,Object? joiningDate = freezed,Object? isActive = null,Object? lastLoginAt = freezed,Object? sites = null,Object? staffCount = null,Object? assignment = freezed,Object? mustChangePassword = null,Object? supervisedStaff = null,Object? godowns = null,}) {
   return _then(_PersonDetail(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
@@ -974,7 +997,8 @@ as List<SiteRef>,staffCount: null == staffCount ? _self.staffCount : staffCount 
 as int,assignment: freezed == assignment ? _self.assignment : assignment // ignore: cast_nullable_to_non_nullable
 as StaffAssignmentInfo?,mustChangePassword: null == mustChangePassword ? _self.mustChangePassword : mustChangePassword // ignore: cast_nullable_to_non_nullable
 as bool,supervisedStaff: null == supervisedStaff ? _self._supervisedStaff : supervisedStaff // ignore: cast_nullable_to_non_nullable
-as List<SupervisedStaff>,
+as List<SupervisedStaff>,godowns: null == godowns ? _self._godowns : godowns // ignore: cast_nullable_to_non_nullable
+as List<IdName>,
   ));
 }
 

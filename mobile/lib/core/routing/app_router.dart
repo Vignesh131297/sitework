@@ -7,6 +7,7 @@ import '../../features/auth/presentation/forgot_password_screen.dart';
 import '../../features/auth/presentation/login_screen.dart';
 import '../../features/auth/presentation/reset_password_screen.dart';
 import '../../features/auth/presentation/session_controller.dart';
+import '../../features/auth/presentation/sign_up_screen.dart';
 import '../../features/auth/presentation/splash_screen.dart';
 import 'app_routes.dart';
 import 'not_found_screen.dart';
@@ -26,6 +27,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
     routes: [
       GoRoute(path: AppRoutes.splash, builder: (context, state) => const SplashScreen()),
       GoRoute(path: AppRoutes.login, builder: (context, state) => const LoginScreen()),
+      GoRoute(path: AppRoutes.signUp, builder: (context, state) => const SignUpScreen()),
       GoRoute(
         path: AppRoutes.forgotPassword,
         builder: (context, state) =>
@@ -39,6 +41,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       ...adminRoutes,
       ...engineerRoutes,
       ...staffRoutes,
+      ...godownRoutes,
     ],
   );
 

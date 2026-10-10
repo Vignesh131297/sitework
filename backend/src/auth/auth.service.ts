@@ -4,10 +4,12 @@ import { ConfigService } from '@nestjs/config';
 import { AuditService } from '../common/audit/audit.service.js';
 import { AppException } from '../common/errors/app.exception.js';
 import { ErrorCode } from '../common/errors/error-codes.js';
+import { optionalEmail, requirePhone } from '../common/identity/contact.js';
 import { parseLoginIdentifier } from '../common/identity/phone.js';
 import type { Env } from '../config/env.js';
 import type { Role } from '../generated/prisma/enums.js';
 import { MailSender } from '../mail/mail.module.js';
+import { nextEmployeeCode } from '../people/employee-codes.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import {
   UsersRepository,
@@ -20,6 +22,7 @@ import {
   invalidResetCode,
   samePassword,
   sessionRevoked,
+  signupClosed,
   tokenInvalid,
   weakPassword,
   wrongCurrentPassword,
@@ -60,6 +63,9 @@ export interface AuthResult {
   refreshToken: string;
   user: SessionUser;
 }
+
+/** Advisory lock id serialising first-admin sign-ups. */
+const FIRST_ADMIN_LOCK = 734_501_118;
 
 const RESET_REQUESTED_MESSAGE =
   "If your account has an e-mail address, we've sent it a 6-digit code. Otherwise, ask your admin to reset your password.";
@@ -107,6 +113,71 @@ export class AuthService {
     if (!user.isActive) throw accountDisabled();
 
     await this.users.recordSuccessfulLogin(user.id, now);
+    const secret = this.tokens.newSecret();
+    const session = await this.sessions.create({
+      userId: user.id,
+      refreshTokenHash: this.tokens.hash('refresh', secret),
+      deviceName: client.deviceName,
+      ipAddress: client.ip,
+      expiresAt: this.refreshExpiry(now),
+    });
+    return this.issue(user, session.id, secret, now);
+  }
+
+  /** Sign-up is open only until the first admin exists. */
+  async signupOpen(): Promise<boolean> {
+    return (await this.prisma.user.count({ where: { role: 'ADMIN' } })) === 0;
+  }
+
+  /**
+   * The first admin creates their own account and is signed in. After that,
+   * admins create everyone (other admins included), so sign-up is closed.
+   */
+  async signUpFirstAdmin(
+    dto: {
+      name: string;
+      phone: string;
+      email?: string | null;
+      password: string;
+    },
+    client: ClientContext,
+  ): Promise<AuthResult> {
+    const now = new Date();
+    const phone = requirePhone(dto.phone);
+    const email = optionalEmail(dto.email) ?? null;
+    const problem = passwordProblem(dto.password, { phone });
+    if (problem) throw weakPassword(problem);
+    if (!(await this.signupOpen())) throw signupClosed();
+    const passwordHash = await hashPassword(dto.password);
+    const user = await this.prisma.$transaction(async (tx) => {
+      // One sign-up at a time, so two people can't both become the first admin.
+      await tx.$executeRaw`SELECT pg_advisory_xact_lock(${FIRST_ADMIN_LOCK})`;
+      if (await tx.user.count({ where: { role: 'ADMIN' } }))
+        throw signupClosed();
+      const created = await tx.user.create({
+        data: {
+          role: 'ADMIN',
+          name: dto.name.trim(),
+          phone,
+          email,
+          employeeCode: await nextEmployeeCode(tx, 'ADMIN'),
+          passwordHash,
+          lastLoginAt: now,
+        },
+        select: { id: true, name: true, role: true, mustChangePassword: true },
+      });
+      await this.audit.record(
+        {
+          actorId: created.id,
+          action: 'user.signed_up',
+          entityType: 'User',
+          entityId: created.id,
+          changes: { role: 'ADMIN' },
+        },
+        tx,
+      );
+      return created;
+    });
     const secret = this.tokens.newSecret();
     const session = await this.sessions.create({
       userId: user.id,

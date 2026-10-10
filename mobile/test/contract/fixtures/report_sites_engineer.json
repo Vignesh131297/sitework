@@ -3,26 +3,26 @@
   "data": [
     {
       "site": {
-        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
         "code": "SITE-001",
         "name": "ABC Apartment Project",
         "status": "IN_PROGRESS"
       },
       "client": {
-        "id": "01a10655-4e65-7670-8c90-afc0b3886bb4",
+        "id": "01a11c52-51cb-74d7-b529-e4de2322e276",
         "name": "ABC Constructions"
       },
       "updates": {
-        "submitted": 55,
-        "missed": 8,
+        "submitted": 56,
+        "missed": 10,
         "offline": 4,
         "locationFlagged": 4,
-        "compliancePercent": 87
+        "compliancePercent": 85
       },
       "attendance": {
-        "present": 16,
-        "late": 5,
-        "halfDay": 0,
+        "present": 17,
+        "late": 4,
+        "halfDay": 1,
         "absent": 2
       },
       "engineerUpdates": 3,
@@ -35,24 +35,24 @@
     },
     {
       "site": {
-        "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+        "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
         "code": "SITE-003",
         "name": "Sri Lakshmi Commercial Building",
         "status": "IN_PROGRESS"
       },
       "client": {
-        "id": "01a10655-4e6a-700b-8975-77dcf0cacdd7",
+        "id": "01a11c52-51d0-763a-9834-8b04afdfd4eb",
         "name": "Sri Lakshmi Developers"
       },
       "updates": {
-        "submitted": 59,
+        "submitted": 62,
         "missed": 7,
-        "offline": 1,
+        "offline": 2,
         "locationFlagged": 3,
-        "compliancePercent": 89
+        "compliancePercent": 90
       },
       "attendance": {
-        "present": 19,
+        "present": 20,
         "late": 2,
         "halfDay": 1,
         "absent": 0

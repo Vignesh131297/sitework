@@ -165,3 +165,13 @@ extension PaymentMethodLabel on PaymentMethod {
     PaymentMethod.other => l10n.paymentMethodOther,
   };
 }
+
+extension StockKindLabel on StockKind {
+  String label(AppLocalizations l10n) => switch (this) {
+    StockKind.purchase => l10n.stockKindPurchase,
+    StockKind.transfer => l10n.stockKindTransfer,
+    StockKind.usage => l10n.stockKindUsage,
+    StockKind.writeOff => l10n.stockKindWriteOff,
+    StockKind.adjustment => l10n.stockKindAdjustment,
+  };
+}

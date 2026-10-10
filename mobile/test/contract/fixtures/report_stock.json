@@ -1,0 +1,415 @@
+{
+  "success": true,
+  "data": [
+    {
+      "place": "GODOWN",
+      "site": null,
+      "godown": {
+        "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+        "name": "Main godown"
+      },
+      "material": {
+        "id": "01a11c52-5385-771f-8454-9683c609d4b0",
+        "name": "Blue metal 20mm",
+        "unit": "cft"
+      },
+      "opening": "0",
+      "received": "1600",
+      "used": "0",
+      "sentOut": "1100",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "500",
+      "usedValue": "0.00"
+    },
+    {
+      "place": "GODOWN",
+      "site": null,
+      "godown": {
+        "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+        "name": "Main godown"
+      },
+      "material": {
+        "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+        "name": "Cement OPC 53",
+        "unit": "bag"
+      },
+      "opening": "0",
+      "received": "500",
+      "used": "0",
+      "sentOut": "280",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "220",
+      "usedValue": "0.00"
+    },
+    {
+      "place": "GODOWN",
+      "site": null,
+      "godown": {
+        "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+        "name": "Main godown"
+      },
+      "material": {
+        "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+        "name": "M-Sand",
+        "unit": "cft"
+      },
+      "opening": "0",
+      "received": "3000",
+      "used": "0",
+      "sentOut": "1300",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "1700",
+      "usedValue": "0.00"
+    },
+    {
+      "place": "GODOWN",
+      "site": null,
+      "godown": {
+        "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+        "name": "Main godown"
+      },
+      "material": {
+        "id": "01a11c52-5387-72c0-a7f2-f113520703e6",
+        "name": "Red bricks",
+        "unit": "nos"
+      },
+      "opening": "0",
+      "received": "30000",
+      "used": "0",
+      "sentOut": "18000",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "12000",
+      "usedValue": "0.00"
+    },
+    {
+      "place": "GODOWN",
+      "site": null,
+      "godown": {
+        "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+        "name": "Main godown"
+      },
+      "material": {
+        "id": "01a11c52-5381-735c-8b63-4354c3bde9e6",
+        "name": "TMT Steel 12mm",
+        "unit": "kg"
+      },
+      "opening": "0",
+      "received": "5000",
+      "used": "0",
+      "sentOut": "3500",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "1500",
+      "usedValue": "0.00"
+    },
+    {
+      "place": "GODOWN",
+      "site": null,
+      "godown": {
+        "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+        "name": "Main godown"
+      },
+      "material": {
+        "id": "01a11c52-5389-77ec-8197-5b05941c4d18",
+        "name": "Wall putty",
+        "unit": "bag"
+      },
+      "opening": "0",
+      "received": "50",
+      "used": "0",
+      "sentOut": "0",
+      "wasted": "0",
+      "adjusted": "-2",
+      "closing": "48",
+      "usedValue": "0.00"
+    },
+    {
+      "place": "GODOWN",
+      "site": null,
+      "godown": {
+        "id": "01a11c52-5378-71e9-9215-156b47566776",
+        "name": "Porur godown"
+      },
+      "material": {
+        "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+        "name": "Cement OPC 53",
+        "unit": "bag"
+      },
+      "opening": "0",
+      "received": "220",
+      "used": "0",
+      "sentOut": "100",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "120",
+      "usedValue": "0.00"
+    },
+    {
+      "place": "GODOWN",
+      "site": null,
+      "godown": {
+        "id": "01a11c52-5378-71e9-9215-156b47566776",
+        "name": "Porur godown"
+      },
+      "material": {
+        "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+        "name": "M-Sand",
+        "unit": "cft"
+      },
+      "opening": "0",
+      "received": "1400",
+      "used": "0",
+      "sentOut": "800",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "600",
+      "usedValue": "0.00"
+    },
+    {
+      "place": "SITE",
+      "site": {
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      "godown": null,
+      "material": {
+        "id": "01a11c52-5385-771f-8454-9683c609d4b0",
+        "name": "Blue metal 20mm",
+        "unit": "cft"
+      },
+      "opening": "0",
+      "received": "600",
+      "used": "280",
+      "sentOut": "0",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "320",
+      "usedValue": "12880.00"
+    },
+    {
+      "place": "SITE",
+      "site": {
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      "godown": null,
+      "material": {
+        "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+        "name": "Cement OPC 53",
+        "unit": "bag"
+      },
+      "opening": "0",
+      "received": "148",
+      "used": "56",
+      "sentOut": "0",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "92",
+      "usedValue": "21723.52"
+    },
+    {
+      "place": "SITE",
+      "site": {
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      "godown": null,
+      "material": {
+        "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+        "name": "M-Sand",
+        "unit": "cft"
+      },
+      "opening": "0",
+      "received": "1000",
+      "used": "420",
+      "sentOut": "0",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "580",
+      "usedValue": "22050.00"
+    },
+    {
+      "place": "SITE",
+      "site": {
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      "godown": null,
+      "material": {
+        "id": "01a11c52-5387-72c0-a7f2-f113520703e6",
+        "name": "Red bricks",
+        "unit": "nos"
+      },
+      "opening": "0",
+      "received": "10000",
+      "used": "6300",
+      "sentOut": "0",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "3700",
+      "usedValue": "59850.00"
+    },
+    {
+      "place": "SITE",
+      "site": {
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      "godown": null,
+      "material": {
+        "id": "01a11c52-5381-735c-8b63-4354c3bde9e6",
+        "name": "TMT Steel 12mm",
+        "unit": "kg"
+      },
+      "opening": "0",
+      "received": "2000",
+      "used": "1052",
+      "sentOut": "0",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "948",
+      "usedValue": "71536.00"
+    },
+    {
+      "place": "SITE",
+      "site": {
+        "id": "01a11c52-51ec-772b-ac1a-96a6a41f6962",
+        "code": "SITE-002",
+        "name": "Green Valley Villa"
+      },
+      "godown": null,
+      "material": {
+        "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+        "name": "Cement OPC 53",
+        "unit": "bag"
+      },
+      "opening": "0",
+      "received": "100",
+      "used": "44",
+      "sentOut": "0",
+      "wasted": "3",
+      "adjusted": "0",
+      "closing": "53",
+      "usedValue": "17068.48"
+    },
+    {
+      "place": "SITE",
+      "site": {
+        "id": "01a11c52-51ec-772b-ac1a-96a6a41f6962",
+        "code": "SITE-002",
+        "name": "Green Valley Villa"
+      },
+      "godown": null,
+      "material": {
+        "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+        "name": "M-Sand",
+        "unit": "cft"
+      },
+      "opening": "0",
+      "received": "800",
+      "used": "352",
+      "sentOut": "0",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "448",
+      "usedValue": "18480.00"
+    },
+    {
+      "place": "SITE",
+      "site": {
+        "id": "01a11c52-51ec-772b-ac1a-96a6a41f6962",
+        "code": "SITE-002",
+        "name": "Green Valley Villa"
+      },
+      "godown": null,
+      "material": {
+        "id": "01a11c52-5387-72c0-a7f2-f113520703e6",
+        "name": "Red bricks",
+        "unit": "nos"
+      },
+      "opening": "0",
+      "received": "8000",
+      "used": "4900",
+      "sentOut": "1000",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "2100",
+      "usedValue": "46550.00"
+    },
+    {
+      "place": "SITE",
+      "site": {
+        "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
+        "code": "SITE-003",
+        "name": "Sri Lakshmi Commercial Building"
+      },
+      "godown": null,
+      "material": {
+        "id": "01a11c52-5385-771f-8454-9683c609d4b0",
+        "name": "Blue metal 20mm",
+        "unit": "cft"
+      },
+      "opening": "0",
+      "received": "500",
+      "used": "245",
+      "sentOut": "100",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "155",
+      "usedValue": "11270.00"
+    },
+    {
+      "place": "SITE",
+      "site": {
+        "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
+        "code": "SITE-003",
+        "name": "Sri Lakshmi Commercial Building"
+      },
+      "godown": null,
+      "material": {
+        "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+        "name": "Cement OPC 53",
+        "unit": "bag"
+      },
+      "opening": "0",
+      "received": "80",
+      "used": "35",
+      "sentOut": "0",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "45",
+      "usedValue": "13577.20"
+    },
+    {
+      "place": "SITE",
+      "site": {
+        "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
+        "code": "SITE-003",
+        "name": "Sri Lakshmi Commercial Building"
+      },
+      "godown": null,
+      "material": {
+        "id": "01a11c52-5381-735c-8b63-4354c3bde9e6",
+        "name": "TMT Steel 12mm",
+        "unit": "kg"
+      },
+      "opening": "0",
+      "received": "1500",
+      "used": "840",
+      "sentOut": "0",
+      "wasted": "0",
+      "adjusted": "0",
+      "closing": "660",
+      "usedValue": "57120.00"
+    }
+  ]
+}

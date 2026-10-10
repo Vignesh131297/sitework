@@ -6,13 +6,13 @@ import '../../../core/network/api_client.dart';
 import '../../auth/domain/user_role.dart';
 import '../domain/person_models.dart';
 
-/// Engineers and staff. [role] picks the endpoint (/engineers or /staff).
+/// Engineers, staff, godown managers and admins. [role] picks the endpoint.
 class PeopleRepository {
   PeopleRepository(this._api);
 
   final ApiClient _api;
 
-  static String _path(UserRole role) => role == UserRole.engineer ? '/engineers' : '/staff';
+  static String _path(UserRole role) => '/${personSegment(role)}';
 
   Future<PageResult<PersonSummary>> list(
     UserRole role, {
@@ -61,6 +61,14 @@ class PeopleRepository {
 
   static PersonDetail _detail(Object? data) => PersonDetail.fromJson(data! as Map<String, dynamic>);
 }
+
+/// The API path and app route segment for a role's people.
+String personSegment(UserRole role) => switch (role) {
+  UserRole.engineer => 'engineers',
+  UserRole.staff => 'staff',
+  UserRole.godownManager => 'godown-managers',
+  UserRole.admin => 'admins',
+};
 
 final peopleRepositoryProvider = Provider<PeopleRepository>((ref) => PeopleRepository(ref.watch(apiClientProvider)));
 

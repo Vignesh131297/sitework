@@ -1,0 +1,312 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a11c52-53ba-728d-8fad-827e33eaeb9b",
+      "code": "MR-0006",
+      "site": {
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      "requestedBy": {
+        "id": "01a11c52-51a9-726e-813a-f1fa901ee64b",
+        "name": "Arun Kumar"
+      },
+      "status": "APPROVED",
+      "neededBy": "2026-10-08",
+      "note": "Second floor slab.",
+      "createdAt": "2026-10-06T04:30:00.000Z",
+      "godown": {
+        "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+        "name": "Main godown"
+      },
+      "reviewedBy": {
+        "id": "01a11c52-519c-70a0-b260-8fee4ee49fa0",
+        "name": "Admin User"
+      },
+      "reviewedAt": "2026-10-06T07:30:00.000Z",
+      "reviewNote": null,
+      "outcome": null,
+      "closedBy": null,
+      "closedAt": null,
+      "closeNote": null,
+      "lines": [
+        {
+          "material": {
+            "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+            "name": "Cement OPC 53",
+            "unit": "bag"
+          },
+          "quantity": "100",
+          "approvedQuantity": "100",
+          "sent": "50",
+          "received": "0",
+          "onTheWay": "50",
+          "leftToSend": "50"
+        },
+        {
+          "material": {
+            "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+            "name": "M-Sand",
+            "unit": "cft"
+          },
+          "quantity": "300",
+          "approvedQuantity": "300",
+          "sent": "300",
+          "received": "0",
+          "onTheWay": "300",
+          "leftToSend": "0"
+        }
+      ],
+      "sentInFull": false,
+      "canApprove": false,
+      "canCancel": false,
+      "canSend": true,
+      "canClose": false
+    },
+    {
+      "id": "01a11c52-53a6-7042-8098-bcb5b8370195",
+      "code": "MR-0003",
+      "site": {
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      "requestedBy": {
+        "id": "01a11c52-51a9-726e-813a-f1fa901ee64b",
+        "name": "Arun Kumar"
+      },
+      "status": "APPROVED",
+      "neededBy": null,
+      "note": "First floor columns and slab.",
+      "createdAt": "2026-09-19T05:30:00.000Z",
+      "godown": {
+        "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+        "name": "Main godown"
+      },
+      "reviewedBy": {
+        "id": "01a11c52-519c-70a0-b260-8fee4ee49fa0",
+        "name": "Admin User"
+      },
+      "reviewedAt": "2026-09-19T06:40:00.000Z",
+      "reviewNote": null,
+      "outcome": null,
+      "closedBy": null,
+      "closedAt": null,
+      "closeNote": null,
+      "lines": [
+        {
+          "material": {
+            "id": "01a11c52-5385-771f-8454-9683c609d4b0",
+            "name": "Blue metal 20mm",
+            "unit": "cft"
+          },
+          "quantity": "600",
+          "approvedQuantity": "600",
+          "sent": "600",
+          "received": "600",
+          "onTheWay": "0",
+          "leftToSend": "0"
+        },
+        {
+          "material": {
+            "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+            "name": "Cement OPC 53",
+            "unit": "bag"
+          },
+          "quantity": "150",
+          "approvedQuantity": "150",
+          "sent": "150",
+          "received": "148",
+          "onTheWay": "0",
+          "leftToSend": "0"
+        },
+        {
+          "material": {
+            "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+            "name": "M-Sand",
+            "unit": "cft"
+          },
+          "quantity": "1000",
+          "approvedQuantity": "1000",
+          "sent": "1000",
+          "received": "1000",
+          "onTheWay": "0",
+          "leftToSend": "0"
+        },
+        {
+          "material": {
+            "id": "01a11c52-5387-72c0-a7f2-f113520703e6",
+            "name": "Red bricks",
+            "unit": "nos"
+          },
+          "quantity": "10000",
+          "approvedQuantity": "10000",
+          "sent": "10000",
+          "received": "10000",
+          "onTheWay": "0",
+          "leftToSend": "0"
+        },
+        {
+          "material": {
+            "id": "01a11c52-5381-735c-8b63-4354c3bde9e6",
+            "name": "TMT Steel 12mm",
+            "unit": "kg"
+          },
+          "quantity": "2000",
+          "approvedQuantity": "2000",
+          "sent": "2000",
+          "received": "2000",
+          "onTheWay": "0",
+          "leftToSend": "0"
+        }
+      ],
+      "sentInFull": true,
+      "canApprove": false,
+      "canCancel": false,
+      "canSend": false,
+      "canClose": false
+    },
+    {
+      "id": "01a11c52-53ae-7665-8183-541b03777aaf",
+      "code": "MR-0004",
+      "site": {
+        "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
+        "code": "SITE-003",
+        "name": "Sri Lakshmi Commercial Building"
+      },
+      "requestedBy": {
+        "id": "01a11c52-51af-712c-a92c-b631a875841d",
+        "name": "Suresh"
+      },
+      "status": "CLOSED",
+      "neededBy": null,
+      "note": "Ground floor columns.",
+      "createdAt": "2026-09-21T04:30:00.000Z",
+      "godown": {
+        "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+        "name": "Main godown"
+      },
+      "reviewedBy": {
+        "id": "01a11c52-519c-70a0-b260-8fee4ee49fa0",
+        "name": "Admin User"
+      },
+      "reviewedAt": "2026-09-21T06:00:00.000Z",
+      "reviewNote": "Only 500 cft of blue metal for now.",
+      "outcome": "LEFTOVER_RETURNED",
+      "closedBy": {
+        "id": "01a11c52-51af-712c-a92c-b631a875841d",
+        "name": "Suresh"
+      },
+      "closedAt": "2026-10-02T10:30:00.000Z",
+      "closeNote": "Column work done; extra blue metal back to the godown.",
+      "lines": [
+        {
+          "material": {
+            "id": "01a11c52-5385-771f-8454-9683c609d4b0",
+            "name": "Blue metal 20mm",
+            "unit": "cft"
+          },
+          "quantity": "600",
+          "approvedQuantity": "500",
+          "sent": "500",
+          "received": "500",
+          "onTheWay": "0",
+          "leftToSend": "0"
+        },
+        {
+          "material": {
+            "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+            "name": "Cement OPC 53",
+            "unit": "bag"
+          },
+          "quantity": "80",
+          "approvedQuantity": "80",
+          "sent": "80",
+          "received": "80",
+          "onTheWay": "0",
+          "leftToSend": "0"
+        },
+        {
+          "material": {
+            "id": "01a11c52-5381-735c-8b63-4354c3bde9e6",
+            "name": "TMT Steel 12mm",
+            "unit": "kg"
+          },
+          "quantity": "1500",
+          "approvedQuantity": "1500",
+          "sent": "1500",
+          "received": "1500",
+          "onTheWay": "0",
+          "leftToSend": "0"
+        }
+      ],
+      "sentInFull": true,
+      "canApprove": false,
+      "canCancel": false,
+      "canSend": false,
+      "canClose": false
+    },
+    {
+      "id": "01a11c52-53a0-7629-8ce2-0efef5ad0d75",
+      "code": "MR-0002",
+      "site": {
+        "id": "01a11c52-51ec-772b-ac1a-96a6a41f6962",
+        "code": "SITE-002",
+        "name": "Green Valley Villa"
+      },
+      "requestedBy": {
+        "id": "01a11c52-51ac-70e4-bf87-b4e50f2569e0",
+        "name": "Prakash"
+      },
+      "status": "CLOSED",
+      "neededBy": null,
+      "note": "Compound wall and ground floor walls.",
+      "createdAt": "2026-09-19T05:15:00.000Z",
+      "godown": {
+        "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+        "name": "Main godown"
+      },
+      "reviewedBy": {
+        "id": "01a11c52-519c-70a0-b260-8fee4ee49fa0",
+        "name": "Admin User"
+      },
+      "reviewedAt": "2026-09-19T06:35:00.000Z",
+      "reviewNote": null,
+      "outcome": "LEFTOVER_RETURNED",
+      "closedBy": {
+        "id": "01a11c52-51ac-70e4-bf87-b4e50f2569e0",
+        "name": "Prakash"
+      },
+      "closedAt": "2026-10-07T10:00:00.000Z",
+      "closeNote": "Compound wall done; 1,000 bricks not needed here.",
+      "lines": [
+        {
+          "material": {
+            "id": "01a11c52-5387-72c0-a7f2-f113520703e6",
+            "name": "Red bricks",
+            "unit": "nos"
+          },
+          "quantity": "8000",
+          "approvedQuantity": "8000",
+          "sent": "8000",
+          "received": "8000",
+          "onTheWay": "0",
+          "leftToSend": "0"
+        }
+      ],
+      "sentInFull": true,
+      "canApprove": false,
+      "canCancel": false,
+      "canSend": false,
+      "canClose": false
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 10,
+    "total": 4,
+    "totalPages": 1
+  }
+}

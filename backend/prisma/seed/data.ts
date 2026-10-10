@@ -14,6 +14,7 @@ export const DEV_PASSWORDS: Record<Role, string> = {
   ADMIN: 'Admin@123',
   ENGINEER: 'Engineer@123',
   STAFF: 'Staff@123',
+  GODOWN_MANAGER: 'Godown@123',
 };
 
 export interface PersonSeed {
@@ -117,6 +118,22 @@ export const PEOPLE: PersonSeed[] = [
     employeeCode: 'STF-006',
     designation: 'PAINTER',
     joinedDaysAgo: 200,
+  },
+  {
+    key: 'selvam',
+    role: 'GODOWN_MANAGER',
+    name: 'Selvam',
+    phone: '+919000000201',
+    employeeCode: 'GDM-001',
+    joinedDaysAgo: 500,
+  },
+  {
+    key: 'karthik',
+    role: 'GODOWN_MANAGER',
+    name: 'Karthik',
+    phone: '+919000000202',
+    employeeCode: 'GDM-002',
+    joinedDaysAgo: 320,
   },
 ];
 

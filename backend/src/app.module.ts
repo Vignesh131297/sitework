@@ -34,6 +34,7 @@ import { ReportsModule } from './reports/reports.module.js';
 import { SettingsModule } from './settings/settings.module.js';
 import { SitesModule } from './sites/sites.module.js';
 import { StaffUpdatesModule } from './staff-updates/staff-updates.module.js';
+import { StockModule } from './stock/stock.module.js';
 import { StorageModule } from './storage/storage.module.js';
 import { UsersModule } from './users/users.module.js';
 
@@ -88,6 +89,7 @@ import { UsersModule } from './users/users.module.js';
     EngineerUpdatesModule,
     IssuesModule,
     PaymentsModule,
+    StockModule,
     ReportsModule,
     JobsModule,
     DashboardModule,

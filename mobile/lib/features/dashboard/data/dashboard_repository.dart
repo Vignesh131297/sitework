@@ -14,6 +14,9 @@ class DashboardRepository {
 
   Future<EngineerDashboard> engineer() =>
       _api.get('/dashboard/engineer', decode: (data) => EngineerDashboard.fromJson(data! as Map<String, dynamic>));
+
+  Future<GodownDashboard> godown() =>
+      _api.get('/dashboard/godown', decode: (data) => GodownDashboard.fromJson(data! as Map<String, dynamic>));
 }
 
 final dashboardRepositoryProvider = Provider<DashboardRepository>(
@@ -22,15 +25,27 @@ final dashboardRepositoryProvider = Provider<DashboardRepository>(
 
 /// Reloads whenever anything it summarizes changes.
 final adminDashboardProvider = FutureProvider.autoDispose<AdminDashboard>((ref) {
-  for (final set in [DataSet.sites, DataSet.people, DataSet.payments, DataSet.staffUpdates, DataSet.issues]) {
+  for (final set in [
+    DataSet.sites,
+    DataSet.people,
+    DataSet.payments,
+    DataSet.staffUpdates,
+    DataSet.issues,
+    DataSet.stock,
+  ]) {
     ref.watch(revisionProvider(set));
   }
   return ref.watch(dashboardRepositoryProvider).admin();
 });
 
 final engineerDashboardProvider = FutureProvider.autoDispose<EngineerDashboard>((ref) {
-  for (final set in [DataSet.sites, DataSet.staffUpdates, DataSet.engineerUpdates, DataSet.issues]) {
+  for (final set in [DataSet.sites, DataSet.staffUpdates, DataSet.engineerUpdates, DataSet.issues, DataSet.stock]) {
     ref.watch(revisionProvider(set));
   }
   return ref.watch(dashboardRepositoryProvider).engineer();
+});
+
+final godownDashboardProvider = FutureProvider.autoDispose<GodownDashboard>((ref) {
+  ref.watch(revisionProvider(DataSet.stock));
+  return ref.watch(dashboardRepositoryProvider).godown();
 });

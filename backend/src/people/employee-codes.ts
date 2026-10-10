@@ -5,6 +5,7 @@ const CODE_PREFIX: Record<Role, string> = {
   ADMIN: 'ADM',
   ENGINEER: 'ENG',
   STAFF: 'STF',
+  GODOWN_MANAGER: 'GDM',
 };
 
 /** The next code for [role], e.g. "ENG-004", after the highest one in use. */

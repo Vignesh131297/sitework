@@ -2,81 +2,74 @@
   "success": true,
   "data": [
     {
-      "id": "01a1078d-ddbc-71bd-8dca-b3f4498aad32",
-      "type": "PAYMENT",
-      "title": "Payment overdue: First floor slab",
-      "message": "ABC Apartment Project · ₹1,00,000 due since Mon 14 Sep",
-      "referenceType": "PAYMENT_MILESTONE",
-      "referenceId": "01a10655-4eac-7704-9a3c-84590eed6d96",
+      "id": "01a11c52-54fb-711e-add5-993e7df8eabd",
+      "type": "MISSING_UPDATE",
+      "title": "Kumar has not submitted the Evening Update",
+      "message": "ABC Apartment Project · Thu 8 Oct",
+      "referenceType": "SITE",
+      "referenceId": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
       "data": {
-        "siteId": "01a10655-4e71-71c4-991e-21d37335e32e"
+        "date": "2026-10-08",
+        "slot": "EVENING"
       },
       "isRead": false,
-      "createdAt": "2026-10-04T15:35:00.284Z"
+      "createdAt": "2026-10-08T13:46:00.000Z"
     },
     {
-      "id": "01a1078d-ddbc-71bd-8dca-b7ed3e351945",
-      "type": "PAYMENT",
-      "title": "Payment overdue: Brickwork and lintel",
-      "message": "Green Valley Villa · ₹50,000 due since Thu 24 Sep",
-      "referenceType": "PAYMENT_MILESTONE",
-      "referenceId": "01a10655-4ebe-7298-9709-b870fccc8584",
+      "id": "01a11c52-54fb-711e-add5-a1f3f803c5ac",
+      "type": "MISSING_UPDATE",
+      "title": "2 staff missed the Evening Update",
+      "message": "Green Valley Villa · Manoj, Sathish",
+      "referenceType": "SITE",
+      "referenceId": "01a11c52-51ec-772b-ac1a-96a6a41f6962",
       "data": {
-        "siteId": "01a10655-4e7d-7309-a9b9-4227daab858f"
+        "date": "2026-10-08",
+        "slot": "EVENING"
       },
       "isRead": false,
-      "createdAt": "2026-10-04T15:35:00.284Z"
+      "createdAt": "2026-10-08T13:46:00.000Z"
     },
     {
-      "id": "01a10683-a94b-75eb-a96f-b59747d06a83",
+      "id": "01a11c52-54fb-711e-add5-10d792a1b1c8",
       "type": "STAFF_UPDATE",
       "title": "Ravi submitted Evening Update",
-      "message": "ABC Apartment Project · 4:14 PM",
+      "message": "ABC Apartment Project · 6:20 PM",
       "referenceType": "STAFF_UPDATE",
-      "referenceId": "01a10683-a923-7517-86c5-21502811c375",
-      "data": {
-        "slot": "EVENING",
-        "siteId": "01a10655-4e71-71c4-991e-21d37335e32e",
-        "staffId": "01a10655-4e48-71da-850f-01840d2004af"
-      },
+      "referenceId": "9196482a-105c-4944-8186-7925cf8a2a7b",
+      "data": null,
       "isRead": false,
-      "createdAt": "2026-10-04T10:44:14.283Z"
+      "createdAt": "2026-10-08T12:50:00.000Z"
     },
     {
-      "id": "01a1067f-cc1c-720e-a679-75de67401d96",
-      "type": "MISSING_UPDATE",
-      "title": "Ravi has not submitted the Afternoon Update",
-      "message": "ABC Apartment Project · Sun 4 Oct",
-      "referenceType": "SITE",
-      "referenceId": "01a10655-4e71-71c4-991e-21d37335e32e",
-      "data": {
-        "date": "2026-10-04",
-        "slot": "AFTERNOON",
-        "siteId": "01a10655-4e71-71c4-991e-21d37335e32e"
-      },
-      "isRead": false,
-      "createdAt": "2026-10-04T10:40:01.052Z"
+      "id": "01a11c52-54fb-711e-add5-407536fae9ce",
+      "type": "STAFF_UPDATE",
+      "title": "Vijay submitted Evening Update",
+      "message": "Sri Lakshmi Commercial Building · 5:57 PM",
+      "referenceType": "STAFF_UPDATE",
+      "referenceId": "dbef3786-8941-43a8-bd70-e3b858264959",
+      "data": null,
+      "isRead": true,
+      "createdAt": "2026-10-08T12:27:00.000Z"
     },
     {
-      "id": "01a1066f-4e57-748e-91dc-8dacd671ca2a",
+      "id": "01a11c52-54fb-711e-add5-882fde9a40c5",
       "type": "MISSING_UPDATE",
-      "title": "Ravi has not submitted the Morning Update",
-      "message": "ABC Apartment Project · Sun 4 Oct",
+      "title": "2 staff missed the Afternoon Update",
+      "message": "ABC Apartment Project · Ravi, Kumar",
       "referenceType": "SITE",
-      "referenceId": "01a10655-4e71-71c4-991e-21d37335e32e",
+      "referenceId": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
       "data": {
-        "date": "2026-10-04",
-        "slot": "MORNING",
-        "siteId": "01a10655-4e71-71c4-991e-21d37335e32e"
+        "date": "2026-10-08",
+        "slot": "AFTERNOON"
       },
       "isRead": false,
-      "createdAt": "2026-10-04T10:22:00.279Z"
+      "createdAt": "2026-10-08T09:46:00.000Z"
     }
   ],
   "meta": {
     "page": 1,
     "limit": 5,
-    "total": 40,
-    "totalPages": 8
+    "total": 69,
+    "totalPages": 14
   }
 }

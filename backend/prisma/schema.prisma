@@ -28,6 +28,8 @@ enum Role {
   ADMIN
   ENGINEER
   STAFF
+  /// Runs one or more godowns: buys stock in, sends it to sites, takes returns.
+  GODOWN_MANAGER
 }
 
 enum Designation {
@@ -121,6 +123,32 @@ enum IssueStatus {
   RESOLVED
 }
 
+/// Where stock is, or where it comes from or goes. Only GODOWN and SITE hold
+/// stock; the others are the outside world (SUPPLIER), consumption (USED),
+/// losses (WASTE) and stock-count corrections (ADJUSTMENT).
+enum StockPlace {
+  SUPPLIER
+  GODOWN
+  SITE
+  USED
+  WASTE
+  ADJUSTMENT
+}
+
+enum StockMovementStatus {
+  /// Sent between godowns and sites; the receiver has not confirmed yet.
+  IN_TRANSIT
+  DONE
+  VOIDED
+}
+
+enum StockPhotoStage {
+  /// Taken by the sender: the delivery challan, or a purchase bill.
+  SENT
+  /// Taken by the receiver: what actually arrived.
+  RECEIVED
+}
+
 enum NotificationType {
   STAFF_UPDATE
   ENGINEER_UPDATE
@@ -129,6 +157,7 @@ enum NotificationType {
   ISSUE
   ATTENDANCE
   SYSTEM
+  STOCK
 }
 
 enum ReferenceType {
@@ -140,6 +169,8 @@ enum ReferenceType {
   PAYMENT_MILESTONE
   PAYMENT
   ATTENDANCE
+  STOCK_ENTRY
+  MATERIAL_REQUEST
 }
 
 enum PushStatus {
@@ -203,6 +234,14 @@ model User {
   milestonesCreated           PaymentMilestone[]
   paymentsRecorded            Payment[]            @relation("PaymentRecordedBy")
   paymentsVoided              Payment[]            @relation("PaymentVoidedBy")
+  stockEntriesCreated         StockEntry[]         @relation("StockEntryCreatedBy")
+  stockEntriesReceived        StockEntry[]         @relation("StockEntryReceivedBy")
+  stockEntriesVoided          StockEntry[]         @relation("StockEntryVoidedBy")
+  godownAssignments           GodownAssignment[]   @relation("GodownAssignmentManager")
+  godownAssignmentsMade       GodownAssignment[]   @relation("GodownAssignmentAssignedBy")
+  materialRequests            MaterialRequest[]    @relation("MaterialRequestRequestedBy")
+  materialRequestsReviewed    MaterialRequest[]    @relation("MaterialRequestReviewedBy")
+  materialRequestsClosed      MaterialRequest[]    @relation("MaterialRequestClosedBy")
 
   @@index([role, isActive])
   @@map("users")
@@ -312,6 +351,11 @@ model Site {
   issues              Issue[]
   paymentMilestones   PaymentMilestone[]
   payments            Payment[]
+  stockEntriesOut     StockEntry[]         @relation("StockEntryFromSite")
+  stockEntriesIn      StockEntry[]         @relation("StockEntryToSite")
+  stockMovementsOut   StockMovement[]      @relation("StockMovementFromSite")
+  stockMovementsIn    StockMovement[]      @relation("StockMovementToSite")
+  materialRequests    MaterialRequest[]
 
   @@index([clientId])
   @@index([status])
@@ -561,23 +605,29 @@ model Issue {
   @@map("issues")
 }
 
-/// Permanent photos attached to an engineer update or an issue (exactly one owner).
+/// Permanent photos attached to an engineer update, an issue or a stock entry
+/// (exactly one owner).
 model Attachment {
-  id               String   @id @default(uuid(7)) @db.Uuid
-  engineerUpdateId String?  @map("engineer_update_id") @db.Uuid
-  issueId          String?  @map("issue_id") @db.Uuid
-  objectKey        String   @unique @map("object_key")
+  id               String           @id @default(uuid(7)) @db.Uuid
+  engineerUpdateId String?          @map("engineer_update_id") @db.Uuid
+  issueId          String?          @map("issue_id") @db.Uuid
+  stockEntryId     String?          @map("stock_entry_id") @db.Uuid
+  /// Stock entries only: taken by the sender (DC, bill) or the receiver.
+  stockStage       StockPhotoStage? @map("stock_stage")
+  objectKey        String           @unique @map("object_key")
   mime             String
   bytes            Int
-  uploadedById     String   @map("uploaded_by") @db.Uuid
-  createdAt        DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  uploadedById     String           @map("uploaded_by") @db.Uuid
+  createdAt        DateTime         @default(now()) @map("created_at") @db.Timestamptz(3)
 
   engineerUpdate EngineerUpdate? @relation(fields: [engineerUpdateId], references: [id], onDelete: Cascade)
   issue          Issue?          @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  stockEntry     StockEntry?     @relation(fields: [stockEntryId], references: [id], onDelete: Cascade)
   uploadedBy     User            @relation(fields: [uploadedById], references: [id], onDelete: Restrict)
 
   @@index([engineerUpdateId])
   @@index([issueId])
+  @@index([stockEntryId])
   @@map("attachments")
 }
 
@@ -627,6 +677,171 @@ model Payment {
   @@index([siteId, paidOn])
   @@index([paidOn])
   @@map("payments")
+}
+
+// ───────────────────────────── Stock ─────────────────────────────
+
+/// A store where the contractor keeps stock. Never deleted: closed ones are deactivated.
+model Godown {
+  id        String   @id @default(uuid(7)) @db.Uuid
+  /// Unique ignoring case (checked by the server).
+  name      String   @unique
+  address   String?
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  entriesOut   StockEntry[]       @relation("StockEntryFromGodown")
+  entriesIn    StockEntry[]       @relation("StockEntryToGodown")
+  movementsOut StockMovement[]    @relation("StockMovementFromGodown")
+  movementsIn  StockMovement[]    @relation("StockMovementToGodown")
+  managers     GodownAssignment[]
+  requests     MaterialRequest[]
+
+  @@map("godowns")
+}
+
+/// Which godown managers run which godowns (several either way).
+model GodownAssignment {
+  id           String   @id @default(uuid(7)) @db.Uuid
+  godownId     String   @map("godown_id") @db.Uuid
+  userId       String   @map("user_id") @db.Uuid
+  assignedAt   DateTime @default(now()) @map("assigned_at") @db.Timestamptz(3)
+  assignedById String?  @map("assigned_by") @db.Uuid
+
+  godown     Godown @relation(fields: [godownId], references: [id], onDelete: Restrict)
+  manager    User   @relation("GodownAssignmentManager", fields: [userId], references: [id], onDelete: Restrict)
+  assignedBy User?  @relation("GodownAssignmentAssignedBy", fields: [assignedById], references: [id], onDelete: SetNull)
+
+  @@unique([godownId, userId])
+  @@index([userId])
+  @@map("godown_assignments")
+}
+
+/// Something the contractor keeps in stock (cement, steel, sand…). Never deleted:
+/// a material no longer bought is deactivated.
+model Material {
+  id        String   @id @default(uuid(7)) @db.Uuid
+  /// Unique ignoring case (checked by the server).
+  name      String   @unique
+  /// e.g. "bag", "kg", "cft". Fixed once stock has moved.
+  unit      String
+  category  String?
+  /// Admins are alerted when all godowns together drop below this.
+  minStock  Decimal? @map("min_stock") @db.Decimal(12, 3)
+  isActive  Boolean  @default(true) @map("is_active")
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  movements    StockMovement[]
+  requestLines MaterialRequestLine[]
+
+  @@map("materials")
+}
+
+/// One stock form: a purchase, a delivery between godowns and sites, a day's
+/// usage, a write-off or a stock count. Its lines (stock_movements) say how
+/// much of each material. Never deleted: mistakes are voided.
+///
+/// Between godowns and sites a move takes two steps: the sender's stock drops
+/// as soon as it is sent (IN_TRANSIT), and the receiver's rises when they
+/// confirm what actually arrived, with a photo (DONE). Every other entry is
+/// DONE at once.
+model StockEntry {
+  id                String              @id @default(uuid(7)) @db.Uuid
+  /// Idempotency key from the phone, so a retried form is recorded once.
+  requestId         String              @unique @map("request_id") @db.Uuid
+  /// For counts this is the place counted and ADJUSTMENT; each line then
+  /// carries its own direction (up or down).
+  fromPlace         StockPlace          @map("from_place")
+  fromGodownId      String?             @map("from_godown_id") @db.Uuid
+  fromSiteId        String?             @map("from_site_id") @db.Uuid
+  toPlace           StockPlace          @map("to_place")
+  toGodownId        String?             @map("to_godown_id") @db.Uuid
+  toSiteId          String?             @map("to_site_id") @db.Uuid
+  status            StockMovementStatus
+  /// Business date the stock left (or was bought, used, written off, counted).
+  movedOn           DateTime            @map("moved_on") @db.Date
+  /// Delivery challan number, for moves between godowns and sites.
+  dcNumber          String?             @map("dc_number")
+  /// Purchases: who it was bought from, and their bill or invoice number.
+  supplier          String?
+  billNo            String?             @map("bill_no")
+  /// Required for write-offs and counts.
+  note              String?
+  createdById       String              @map("created_by") @db.Uuid
+  receivedOn        DateTime?           @map("received_on") @db.Date
+  receivedAt        DateTime?           @map("received_at") @db.Timestamptz(3)
+  receivedById      String?             @map("received_by") @db.Uuid
+  receiveNote       String?             @map("receive_note")
+  voidedAt          DateTime?           @map("voided_at") @db.Timestamptz(3)
+  voidedById        String?             @map("voided_by") @db.Uuid
+  voidReason        String?             @map("void_reason")
+  /// Deliveries to a site (and returns when a request closes) belong to a request.
+  materialRequestId String?             @map("material_request_id") @db.Uuid
+  createdAt         DateTime            @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt         DateTime            @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  materialRequest MaterialRequest? @relation(fields: [materialRequestId], references: [id], onDelete: Restrict)
+  fromGodown      Godown?          @relation("StockEntryFromGodown", fields: [fromGodownId], references: [id], onDelete: Restrict)
+  toGodown        Godown?          @relation("StockEntryToGodown", fields: [toGodownId], references: [id], onDelete: Restrict)
+  fromSite        Site?            @relation("StockEntryFromSite", fields: [fromSiteId], references: [id], onDelete: Restrict)
+  toSite          Site?            @relation("StockEntryToSite", fields: [toSiteId], references: [id], onDelete: Restrict)
+  createdBy       User             @relation("StockEntryCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  receivedBy      User?            @relation("StockEntryReceivedBy", fields: [receivedById], references: [id], onDelete: SetNull)
+  voidedBy        User?            @relation("StockEntryVoidedBy", fields: [voidedById], references: [id], onDelete: SetNull)
+
+  lines  StockMovement[]
+  photos Attachment[]
+
+  @@index([status, toPlace])
+  @@index([fromSiteId, movedOn])
+  @@index([toSiteId, movedOn])
+  @@index([fromGodownId, movedOn])
+  @@index([toGodownId, movedOn])
+  @@index([createdAt])
+  @@index([materialRequestId])
+  @@map("stock_entries")
+}
+
+/// One material on a stock entry. Its places, status and dates repeat the
+/// entry's (kept in step in the same transaction), so any balance is one
+/// aggregate over this table: what arrived at a place minus what left it.
+/// Balances are never stored.
+model StockMovement {
+  id               String              @id @default(uuid(7)) @db.Uuid
+  entryId          String              @map("entry_id") @db.Uuid
+  materialId       String              @map("material_id") @db.Uuid
+  quantity         Decimal             @db.Decimal(12, 3)
+  /// Set when DONE: what arrived (equal to quantity unless a delivery came up short).
+  receivedQuantity Decimal?            @map("received_quantity") @db.Decimal(12, 3)
+  /// Purchases only: price per unit. Shown to admins only.
+  rate             Decimal?            @db.Decimal(14, 2)
+  fromPlace        StockPlace          @map("from_place")
+  fromGodownId     String?             @map("from_godown_id") @db.Uuid
+  fromSiteId       String?             @map("from_site_id") @db.Uuid
+  toPlace          StockPlace          @map("to_place")
+  toGodownId       String?             @map("to_godown_id") @db.Uuid
+  toSiteId         String?             @map("to_site_id") @db.Uuid
+  status           StockMovementStatus
+  movedOn          DateTime            @map("moved_on") @db.Date
+  receivedOn       DateTime?           @map("received_on") @db.Date
+
+  entry      StockEntry @relation(fields: [entryId], references: [id], onDelete: Restrict)
+  material   Material   @relation(fields: [materialId], references: [id], onDelete: Restrict)
+  fromGodown Godown?    @relation("StockMovementFromGodown", fields: [fromGodownId], references: [id], onDelete: Restrict)
+  toGodown   Godown?    @relation("StockMovementToGodown", fields: [toGodownId], references: [id], onDelete: Restrict)
+  fromSite   Site?      @relation("StockMovementFromSite", fields: [fromSiteId], references: [id], onDelete: Restrict)
+  toSite     Site?      @relation("StockMovementToSite", fields: [toSiteId], references: [id], onDelete: Restrict)
+
+  /// One line per material in an entry.
+  @@unique([entryId, materialId])
+  @@index([materialId, status])
+  @@index([fromSiteId, movedOn])
+  @@index([toSiteId, receivedOn])
+  @@index([fromGodownId, movedOn])
+  @@index([toGodownId, receivedOn])
+  @@map("stock_movements")
 }
 
 // ──────────────────────────── Platform ────────────────────────────
@@ -697,4 +912,81 @@ model AuditLog {
   @@index([actorId, createdAt])
   @@index([createdAt])
   @@map("audit_logs")
+}
+
+// ──────────────────────── Material requests ────────────────────────
+
+enum MaterialRequestStatus {
+  /// Waiting for an admin.
+  PENDING
+  /// Approved: the godown sends it, in one delivery or several.
+  APPROVED
+  REJECTED
+  /// Withdrawn before an admin decided.
+  CANCELLED
+  /// The site has finished with it: all used, or the leftover returned.
+  CLOSED
+}
+
+enum MaterialRequestOutcome {
+  ALL_USED
+  LEFTOVER_RETURNED
+}
+
+/// An engineer asks for material for their site. An admin approves it (with the
+/// quantities and the godown) or rejects it; the godown's manager sends it; the
+/// engineer closes it once the work is done. What was sent and received is
+/// derived from the request's stock entries, never stored.
+model MaterialRequest {
+  id            String                  @id @default(uuid(7)) @db.Uuid
+  /// Human reference, shown as MR-0001.
+  number        Int                     @unique @default(autoincrement())
+  /// Idempotency key from the phone.
+  requestId     String                  @unique @map("request_id") @db.Uuid
+  siteId        String                  @map("site_id") @db.Uuid
+  requestedById String                  @map("requested_by") @db.Uuid
+  neededBy      DateTime?               @map("needed_by") @db.Date
+  note          String?
+  status        MaterialRequestStatus   @default(PENDING)
+  /// Chosen by the admin when approving.
+  godownId      String?                 @map("godown_id") @db.Uuid
+  reviewedById  String?                 @map("reviewed_by") @db.Uuid
+  reviewedAt    DateTime?               @map("reviewed_at") @db.Timestamptz(3)
+  /// The admin's note, or why it was rejected.
+  reviewNote    String?                 @map("review_note")
+  outcome       MaterialRequestOutcome?
+  closedById    String?                 @map("closed_by") @db.Uuid
+  closedAt      DateTime?               @map("closed_at") @db.Timestamptz(3)
+  closeNote     String?                 @map("close_note")
+  createdAt     DateTime                @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt     DateTime                @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  site        Site    @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  requestedBy User    @relation("MaterialRequestRequestedBy", fields: [requestedById], references: [id], onDelete: Restrict)
+  godown      Godown? @relation(fields: [godownId], references: [id], onDelete: Restrict)
+  reviewedBy  User?   @relation("MaterialRequestReviewedBy", fields: [reviewedById], references: [id], onDelete: SetNull)
+  closedBy    User?   @relation("MaterialRequestClosedBy", fields: [closedById], references: [id], onDelete: SetNull)
+
+  lines   MaterialRequestLine[]
+  entries StockEntry[]
+
+  @@index([status, createdAt])
+  @@index([siteId, createdAt])
+  @@index([godownId, status])
+  @@map("material_requests")
+}
+
+model MaterialRequestLine {
+  id                String   @id @default(uuid(7)) @db.Uuid
+  materialRequestId String   @map("material_request_id") @db.Uuid
+  materialId        String   @map("material_id") @db.Uuid
+  quantity          Decimal  @db.Decimal(12, 3)
+  /// Set when approved; zero when this material is not supplied.
+  approvedQuantity  Decimal? @map("approved_quantity") @db.Decimal(12, 3)
+
+  materialRequest MaterialRequest @relation(fields: [materialRequestId], references: [id], onDelete: Cascade)
+  material        Material        @relation(fields: [materialId], references: [id], onDelete: Restrict)
+
+  @@unique([materialRequestId, materialId])
+  @@map("material_request_lines")
 }

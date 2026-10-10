@@ -41,6 +41,11 @@ async function main(): Promise<void> {
         login: '+919000000101',
         password: DEV_PASSWORDS.STAFF,
       },
+      {
+        role: 'Godown manager (Selvam, Main godown)',
+        login: '+919000000201',
+        password: DEV_PASSWORDS.GODOWN_MANAGER,
+      },
     ]);
   } finally {
     await prisma.$disconnect();
