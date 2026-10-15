@@ -299,7 +299,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get validationAmount => 'Enter an amount like 1500000';
 
   @override
-  String get validationPhone => 'Enter a valid mobile number';
+  String get validationPhone => 'Enter a 10-digit mobile number';
 
   @override
   String get validationEmail => 'Enter a valid e-mail address';

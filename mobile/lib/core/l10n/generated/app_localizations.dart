@@ -664,7 +664,7 @@ abstract class AppLocalizations {
   /// No description provided for @validationPhone.
   ///
   /// In en, this message translates to:
-  /// **'Enter a valid mobile number'**
+  /// **'Enter a 10-digit mobile number'**
   String get validationPhone;
 
   /// No description provided for @validationEmail.

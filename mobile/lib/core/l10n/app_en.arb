@@ -108,7 +108,7 @@
   "validationRequired": "Required",
   "validationQuantity": "Enter a quantity like 60 or 12.5.",
   "validationAmount": "Enter an amount like 1500000",
-  "validationPhone": "Enter a valid mobile number",
+  "validationPhone": "Enter a 10-digit mobile number",
   "validationEmail": "Enter a valid e-mail address",
   "validationNumber": "Enter a number",
   "validationRange": "Enter a value between {min} and {max}",
