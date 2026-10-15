@@ -404,6 +404,59 @@ describe('Authentication (e2e)', () => {
         })
         .expect(400);
     });
+
+    it("an owner-locked account's password can't be changed or reset in any way", async () => {
+      // Listed in PASSWORD_LOCKED_PHONES (vitest.config.e2e.ts).
+      const locked = await createUser(t.prisma, {
+        role: 'ADMIN',
+        phone: '+919999999901',
+        email: 'locked@sitework.test',
+      });
+      const admin = await createUser(t.prisma, { role: 'ADMIN' });
+      const own = await signIn(locked.phone);
+      const other = await signIn(admin.phone);
+      const asOther = `Bearer ${other.accessToken}`;
+
+      const changed = await changePassword(
+        own.accessToken,
+        TEST_PASSWORD,
+        'NewPass2026',
+      ).expect(403);
+      expect(changed.body.code).toBe('PASSWORD_LOCKED');
+
+      const reset = await t
+        .http()
+        .post(`/api/v1/users/${locked.id}/reset-password`)
+        .set('authorization', asOther)
+        .expect(403);
+      expect(reset.body.code).toBe('PASSWORD_LOCKED');
+
+      // A new number would lift the lock, so it can't be given one.
+      const renumbered = await t
+        .http()
+        .patch(`/api/v1/admins/${locked.id}`)
+        .set('authorization', asOther)
+        .send({ phone: '+919876500001' })
+        .expect(403);
+      expect(renumbered.body.code).toBe('PASSWORD_LOCKED');
+      await t
+        .http()
+        .patch(`/api/v1/admins/${locked.id}`)
+        .set('authorization', asOther)
+        .send({ name: 'Owner' })
+        .expect(200);
+
+      // Same reply as for any account, but no code is sent.
+      await t
+        .http()
+        .post('/api/v1/auth/forgot-password')
+        .send({ identifier: 'locked@sitework.test' })
+        .expect(200);
+      expect(t.mail.sent).toHaveLength(0);
+
+      await login(locked.phone).expect(200);
+      await me(own.accessToken).expect(200);
+    });
   });
 
   describe('GET /me', () => {

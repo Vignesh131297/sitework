@@ -1,6 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import type { AuthUser } from '../auth/auth-user.js';
+import { passwordLocked } from '../auth/auth.errors.js';
 import { hashPassword } from '../auth/password-hasher.js';
+import { isPasswordLocked } from '../auth/password-lock.js';
 import { generateTemporaryPassword } from '../auth/password-rules.js';
 import { staffScope } from '../common/access/access-scope.js';
 import { AuditService } from '../common/audit/audit.service.js';
@@ -14,6 +17,7 @@ import { optionalEmail, requirePhone } from '../common/identity/contact.js';
 import { Paginated } from '../common/pagination/paginated.js';
 import { contains } from '../common/pagination/page-query.dto.js';
 import { fromDbDate, toDbDate } from '../common/time/business-time.js';
+import type { Env } from '../config/env.js';
 import type { Prisma } from '../generated/prisma/client.js';
 import type { Designation, Role } from '../generated/prisma/enums.js';
 import { PrismaService } from '../prisma/prisma.service.js';
@@ -116,6 +120,7 @@ export class PeopleService {
     private readonly prisma: PrismaService,
     private readonly assignments: AssignmentsService,
     private readonly audit: AuditService,
+    private readonly config: ConfigService<Env, true>,
   ) {}
 
   async list(
@@ -308,6 +313,13 @@ export class PeopleService {
     const existing = await this.prisma.user.findFirst({ where: { id, role } });
     if (!existing) throw notFound(ROLE_LABEL[role]);
     const phone = dto.phone === undefined ? undefined : requirePhone(dto.phone);
+    // The lock follows the number, so a new number would lift it.
+    if (
+      phone !== undefined &&
+      phone !== existing.phone &&
+      isPasswordLocked(this.config, existing)
+    )
+      throw passwordLocked();
     const email = optionalEmail(dto.email);
     const employeeCode = dto.employeeCode?.trim().toUpperCase();
     await this.ensureUnique({ phone, email, employeeCode }, id);

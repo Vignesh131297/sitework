@@ -27,6 +27,19 @@ describe('validateEnv', () => {
     expect(trust('loopback, 10.0.0.0/8')).toBe('loopback, 10.0.0.0/8');
   });
 
+  it('reads PASSWORD_LOCKED_PHONES as mobile numbers in any common format', () => {
+    const locked = (PASSWORD_LOCKED_PHONES?: string) =>
+      validateEnv({ ...base, PASSWORD_LOCKED_PHONES }).PASSWORD_LOCKED_PHONES;
+    expect(locked()).toEqual([]);
+    expect(locked('9000000001, +91 90000 00011,')).toEqual([
+      '+919000000001',
+      '+919000000011',
+    ]);
+    expect(() => locked('12345')).toThrow(
+      /PASSWORD_LOCKED_PHONES: "12345" is not a mobile number/,
+    );
+  });
+
   it('coerces numbers from strings', () => {
     expect(validateEnv({ ...base, PORT: '8080' }).PORT).toBe(8080);
   });

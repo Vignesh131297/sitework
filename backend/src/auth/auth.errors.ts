@@ -86,6 +86,13 @@ export const samePassword = () =>
     HttpStatus.BAD_REQUEST,
   );
 
+export const passwordLocked = () =>
+  new AppException(
+    ErrorCode.PASSWORD_LOCKED,
+    "This account's password is locked by the owner and can't be changed.",
+    HttpStatus.FORBIDDEN,
+  );
+
 export const invalidResetCode = () =>
   new AppException(
     ErrorCode.INVALID_RESET_CODE,

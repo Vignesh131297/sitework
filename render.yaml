@@ -40,6 +40,10 @@ services:
       # Free instances can't send mail (SMTP ports are blocked); admins reset passwords.
       - key: MAIL_DRIVER
         value: disabled
+      # The shared admin's password can't be changed or reset while the app is being
+      # tried out. Remove this entry to let it be changed again.
+      - key: PASSWORD_LOCKED_PHONES
+        value: '+919000000001'
       - key: JWT_SECRET
         generateValue: true
       - key: JWT_REFRESH_SECRET
