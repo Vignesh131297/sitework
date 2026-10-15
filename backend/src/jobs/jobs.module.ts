@@ -17,6 +17,8 @@ import { SettingsService } from '../settings/settings.service.js';
 import { ImageCleanupService } from '../staff-updates/image-cleanup.service.js';
 import { MissedUpdatesService } from '../staff-updates/missed-updates.service.js';
 import { StaffUpdatesModule } from '../staff-updates/staff-updates.module.js';
+import { StockModule } from '../stock/stock.module.js';
+import { StockService } from '../stock/stock.service.js';
 import { JobRunner } from './job-runner.js';
 
 /** Business-time hour after which the day's absentees are recorded. */
@@ -44,6 +46,7 @@ export class JobsScheduler {
     private readonly attendance: AttendanceService,
     private readonly push: PushDispatcher,
     private readonly payments: PaymentsService,
+    private readonly stock: StockService,
     private readonly clock: Clock,
   ) {
     this.enabled = config.get('JOBS_ENABLED', { infer: true });
@@ -87,6 +90,15 @@ export class JobsScheduler {
         return;
       const sent = await this.payments.notifyOverdue(now);
       if (sent) this.logger.log(`Payments: ${sent} overdue alerts`);
+    });
+  }
+
+  /** Evenings on working days: sites holding stock with no usage recorded today. */
+  @Cron('0 */15 * * * *', { name: 'stock-usage' })
+  async stockUsage(): Promise<void> {
+    await this.run('stock-usage', async () => {
+      const sent = await this.stock.remindUsage();
+      if (sent) this.logger.log(`Stock: ${sent} usage reminders`);
     });
   }
 
@@ -134,6 +146,7 @@ export class JobsScheduler {
     StaffUpdatesModule,
     AttendanceModule,
     PaymentsModule,
+    StockModule,
   ],
   providers: [JobRunner, JobsScheduler],
   exports: [JobRunner],

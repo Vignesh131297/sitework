@@ -4,6 +4,7 @@ import { siteScope, staffScope } from '../common/access/access-scope.js';
 import { ErrorCode } from '../common/errors/error-codes.js';
 import { badRequest } from '../common/errors/http-errors.js';
 import { fromPaise, sumPaise, toPaise } from '../common/money/money.js';
+import { fromMilli } from '../common/quantity/quantity.js';
 import {
   addDays,
   toDbDate,
@@ -21,6 +22,8 @@ import { siteFinancials } from '../payments/site-financials.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { CalendarService } from '../settings/calendar.service.js';
 import { SettingsService } from '../settings/settings.service.js';
+import { stockReportLines, valueOf } from '../stock/stock-ledger.js';
+import { ledgerSums, purchaseRates } from '../stock/stock-queries.js';
 
 export interface ReportRange {
   from: string;
@@ -110,6 +113,25 @@ export interface PaymentReport {
     site: { id: string; name: string };
     client: { id: string; name: string };
   }[];
+}
+
+export interface StockReportRow {
+  place: 'GODOWN' | 'SITE';
+  /** Set for a site. */
+  site: { id: string; code: string; name: string } | null;
+  /** Set for a godown. */
+  godown: { id: string; name: string } | null;
+  material: { id: string; name: string; unit: string };
+  opening: string;
+  received: string;
+  used: string;
+  sentOut: string;
+  wasted: string;
+  /** Stock-count corrections; negative when the count came up short. */
+  adjusted: string;
+  closing: string;
+  /** Admins only: what was used, at the average purchase price. */
+  usedValue: string | null;
 }
 
 const MAX_DAYS = 366;
@@ -546,6 +568,95 @@ export class ReportsService {
         client: p.site.client,
       })),
     };
+  }
+
+  /**
+   * Stock per place and material over the range: what was there at the start,
+   * what came in, was used, sent on, wasted or corrected, and what was left.
+   * Admins get every godown and site, and the value of what was used at the
+   * average purchase price; engineers get their sites and no money.
+   */
+  async stock(user: AuthUser, range: ReportRange): Promise<StockReportRow[]> {
+    checkRange(range);
+    const admin = user.role === 'ADMIN';
+    const sites = await this.prisma.site.findMany({
+      where: {
+        AND: [
+          siteScope(user),
+          range.siteId ? { id: range.siteId } : {},
+          range.clientId ? { clientId: range.clientId } : {},
+        ],
+      },
+      select: { id: true, code: true, name: true },
+      orderBy: { name: 'asc' },
+    });
+    const godowns =
+      admin && !range.siteId && !range.clientId
+        ? await this.prisma.godown.findMany({
+            select: { id: true, name: true },
+            orderBy: { name: 'asc' },
+          })
+        : [];
+    const holders = {
+      godowns: godowns.map((godown) => godown.id),
+      sites: sites.map((site) => site.id),
+    };
+    const start = toDbDate(range.from);
+    const end = toDbDate(range.to);
+    const before = await ledgerSums(this.prisma, holders, {
+      dates: { lt: start },
+    });
+    const during = await ledgerSums(this.prisma, holders, {
+      dates: { gte: start, lte: end },
+    });
+    const lines = stockReportLines(before, during);
+    const materialIds = [...new Set(lines.map((l) => l.materialId))];
+    const [materialRows, rates] = await Promise.all([
+      this.prisma.material.findMany({
+        where: { id: { in: materialIds } },
+        select: { id: true, name: true, unit: true },
+      }),
+      admin
+        ? purchaseRates(this.prisma, { materialIds, until: end })
+        : new Map<string, bigint>(),
+    ]);
+    const materials = new Map(materialRows.map((m) => [m.id, m]));
+    // Godowns first, then sites, each by name; materials by name.
+    const order = new Map<string, number>();
+    godowns.forEach((g, i) => order.set(`GODOWN:${g.id}`, i));
+    sites.forEach((s, i) => order.set(`SITE:${s.id}`, godowns.length + i));
+    const godownById = new Map(godowns.map((g) => [g.id, g]));
+    const siteById = new Map(sites.map((s) => [s.id, s]));
+    return lines
+      .sort(
+        (a, b) =>
+          order.get(a.holderKey)! - order.get(b.holderKey)! ||
+          materials
+            .get(a.materialId)!
+            .name.localeCompare(materials.get(b.materialId)!.name),
+      )
+      .map((line) => {
+        const [place, id] = line.holderKey.split(':') as [
+          'GODOWN' | 'SITE',
+          string,
+        ];
+        const rate = rates.get(line.materialId);
+        return {
+          place,
+          site: place === 'SITE' ? siteById.get(id)! : null,
+          godown: place === 'GODOWN' ? godownById.get(id)! : null,
+          material: materials.get(line.materialId)!,
+          opening: fromMilli(line.opening),
+          received: fromMilli(line.received),
+          used: fromMilli(line.used),
+          sentOut: fromMilli(line.sentOut),
+          wasted: fromMilli(line.wasted),
+          adjusted: fromMilli(line.adjusted),
+          closing: fromMilli(line.closing),
+          usedValue:
+            rate === undefined ? null : fromPaise(valueOf(line.used, rate)),
+        };
+      });
   }
 
   /** The range as instants in the business time zone: from 00:00 to the end of `to`. */

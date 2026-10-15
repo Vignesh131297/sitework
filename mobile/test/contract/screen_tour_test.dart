@@ -6,6 +6,9 @@ import 'package:go_router/go_router.dart';
 import 'package:material_ui/material_ui.dart';
 import 'package:sitework/core/network/image_loader.dart';
 import 'package:sitework/core/widgets/async_value_view.dart';
+import 'package:sitework/features/auth/domain/app_session.dart';
+import 'package:sitework/features/auth/domain/auth_models.dart';
+import 'package:sitework/features/auth/domain/user_role.dart';
 import 'package:sitework/features/notifications/push/push_service.dart';
 
 import '../helpers/admin_fixtures.dart';
@@ -29,11 +32,23 @@ String _firstId(String name) {
   return (rows.first as Map<String, dynamic>)['id'] as String;
 }
 
-FakeApi recordedApi({required String reportSites}) {
+FakeApi recordedApi({
+  required String reportSites,
+  String reportStock = 'report_stock',
+  String stockOverview = 'stock_overview',
+  String siteStock = 'site_stock',
+  String requests = 'material_requests',
+}) {
   FakeRaw json(String name) => FakeRaw(_raw(name), contentType: 'application/json');
   return FakeApi()
     ..on('GET', '/dashboard/admin', (_) => json('dashboard_admin'))
     ..on('GET', '/dashboard/engineer', (_) => json('dashboard_engineer'))
+    ..on('GET', '/dashboard/godown', (_) => json('dashboard_godown'))
+    ..on('GET', '/material-requests', (_) => json(requests))
+    ..on('GET', '/material-requests/:id', (_) => json('material_request_detail'))
+    ..on('GET', '/godown-managers', (_) => json('godown_managers'))
+    ..on('GET', '/godown-managers/:id', (_) => json('godown_manager_detail'))
+    ..on('GET', '/admins', (_) => json('admins'))
     ..on('GET', '/me/today', (_) => json('staff_today'))
     ..on('GET', '/sites', (_) => json('sites'))
     ..on('GET', '/sites/:id', (_) => json('site_detail'))
@@ -67,11 +82,32 @@ FakeApi recordedApi({required String reportSites}) {
     ..on('GET', '/reports/sites', (_) => json(reportSites))
     ..on('GET', '/reports/staff', (_) => json('report_staff'))
     ..on('GET', '/reports/engineers', (_) => json('report_engineers'))
-    ..on('GET', '/reports/payments', (_) => json('report_payments'));
+    ..on('GET', '/reports/payments', (_) => json('report_payments'))
+    ..on('GET', '/reports/stock', (_) => json(reportStock))
+    ..on('GET', '/stock/overview', (_) => json(stockOverview))
+    ..on('GET', '/stock/godowns/:id', (_) => json('godown_stock'))
+    ..on('GET', '/sites/:id/stock', (_) => json(siteStock))
+    ..on('GET', '/stock/entries', (_) => json('stock_entries'))
+    ..on('GET', '/stock/entries/:id', (_) => json('stock_entry_detail'))
+    ..on('GET', '/materials/:id', (_) => json('material_detail'));
 }
 
-Future<FakeApi> startTour(WidgetTester tester, FakeAuthRepository auth, {required String reportSites}) async {
-  final api = recordedApi(reportSites: reportSites);
+Future<FakeApi> startTour(
+  WidgetTester tester,
+  FakeAuthRepository auth, {
+  required String reportSites,
+  String reportStock = 'report_stock',
+  String stockOverview = 'stock_overview',
+  String siteStock = 'site_stock',
+  String requests = 'material_requests',
+}) async {
+  final api = recordedApi(
+    reportSites: reportSites,
+    reportStock: reportStock,
+    stockOverview: stockOverview,
+    siteStock: siteStock,
+    requests: requests,
+  );
   await pumpSiteWorkApp(
     tester,
     auth: auth,
@@ -94,16 +130,31 @@ Future<void> visit(WidgetTester tester, String location) async {
 /// Taps each chip in turn (e.g. report kinds) and checks each result.
 Future<void> tapEach(WidgetTester tester, List<String> labels) async {
   for (final label in labels) {
-    await tester.tap(find.widgetWithText(ChoiceChip, label));
+    final chip = find.widgetWithText(ChoiceChip, label);
+    await tester.ensureVisible(chip);
+    await tester.pumpAndSettle();
+    await tester.tap(chip);
     await tester.pumpAndSettle();
     expect(find.byType(ErrorView), findsNothing, reason: label);
   }
 }
 
-const siteTabs = ['today', 'overview', 'team', 'updates', 'issues', 'payments'];
+const siteTabs = ['today', 'overview', 'team', 'updates', 'issues', 'stock', 'payments'];
+
+/// The first godown's or material's id in a recorded stock overview.
+String _overviewId(String list, String field, [String overview = 'stock_overview']) {
+  final data = (jsonDecode(_raw(overview)) as Map<String, dynamic>)['data'] as Map<String, dynamic>;
+  final first = (data[list] as List<dynamic>).first as Map<String, dynamic>;
+  return (first[field] as Map<String, dynamic>)['id'] as String;
+}
 
 void main() {
   final siteId = _firstId('sites');
+  final godownId = _overviewId('godowns', 'godown');
+  final materialId = _overviewId('materials', 'material');
+  final entryId = _firstId('stock_entries');
+  final requestId = _firstId('material_requests');
+  final managerId = _firstId('godown_managers');
 
   testWidgets('admin: every tab and detail screen renders the recorded data', (tester) async {
     final api = await startTour(tester, signedInAdmin(), reportSites: 'report_sites');
@@ -125,16 +176,36 @@ void main() {
       '/admin/updates/${_firstId('engineer_updates')}',
       '/admin/issues',
       '/admin/issues/${_firstId('issues')}',
-      '/admin/reports',
+      '/admin/stock',
+      '/admin/stock/godowns/$godownId',
+      '/admin/stock/materials/$materialId',
+      '/admin/stock/entries/$entryId',
+      '/admin/stock/history',
+      '/admin/stock/history?receivable=true',
+      '/admin/requests/new',
+      '/admin/requests/$requestId',
+      '/admin/people/godown-managers/$managerId',
+      '/admin/people/godown-managers/$managerId/edit',
+      '/admin/people/godown-managers/new',
+      '/admin/people/admins/new',
+      '/admin/requests',
     ]) {
       await visit(tester, location);
     }
-    await tapEach(tester, ['Staff', 'Engineers', 'Payments', 'Sites']);
+    await tapEach(tester, ['Waiting for approval', 'Approved', 'Closed', 'All', 'Open']);
+    await visit(tester, '/admin/reports');
+    await tapEach(tester, ['Staff', 'Engineers', 'Payments', 'Stock', 'Sites']);
     expect(api.unanswered, isEmpty);
   });
 
   testWidgets('engineer: every tab and detail screen renders the recorded data', (tester) async {
-    final api = await startTour(tester, signedInEngineer(), reportSites: 'report_sites_engineer');
+    final api = await startTour(
+      tester,
+      signedInEngineer(),
+      reportSites: 'report_sites_engineer',
+      reportStock: 'report_stock_engineer',
+      stockOverview: 'stock_overview_engineer',
+    );
     for (final location in [
       '/engineer/dashboard',
       '/engineer/sites',
@@ -149,18 +220,57 @@ void main() {
       '/engineer/updates/${_firstId('engineer_updates')}',
       '/engineer/issues/${_firstId('issues')}',
       '/engineer/issues/new',
+      '/engineer/stock',
+      '/engineer/stock/godowns/$godownId',
+      '/engineer/stock/entries/$entryId',
+      '/engineer/stock/history?receivable=true',
+      '/engineer/requests',
+      '/engineer/requests/new?siteId=$siteId',
+      '/engineer/requests/$requestId',
       '/engineer/reports',
     ]) {
       await visit(tester, location);
     }
-    await tapEach(tester, ['Staff', 'Sites']);
+    await tapEach(tester, ['Staff', 'Stock', 'Sites']);
     expect(api.unanswered, isEmpty);
     // The tour leaves and re-enters the tab shell; the phone registers once.
     expect(api.sent('POST', '/me/devices'), hasLength(1));
   });
 
+  testWidgets('godown manager: every tab and detail screen renders the recorded data', (tester) async {
+    final me = (jsonDecode(_raw('me_godown_manager')) as Map<String, dynamic>)['data'] as Map<String, dynamic>;
+    final api = await startTour(
+      tester,
+      FakeAuthRepository(
+        saved: StoredSession(
+          tokens: const AuthTokens(accessToken: 'a', refreshToken: 'r'),
+          user: AppSession(userId: me['id'] as String, name: me['name'] as String, role: UserRole.godownManager),
+        ),
+      ),
+      reportSites: 'report_sites',
+      stockOverview: 'stock_overview_godown',
+      requests: 'material_requests_godown',
+    );
+    final ownGodown = _overviewId('godowns', 'godown', 'stock_overview_godown');
+    for (final location in [
+      '/godown/dashboard',
+      '/godown/stock',
+      '/godown/notifications',
+      '/godown/profile',
+      '/godown/requests/$requestId',
+      '/godown/stock/godowns/$ownGodown',
+      '/godown/stock/entries/$entryId',
+      '/godown/stock/history?receivable=true',
+      '/godown/requests',
+    ]) {
+      await visit(tester, location);
+    }
+    await tapEach(tester, ['Approved', 'Closed', 'All']);
+    expect(api.unanswered, isEmpty);
+  });
+
   testWidgets('staff: every tab renders the recorded data', (tester) async {
-    final api = await startTour(tester, signedInStaff(), reportSites: 'report_sites');
+    final api = await startTour(tester, signedInStaff(), reportSites: 'report_sites', siteStock: 'site_stock_staff');
     for (final location in [
       '/staff/dashboard',
       '/staff/attendance',

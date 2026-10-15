@@ -12,6 +12,7 @@ import {
   type PaymentReport,
   type SiteReportRow,
   type StaffReportRow,
+  type StockReportRow,
 } from './reports.service.js';
 
 class ReportQueryDto {
@@ -182,6 +183,50 @@ export class ReportsController {
         r.reviews.reviewed,
         pct(r.reviews.reviewRatePercent),
         pct(r.reviews.averageMinutes),
+      ]),
+    );
+  }
+
+  @Roles('ADMIN', 'ENGINEER')
+  @Get('stock')
+  async stock(
+    @CurrentUser() user: AuthUser,
+    @Query() query: ReportQueryDto,
+    @Res({ passthrough: true }) res: Response,
+  ): Promise<StockReportRow[] | StreamableFile> {
+    const rows = await this.reports.stock(user, query);
+    if (query.format !== 'csv') return rows;
+    const money = user.role === 'ADMIN';
+    return csv(
+      res,
+      `stock-${query.from}-to-${query.to}.csv`,
+      [
+        'Place',
+        'Type',
+        'Material',
+        'Unit',
+        'Opening',
+        'Received',
+        'Used',
+        'Sent out',
+        'Wasted',
+        'Count corrections',
+        'Closing',
+        ...(money ? ['Used value'] : []),
+      ],
+      rows.map((r) => [
+        r.site?.name ?? r.godown?.name,
+        r.place === 'GODOWN' ? 'Godown' : 'Site',
+        r.material.name,
+        r.material.unit,
+        r.opening,
+        r.received,
+        r.used,
+        r.sentOut,
+        r.wasted,
+        r.adjusted,
+        r.closing,
+        ...(money ? [r.usedValue] : []),
       ]),
     );
   }

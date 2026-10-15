@@ -18,7 +18,7 @@ interface Route {
   roles: Role[] | undefined;
 }
 
-const ROLES: Role[] = ['ADMIN', 'ENGINEER', 'STAFF'];
+const ROLES: Role[] = ['ADMIN', 'ENGINEER', 'STAFF', 'GODOWN_MANAGER'];
 
 /**
  * Routes any signed-in user may call. Each one scopes its data to the caller
@@ -128,12 +128,15 @@ describe('Permission matrix (e2e)', () => {
       .map(key)
       .sort();
     expect(open).toEqual([
+      'GET /api/v1/auth/signup',
       'GET /api/v1/files/:token',
       'GET /api/v1/health',
       'POST /api/v1/auth/forgot-password',
       'POST /api/v1/auth/login',
       'POST /api/v1/auth/refresh',
       'POST /api/v1/auth/reset-password',
+      // Only while no admin exists: the first admin signs up.
+      'POST /api/v1/auth/signup',
     ]);
     const leaks: string[] = [];
     for (const route of routes.filter((r) => !r.isPublic)) {
@@ -164,16 +167,43 @@ describe('Permission matrix (e2e)', () => {
     expect(unrestricted).toEqual(ANY_SIGNED_IN);
   });
 
-  it('gives staff only their own day: check-in, check-out and photo updates', () => {
+  it('gives staff only their own day: check-in, check-out, photo updates and site usage', () => {
     const forStaff = routes
       .filter((r) => r.roles?.includes('STAFF'))
       .map(key)
       .sort();
     expect(forStaff).toEqual([
       'GET /api/v1/me/today',
+      // Their own site's stock, to record (and correct) its daily usage.
+      'GET /api/v1/sites/:id/stock',
       'POST /api/v1/attendance/check-in',
       'POST /api/v1/attendance/check-out',
       'POST /api/v1/staff-updates',
+      'POST /api/v1/stock/entries/:id/void',
+      'POST /api/v1/stock/usage',
+    ]);
+  });
+
+  it('gives godown managers their godowns: stock in, sending, returns, counts', () => {
+    const forManagers = routes
+      .filter((r) => r.roles?.includes('GODOWN_MANAGER'))
+      .map(key)
+      .sort();
+    expect(forManagers).toEqual([
+      'GET /api/v1/dashboard/godown',
+      'GET /api/v1/material-requests',
+      'GET /api/v1/material-requests/:id',
+      'GET /api/v1/stock/entries',
+      'GET /api/v1/stock/entries/:id',
+      'GET /api/v1/stock/godowns/:id',
+      'GET /api/v1/stock/overview',
+      'POST /api/v1/materials',
+      'POST /api/v1/stock/counts',
+      'POST /api/v1/stock/entries/:id/receive',
+      'POST /api/v1/stock/entries/:id/void',
+      'POST /api/v1/stock/purchases',
+      'POST /api/v1/stock/transfers',
+      'POST /api/v1/stock/write-offs',
     ]);
   });
 });

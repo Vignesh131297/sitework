@@ -4,6 +4,7 @@ import {
   addDays,
   addMinutes,
   businessDate,
+  isWorkingDay,
   toDbDate,
   zonedInstant,
 } from '../../src/common/time/business-time.js';
@@ -35,6 +36,7 @@ import {
   type SeededIssue,
 } from './notifications.js';
 import { createRandom } from './random.js';
+import { seedStock } from './stock.js';
 
 const HISTORY_DAYS = 14;
 const NOTIFICATION_DAYS = 3;
@@ -343,7 +345,33 @@ export async function seedDatabase(
     issues,
     overdueMilestones,
   });
-  await prisma.notification.createMany({ data: notifications });
+  const stock = await seedStock(prisma, {
+    today,
+    timeZone,
+    isWorkingDay: (date) =>
+      isWorkingDay(
+        date,
+        settings.business.workingDays,
+        new Set(holidays.map((h) => h.date)),
+      ),
+    userId,
+    userName: (key) => required(users.get(key), `user ${key}`).name,
+    site: (key) => {
+      const seed = required(
+        SITES.find((s) => s.key === key),
+        `site ${key}`,
+      );
+      return {
+        ...siteOf(key),
+        engineerIds: seed.engineerKeys.map(userId),
+      };
+    },
+    adminIds: [adminId],
+  });
+
+  await prisma.notification.createMany({
+    data: [...notifications, ...stock.notifications],
+  });
 
   return {
     users: users.size,
@@ -356,7 +384,11 @@ export async function seedDatabase(
     missedUpdates: activity.missed.length,
     engineerUpdates: engineerUpdates.length,
     issues: issues.length,
-    notifications: notifications.length,
+    godowns: stock.godowns,
+    materials: stock.materials,
+    materialRequests: stock.materialRequests,
+    stockEntries: stock.stockEntries,
+    notifications: notifications.length + stock.notifications.length,
   };
 }
 
@@ -367,7 +399,10 @@ async function truncateAllTables(prisma: PrismaClient): Promise<void> {
   if (tables.length === 0) return;
   // Names come from the catalog, not user input.
   const list = tables.map((t) => `"public"."${t.tablename}"`).join(', ');
-  await prisma.$executeRawUnsafe(`TRUNCATE TABLE ${list} CASCADE`);
+  // RESTART IDENTITY: material requests are numbered from MR-0001 again.
+  await prisma.$executeRawUnsafe(
+    `TRUNCATE TABLE ${list} RESTART IDENTITY CASCADE`,
+  );
 }
 
 /** Fixed-date national holidays around the seed window. */

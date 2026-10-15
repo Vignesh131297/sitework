@@ -3,6 +3,9 @@ import type { Prisma } from '../../generated/prisma/client.js';
 
 type Caller = Pick<AuthUser, 'id' | 'role'>;
 
+/** Matches no site. */
+const NOTHING: Prisma.SiteWhereInput = { id: { in: [] } };
+
 /**
  * Row-level access rules as Prisma filters. Every query for sites, staff or
  * site-owned records combines its own filter with one of these, so a caller
@@ -10,6 +13,7 @@ type Caller = Pick<AuthUser, 'id' | 'role'>;
  *   Admin    everything (Rule 4)
  *   Engineer the sites they are assigned to, and the staff on those sites (Rule 3)
  *   Staff    their own site and their own records (Rules 1-2)
+ *   Godown manager  no sites or staff (their godowns: see godownScope)
  */
 export function siteScope(user: Caller): Prisma.SiteWhereInput {
   switch (user.role) {
@@ -19,6 +23,8 @@ export function siteScope(user: Caller): Prisma.SiteWhereInput {
       return { engineerAssignments: { some: { engineerId: user.id } } };
     case 'STAFF':
       return { staffAssignments: { some: { staffId: user.id } } };
+    case 'GODOWN_MANAGER':
+      return NOTHING;
   }
 }
 
@@ -36,6 +42,8 @@ export function staffScope(user: Caller): Prisma.UserWhereInput {
       };
     case 'STAFF':
       return { role: 'STAFF', id: user.id };
+    case 'GODOWN_MANAGER':
+      return { role: 'STAFF', id: { in: [] } };
   }
 }
 
@@ -51,6 +59,8 @@ export function staffRecordScope(user: Caller): {
       return { site: siteScope(user) };
     case 'STAFF':
       return { staffId: user.id };
+    case 'GODOWN_MANAGER':
+      return { site: NOTHING };
   }
 }
 
@@ -59,4 +69,14 @@ export function siteRecordScope(user: Caller): {
   site?: Prisma.SiteWhereInput;
 } {
   return user.role === 'ADMIN' ? {} : { site: siteScope(user) };
+}
+
+/**
+ * Godowns the caller runs: admins all of them, godown managers those they are
+ * assigned to. (Engineers may look at godown stock but run none.)
+ */
+export function godownScope(user: Caller): Prisma.GodownWhereInput {
+  return user.role === 'ADMIN'
+    ? {}
+    : { managers: { some: { userId: user.id } } };
 }

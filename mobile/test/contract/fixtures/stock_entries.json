@@ -1,0 +1,425 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a11c52-5435-76de-9b89-550670b90dc7",
+      "requestId": "2118467c-5998-4fdb-9846-1be7817ab505",
+      "kind": "USAGE",
+      "from": {
+        "place": "SITE",
+        "site": {
+          "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+          "code": "SITE-001",
+          "name": "ABC Apartment Project"
+        },
+        "godown": null
+      },
+      "to": {
+        "place": "USED",
+        "site": null,
+        "godown": null
+      },
+      "status": "DONE",
+      "movedOn": "2026-10-07",
+      "dcNumber": null,
+      "supplier": null,
+      "billNo": null,
+      "note": "First floor columns and slab.",
+      "lines": [
+        {
+          "id": "01a11c52-5436-73d0-9c5e-773512a6aff0",
+          "material": {
+            "id": "01a11c52-5385-771f-8454-9683c609d4b0",
+            "name": "Blue metal 20mm",
+            "unit": "cft"
+          },
+          "quantity": "40",
+          "receivedQuantity": "40",
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        },
+        {
+          "id": "01a11c52-5436-73d0-9c5e-6b41b3ae57f9",
+          "material": {
+            "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+            "name": "Cement OPC 53",
+            "unit": "bag"
+          },
+          "quantity": "8",
+          "receivedQuantity": "8",
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        },
+        {
+          "id": "01a11c52-5436-73d0-9c5e-7224eaab0d86",
+          "material": {
+            "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+            "name": "M-Sand",
+            "unit": "cft"
+          },
+          "quantity": "60",
+          "receivedQuantity": "60",
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        },
+        {
+          "id": "01a11c52-5436-73d0-9c5e-78af5f899bdf",
+          "material": {
+            "id": "01a11c52-5387-72c0-a7f2-f113520703e6",
+            "name": "Red bricks",
+            "unit": "nos"
+          },
+          "quantity": "900",
+          "receivedQuantity": "900",
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        },
+        {
+          "id": "01a11c52-5436-73d0-9c5e-6db28d50a0cf",
+          "material": {
+            "id": "01a11c52-5381-735c-8b63-4354c3bde9e6",
+            "name": "TMT Steel 12mm",
+            "unit": "kg"
+          },
+          "quantity": "150",
+          "receivedQuantity": "150",
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        }
+      ],
+      "totalAmount": null,
+      "receivedOn": "2026-10-07",
+      "receivedAt": null,
+      "receivedBy": null,
+      "receiveNote": null,
+      "createdBy": {
+        "id": "01a11c52-51a9-726e-813a-f1fa901ee64b",
+        "name": "Arun Kumar"
+      },
+      "createdAt": "2026-10-07T12:45:00.000Z",
+      "voidedAt": null,
+      "voidedBy": null,
+      "voidReason": null,
+      "photoCount": 0,
+      "request": null,
+      "canReceive": false,
+      "canVoid": true
+    },
+    {
+      "id": "01a11c52-547b-768f-b1ca-1c7c9a859bed",
+      "requestId": "57b53c2b-5ddb-45b8-b087-6331b05f3487",
+      "kind": "USAGE",
+      "from": {
+        "place": "SITE",
+        "site": {
+          "id": "01a11c52-51ec-772b-ac1a-96a6a41f6962",
+          "code": "SITE-002",
+          "name": "Green Valley Villa"
+        },
+        "godown": null
+      },
+      "to": {
+        "place": "USED",
+        "site": null,
+        "godown": null
+      },
+      "status": "DONE",
+      "movedOn": "2026-10-07",
+      "dcNumber": null,
+      "supplier": null,
+      "billNo": null,
+      "note": "Brickwork and plastering.",
+      "lines": [
+        {
+          "id": "01a11c52-547d-75df-a235-39df86fcc064",
+          "material": {
+            "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+            "name": "Cement OPC 53",
+            "unit": "bag"
+          },
+          "quantity": "6",
+          "receivedQuantity": "6",
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        },
+        {
+          "id": "01a11c52-547d-75df-a235-3d21f016fcde",
+          "material": {
+            "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+            "name": "M-Sand",
+            "unit": "cft"
+          },
+          "quantity": "50",
+          "receivedQuantity": "50",
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        },
+        {
+          "id": "01a11c52-547d-75df-a235-4040233020e2",
+          "material": {
+            "id": "01a11c52-5387-72c0-a7f2-f113520703e6",
+            "name": "Red bricks",
+            "unit": "nos"
+          },
+          "quantity": "700",
+          "receivedQuantity": "700",
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        }
+      ],
+      "totalAmount": null,
+      "receivedOn": "2026-10-07",
+      "receivedAt": null,
+      "receivedBy": null,
+      "receiveNote": null,
+      "createdBy": {
+        "id": "01a11c52-51ac-70e4-bf87-b4e50f2569e0",
+        "name": "Prakash"
+      },
+      "createdAt": "2026-10-07T12:45:00.000Z",
+      "voidedAt": null,
+      "voidedBy": null,
+      "voidReason": null,
+      "photoCount": 0,
+      "request": null,
+      "canReceive": false,
+      "canVoid": true
+    },
+    {
+      "id": "01a11c52-54b7-713d-99e8-f254f34a8214",
+      "requestId": "f8b193b3-73a2-4664-af75-04e520f8858b",
+      "kind": "USAGE",
+      "from": {
+        "place": "SITE",
+        "site": {
+          "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
+          "code": "SITE-003",
+          "name": "Sri Lakshmi Commercial Building"
+        },
+        "godown": null
+      },
+      "to": {
+        "place": "USED",
+        "site": null,
+        "godown": null
+      },
+      "status": "DONE",
+      "movedOn": "2026-10-07",
+      "dcNumber": null,
+      "supplier": null,
+      "billNo": null,
+      "note": "Ground floor columns.",
+      "lines": [
+        {
+          "id": "01a11c52-54b8-75f5-866f-2b4131ffd33d",
+          "material": {
+            "id": "01a11c52-5385-771f-8454-9683c609d4b0",
+            "name": "Blue metal 20mm",
+            "unit": "cft"
+          },
+          "quantity": "35",
+          "receivedQuantity": "35",
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        },
+        {
+          "id": "01a11c52-54b8-75f5-866f-2399b3a8aa6f",
+          "material": {
+            "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+            "name": "Cement OPC 53",
+            "unit": "bag"
+          },
+          "quantity": "5",
+          "receivedQuantity": "5",
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        },
+        {
+          "id": "01a11c52-54b8-75f5-866f-25373d38110a",
+          "material": {
+            "id": "01a11c52-5381-735c-8b63-4354c3bde9e6",
+            "name": "TMT Steel 12mm",
+            "unit": "kg"
+          },
+          "quantity": "120",
+          "receivedQuantity": "120",
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        }
+      ],
+      "totalAmount": null,
+      "receivedOn": "2026-10-07",
+      "receivedAt": null,
+      "receivedBy": null,
+      "receiveNote": null,
+      "createdBy": {
+        "id": "01a11c52-51af-712c-a92c-b631a875841d",
+        "name": "Suresh"
+      },
+      "createdAt": "2026-10-07T12:45:00.000Z",
+      "voidedAt": null,
+      "voidedBy": null,
+      "voidReason": null,
+      "photoCount": 0,
+      "request": null,
+      "canReceive": false,
+      "canVoid": true
+    },
+    {
+      "id": "01a11c52-542e-722c-a856-312a560b2f94",
+      "requestId": "063d65d0-fd89-40ce-8782-5f533a8f34e3",
+      "kind": "TRANSFER",
+      "from": {
+        "place": "SITE",
+        "site": {
+          "id": "01a11c52-51ec-772b-ac1a-96a6a41f6962",
+          "code": "SITE-002",
+          "name": "Green Valley Villa"
+        },
+        "godown": null
+      },
+      "to": {
+        "place": "GODOWN",
+        "site": null,
+        "godown": {
+          "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+          "name": "Main godown"
+        }
+      },
+      "status": "IN_TRANSIT",
+      "movedOn": "2026-10-07",
+      "dcNumber": null,
+      "supplier": null,
+      "billNo": null,
+      "note": "Leftover from MR-0002",
+      "lines": [
+        {
+          "id": "01a11c52-5430-742d-882a-e02f4e9ac3a3",
+          "material": {
+            "id": "01a11c52-5387-72c0-a7f2-f113520703e6",
+            "name": "Red bricks",
+            "unit": "nos"
+          },
+          "quantity": "1000",
+          "receivedQuantity": null,
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        }
+      ],
+      "totalAmount": null,
+      "receivedOn": null,
+      "receivedAt": null,
+      "receivedBy": null,
+      "receiveNote": null,
+      "createdBy": {
+        "id": "01a11c52-51ac-70e4-bf87-b4e50f2569e0",
+        "name": "Prakash"
+      },
+      "createdAt": "2026-10-07T10:00:00.000Z",
+      "voidedAt": null,
+      "voidedBy": null,
+      "voidReason": null,
+      "photoCount": 0,
+      "request": {
+        "id": "01a11c52-53a0-7629-8ce2-0efef5ad0d75",
+        "code": "MR-0002"
+      },
+      "canReceive": true,
+      "canVoid": true
+    },
+    {
+      "id": "01a11c52-5427-71ae-afef-c1e19a55bba1",
+      "requestId": "58f10ed0-2572-4440-889b-ee24f49da73a",
+      "kind": "TRANSFER",
+      "from": {
+        "place": "GODOWN",
+        "site": null,
+        "godown": {
+          "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+          "name": "Main godown"
+        }
+      },
+      "to": {
+        "place": "SITE",
+        "site": {
+          "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+          "code": "SITE-001",
+          "name": "ABC Apartment Project"
+        },
+        "godown": null
+      },
+      "status": "IN_TRANSIT",
+      "movedOn": "2026-10-07",
+      "dcNumber": "DC-0109",
+      "supplier": null,
+      "billNo": null,
+      "note": null,
+      "lines": [
+        {
+          "id": "01a11c52-5429-720b-ad44-d464d1f59d1b",
+          "material": {
+            "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+            "name": "Cement OPC 53",
+            "unit": "bag"
+          },
+          "quantity": "50",
+          "receivedQuantity": null,
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        },
+        {
+          "id": "01a11c52-5429-720b-ad44-db413229039d",
+          "material": {
+            "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+            "name": "M-Sand",
+            "unit": "cft"
+          },
+          "quantity": "300",
+          "receivedQuantity": null,
+          "shortQuantity": null,
+          "rate": null,
+          "amount": null
+        }
+      ],
+      "totalAmount": null,
+      "receivedOn": null,
+      "receivedAt": null,
+      "receivedBy": null,
+      "receiveNote": null,
+      "createdBy": {
+        "id": "01a11c52-51c6-71ca-932e-4422f8d77749",
+        "name": "Selvam"
+      },
+      "createdAt": "2026-10-07T04:30:00.000Z",
+      "voidedAt": null,
+      "voidedBy": null,
+      "voidReason": null,
+      "photoCount": 0,
+      "request": {
+        "id": "01a11c52-53ba-728d-8fad-827e33eaeb9b",
+        "code": "MR-0006"
+      },
+      "canReceive": true,
+      "canVoid": true
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 34,
+    "totalPages": 7
+  }
+}

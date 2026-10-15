@@ -77,15 +77,55 @@ Future<void> main(List<String> args) async {
     await save('report_staff', '/reports/staff?$range', admin);
     await save('report_engineers', '/reports/engineers?$range', admin);
     await save('report_payments', '/reports/payments?$range', admin);
+    await save('report_stock', '/reports/stock?$range', admin);
+
+    // Stock: godowns, a site's and a godown's stock, entries and a material.
+    await save('stock_overview', '/stock/overview', admin);
+    final overview = (await call('GET', '/stock/overview', token: admin))['data'] as Map<String, dynamic>;
+    String firstId(String list, String field) =>
+        (((overview[list] as List<dynamic>).first as Map<String, dynamic>)[field] as Map<String, dynamic>)['id']
+            as String;
+    await save('godown_stock', '/stock/godowns/${firstId('godowns', 'godown')}', admin);
+    await save('material_detail', '/materials/${firstId('materials', 'material')}', admin);
+    await save('site_stock', '/sites/$siteId/stock', admin);
+    final entryId = await save('stock_entries', '/stock/entries?limit=5', admin);
+    await save('stock_entry_detail', '/stock/entries/$entryId', admin);
+
+    // Material requests: the list, and one approved request with its deliveries.
+    await save('material_requests', '/material-requests?limit=10', admin);
+    final approved =
+        (((await call('GET', '/material-requests?status=APPROVED&limit=5', token: admin))['data'] as List<dynamic>)
+                .first
+            as Map<String, dynamic>)['id'];
+    await save('material_request_detail', '/material-requests/$approved', admin);
+
+    // Godown managers and admins.
+    final managerId = await save('godown_managers', '/godown-managers?limit=5', admin);
+    await save('godown_manager_detail', '/godown-managers/$managerId', admin);
+    await save('admins', '/admins?limit=5', admin);
+
+    // Sign-up is closed once an admin exists (no token needed).
+    await save('signup_status', '/auth/signup', admin);
 
     final engineer = await signIn('+919000000011', 'Engineer@123');
     await save('dashboard_engineer', '/dashboard/engineer', engineer);
     await save('me_engineer', '/me', engineer);
     await save('report_sites_engineer', '/reports/sites?$range', engineer);
+    await save('report_stock_engineer', '/reports/stock?$range', engineer);
+    await save('stock_overview_engineer', '/stock/overview', engineer);
 
     final staff = await signIn('+919000000101', 'Staff@123');
     await save('staff_today', '/me/today', staff);
     await save('me_staff', '/me', staff);
+    final today = (await call('GET', '/me/today', token: staff))['data'] as Map<String, dynamic>;
+    final staffSite = ((today['assignment'] as Map<String, dynamic>)['site'] as Map<String, dynamic>)['id'];
+    await save('site_stock_staff', '/sites/$staffSite/stock', staff);
+
+    final manager = await signIn('+919000000201', 'Godown@123');
+    await save('dashboard_godown', '/dashboard/godown', manager);
+    await save('me_godown_manager', '/me', manager);
+    await save('stock_overview_godown', '/stock/overview', manager);
+    await save('material_requests_godown', '/material-requests?limit=10', manager);
   } finally {
     http.close();
   }

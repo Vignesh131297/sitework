@@ -84,6 +84,28 @@ class _Body extends StatelessWidget {
           onTap: () => context.go(AppRoutes.engineerIssues),
         ),
         CountTile(
+          icon: Icons.local_shipping_outlined,
+          tone: d.stock.toReceive > 0 ? StatusTone.warning : StatusTone.neutral,
+          title: l10n.stockDeliveriesToConfirm,
+          count: d.stock.toReceive,
+          onTap: () => context.push(AppRoutes.stockHistory(area, receivable: true)),
+        ),
+        CountTile(
+          icon: Icons.assignment_outlined,
+          tone: StatusTone.info,
+          title: l10n.requestsTitle,
+          subtitle: l10n.requestsEngineerSubtitle,
+          count: d.stock.openRequests,
+          onTap: () => context.push(AppRoutes.requests(area)),
+        ),
+        CountTile(
+          icon: Icons.warehouse_outlined,
+          tone: StatusTone.neutral,
+          title: l10n.stockTitle,
+          subtitle: l10n.stockEngineerSubtitle,
+          onTap: () => context.push(AppRoutes.stock(area)),
+        ),
+        CountTile(
           icon: Icons.insert_chart_outlined,
           tone: StatusTone.neutral,
           title: l10n.reportsTitle,

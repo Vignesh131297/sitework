@@ -86,3 +86,36 @@ class AmountField extends StatelessWidget {
 
 /// True for "1500000", "1500000.5", "1500000.50".
 bool isAmount(String value) => RegExp(r'^\d{1,12}(\.\d{1,2})?$').hasMatch(value.trim());
+
+/// Stock quantity input: digits with up to three decimals, and the unit after
+/// it. The value stays a string.
+class QuantityField extends StatelessWidget {
+  const QuantityField({
+    super.key,
+    required this.controller,
+    required this.label,
+    this.unit,
+    this.validator,
+    this.helperText,
+  });
+
+  final TextEditingController controller;
+  final String label;
+  final String? unit;
+  final FormFieldValidator<String>? validator;
+  final String? helperText;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      keyboardType: const TextInputType.numberWithOptions(decimal: true),
+      inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d{0,9}(\.\d{0,3})?'))],
+      validator: validator,
+      decoration: InputDecoration(labelText: label, helperText: helperText, suffixText: unit),
+    );
+  }
+}
+
+/// True for "60", "12.5", "0.125".
+bool isQuantity(String value) => RegExp(r'^\d{1,9}(\.\d{1,3})?$').hasMatch(value.trim());

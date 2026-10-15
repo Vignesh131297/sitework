@@ -18,7 +18,7 @@ import '../../auth/domain/user_role.dart';
 import '../data/people_repository.dart';
 import '../domain/person_models.dart';
 
-/// Admin "People" tab: engineers and staff.
+/// Admin "People" tab: engineers, staff, godown managers and admins.
 class PeopleScreen extends StatefulWidget {
   const PeopleScreen({super.key});
 
@@ -27,7 +27,8 @@ class PeopleScreen extends StatefulWidget {
 }
 
 class _PeopleScreenState extends State<PeopleScreen> with SingleTickerProviderStateMixin {
-  late final _tabs = TabController(length: 2, vsync: this)..addListener(() => setState(() {}));
+  static const _roles = [UserRole.engineer, UserRole.staff, UserRole.godownManager, UserRole.admin];
+  late final _tabs = TabController(length: _roles.length, vsync: this)..addListener(() => setState(() {}));
 
   @override
   void dispose() {
@@ -38,30 +39,31 @@ class _PeopleScreenState extends State<PeopleScreen> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final onEngineers = _tabs.index == 0;
+    final role = _roles[_tabs.index];
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.peopleTitle),
         actions: const [ProfileAction()],
         bottom: TabBar(
           controller: _tabs,
+          isScrollable: true,
+          tabAlignment: TabAlignment.start,
           tabs: [
             Tab(text: l10n.engineersTitle),
             Tab(text: l10n.staffTitle),
+            Tab(text: l10n.godownManagersTitle),
+            Tab(text: l10n.adminsTitle),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => context.push(onEngineers ? AppRoutes.adminEngineerNew : AppRoutes.adminStaffNew),
+        onPressed: () => context.push(AppRoutes.adminPersonNew(personSegment(role))),
         icon: const Icon(Icons.person_add_alt_outlined),
-        label: Text(onEngineers ? l10n.engineerNew : l10n.staffNew),
+        label: Text(newPersonLabel(role, l10n)),
       ),
       body: TabBarView(
         controller: _tabs,
-        children: const [
-          PeopleList(role: UserRole.engineer),
-          PeopleList(role: UserRole.staff),
-        ],
+        children: [for (final role in _roles) PeopleList(role: role)],
       ),
     );
   }
@@ -158,13 +160,29 @@ class _PeopleListState extends ConsumerState<PeopleList> {
               designation: _designation,
             ),
             itemBuilder: (context, person) => PersonCard(person: person),
-            empty: EmptyList(icon: Icons.groups_outlined, message: _isStaff ? l10n.staffEmpty : l10n.engineersEmpty),
+            empty: EmptyList(
+              icon: Icons.groups_outlined,
+              message: switch (widget.role) {
+                UserRole.staff => l10n.staffEmpty,
+                UserRole.engineer => l10n.engineersEmpty,
+                UserRole.godownManager => l10n.godownManagersEmpty,
+                UserRole.admin => l10n.adminsEmpty,
+              },
+            ),
           ),
         ),
       ],
     );
   }
 }
+
+/// "New engineer", "New godown manager"…
+String newPersonLabel(UserRole role, AppLocalizations l10n) => switch (role) {
+  UserRole.engineer => l10n.engineerNew,
+  UserRole.staff => l10n.staffNew,
+  UserRole.godownManager => l10n.godownManagerNew,
+  UserRole.admin => l10n.adminNew,
+};
 
 class PersonCard extends StatelessWidget {
   const PersonCard({super.key, required this.person});
@@ -176,10 +194,19 @@ class PersonCard extends StatelessWidget {
     final l10n = AppLocalizations.of(context);
     final theme = Theme.of(context);
     final p = person;
-    final isStaff = p.role == UserRole.staff;
-    final details = isStaff
-        ? [p.employeeCode, ?p.designation?.label(l10n), p.assignment?.site.name ?? l10n.personNotAssigned]
-        : [p.employeeCode, l10n.siteCount(p.sites.length), l10n.staffCount(p.staffCount)];
+    final details = switch (p.role) {
+      UserRole.staff => [
+        p.employeeCode,
+        ?p.designation?.label(l10n),
+        p.assignment?.site.name ?? l10n.personNotAssigned,
+      ],
+      UserRole.engineer => [p.employeeCode, l10n.siteCount(p.sites.length), l10n.staffCount(p.staffCount)],
+      UserRole.godownManager => [
+        p.employeeCode,
+        if (p.godowns.isEmpty) l10n.personNoGodowns else p.godowns.map((g) => g.name).join(', '),
+      ],
+      UserRole.admin => [p.employeeCode, ?p.email],
+    };
     return Card(
       clipBehavior: Clip.antiAlias,
       child: ListTile(
@@ -190,7 +217,7 @@ class PersonCard extends StatelessWidget {
         title: Text(p.name),
         subtitle: Text(details.join(' · ')),
         trailing: p.isActive ? null : StatusChip(label: l10n.commonInactive, tone: StatusTone.neutral),
-        onTap: () => context.push(isStaff ? AppRoutes.adminStaffMember(p.id) : AppRoutes.adminEngineer(p.id)),
+        onTap: () => context.push(AppRoutes.adminPerson(personSegment(p.role), p.id)),
       ),
     );
   }

@@ -6,6 +6,7 @@ import '../../../core/data/revision.dart';
 import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/l10n/labels.dart';
 import '../../../core/models/enums.dart';
+import '../../../core/models/refs.dart';
 import '../../../core/routing/app_routes.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/utils/validators.dart';
@@ -16,11 +17,14 @@ import '../../../core/widgets/submit_state.dart';
 import '../../auth/domain/user_role.dart';
 import '../../sites/data/sites_repository.dart';
 import '../../sites/domain/site_models.dart';
+import '../../stock/data/stock_repository.dart';
 import '../data/people_repository.dart';
 import '../domain/person_models.dart';
+import 'people_screen.dart';
 import 'temporary_password_dialog.dart';
 
-/// New engineer or staff member, or edit the person with [id].
+/// A new person (engineer, staff member, godown manager or admin), or edit
+/// the one with [id].
 class PersonFormScreen extends ConsumerWidget {
   const PersonFormScreen({super.key, required this.role, this.id});
 
@@ -31,13 +35,14 @@ class PersonFormScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final id = this.id;
-    final isStaff = role == UserRole.staff;
-    final title = switch ((isStaff, id == null)) {
-      (true, true) => l10n.staffNew,
-      (true, false) => l10n.staffEdit,
-      (false, true) => l10n.engineerNew,
-      (false, false) => l10n.engineerEdit,
-    };
+    final title = id == null
+        ? newPersonLabel(role, l10n)
+        : switch (role) {
+            UserRole.staff => l10n.staffEdit,
+            UserRole.engineer => l10n.engineerEdit,
+            UserRole.godownManager => l10n.godownManagerEdit,
+            UserRole.admin => l10n.adminEdit,
+          };
     return Scaffold(
       appBar: AppBar(title: Text(title)),
       body: id == null
@@ -70,12 +75,16 @@ class _PersonFormState extends ConsumerState<_PersonForm> with SubmitState {
   late String? _joiningDate = widget.initial?.joiningDate;
   late Designation? _designation = widget.initial?.designation;
 
+  // Godown managers: the godowns they run (when creating or editing).
+  late final _godownIds = {for (final g in widget.initial?.godowns ?? const <IdName>[]) g.id};
+
   // Only when creating: where the new person starts.
   final _siteIds = <String>{};
   String? _siteId;
   String? _engineerId;
 
   bool get _isStaff => widget.role == UserRole.staff;
+  bool get _isManager => widget.role == UserRole.godownManager;
   bool get _creating => widget.initial == null;
 
   @override
@@ -98,12 +107,15 @@ class _PersonFormState extends ConsumerState<_PersonForm> with SubmitState {
       'employeeCode': ?code,
       'joiningDate': _joiningDate,
       if (_isStaff) 'designation': _designation!.apiValue,
+      if (_isManager) 'godownIds': _godownIds.toList(),
     };
     final initial = widget.initial;
     if (initial != null) {
       final saved = await runSubmit(() => repository.update(widget.role, initial.id, body));
       if (saved == null || !mounted) return;
-      ref.bump(DataSet.people);
+      ref
+        ..bump(DataSet.people)
+        ..bump(DataSet.stock);
       showSnack(context, l10n.personSaved);
       context.pop();
       return;
@@ -111,18 +123,18 @@ class _PersonFormState extends ConsumerState<_PersonForm> with SubmitState {
 
     if (_isStaff) {
       if (_siteId != null && _engineerId != null) body.addAll({'siteId': _siteId, 'engineerId': _engineerId});
-    } else {
+    } else if (widget.role == UserRole.engineer) {
       body['siteIds'] = _siteIds.toList();
     }
     final created = await runSubmit(() => repository.create(widget.role, body));
     if (created == null || !mounted) return;
     ref
       ..bump(DataSet.people)
-      ..bump(DataSet.sites);
+      ..bump(DataSet.sites)
+      ..bump(DataSet.stock);
     await showTemporaryPasswordDialog(context, name: created.person.name, password: created.temporaryPassword);
     if (!mounted) return;
-    final id = created.person.id;
-    context.pushReplacement(_isStaff ? AppRoutes.adminStaffMember(id) : AppRoutes.adminEngineer(id));
+    context.pushReplacement(AppRoutes.adminPerson(personSegment(widget.role), created.person.id));
   }
 
   @override
@@ -188,7 +200,12 @@ class _PersonFormState extends ConsumerState<_PersonForm> with SubmitState {
               onChanged: (value) => setState(() => _designation = value),
             ),
           ],
-          if (_creating)
+          if (_isManager)
+            _GodownPicker(
+              selected: _godownIds,
+              onToggle: (id, on) => setState(() => on ? _godownIds.add(id) : _godownIds.remove(id)),
+            ),
+          if (_creating && (_isStaff || widget.role == UserRole.engineer))
             _isStaff
                 ? _StartingSite(
                     siteId: _siteId,
@@ -207,6 +224,46 @@ class _PersonFormState extends ConsumerState<_PersonForm> with SubmitState {
           SubmitButton(label: l10n.commonSave, busy: submitting, onPressed: _save),
         ],
       ),
+    );
+  }
+}
+
+/// Godown manager: the godowns they run (open ones).
+class _GodownPicker extends ConsumerWidget {
+  const _GodownPicker({required this.selected, required this.onToggle});
+
+  final Set<String> selected;
+  final void Function(String id, bool on) onToggle;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final theme = Theme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: AppSpacing.lg),
+        Text(l10n.personGodowns, style: theme.textTheme.titleSmall),
+        Text(l10n.personGodownsHelper, style: theme.textTheme.bodySmall),
+        const SizedBox(height: AppSpacing.sm),
+        AsyncValueView(
+          value: ref.watch(stockOverviewProvider),
+          onRetry: () => ref.invalidate(stockOverviewProvider),
+          data: (overview) => Wrap(
+            spacing: AppSpacing.sm,
+            runSpacing: AppSpacing.sm,
+            children: [
+              for (final g in overview.godowns)
+                if (g.godown.isActive)
+                  FilterChip(
+                    label: Text(g.godown.name),
+                    selected: selected.contains(g.godown.id),
+                    onSelected: (on) => onToggle(g.godown.id, on),
+                  ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

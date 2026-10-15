@@ -2,6 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../core/models/enums.dart';
 import '../../../core/models/refs.dart';
+import '../../stock/domain/stock_models.dart';
 
 part 'admin_dashboard.freezed.dart';
 part 'admin_dashboard.g.dart';
@@ -50,6 +51,21 @@ abstract class IssueCounts with _$IssueCounts {
   const factory IssueCounts({required int open, required int critical}) = _IssueCounts;
 
   factory IssueCounts.fromJson(Map<String, dynamic> json) => _$IssueCountsFromJson(json);
+}
+
+/// Stock needing attention: materials low in the godowns and requests to
+/// approve (admins), open requests (engineers), and deliveries or returns on
+/// the way for the user to confirm.
+@freezed
+abstract class StockCounts with _$StockCounts {
+  const factory StockCounts({
+    @Default(0) int lowStock,
+    @Default(0) int toReceive,
+    @Default(0) int requestsToApprove,
+    @Default(0) int openRequests,
+  }) = _StockCounts;
+
+  factory StockCounts.fromJson(Map<String, dynamic> json) => _$StockCountsFromJson(json);
 }
 
 /// Something the admin should look at; unknown kinds from a newer server are ignored.
@@ -119,6 +135,7 @@ abstract class AdminDashboard with _$AdminDashboard {
     /// Staff photos no admin has looked at yet.
     @Default(0) int toReview,
     required IssueCounts issues,
+    @Default(StockCounts()) StockCounts stock,
     required List<AttentionItem> attention,
     required List<SiteActivity> sites,
   }) = _AdminDashboard;
@@ -138,9 +155,25 @@ abstract class EngineerDashboard with _$EngineerDashboard {
     /// Their staff's photos still waiting for their review.
     required int toReview,
     required IssueCounts issues,
+    @Default(StockCounts()) StockCounts stock,
     required List<AttentionItem> attention,
     required List<SiteActivity> sites,
   }) = _EngineerDashboard;
 
   factory EngineerDashboard.fromJson(Map<String, dynamic> json) => _$EngineerDashboardFromJson(json);
+}
+
+/// A godown manager's day: their godowns, approved requests still to send,
+/// returns on the way to confirm, and materials low across all godowns.
+@freezed
+abstract class GodownDashboard with _$GodownDashboard {
+  const factory GodownDashboard({
+    required String date,
+    required List<GodownSummary> godowns,
+    @Default(0) int toSend,
+    @Default(0) int toReceive,
+    @Default(0) int lowStock,
+  }) = _GodownDashboard;
+
+  factory GodownDashboard.fromJson(Map<String, dynamic> json) => _$GodownDashboardFromJson(json);
 }

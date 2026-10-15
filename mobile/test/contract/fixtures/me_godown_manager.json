@@ -1,0 +1,16 @@
+{
+  "success": true,
+  "data": {
+    "id": "01a11c52-51c6-71ca-932e-4422f8d77749",
+    "name": "Selvam",
+    "role": "GODOWN_MANAGER",
+    "phone": "+919000000201",
+    "email": null,
+    "employeeCode": "GDM-001",
+    "designation": null,
+    "joiningDate": "2025-05-26",
+    "mustChangePassword": false,
+    "assignment": null,
+    "sites": []
+  }
+}

@@ -29,7 +29,7 @@ class CreatePersonDto {
   @MaxLength(254)
   email?: string | null;
 
-  /** Left out: the next ENG-### / STF-### code is used. */
+  /** Left out: the next ENG-### / STF-### / GDM-### / ADM-### code is used. */
   @IsOptional()
   @Matches(/^[A-Za-z0-9-]{2,20}$/, {
     message: 'employeeCode must be 2-20 letters, digits or dashes',
@@ -61,6 +61,24 @@ export class CreateStaffDto extends CreatePersonDto {
   @Matches(UUID_PATTERN, { message: 'engineerId must be an id' })
   engineerId?: string;
 }
+
+export class CreateGodownManagerDto extends CreatePersonDto {
+  /** The godowns they run. */
+  @IsOptional()
+  @IsArray()
+  @ArrayMaxSize(20)
+  @Matches(UUID_PATTERN, { each: true, message: 'godownIds must be ids' })
+  godownIds?: string[];
+}
+
+export class CreateAdminDto extends CreatePersonDto {}
+
+/** [godownIds] replaces their godowns. */
+export class UpdateGodownManagerDto extends PartialType(
+  CreateGodownManagerDto,
+) {}
+
+export class UpdateAdminDto extends PartialType(CreateAdminDto) {}
 
 export class UpdateEngineerDto extends PartialType(
   OmitType(CreateEngineerDto, ['siteIds'] as const),

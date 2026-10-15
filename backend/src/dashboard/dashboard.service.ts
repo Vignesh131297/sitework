@@ -9,6 +9,9 @@ import {
   type SiteFinancials,
 } from '../payments/site-financials.js';
 import { PrismaService } from '../prisma/prisma.service.js';
+import { MaterialRequestsService } from '../stock/material-requests.service.js';
+import { StockService } from '../stock/stock.service.js';
+import type { GodownView } from '../stock/stock-views.js';
 import { CalendarService } from '../settings/calendar.service.js';
 import {
   DayActivityService,
@@ -51,6 +54,8 @@ export interface EngineerDashboard {
   /** Their staff's photos still waiting for their review. */
   toReview: number;
   issues: { open: number; critical: number };
+  /** Deliveries on the way to their sites, for them to confirm. */
+  stock: { toReceive: number; openRequests: number };
   attention: AttentionItem[];
   sites: SiteActivity[];
 }
@@ -70,8 +75,22 @@ export interface AdminDashboard {
   /** Staff photos no admin has looked at yet. */
   toReview: number;
   issues: { open: number; critical: number };
+  /** Materials below their minimum in the main store; returns to confirm there. */
+  stock: { lowStock: number; toReceive: number; requestsToApprove: number };
   attention: AttentionItem[];
   sites: SiteActivity[];
+}
+
+/** A godown manager's day: their godowns, what to send and what is arriving. */
+export interface GodownDashboard {
+  date: string;
+  godowns: { godown: GodownView; arriving: number }[];
+  /** Approved requests from their godowns with something still to send. */
+  toSend: number;
+  /** Returns on the way to their godowns. */
+  toReceive: number;
+  /** Materials below their minimum across all godowns. */
+  lowStock: number;
 }
 
 @Injectable()
@@ -80,6 +99,8 @@ export class DashboardService {
     private readonly prisma: PrismaService,
     private readonly calendar: CalendarService,
     private readonly activity: DayActivityService,
+    private readonly stock: StockService,
+    private readonly requests: MaterialRequestsService,
     private readonly clock: Clock,
   ) {}
 
@@ -97,6 +118,7 @@ export class DashboardService {
       lastStaff,
       lastEngineer,
       toReview,
+      stock,
     ] = await Promise.all([
       this.prisma.site.count({ where: { status: 'IN_PROGRESS' } }),
       this.prisma.client.count(),
@@ -138,6 +160,7 @@ export class DashboardService {
       this.prisma.staffUpdate.count({
         where: { adminViewedAt: null, imageStatus: 'AVAILABLE' },
       }),
+      this.stock.adminCounts(),
     ]);
 
     const financialsBySite = new Map(
@@ -184,6 +207,7 @@ export class DashboardService {
       updates: dayTotals(day.staff),
       toReview,
       issues: { open: openIssues, critical: criticalIssues.length },
+      stock,
       attention,
       sites: sites
         .filter((site) => site.status !== 'COMPLETED')
@@ -207,6 +231,7 @@ export class DashboardService {
       toReview,
       lastStaff,
       lastEngineer,
+      stock,
     ] = await Promise.all([
       this.prisma.site.findMany({
         where: { ...mine, status: { not: 'COMPLETED' } },
@@ -243,6 +268,7 @@ export class DashboardService {
         where: { site: mine },
         _max: { createdAt: true },
       }),
+      this.stock.engineerCounts(user),
     ]);
     const staffBySite = groupBy(day.staff, (s) => s.site.id);
     const latest = new Map<string, Date>();
@@ -257,11 +283,33 @@ export class DashboardService {
       updates: dayTotals(day.staff),
       toReview,
       issues: { open: openIssues, critical: criticalIssues.length },
+      stock,
       attention: [
         ...staffAttention(staffBySite),
         ...criticalIssues.map(criticalIssueItem),
       ],
       sites: sites.map((site) => siteActivity(site, staffBySite, latest)),
+    };
+  }
+
+  /** A godown manager's day: their godowns, what to send and what is arriving. */
+  async godown(
+    user: AuthUser,
+    now: Date = this.clock.now(),
+  ): Promise<GodownDashboard> {
+    const [date, mine, counts] = await Promise.all([
+      this.calendar.today(now),
+      this.stock.managerGodowns(user),
+      this.stock.adminCounts(),
+    ]);
+    return {
+      date,
+      godowns: mine.godowns,
+      toSend: await this.requests.toSendCount(
+        mine.godowns.map((g) => g.godown.id),
+      ),
+      toReceive: mine.toReceive,
+      lowStock: counts.lowStock,
     };
   }
 }

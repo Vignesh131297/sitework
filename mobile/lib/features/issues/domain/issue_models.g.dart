@@ -18,7 +18,12 @@ Map<String, dynamic> _$IssueReporterToJson(_IssueReporter instance) => <String, 
   'role': _$UserRoleEnumMap[instance.role]!,
 };
 
-const _$UserRoleEnumMap = {UserRole.admin: 'ADMIN', UserRole.engineer: 'ENGINEER', UserRole.staff: 'STAFF'};
+const _$UserRoleEnumMap = {
+  UserRole.admin: 'ADMIN',
+  UserRole.engineer: 'ENGINEER',
+  UserRole.staff: 'STAFF',
+  UserRole.godownManager: 'GODOWN_MANAGER',
+};
 
 _Issue _$IssueFromJson(Map<String, dynamic> json) => _Issue(
   id: json['id'] as String,

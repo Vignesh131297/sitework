@@ -1,7 +1,18 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 /// Groups of server data that screens show.
-enum DataSet { sites, clients, people, payments, attendance, staffUpdates, engineerUpdates, issues, notifications }
+enum DataSet {
+  sites,
+  clients,
+  people,
+  payments,
+  attendance,
+  staffUpdates,
+  engineerUpdates,
+  issues,
+  notifications,
+  stock,
+}
 
 /// A counter per data set. Screens watch it; anything that changes that data
 /// calls [Revision.bump], so every list and detail showing it reloads.

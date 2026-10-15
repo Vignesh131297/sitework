@@ -13,6 +13,7 @@ import '../../../core/utils/formatters.dart';
 import '../../../core/widgets/empty_state.dart';
 import '../../../core/widgets/info_widgets.dart';
 import '../../../core/widgets/status_chip.dart';
+import '../../stock/domain/stock_models.dart';
 import '../domain/report_models.dart';
 
 /// A report's figures as cards, one per site, person or engineer.
@@ -29,6 +30,8 @@ class ReportResultView extends StatelessWidget {
       SitesReport(:final rows) when rows.isEmpty => empty,
       StaffReport(:final rows) when rows.isEmpty => empty,
       EngineersReport(:final rows) when rows.isEmpty => empty,
+      StockReport(:final rows) when rows.isEmpty => empty,
+      StockReport(:final rows) => _StockView(rows: rows),
       SitesReport(:final rows) => Column(children: [for (final row in rows) _SiteCard(row: row)]),
       StaffReport(:final rows) => Column(children: [for (final row in rows) _StaffCard(row: row)]),
       EngineersReport(:final rows) => Column(children: [for (final row in rows) _EngineerCard(row: row)]),
@@ -261,6 +264,59 @@ class ComplianceChip extends StatelessWidget {
     return p == null
         ? StatusChip(label: l10n.reportsNothingDue, tone: StatusTone.neutral)
         : StatusChip(label: l10n.reportsCompliance(p), tone: _percentTone(p));
+  }
+}
+
+/// Stock over the dates: one card per place (godowns first, then sites), each
+/// material from what was there at the start to what was left. Admins also
+/// see what the used stock cost.
+class _StockView extends ConsumerWidget {
+  const _StockView({required this.rows});
+
+  final List<StockReportRow> rows;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final area = ref.watch(areaPathProvider);
+    final places = <String, List<StockReportRow>>{};
+    for (final row in rows) {
+      places.putIfAbsent('${row.place.apiValue}:${row.site?.id ?? row.godown?.id}', () => []).add(row);
+    }
+    return Column(
+      children: [
+        for (final materials in places.values)
+          _ReportCard(
+            title: materials.first.site?.name ?? materials.first.godown?.name ?? '',
+            subtitle: materials.first.site?.code ?? l10n.stockGodownLabel,
+            onTap: switch (materials.first) {
+              StockReportRow(:final site?) => () => context.push(AppRoutes.site(area, site.id, tab: 'stock')),
+              StockReportRow(:final godown?) => () => context.push(AppRoutes.stockGodown(area, godown.id)),
+              _ => null,
+            },
+            children: [
+              for (final row in materials)
+                _MetricGroup(
+                  title: '${row.material.name} (${row.material.unit})',
+                  metrics: [
+                    _Metric.text(l10n.reportsStockOpening, formatQuantity(row.opening)),
+                    _Metric.text(l10n.reportsStockReceived, formatQuantity(row.received)),
+                    _Metric.text(l10n.reportsStockUsed, formatQuantity(row.used)),
+                    _Metric.text(l10n.reportsStockClosing, formatQuantity(row.closing)),
+                    if (num.parse(row.sentOut) != 0)
+                      _Metric.text(l10n.reportsStockSentOut, formatQuantity(row.sentOut)),
+                    if (num.parse(row.wasted) != 0)
+                      _Metric.text(l10n.reportsStockWasted, formatQuantity(row.wasted), tone: StatusTone.danger),
+                    if (num.parse(row.adjusted) != 0)
+                      _Metric.text(l10n.reportsStockAdjusted, formatQuantity(row.adjusted), tone: StatusTone.warning),
+                    if (row.usedValue case final value? when num.parse(value) != 0)
+                      _Metric.text(l10n.reportsStockUsedValue, formatInr(value)),
+                  ],
+                ),
+            ],
+          ),
+      ],
+    );
   }
 }
 

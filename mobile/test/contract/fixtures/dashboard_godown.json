@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "data": {
+    "date": "2026-10-08",
+    "godowns": [
+      {
+        "godown": {
+          "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+          "name": "Main godown",
+          "address": "14, SIDCO Industrial Estate, Ambattur, Chennai 600098",
+          "isActive": true
+        },
+        "arriving": 1
+      }
+    ],
+    "toSend": 1,
+    "toReceive": 1,
+    "lowStock": 1
+  }
+}

@@ -1131,6 +1131,285 @@ as int,
 
 }
 
+
+/// @nodoc
+mixin _$StockCounts {
+
+ int get lowStock; int get toReceive; int get requestsToApprove; int get openRequests;
+/// Create a copy of StockCounts
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$StockCountsCopyWith<StockCounts> get copyWith => _$StockCountsCopyWithImpl<StockCounts>(this as StockCounts, _$identity);
+
+  /// Serializes this StockCounts to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as StockCounts;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is StockCounts&&(identical(other.lowStock, _this.lowStock) || other.lowStock == _this.lowStock)&&(identical(other.toReceive, _this.toReceive) || other.toReceive == _this.toReceive)&&(identical(other.requestsToApprove, _this.requestsToApprove) || other.requestsToApprove == _this.requestsToApprove)&&(identical(other.openRequests, _this.openRequests) || other.openRequests == _this.openRequests));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as StockCounts;
+  return Object.hash(runtimeType,_this.lowStock,_this.toReceive,_this.requestsToApprove,_this.openRequests);
+}
+
+@override
+String toString() {
+  final _this = this as StockCounts;
+  return 'StockCounts(lowStock: ${_this.lowStock}, toReceive: ${_this.toReceive}, requestsToApprove: ${_this.requestsToApprove}, openRequests: ${_this.openRequests})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $StockCountsCopyWith<$Res>  {
+  factory $StockCountsCopyWith(StockCounts value, $Res Function(StockCounts) _then) = _$StockCountsCopyWithImpl;
+@useResult
+$Res call({
+ int lowStock, int toReceive, int requestsToApprove, int openRequests
+});
+
+
+
+
+}
+/// @nodoc
+class _$StockCountsCopyWithImpl<$Res>
+    implements $StockCountsCopyWith<$Res> {
+  _$StockCountsCopyWithImpl(this._self, this._then);
+
+  final StockCounts _self;
+  final $Res Function(StockCounts) _then;
+
+/// Create a copy of StockCounts
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? lowStock = null,Object? toReceive = null,Object? requestsToApprove = null,Object? openRequests = null,}) {
+  return _then(StockCounts(
+lowStock: null == lowStock ? _self.lowStock : lowStock // ignore: cast_nullable_to_non_nullable
+as int,toReceive: null == toReceive ? _self.toReceive : toReceive // ignore: cast_nullable_to_non_nullable
+as int,requestsToApprove: null == requestsToApprove ? _self.requestsToApprove : requestsToApprove // ignore: cast_nullable_to_non_nullable
+as int,openRequests: null == openRequests ? _self.openRequests : openRequests // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [StockCounts].
+extension StockCountsPatterns on StockCounts {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _StockCounts value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _StockCounts() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _StockCounts value)  $default,){
+final _that = this;
+switch (_that) {
+case _StockCounts():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _StockCounts value)?  $default,){
+final _that = this;
+switch (_that) {
+case _StockCounts() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int lowStock,  int toReceive,  int requestsToApprove,  int openRequests)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _StockCounts() when $default != null:
+return $default(_that.lowStock,_that.toReceive,_that.requestsToApprove,_that.openRequests);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int lowStock,  int toReceive,  int requestsToApprove,  int openRequests)  $default,) {final _that = this;
+switch (_that) {
+case _StockCounts():
+return $default(_that.lowStock,_that.toReceive,_that.requestsToApprove,_that.openRequests);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int lowStock,  int toReceive,  int requestsToApprove,  int openRequests)?  $default,) {final _that = this;
+switch (_that) {
+case _StockCounts() when $default != null:
+return $default(_that.lowStock,_that.toReceive,_that.requestsToApprove,_that.openRequests);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _StockCounts implements StockCounts {
+  const _StockCounts({this.lowStock = 0, this.toReceive = 0, this.requestsToApprove = 0, this.openRequests = 0});
+  factory _StockCounts.fromJson(Map<String, dynamic> json) => _$StockCountsFromJson(json);
+
+@override@JsonKey() final  int lowStock;
+@override@JsonKey() final  int toReceive;
+@override@JsonKey() final  int requestsToApprove;
+@override@JsonKey() final  int openRequests;
+
+/// Create a copy of StockCounts
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$StockCountsCopyWith<_StockCounts> get copyWith => __$StockCountsCopyWithImpl<_StockCounts>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$StockCountsToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _StockCounts&&(identical(other.lowStock, lowStock) || other.lowStock == lowStock)&&(identical(other.toReceive, toReceive) || other.toReceive == toReceive)&&(identical(other.requestsToApprove, requestsToApprove) || other.requestsToApprove == requestsToApprove)&&(identical(other.openRequests, openRequests) || other.openRequests == openRequests));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,lowStock,toReceive,requestsToApprove,openRequests);
+}
+
+@override
+String toString() {
+    return 'StockCounts(lowStock: $lowStock, toReceive: $toReceive, requestsToApprove: $requestsToApprove, openRequests: $openRequests)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$StockCountsCopyWith<$Res> implements $StockCountsCopyWith<$Res> {
+  factory _$StockCountsCopyWith(_StockCounts value, $Res Function(_StockCounts) _then) = __$StockCountsCopyWithImpl;
+@override @useResult
+$Res call({
+ int lowStock, int toReceive, int requestsToApprove, int openRequests
+});
+
+
+
+
+}
+/// @nodoc
+class __$StockCountsCopyWithImpl<$Res>
+    implements _$StockCountsCopyWith<$Res> {
+  __$StockCountsCopyWithImpl(this._self, this._then);
+
+  final _StockCounts _self;
+  final $Res Function(_StockCounts) _then;
+
+/// Create a copy of StockCounts
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? lowStock = null,Object? toReceive = null,Object? requestsToApprove = null,Object? openRequests = null,}) {
+  return _then(_StockCounts(
+lowStock: null == lowStock ? _self.lowStock : lowStock // ignore: cast_nullable_to_non_nullable
+as int,toReceive: null == toReceive ? _self.toReceive : toReceive // ignore: cast_nullable_to_non_nullable
+as int,requestsToApprove: null == requestsToApprove ? _self.requestsToApprove : requestsToApprove // ignore: cast_nullable_to_non_nullable
+as int,openRequests: null == openRequests ? _self.openRequests : openRequests // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
 AttentionItem _$AttentionItemFromJson(
   Map<String, dynamic> json
 ) {
@@ -2369,7 +2648,7 @@ $DayTotalsCopyWith<$Res> get updates {
 mixin _$AdminDashboard {
 
  String get date; bool get isWorkingDay; String? get holiday; DashboardCounts get counts; MoneyTotals get payments; DayTotals get updates;/// Staff photos no admin has looked at yet.
- int get toReview; IssueCounts get issues; List<AttentionItem> get attention; List<SiteActivity> get sites;
+ int get toReview; IssueCounts get issues; StockCounts get stock; List<AttentionItem> get attention; List<SiteActivity> get sites;
 /// Create a copy of AdminDashboard
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2383,20 +2662,20 @@ $AdminDashboardCopyWith<AdminDashboard> get copyWith => _$AdminDashboardCopyWith
 @override
 bool operator ==(Object other) {
   final _this = this as AdminDashboard;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AdminDashboard&&(identical(other.date, _this.date) || other.date == _this.date)&&(identical(other.isWorkingDay, _this.isWorkingDay) || other.isWorkingDay == _this.isWorkingDay)&&(identical(other.holiday, _this.holiday) || other.holiday == _this.holiday)&&(identical(other.counts, _this.counts) || other.counts == _this.counts)&&(identical(other.payments, _this.payments) || other.payments == _this.payments)&&(identical(other.updates, _this.updates) || other.updates == _this.updates)&&(identical(other.toReview, _this.toReview) || other.toReview == _this.toReview)&&(identical(other.issues, _this.issues) || other.issues == _this.issues)&&const DeepCollectionEquality().equals(other.attention, _this.attention)&&const DeepCollectionEquality().equals(other.sites, _this.sites));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AdminDashboard&&(identical(other.date, _this.date) || other.date == _this.date)&&(identical(other.isWorkingDay, _this.isWorkingDay) || other.isWorkingDay == _this.isWorkingDay)&&(identical(other.holiday, _this.holiday) || other.holiday == _this.holiday)&&(identical(other.counts, _this.counts) || other.counts == _this.counts)&&(identical(other.payments, _this.payments) || other.payments == _this.payments)&&(identical(other.updates, _this.updates) || other.updates == _this.updates)&&(identical(other.toReview, _this.toReview) || other.toReview == _this.toReview)&&(identical(other.issues, _this.issues) || other.issues == _this.issues)&&(identical(other.stock, _this.stock) || other.stock == _this.stock)&&const DeepCollectionEquality().equals(other.attention, _this.attention)&&const DeepCollectionEquality().equals(other.sites, _this.sites));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as AdminDashboard;
-  return Object.hash(runtimeType,_this.date,_this.isWorkingDay,_this.holiday,_this.counts,_this.payments,_this.updates,_this.toReview,_this.issues,const DeepCollectionEquality().hash(_this.attention),const DeepCollectionEquality().hash(_this.sites));
+  return Object.hash(runtimeType,_this.date,_this.isWorkingDay,_this.holiday,_this.counts,_this.payments,_this.updates,_this.toReview,_this.issues,_this.stock,const DeepCollectionEquality().hash(_this.attention),const DeepCollectionEquality().hash(_this.sites));
 }
 
 @override
 String toString() {
   final _this = this as AdminDashboard;
-  return 'AdminDashboard(date: ${_this.date}, isWorkingDay: ${_this.isWorkingDay}, holiday: ${_this.holiday}, counts: ${_this.counts}, payments: ${_this.payments}, updates: ${_this.updates}, toReview: ${_this.toReview}, issues: ${_this.issues}, attention: ${_this.attention}, sites: ${_this.sites})';
+  return 'AdminDashboard(date: ${_this.date}, isWorkingDay: ${_this.isWorkingDay}, holiday: ${_this.holiday}, counts: ${_this.counts}, payments: ${_this.payments}, updates: ${_this.updates}, toReview: ${_this.toReview}, issues: ${_this.issues}, stock: ${_this.stock}, attention: ${_this.attention}, sites: ${_this.sites})';
 }
 
 
@@ -2407,11 +2686,11 @@ abstract mixin class $AdminDashboardCopyWith<$Res>  {
   factory $AdminDashboardCopyWith(AdminDashboard value, $Res Function(AdminDashboard) _then) = _$AdminDashboardCopyWithImpl;
 @useResult
 $Res call({
- String date, bool isWorkingDay, String? holiday, DashboardCounts counts, MoneyTotals payments, DayTotals updates, int toReview, IssueCounts issues, List<AttentionItem> attention, List<SiteActivity> sites
+ String date, bool isWorkingDay, String? holiday, DashboardCounts counts, MoneyTotals payments, DayTotals updates, int toReview, IssueCounts issues, StockCounts stock, List<AttentionItem> attention, List<SiteActivity> sites
 });
 
 
-$DashboardCountsCopyWith<$Res> get counts;$MoneyTotalsCopyWith<$Res> get payments;$DayTotalsCopyWith<$Res> get updates;$IssueCountsCopyWith<$Res> get issues;
+$DashboardCountsCopyWith<$Res> get counts;$MoneyTotalsCopyWith<$Res> get payments;$DayTotalsCopyWith<$Res> get updates;$IssueCountsCopyWith<$Res> get issues;$StockCountsCopyWith<$Res> get stock;
 
 }
 /// @nodoc
@@ -2424,7 +2703,7 @@ class _$AdminDashboardCopyWithImpl<$Res>
 
 /// Create a copy of AdminDashboard
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? date = null,Object? isWorkingDay = null,Object? holiday = freezed,Object? counts = null,Object? payments = null,Object? updates = null,Object? toReview = null,Object? issues = null,Object? attention = null,Object? sites = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? date = null,Object? isWorkingDay = null,Object? holiday = freezed,Object? counts = null,Object? payments = null,Object? updates = null,Object? toReview = null,Object? issues = null,Object? stock = null,Object? attention = null,Object? sites = null,}) {
   return _then(AdminDashboard(
 date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String,isWorkingDay: null == isWorkingDay ? _self.isWorkingDay : isWorkingDay // ignore: cast_nullable_to_non_nullable
@@ -2434,7 +2713,8 @@ as DashboardCounts,payments: null == payments ? _self.payments : payments // ign
 as MoneyTotals,updates: null == updates ? _self.updates : updates // ignore: cast_nullable_to_non_nullable
 as DayTotals,toReview: null == toReview ? _self.toReview : toReview // ignore: cast_nullable_to_non_nullable
 as int,issues: null == issues ? _self.issues : issues // ignore: cast_nullable_to_non_nullable
-as IssueCounts,attention: null == attention ? _self.attention : attention // ignore: cast_nullable_to_non_nullable
+as IssueCounts,stock: null == stock ? _self.stock : stock // ignore: cast_nullable_to_non_nullable
+as StockCounts,attention: null == attention ? _self.attention : attention // ignore: cast_nullable_to_non_nullable
 as List<AttentionItem>,sites: null == sites ? _self.sites : sites // ignore: cast_nullable_to_non_nullable
 as List<SiteActivity>,
   ));
@@ -2474,6 +2754,15 @@ $IssueCountsCopyWith<$Res> get issues {
   
   return $IssueCountsCopyWith<$Res>(_self.issues, (value) {
     return _then(_self.copyWith(issues: value));
+  });
+}/// Create a copy of AdminDashboard
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$StockCountsCopyWith<$Res> get stock {
+  
+  return $StockCountsCopyWith<$Res>(_self.stock, (value) {
+    return _then(_self.copyWith(stock: value));
   });
 }
 }
@@ -2557,10 +2846,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String date,  bool isWorkingDay,  String? holiday,  DashboardCounts counts,  MoneyTotals payments,  DayTotals updates,  int toReview,  IssueCounts issues,  List<AttentionItem> attention,  List<SiteActivity> sites)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String date,  bool isWorkingDay,  String? holiday,  DashboardCounts counts,  MoneyTotals payments,  DayTotals updates,  int toReview,  IssueCounts issues,  StockCounts stock,  List<AttentionItem> attention,  List<SiteActivity> sites)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AdminDashboard() when $default != null:
-return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.counts,_that.payments,_that.updates,_that.toReview,_that.issues,_that.attention,_that.sites);case _:
+return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.counts,_that.payments,_that.updates,_that.toReview,_that.issues,_that.stock,_that.attention,_that.sites);case _:
   return orElse();
 
 }
@@ -2578,10 +2867,10 @@ return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.counts,_that.p
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String date,  bool isWorkingDay,  String? holiday,  DashboardCounts counts,  MoneyTotals payments,  DayTotals updates,  int toReview,  IssueCounts issues,  List<AttentionItem> attention,  List<SiteActivity> sites)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String date,  bool isWorkingDay,  String? holiday,  DashboardCounts counts,  MoneyTotals payments,  DayTotals updates,  int toReview,  IssueCounts issues,  StockCounts stock,  List<AttentionItem> attention,  List<SiteActivity> sites)  $default,) {final _that = this;
 switch (_that) {
 case _AdminDashboard():
-return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.counts,_that.payments,_that.updates,_that.toReview,_that.issues,_that.attention,_that.sites);case _:
+return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.counts,_that.payments,_that.updates,_that.toReview,_that.issues,_that.stock,_that.attention,_that.sites);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -2598,10 +2887,10 @@ return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.counts,_that.p
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String date,  bool isWorkingDay,  String? holiday,  DashboardCounts counts,  MoneyTotals payments,  DayTotals updates,  int toReview,  IssueCounts issues,  List<AttentionItem> attention,  List<SiteActivity> sites)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String date,  bool isWorkingDay,  String? holiday,  DashboardCounts counts,  MoneyTotals payments,  DayTotals updates,  int toReview,  IssueCounts issues,  StockCounts stock,  List<AttentionItem> attention,  List<SiteActivity> sites)?  $default,) {final _that = this;
 switch (_that) {
 case _AdminDashboard() when $default != null:
-return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.counts,_that.payments,_that.updates,_that.toReview,_that.issues,_that.attention,_that.sites);case _:
+return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.counts,_that.payments,_that.updates,_that.toReview,_that.issues,_that.stock,_that.attention,_that.sites);case _:
   return null;
 
 }
@@ -2613,7 +2902,7 @@ return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.counts,_that.p
 @JsonSerializable()
 
 class _AdminDashboard implements AdminDashboard {
-  const _AdminDashboard({required this.date, required this.isWorkingDay, this.holiday, required this.counts, required this.payments, required this.updates, this.toReview = 0, required this.issues, required  List<AttentionItem> attention, required  List<SiteActivity> sites}): _attention = attention,_sites = sites;
+  const _AdminDashboard({required this.date, required this.isWorkingDay, this.holiday, required this.counts, required this.payments, required this.updates, this.toReview = 0, required this.issues, this.stock = const StockCounts(), required  List<AttentionItem> attention, required  List<SiteActivity> sites}): _attention = attention,_sites = sites;
   factory _AdminDashboard.fromJson(Map<String, dynamic> json) => _$AdminDashboardFromJson(json);
 
 @override final  String date;
@@ -2625,6 +2914,7 @@ class _AdminDashboard implements AdminDashboard {
 /// Staff photos no admin has looked at yet.
 @override@JsonKey() final  int toReview;
 @override final  IssueCounts issues;
+@override@JsonKey() final  StockCounts stock;
  final  List<AttentionItem> _attention;
 @override List<AttentionItem> get attention {
   if (_attention is EqualUnmodifiableListView) return _attention;
@@ -2653,18 +2943,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AdminDashboard&&(identical(other.date, date) || other.date == date)&&(identical(other.isWorkingDay, isWorkingDay) || other.isWorkingDay == isWorkingDay)&&(identical(other.holiday, holiday) || other.holiday == holiday)&&(identical(other.counts, counts) || other.counts == counts)&&(identical(other.payments, payments) || other.payments == payments)&&(identical(other.updates, updates) || other.updates == updates)&&(identical(other.toReview, toReview) || other.toReview == toReview)&&(identical(other.issues, issues) || other.issues == issues)&&const DeepCollectionEquality().equals(other.attention, _attention)&&const DeepCollectionEquality().equals(other.sites, _sites));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _AdminDashboard&&(identical(other.date, date) || other.date == date)&&(identical(other.isWorkingDay, isWorkingDay) || other.isWorkingDay == isWorkingDay)&&(identical(other.holiday, holiday) || other.holiday == holiday)&&(identical(other.counts, counts) || other.counts == counts)&&(identical(other.payments, payments) || other.payments == payments)&&(identical(other.updates, updates) || other.updates == updates)&&(identical(other.toReview, toReview) || other.toReview == toReview)&&(identical(other.issues, issues) || other.issues == issues)&&(identical(other.stock, stock) || other.stock == stock)&&const DeepCollectionEquality().equals(other.attention, _attention)&&const DeepCollectionEquality().equals(other.sites, _sites));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,date,isWorkingDay,holiday,counts,payments,updates,toReview,issues,const DeepCollectionEquality().hash(_attention),const DeepCollectionEquality().hash(_sites));
+    return Object.hash(runtimeType,date,isWorkingDay,holiday,counts,payments,updates,toReview,issues,stock,const DeepCollectionEquality().hash(_attention),const DeepCollectionEquality().hash(_sites));
 }
 
 @override
 String toString() {
-    return 'AdminDashboard(date: $date, isWorkingDay: $isWorkingDay, holiday: $holiday, counts: $counts, payments: $payments, updates: $updates, toReview: $toReview, issues: $issues, attention: $attention, sites: $sites)';
+    return 'AdminDashboard(date: $date, isWorkingDay: $isWorkingDay, holiday: $holiday, counts: $counts, payments: $payments, updates: $updates, toReview: $toReview, issues: $issues, stock: $stock, attention: $attention, sites: $sites)';
 }
 
 
@@ -2675,11 +2965,11 @@ abstract mixin class _$AdminDashboardCopyWith<$Res> implements $AdminDashboardCo
   factory _$AdminDashboardCopyWith(_AdminDashboard value, $Res Function(_AdminDashboard) _then) = __$AdminDashboardCopyWithImpl;
 @override @useResult
 $Res call({
- String date, bool isWorkingDay, String? holiday, DashboardCounts counts, MoneyTotals payments, DayTotals updates, int toReview, IssueCounts issues, List<AttentionItem> attention, List<SiteActivity> sites
+ String date, bool isWorkingDay, String? holiday, DashboardCounts counts, MoneyTotals payments, DayTotals updates, int toReview, IssueCounts issues, StockCounts stock, List<AttentionItem> attention, List<SiteActivity> sites
 });
 
 
-@override $DashboardCountsCopyWith<$Res> get counts;@override $MoneyTotalsCopyWith<$Res> get payments;@override $DayTotalsCopyWith<$Res> get updates;@override $IssueCountsCopyWith<$Res> get issues;
+@override $DashboardCountsCopyWith<$Res> get counts;@override $MoneyTotalsCopyWith<$Res> get payments;@override $DayTotalsCopyWith<$Res> get updates;@override $IssueCountsCopyWith<$Res> get issues;@override $StockCountsCopyWith<$Res> get stock;
 
 }
 /// @nodoc
@@ -2692,7 +2982,7 @@ class __$AdminDashboardCopyWithImpl<$Res>
 
 /// Create a copy of AdminDashboard
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? date = null,Object? isWorkingDay = null,Object? holiday = freezed,Object? counts = null,Object? payments = null,Object? updates = null,Object? toReview = null,Object? issues = null,Object? attention = null,Object? sites = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? date = null,Object? isWorkingDay = null,Object? holiday = freezed,Object? counts = null,Object? payments = null,Object? updates = null,Object? toReview = null,Object? issues = null,Object? stock = null,Object? attention = null,Object? sites = null,}) {
   return _then(_AdminDashboard(
 date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String,isWorkingDay: null == isWorkingDay ? _self.isWorkingDay : isWorkingDay // ignore: cast_nullable_to_non_nullable
@@ -2702,7 +2992,8 @@ as DashboardCounts,payments: null == payments ? _self.payments : payments // ign
 as MoneyTotals,updates: null == updates ? _self.updates : updates // ignore: cast_nullable_to_non_nullable
 as DayTotals,toReview: null == toReview ? _self.toReview : toReview // ignore: cast_nullable_to_non_nullable
 as int,issues: null == issues ? _self.issues : issues // ignore: cast_nullable_to_non_nullable
-as IssueCounts,attention: null == attention ? _self._attention : attention // ignore: cast_nullable_to_non_nullable
+as IssueCounts,stock: null == stock ? _self.stock : stock // ignore: cast_nullable_to_non_nullable
+as StockCounts,attention: null == attention ? _self._attention : attention // ignore: cast_nullable_to_non_nullable
 as List<AttentionItem>,sites: null == sites ? _self._sites : sites // ignore: cast_nullable_to_non_nullable
 as List<SiteActivity>,
   ));
@@ -2744,6 +3035,15 @@ $IssueCountsCopyWith<$Res> get issues {
   return $IssueCountsCopyWith<$Res>(_self.issues, (value) {
     return _then(_self.copyWith(issues: value));
   });
+}/// Create a copy of AdminDashboard
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$StockCountsCopyWith<$Res> get stock {
+  
+  return $StockCountsCopyWith<$Res>(_self.stock, (value) {
+    return _then(_self.copyWith(stock: value));
+  });
 }
 }
 
@@ -2752,7 +3052,7 @@ $IssueCountsCopyWith<$Res> get issues {
 mixin _$EngineerDashboard {
 
  String get date; bool get isWorkingDay; String? get holiday; DayTotals get updates;/// Their staff's photos still waiting for their review.
- int get toReview; IssueCounts get issues; List<AttentionItem> get attention; List<SiteActivity> get sites;
+ int get toReview; IssueCounts get issues; StockCounts get stock; List<AttentionItem> get attention; List<SiteActivity> get sites;
 /// Create a copy of EngineerDashboard
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -2766,20 +3066,20 @@ $EngineerDashboardCopyWith<EngineerDashboard> get copyWith => _$EngineerDashboar
 @override
 bool operator ==(Object other) {
   final _this = this as EngineerDashboard;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EngineerDashboard&&(identical(other.date, _this.date) || other.date == _this.date)&&(identical(other.isWorkingDay, _this.isWorkingDay) || other.isWorkingDay == _this.isWorkingDay)&&(identical(other.holiday, _this.holiday) || other.holiday == _this.holiday)&&(identical(other.updates, _this.updates) || other.updates == _this.updates)&&(identical(other.toReview, _this.toReview) || other.toReview == _this.toReview)&&(identical(other.issues, _this.issues) || other.issues == _this.issues)&&const DeepCollectionEquality().equals(other.attention, _this.attention)&&const DeepCollectionEquality().equals(other.sites, _this.sites));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EngineerDashboard&&(identical(other.date, _this.date) || other.date == _this.date)&&(identical(other.isWorkingDay, _this.isWorkingDay) || other.isWorkingDay == _this.isWorkingDay)&&(identical(other.holiday, _this.holiday) || other.holiday == _this.holiday)&&(identical(other.updates, _this.updates) || other.updates == _this.updates)&&(identical(other.toReview, _this.toReview) || other.toReview == _this.toReview)&&(identical(other.issues, _this.issues) || other.issues == _this.issues)&&(identical(other.stock, _this.stock) || other.stock == _this.stock)&&const DeepCollectionEquality().equals(other.attention, _this.attention)&&const DeepCollectionEquality().equals(other.sites, _this.sites));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as EngineerDashboard;
-  return Object.hash(runtimeType,_this.date,_this.isWorkingDay,_this.holiday,_this.updates,_this.toReview,_this.issues,const DeepCollectionEquality().hash(_this.attention),const DeepCollectionEquality().hash(_this.sites));
+  return Object.hash(runtimeType,_this.date,_this.isWorkingDay,_this.holiday,_this.updates,_this.toReview,_this.issues,_this.stock,const DeepCollectionEquality().hash(_this.attention),const DeepCollectionEquality().hash(_this.sites));
 }
 
 @override
 String toString() {
   final _this = this as EngineerDashboard;
-  return 'EngineerDashboard(date: ${_this.date}, isWorkingDay: ${_this.isWorkingDay}, holiday: ${_this.holiday}, updates: ${_this.updates}, toReview: ${_this.toReview}, issues: ${_this.issues}, attention: ${_this.attention}, sites: ${_this.sites})';
+  return 'EngineerDashboard(date: ${_this.date}, isWorkingDay: ${_this.isWorkingDay}, holiday: ${_this.holiday}, updates: ${_this.updates}, toReview: ${_this.toReview}, issues: ${_this.issues}, stock: ${_this.stock}, attention: ${_this.attention}, sites: ${_this.sites})';
 }
 
 
@@ -2790,11 +3090,11 @@ abstract mixin class $EngineerDashboardCopyWith<$Res>  {
   factory $EngineerDashboardCopyWith(EngineerDashboard value, $Res Function(EngineerDashboard) _then) = _$EngineerDashboardCopyWithImpl;
 @useResult
 $Res call({
- String date, bool isWorkingDay, String? holiday, DayTotals updates, int toReview, IssueCounts issues, List<AttentionItem> attention, List<SiteActivity> sites
+ String date, bool isWorkingDay, String? holiday, DayTotals updates, int toReview, IssueCounts issues, StockCounts stock, List<AttentionItem> attention, List<SiteActivity> sites
 });
 
 
-$DayTotalsCopyWith<$Res> get updates;$IssueCountsCopyWith<$Res> get issues;
+$DayTotalsCopyWith<$Res> get updates;$IssueCountsCopyWith<$Res> get issues;$StockCountsCopyWith<$Res> get stock;
 
 }
 /// @nodoc
@@ -2807,7 +3107,7 @@ class _$EngineerDashboardCopyWithImpl<$Res>
 
 /// Create a copy of EngineerDashboard
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? date = null,Object? isWorkingDay = null,Object? holiday = freezed,Object? updates = null,Object? toReview = null,Object? issues = null,Object? attention = null,Object? sites = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? date = null,Object? isWorkingDay = null,Object? holiday = freezed,Object? updates = null,Object? toReview = null,Object? issues = null,Object? stock = null,Object? attention = null,Object? sites = null,}) {
   return _then(EngineerDashboard(
 date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String,isWorkingDay: null == isWorkingDay ? _self.isWorkingDay : isWorkingDay // ignore: cast_nullable_to_non_nullable
@@ -2815,7 +3115,8 @@ as bool,holiday: freezed == holiday ? _self.holiday : holiday // ignore: cast_nu
 as String?,updates: null == updates ? _self.updates : updates // ignore: cast_nullable_to_non_nullable
 as DayTotals,toReview: null == toReview ? _self.toReview : toReview // ignore: cast_nullable_to_non_nullable
 as int,issues: null == issues ? _self.issues : issues // ignore: cast_nullable_to_non_nullable
-as IssueCounts,attention: null == attention ? _self.attention : attention // ignore: cast_nullable_to_non_nullable
+as IssueCounts,stock: null == stock ? _self.stock : stock // ignore: cast_nullable_to_non_nullable
+as StockCounts,attention: null == attention ? _self.attention : attention // ignore: cast_nullable_to_non_nullable
 as List<AttentionItem>,sites: null == sites ? _self.sites : sites // ignore: cast_nullable_to_non_nullable
 as List<SiteActivity>,
   ));
@@ -2837,6 +3138,15 @@ $IssueCountsCopyWith<$Res> get issues {
   
   return $IssueCountsCopyWith<$Res>(_self.issues, (value) {
     return _then(_self.copyWith(issues: value));
+  });
+}/// Create a copy of EngineerDashboard
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$StockCountsCopyWith<$Res> get stock {
+  
+  return $StockCountsCopyWith<$Res>(_self.stock, (value) {
+    return _then(_self.copyWith(stock: value));
   });
 }
 }
@@ -2920,10 +3230,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String date,  bool isWorkingDay,  String? holiday,  DayTotals updates,  int toReview,  IssueCounts issues,  List<AttentionItem> attention,  List<SiteActivity> sites)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String date,  bool isWorkingDay,  String? holiday,  DayTotals updates,  int toReview,  IssueCounts issues,  StockCounts stock,  List<AttentionItem> attention,  List<SiteActivity> sites)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _EngineerDashboard() when $default != null:
-return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.updates,_that.toReview,_that.issues,_that.attention,_that.sites);case _:
+return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.updates,_that.toReview,_that.issues,_that.stock,_that.attention,_that.sites);case _:
   return orElse();
 
 }
@@ -2941,10 +3251,10 @@ return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.updates,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String date,  bool isWorkingDay,  String? holiday,  DayTotals updates,  int toReview,  IssueCounts issues,  List<AttentionItem> attention,  List<SiteActivity> sites)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String date,  bool isWorkingDay,  String? holiday,  DayTotals updates,  int toReview,  IssueCounts issues,  StockCounts stock,  List<AttentionItem> attention,  List<SiteActivity> sites)  $default,) {final _that = this;
 switch (_that) {
 case _EngineerDashboard():
-return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.updates,_that.toReview,_that.issues,_that.attention,_that.sites);case _:
+return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.updates,_that.toReview,_that.issues,_that.stock,_that.attention,_that.sites);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -2961,10 +3271,10 @@ return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.updates,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String date,  bool isWorkingDay,  String? holiday,  DayTotals updates,  int toReview,  IssueCounts issues,  List<AttentionItem> attention,  List<SiteActivity> sites)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String date,  bool isWorkingDay,  String? holiday,  DayTotals updates,  int toReview,  IssueCounts issues,  StockCounts stock,  List<AttentionItem> attention,  List<SiteActivity> sites)?  $default,) {final _that = this;
 switch (_that) {
 case _EngineerDashboard() when $default != null:
-return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.updates,_that.toReview,_that.issues,_that.attention,_that.sites);case _:
+return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.updates,_that.toReview,_that.issues,_that.stock,_that.attention,_that.sites);case _:
   return null;
 
 }
@@ -2976,7 +3286,7 @@ return $default(_that.date,_that.isWorkingDay,_that.holiday,_that.updates,_that.
 @JsonSerializable()
 
 class _EngineerDashboard implements EngineerDashboard {
-  const _EngineerDashboard({required this.date, required this.isWorkingDay, this.holiday, required this.updates, required this.toReview, required this.issues, required  List<AttentionItem> attention, required  List<SiteActivity> sites}): _attention = attention,_sites = sites;
+  const _EngineerDashboard({required this.date, required this.isWorkingDay, this.holiday, required this.updates, required this.toReview, required this.issues, this.stock = const StockCounts(), required  List<AttentionItem> attention, required  List<SiteActivity> sites}): _attention = attention,_sites = sites;
   factory _EngineerDashboard.fromJson(Map<String, dynamic> json) => _$EngineerDashboardFromJson(json);
 
 @override final  String date;
@@ -2986,6 +3296,7 @@ class _EngineerDashboard implements EngineerDashboard {
 /// Their staff's photos still waiting for their review.
 @override final  int toReview;
 @override final  IssueCounts issues;
+@override@JsonKey() final  StockCounts stock;
  final  List<AttentionItem> _attention;
 @override List<AttentionItem> get attention {
   if (_attention is EqualUnmodifiableListView) return _attention;
@@ -3014,18 +3325,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _EngineerDashboard&&(identical(other.date, date) || other.date == date)&&(identical(other.isWorkingDay, isWorkingDay) || other.isWorkingDay == isWorkingDay)&&(identical(other.holiday, holiday) || other.holiday == holiday)&&(identical(other.updates, updates) || other.updates == updates)&&(identical(other.toReview, toReview) || other.toReview == toReview)&&(identical(other.issues, issues) || other.issues == issues)&&const DeepCollectionEquality().equals(other.attention, _attention)&&const DeepCollectionEquality().equals(other.sites, _sites));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _EngineerDashboard&&(identical(other.date, date) || other.date == date)&&(identical(other.isWorkingDay, isWorkingDay) || other.isWorkingDay == isWorkingDay)&&(identical(other.holiday, holiday) || other.holiday == holiday)&&(identical(other.updates, updates) || other.updates == updates)&&(identical(other.toReview, toReview) || other.toReview == toReview)&&(identical(other.issues, issues) || other.issues == issues)&&(identical(other.stock, stock) || other.stock == stock)&&const DeepCollectionEquality().equals(other.attention, _attention)&&const DeepCollectionEquality().equals(other.sites, _sites));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,date,isWorkingDay,holiday,updates,toReview,issues,const DeepCollectionEquality().hash(_attention),const DeepCollectionEquality().hash(_sites));
+    return Object.hash(runtimeType,date,isWorkingDay,holiday,updates,toReview,issues,stock,const DeepCollectionEquality().hash(_attention),const DeepCollectionEquality().hash(_sites));
 }
 
 @override
 String toString() {
-    return 'EngineerDashboard(date: $date, isWorkingDay: $isWorkingDay, holiday: $holiday, updates: $updates, toReview: $toReview, issues: $issues, attention: $attention, sites: $sites)';
+    return 'EngineerDashboard(date: $date, isWorkingDay: $isWorkingDay, holiday: $holiday, updates: $updates, toReview: $toReview, issues: $issues, stock: $stock, attention: $attention, sites: $sites)';
 }
 
 
@@ -3036,11 +3347,11 @@ abstract mixin class _$EngineerDashboardCopyWith<$Res> implements $EngineerDashb
   factory _$EngineerDashboardCopyWith(_EngineerDashboard value, $Res Function(_EngineerDashboard) _then) = __$EngineerDashboardCopyWithImpl;
 @override @useResult
 $Res call({
- String date, bool isWorkingDay, String? holiday, DayTotals updates, int toReview, IssueCounts issues, List<AttentionItem> attention, List<SiteActivity> sites
+ String date, bool isWorkingDay, String? holiday, DayTotals updates, int toReview, IssueCounts issues, StockCounts stock, List<AttentionItem> attention, List<SiteActivity> sites
 });
 
 
-@override $DayTotalsCopyWith<$Res> get updates;@override $IssueCountsCopyWith<$Res> get issues;
+@override $DayTotalsCopyWith<$Res> get updates;@override $IssueCountsCopyWith<$Res> get issues;@override $StockCountsCopyWith<$Res> get stock;
 
 }
 /// @nodoc
@@ -3053,7 +3364,7 @@ class __$EngineerDashboardCopyWithImpl<$Res>
 
 /// Create a copy of EngineerDashboard
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? date = null,Object? isWorkingDay = null,Object? holiday = freezed,Object? updates = null,Object? toReview = null,Object? issues = null,Object? attention = null,Object? sites = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? date = null,Object? isWorkingDay = null,Object? holiday = freezed,Object? updates = null,Object? toReview = null,Object? issues = null,Object? stock = null,Object? attention = null,Object? sites = null,}) {
   return _then(_EngineerDashboard(
 date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
 as String,isWorkingDay: null == isWorkingDay ? _self.isWorkingDay : isWorkingDay // ignore: cast_nullable_to_non_nullable
@@ -3061,7 +3372,8 @@ as bool,holiday: freezed == holiday ? _self.holiday : holiday // ignore: cast_nu
 as String?,updates: null == updates ? _self.updates : updates // ignore: cast_nullable_to_non_nullable
 as DayTotals,toReview: null == toReview ? _self.toReview : toReview // ignore: cast_nullable_to_non_nullable
 as int,issues: null == issues ? _self.issues : issues // ignore: cast_nullable_to_non_nullable
-as IssueCounts,attention: null == attention ? _self._attention : attention // ignore: cast_nullable_to_non_nullable
+as IssueCounts,stock: null == stock ? _self.stock : stock // ignore: cast_nullable_to_non_nullable
+as StockCounts,attention: null == attention ? _self._attention : attention // ignore: cast_nullable_to_non_nullable
 as List<AttentionItem>,sites: null == sites ? _self._sites : sites // ignore: cast_nullable_to_non_nullable
 as List<SiteActivity>,
   ));
@@ -3085,7 +3397,304 @@ $IssueCountsCopyWith<$Res> get issues {
   return $IssueCountsCopyWith<$Res>(_self.issues, (value) {
     return _then(_self.copyWith(issues: value));
   });
+}/// Create a copy of EngineerDashboard
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$StockCountsCopyWith<$Res> get stock {
+  
+  return $StockCountsCopyWith<$Res>(_self.stock, (value) {
+    return _then(_self.copyWith(stock: value));
+  });
 }
+}
+
+
+/// @nodoc
+mixin _$GodownDashboard {
+
+ String get date; List<GodownSummary> get godowns; int get toSend; int get toReceive; int get lowStock;
+/// Create a copy of GodownDashboard
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GodownDashboardCopyWith<GodownDashboard> get copyWith => _$GodownDashboardCopyWithImpl<GodownDashboard>(this as GodownDashboard, _$identity);
+
+  /// Serializes this GodownDashboard to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as GodownDashboard;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GodownDashboard&&(identical(other.date, _this.date) || other.date == _this.date)&&const DeepCollectionEquality().equals(other.godowns, _this.godowns)&&(identical(other.toSend, _this.toSend) || other.toSend == _this.toSend)&&(identical(other.toReceive, _this.toReceive) || other.toReceive == _this.toReceive)&&(identical(other.lowStock, _this.lowStock) || other.lowStock == _this.lowStock));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as GodownDashboard;
+  return Object.hash(runtimeType,_this.date,const DeepCollectionEquality().hash(_this.godowns),_this.toSend,_this.toReceive,_this.lowStock);
+}
+
+@override
+String toString() {
+  final _this = this as GodownDashboard;
+  return 'GodownDashboard(date: ${_this.date}, godowns: ${_this.godowns}, toSend: ${_this.toSend}, toReceive: ${_this.toReceive}, lowStock: ${_this.lowStock})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $GodownDashboardCopyWith<$Res>  {
+  factory $GodownDashboardCopyWith(GodownDashboard value, $Res Function(GodownDashboard) _then) = _$GodownDashboardCopyWithImpl;
+@useResult
+$Res call({
+ String date, List<GodownSummary> godowns, int toSend, int toReceive, int lowStock
+});
+
+
+
+
+}
+/// @nodoc
+class _$GodownDashboardCopyWithImpl<$Res>
+    implements $GodownDashboardCopyWith<$Res> {
+  _$GodownDashboardCopyWithImpl(this._self, this._then);
+
+  final GodownDashboard _self;
+  final $Res Function(GodownDashboard) _then;
+
+/// Create a copy of GodownDashboard
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? date = null,Object? godowns = null,Object? toSend = null,Object? toReceive = null,Object? lowStock = null,}) {
+  return _then(GodownDashboard(
+date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String,godowns: null == godowns ? _self.godowns : godowns // ignore: cast_nullable_to_non_nullable
+as List<GodownSummary>,toSend: null == toSend ? _self.toSend : toSend // ignore: cast_nullable_to_non_nullable
+as int,toReceive: null == toReceive ? _self.toReceive : toReceive // ignore: cast_nullable_to_non_nullable
+as int,lowStock: null == lowStock ? _self.lowStock : lowStock // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [GodownDashboard].
+extension GodownDashboardPatterns on GodownDashboard {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _GodownDashboard value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _GodownDashboard() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _GodownDashboard value)  $default,){
+final _that = this;
+switch (_that) {
+case _GodownDashboard():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _GodownDashboard value)?  $default,){
+final _that = this;
+switch (_that) {
+case _GodownDashboard() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String date,  List<GodownSummary> godowns,  int toSend,  int toReceive,  int lowStock)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _GodownDashboard() when $default != null:
+return $default(_that.date,_that.godowns,_that.toSend,_that.toReceive,_that.lowStock);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String date,  List<GodownSummary> godowns,  int toSend,  int toReceive,  int lowStock)  $default,) {final _that = this;
+switch (_that) {
+case _GodownDashboard():
+return $default(_that.date,_that.godowns,_that.toSend,_that.toReceive,_that.lowStock);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String date,  List<GodownSummary> godowns,  int toSend,  int toReceive,  int lowStock)?  $default,) {final _that = this;
+switch (_that) {
+case _GodownDashboard() when $default != null:
+return $default(_that.date,_that.godowns,_that.toSend,_that.toReceive,_that.lowStock);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _GodownDashboard implements GodownDashboard {
+  const _GodownDashboard({required this.date, required  List<GodownSummary> godowns, this.toSend = 0, this.toReceive = 0, this.lowStock = 0}): _godowns = godowns;
+  factory _GodownDashboard.fromJson(Map<String, dynamic> json) => _$GodownDashboardFromJson(json);
+
+@override final  String date;
+ final  List<GodownSummary> _godowns;
+@override List<GodownSummary> get godowns {
+  if (_godowns is EqualUnmodifiableListView) return _godowns;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_godowns);
+}
+
+@override@JsonKey() final  int toSend;
+@override@JsonKey() final  int toReceive;
+@override@JsonKey() final  int lowStock;
+
+/// Create a copy of GodownDashboard
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$GodownDashboardCopyWith<_GodownDashboard> get copyWith => __$GodownDashboardCopyWithImpl<_GodownDashboard>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$GodownDashboardToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _GodownDashboard&&(identical(other.date, date) || other.date == date)&&const DeepCollectionEquality().equals(other.godowns, _godowns)&&(identical(other.toSend, toSend) || other.toSend == toSend)&&(identical(other.toReceive, toReceive) || other.toReceive == toReceive)&&(identical(other.lowStock, lowStock) || other.lowStock == lowStock));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,date,const DeepCollectionEquality().hash(_godowns),toSend,toReceive,lowStock);
+}
+
+@override
+String toString() {
+    return 'GodownDashboard(date: $date, godowns: $godowns, toSend: $toSend, toReceive: $toReceive, lowStock: $lowStock)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$GodownDashboardCopyWith<$Res> implements $GodownDashboardCopyWith<$Res> {
+  factory _$GodownDashboardCopyWith(_GodownDashboard value, $Res Function(_GodownDashboard) _then) = __$GodownDashboardCopyWithImpl;
+@override @useResult
+$Res call({
+ String date, List<GodownSummary> godowns, int toSend, int toReceive, int lowStock
+});
+
+
+
+
+}
+/// @nodoc
+class __$GodownDashboardCopyWithImpl<$Res>
+    implements _$GodownDashboardCopyWith<$Res> {
+  __$GodownDashboardCopyWithImpl(this._self, this._then);
+
+  final _GodownDashboard _self;
+  final $Res Function(_GodownDashboard) _then;
+
+/// Create a copy of GodownDashboard
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? date = null,Object? godowns = null,Object? toSend = null,Object? toReceive = null,Object? lowStock = null,}) {
+  return _then(_GodownDashboard(
+date: null == date ? _self.date : date // ignore: cast_nullable_to_non_nullable
+as String,godowns: null == godowns ? _self._godowns : godowns // ignore: cast_nullable_to_non_nullable
+as List<GodownSummary>,toSend: null == toSend ? _self.toSend : toSend // ignore: cast_nullable_to_non_nullable
+as int,toReceive: null == toReceive ? _self.toReceive : toReceive // ignore: cast_nullable_to_non_nullable
+as int,lowStock: null == lowStock ? _self.lowStock : lowStock // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
 }
 
 // dart format on

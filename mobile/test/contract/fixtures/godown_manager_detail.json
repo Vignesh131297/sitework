@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "data": {
+    "id": "01a11c52-51c8-7769-a467-311bedde2183",
+    "role": "GODOWN_MANAGER",
+    "name": "Karthik",
+    "phone": "+919000000202",
+    "email": null,
+    "employeeCode": "GDM-002",
+    "designation": null,
+    "joiningDate": "2025-11-22",
+    "isActive": true,
+    "lastLoginAt": null,
+    "sites": [],
+    "staffCount": 0,
+    "godowns": [
+      {
+        "id": "01a11c52-5378-71e9-9215-156b47566776",
+        "name": "Porur godown"
+      }
+    ],
+    "assignment": null,
+    "mustChangePassword": false,
+    "supervisedStaff": []
+  }
+}

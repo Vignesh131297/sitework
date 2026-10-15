@@ -20,14 +20,30 @@ import { PrismaService } from '../prisma/prisma.service.js';
 import { AssignmentsService } from '../sites/assignments.service.js';
 import { nextEmployeeCode } from './employee-codes.js';
 import type {
+  CreateAdminDto,
   CreateEngineerDto,
+  CreateGodownManagerDto,
   CreateStaffDto,
   PeopleQueryDto,
+  UpdateAdminDto,
   UpdateEngineerDto,
+  UpdateGodownManagerDto,
   UpdateStaffDto,
 } from './people.dto.js';
 
-type PersonRole = Extract<Role, 'ENGINEER' | 'STAFF'>;
+type PersonRole = Role;
+
+const ROLE_LABEL: Record<Role, string> = {
+  ADMIN: 'admin',
+  ENGINEER: 'engineer',
+  STAFF: 'staff member',
+  GODOWN_MANAGER: 'godown manager',
+};
+
+/** Which people of [role] the caller may see: staff are scoped, others are admin-only. */
+function roleScope(user: AuthUser, role: PersonRole): Prisma.UserWhereInput {
+  return role === 'STAFF' ? staffScope(user) : { role };
+}
 
 export interface PersonSummary {
   id: string;
@@ -44,6 +60,8 @@ export interface PersonSummary {
   sites: { id: string; code: string; name: string }[];
   /** Engineers: how many staff report to them. */
   staffCount: number;
+  /** Godown managers: the godowns they run. */
+  godowns: { id: string; name: string }[];
   /** Staff: current site and responsible engineer. */
   assignment: {
     site: { id: string; code: string; name: string };
@@ -83,6 +101,10 @@ const PERSON_SELECT = {
       engineer: { select: { id: true, name: true } },
     },
   },
+  godownAssignments: {
+    select: { godown: { select: { id: true, name: true } } },
+    orderBy: { godown: { name: 'asc' } },
+  },
   _count: { select: { supervisedStaff: true } },
 } as const satisfies Prisma.UserSelect;
 
@@ -104,7 +126,7 @@ export class PeopleService {
     const term = query.search;
     const where: Prisma.UserWhereInput = {
       AND: [
-        role === 'STAFF' ? staffScope(user) : { role: 'ENGINEER' },
+        roleScope(user, role),
         query.status ? { isActive: query.status === 'active' } : {},
         query.designation ? { designation: query.designation } : {},
         query.siteId
@@ -151,7 +173,7 @@ export class PeopleService {
     const person = await this.prisma.user.findFirst({
       where: {
         id,
-        ...(role === 'STAFF' ? staffScope(user) : { role: 'ENGINEER' }),
+        ...roleScope(user, role),
       },
       select: {
         ...PERSON_SELECT,
@@ -164,7 +186,7 @@ export class PeopleService {
         },
       },
     });
-    if (!person) throw notFound(role === 'STAFF' ? 'staff member' : 'engineer');
+    if (!person) throw notFound(ROLE_LABEL[role]);
     return {
       ...toSummary(person),
       mustChangePassword: person.mustChangePassword,
@@ -240,19 +262,60 @@ export class PeopleService {
     };
   }
 
+  /** A godown manager, with the godowns they run. */
+  async createGodownManager(
+    actor: AuthUser,
+    dto: CreateGodownManagerDto,
+  ): Promise<{ person: PersonDetail; temporaryPassword: string }> {
+    const godownIds = [...new Set(dto.godownIds ?? [])];
+    await this.requireGodowns(godownIds);
+    const created = await this.createUser(actor, 'GODOWN_MANAGER', dto, {
+      godownAssignments: {
+        create: godownIds.map((godownId) => ({
+          godownId,
+          assignedById: actor.id,
+        })),
+      },
+    });
+    return {
+      person: await this.get(actor, 'GODOWN_MANAGER', created.id),
+      temporaryPassword: created.temporaryPassword,
+    };
+  }
+
+  /** Another admin: only admins create admins (the first one signs up). */
+  async createAdmin(
+    actor: AuthUser,
+    dto: CreateAdminDto,
+  ): Promise<{ person: PersonDetail; temporaryPassword: string }> {
+    const created = await this.createUser(actor, 'ADMIN', dto, {});
+    return {
+      person: await this.get(actor, 'ADMIN', created.id),
+      temporaryPassword: created.temporaryPassword,
+    };
+  }
+
   async update(
     actor: AuthUser,
     role: PersonRole,
     id: string,
-    dto: UpdateEngineerDto | UpdateStaffDto,
+    dto:
+      | UpdateEngineerDto
+      | UpdateStaffDto
+      | UpdateGodownManagerDto
+      | UpdateAdminDto,
   ): Promise<PersonDetail> {
     const existing = await this.prisma.user.findFirst({ where: { id, role } });
-    if (!existing)
-      throw notFound(role === 'STAFF' ? 'staff member' : 'engineer');
+    if (!existing) throw notFound(ROLE_LABEL[role]);
     const phone = dto.phone === undefined ? undefined : requirePhone(dto.phone);
     const email = optionalEmail(dto.email);
     const employeeCode = dto.employeeCode?.trim().toUpperCase();
     await this.ensureUnique({ phone, email, employeeCode }, id);
+    const godownIds =
+      role === 'GODOWN_MANAGER'
+        ? (dto as UpdateGodownManagerDto).godownIds
+        : undefined;
+    if (godownIds) await this.requireGodowns(godownIds);
 
     await this.prisma.user.update({
       where: { id },
@@ -269,6 +332,15 @@ export class PeopleService {
               : null,
         designation:
           role === 'STAFF' ? (dto as UpdateStaffDto).designation : undefined,
+        ...(godownIds && {
+          godownAssignments: {
+            deleteMany: {},
+            create: [...new Set(godownIds)].map((godownId) => ({
+              godownId,
+              assignedById: actor.id,
+            })),
+          },
+        }),
       },
     });
     await this.audit.record({
@@ -289,14 +361,17 @@ export class PeopleService {
     isActive: boolean,
   ): Promise<PersonDetail> {
     const existing = await this.prisma.user.findFirst({ where: { id, role } });
-    if (!existing)
-      throw notFound(role === 'STAFF' ? 'staff member' : 'engineer');
+    if (!existing) throw notFound(ROLE_LABEL[role]);
+    if (!isActive && role === 'ADMIN') await this.checkAdminCanGo(actor, id);
     if (existing.isActive !== isActive) {
       await this.prisma.$transaction(async (tx) => {
         if (!isActive) {
           if (role === 'ENGINEER')
             await this.assignments.releaseEngineer(actor.id, id, tx);
-          else await this.assignments.unassignStaff(actor.id, id, tx);
+          if (role === 'STAFF')
+            await this.assignments.unassignStaff(actor.id, id, tx);
+          if (role === 'GODOWN_MANAGER')
+            await tx.godownAssignment.deleteMany({ where: { userId: id } });
           await tx.authSession.updateMany({
             where: { userId: id, revokedAt: null },
             data: { revokedAt: new Date() },
@@ -384,6 +459,43 @@ export class PeopleService {
     return { id: user.id, temporaryPassword };
   }
 
+  private async requireGodowns(godownIds: readonly string[]): Promise<void> {
+    const ids = [...new Set(godownIds)];
+    if (
+      ids.length &&
+      (await this.prisma.godown.count({
+        where: { id: { in: ids }, isActive: true },
+      })) !== ids.length
+    ) {
+      throw badRequest(
+        ErrorCode.VALIDATION_FAILED,
+        'Choose open godowns.',
+        'godownIds',
+      );
+    }
+  }
+
+  /** Admins can't switch themselves off, nor the last active admin. */
+  private async checkAdminCanGo(actor: AuthUser, id: string): Promise<void> {
+    if (id === actor.id) {
+      throw badRequest(
+        ErrorCode.VALIDATION_FAILED,
+        "You can't deactivate your own account.",
+        'isActive',
+      );
+    }
+    const others = await this.prisma.user.count({
+      where: { role: 'ADMIN', isActive: true, id: { not: id } },
+    });
+    if (others === 0) {
+      throw badRequest(
+        ErrorCode.VALIDATION_FAILED,
+        'Keep at least one active admin.',
+        'isActive',
+      );
+    }
+  }
+
   private async ensureUnique(
     fields: { phone?: string; email?: string | null; employeeCode?: string },
     exceptId?: string,
@@ -431,6 +543,7 @@ function toSummary(row: PersonRow): PersonSummary {
     lastLoginAt: row.lastLoginAt?.toISOString() ?? null,
     sites: row.engineerAssignments.map((a) => a.site),
     staffCount: row._count.supervisedStaff,
+    godowns: row.godownAssignments.map((a) => a.godown),
     assignment: row.staffAssignment
       ? {
           site: row.staffAssignment.site,

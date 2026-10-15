@@ -1,0 +1,136 @@
+{
+  "success": true,
+  "data": {
+    "godowns": [
+      {
+        "godown": {
+          "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+          "name": "Main godown",
+          "address": "14, SIDCO Industrial Estate, Ambattur, Chennai 600098",
+          "isActive": true
+        },
+        "arriving": 1
+      },
+      {
+        "godown": {
+          "id": "01a11c52-5378-71e9-9215-156b47566776",
+          "name": "Porur godown",
+          "address": "7, Mount Poonamallee Road, Porur, Chennai 600116",
+          "isActive": true
+        },
+        "arriving": 0
+      }
+    ],
+    "materials": [
+      {
+        "material": {
+          "id": "01a11c52-5385-771f-8454-9683c609d4b0",
+          "name": "Blue metal 20mm",
+          "unit": "cft",
+          "category": "Sand & aggregates",
+          "minStock": "300",
+          "isActive": true
+        },
+        "inGodowns": "500",
+        "onSites": "475",
+        "low": false
+      },
+      {
+        "material": {
+          "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+          "name": "Cement OPC 53",
+          "unit": "bag",
+          "category": "Cement",
+          "minStock": "150",
+          "isActive": true
+        },
+        "inGodowns": "340",
+        "onSites": "190",
+        "low": false
+      },
+      {
+        "material": {
+          "id": "01a11c52-538b-77ca-ae1c-6e3bf9c89253",
+          "name": "Fly ash bricks",
+          "unit": "nos",
+          "category": "Bricks & blocks",
+          "minStock": null,
+          "isActive": false
+        },
+        "inGodowns": "0",
+        "onSites": "0",
+        "low": false
+      },
+      {
+        "material": {
+          "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+          "name": "M-Sand",
+          "unit": "cft",
+          "category": "Sand & aggregates",
+          "minStock": "500",
+          "isActive": true
+        },
+        "inGodowns": "2300",
+        "onSites": "1028",
+        "low": false
+      },
+      {
+        "material": {
+          "id": "01a11c52-5387-72c0-a7f2-f113520703e6",
+          "name": "Red bricks",
+          "unit": "nos",
+          "category": "Bricks & blocks",
+          "minStock": "5000",
+          "isActive": true
+        },
+        "inGodowns": "12000",
+        "onSites": "5800",
+        "low": false
+      },
+      {
+        "material": {
+          "id": "01a11c52-5381-735c-8b63-4354c3bde9e6",
+          "name": "TMT Steel 12mm",
+          "unit": "kg",
+          "category": "Steel",
+          "minStock": "2000",
+          "isActive": true
+        },
+        "inGodowns": "1500",
+        "onSites": "1608",
+        "low": true
+      },
+      {
+        "material": {
+          "id": "01a11c52-5389-77ec-8197-5b05941c4d18",
+          "name": "Wall putty",
+          "unit": "bag",
+          "category": "Finishing",
+          "minStock": null,
+          "isActive": true
+        },
+        "inGodowns": "48",
+        "onSites": "0",
+        "low": false
+      }
+    ],
+    "toReceive": 1,
+    "sites": [
+      {
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      {
+        "id": "01a11c52-51ec-772b-ac1a-96a6a41f6962",
+        "code": "SITE-002",
+        "name": "Green Valley Villa"
+      },
+      {
+        "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
+        "code": "SITE-003",
+        "name": "Sri Lakshmi Commercial Building"
+      }
+    ]
+  }
+}

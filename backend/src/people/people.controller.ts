@@ -15,11 +15,15 @@ import { Paginated } from '../common/pagination/paginated.js';
 import { ParseIdPipe } from '../common/pipes/parse-id.pipe.js';
 import {
   AssignStaffDto,
+  CreateAdminDto,
   CreateEngineerDto,
+  CreateGodownManagerDto,
   CreateStaffDto,
   PeopleQueryDto,
   SetStatusDto,
+  UpdateAdminDto,
   UpdateEngineerDto,
+  UpdateGodownManagerDto,
   UpdateStaffDto,
 } from './people.dto.js';
 import {
@@ -148,5 +152,106 @@ export class StaffController {
     @Param('id', ParseIdPipe) id: string,
   ): Promise<PersonDetail> {
     return this.people.unassignStaff(actor, id);
+  }
+}
+
+/** Godown managers: created by admins, each running one or more godowns. */
+@Roles('ADMIN')
+@Controller('godown-managers')
+export class GodownManagersController {
+  constructor(private readonly people: PeopleService) {}
+
+  @Get()
+  list(
+    @CurrentUser() user: AuthUser,
+    @Query() query: PeopleQueryDto,
+  ): Promise<Paginated<PersonSummary>> {
+    return this.people.list(user, 'GODOWN_MANAGER', query);
+  }
+
+  /** Returns the temporary password once; they must change it at first sign-in. */
+  @Post()
+  create(
+    @CurrentUser() actor: AuthUser,
+    @Body() dto: CreateGodownManagerDto,
+  ): Promise<Created> {
+    return this.people.createGodownManager(actor, dto);
+  }
+
+  @Get(':id')
+  get(
+    @CurrentUser() user: AuthUser,
+    @Param('id', ParseIdPipe) id: string,
+  ): Promise<PersonDetail> {
+    return this.people.get(user, 'GODOWN_MANAGER', id);
+  }
+
+  @Patch(':id')
+  update(
+    @CurrentUser() actor: AuthUser,
+    @Param('id', ParseIdPipe) id: string,
+    @Body() dto: UpdateGodownManagerDto,
+  ): Promise<PersonDetail> {
+    return this.people.update(actor, 'GODOWN_MANAGER', id, dto);
+  }
+
+  @Patch(':id/status')
+  setStatus(
+    @CurrentUser() actor: AuthUser,
+    @Param('id', ParseIdPipe) id: string,
+    @Body() dto: SetStatusDto,
+  ): Promise<PersonDetail> {
+    return this.people.setStatus(actor, 'GODOWN_MANAGER', id, dto.isActive);
+  }
+}
+
+/** Other admins: only admins create them (the very first one signs up). */
+@Roles('ADMIN')
+@Controller('admins')
+export class AdminsController {
+  constructor(private readonly people: PeopleService) {}
+
+  @Get()
+  list(
+    @CurrentUser() user: AuthUser,
+    @Query() query: PeopleQueryDto,
+  ): Promise<Paginated<PersonSummary>> {
+    return this.people.list(user, 'ADMIN', query);
+  }
+
+  /** Returns the temporary password once; they must change it at first sign-in. */
+  @Post()
+  create(
+    @CurrentUser() actor: AuthUser,
+    @Body() dto: CreateAdminDto,
+  ): Promise<Created> {
+    return this.people.createAdmin(actor, dto);
+  }
+
+  @Get(':id')
+  get(
+    @CurrentUser() user: AuthUser,
+    @Param('id', ParseIdPipe) id: string,
+  ): Promise<PersonDetail> {
+    return this.people.get(user, 'ADMIN', id);
+  }
+
+  @Patch(':id')
+  update(
+    @CurrentUser() actor: AuthUser,
+    @Param('id', ParseIdPipe) id: string,
+    @Body() dto: UpdateAdminDto,
+  ): Promise<PersonDetail> {
+    return this.people.update(actor, 'ADMIN', id, dto);
+  }
+
+  /** Admins can't deactivate themselves or the last active admin. */
+  @Patch(':id/status')
+  setStatus(
+    @CurrentUser() actor: AuthUser,
+    @Param('id', ParseIdPipe) id: string,
+    @Body() dto: SetStatusDto,
+  ): Promise<PersonDetail> {
+    return this.people.setStatus(actor, 'ADMIN', id, dto.isActive);
   }
 }

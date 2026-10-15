@@ -1,31 +1,58 @@
 {
   "success": true,
   "data": {
-    "date": "2026-10-04",
-    "isWorkingDay": false,
+    "date": "2026-10-08",
+    "isWorkingDay": true,
     "holiday": null,
     "updates": {
-      "expected": 1,
-      "submitted": 1,
-      "missing": 0,
+      "expected": 9,
+      "submitted": 5,
+      "missing": 4,
       "pending": 0,
       "upcoming": 0,
-      "notCheckedIn": 0
+      "notCheckedIn": 1
     },
     "toReview": 0,
     "issues": {
       "open": 3,
       "critical": 1
     },
+    "stock": {
+      "toReceive": 1,
+      "openRequests": 3
+    },
     "attention": [
+      {
+        "type": "MISSING_UPDATES",
+        "site": {
+          "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+          "name": "ABC Apartment Project"
+        },
+        "count": 4,
+        "staffNames": [
+          "Kumar",
+          "Ravi"
+        ]
+      },
+      {
+        "type": "NOT_CHECKED_IN",
+        "site": {
+          "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
+          "name": "Sri Lakshmi Commercial Building"
+        },
+        "count": 1,
+        "staffNames": [
+          "Muthu"
+        ]
+      },
       {
         "type": "CRITICAL_ISSUE",
         "site": {
-          "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+          "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
           "name": "Sri Lakshmi Commercial Building"
         },
         "issue": {
-          "id": "01a10655-5010-747c-8880-9e04da6f9e3c",
+          "id": "01a11c52-5354-7468-ab9b-45db13f5d7a4",
           "title": "Crack in terrace parapet wall"
         }
       }
@@ -33,7 +60,7 @@
     "sites": [
       {
         "site": {
-          "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+          "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
           "code": "SITE-001",
           "name": "ABC Apartment Project",
           "status": "IN_PROGRESS"
@@ -43,18 +70,18 @@
         ],
         "staffCount": 2,
         "updates": {
-          "expected": 1,
-          "submitted": 1,
-          "missing": 0,
+          "expected": 6,
+          "submitted": 2,
+          "missing": 4,
           "pending": 0,
           "upcoming": 0,
           "notCheckedIn": 0
         },
-        "lastActivityAt": "2026-10-04T10:44:13.796Z"
+        "lastActivityAt": "2026-10-08T12:50:00.000Z"
       },
       {
         "site": {
-          "id": "01a10655-4e85-723c-8faf-8a7a055e33a3",
+          "id": "01a11c52-51f3-71bc-9e8c-de00b907f572",
           "code": "SITE-003",
           "name": "Sri Lakshmi Commercial Building",
           "status": "IN_PROGRESS"
@@ -65,14 +92,14 @@
         ],
         "staffCount": 2,
         "updates": {
-          "expected": 0,
-          "submitted": 0,
+          "expected": 3,
+          "submitted": 3,
           "missing": 0,
           "pending": 0,
           "upcoming": 0,
-          "notCheckedIn": 0
+          "notCheckedIn": 1
         },
-        "lastActivityAt": "2026-10-03T13:08:00.000Z"
+        "lastActivityAt": "2026-10-08T12:27:00.000Z"
       }
     ]
   }

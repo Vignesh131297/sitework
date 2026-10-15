@@ -601,6 +601,12 @@ abstract class AppLocalizations {
   /// **'All'**
   String get commonAll;
 
+  /// No description provided for @commonMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More'**
+  String get commonMore;
+
   /// No description provided for @commonNone.
   ///
   /// In en, this message translates to:
@@ -642,6 +648,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Required'**
   String get validationRequired;
+
+  /// No description provided for @validationQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a quantity like 60 or 12.5.'**
+  String get validationQuantity;
 
   /// No description provided for @validationAmount.
   ///
@@ -1158,6 +1170,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Issues'**
   String get siteTabIssues;
+
+  /// No description provided for @siteTabStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock'**
+  String get siteTabStock;
 
   /// No description provided for @siteProgress.
   ///
@@ -2917,6 +2935,12 @@ abstract class AppLocalizations {
   /// **'Payments'**
   String get reportKindPayments;
 
+  /// No description provided for @reportKindStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock'**
+  String get reportKindStock;
+
   /// No description provided for @reportPeriodThisWeek.
   ///
   /// In en, this message translates to:
@@ -3120,6 +3144,1632 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Go to home'**
   String get notFoundGoHome;
+
+  /// No description provided for @fieldDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get fieldDate;
+
+  /// No description provided for @fieldNoteOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optional)'**
+  String get fieldNoteOptional;
+
+  /// No description provided for @stockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock'**
+  String get stockTitle;
+
+  /// No description provided for @stockEntrySubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Godowns, materials and deliveries'**
+  String get stockEntrySubtitle;
+
+  /// No description provided for @stockEngineerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What the godowns hold'**
+  String get stockEngineerSubtitle;
+
+  /// No description provided for @stockDeliveriesToConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Deliveries to confirm'**
+  String get stockDeliveriesToConfirm;
+
+  /// No description provided for @stockLowCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 low on stock} other{{count} low on stock}}'**
+  String stockLowCount(int count);
+
+  /// No description provided for @stockToConfirmCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 to confirm} other{{count} to confirm}}'**
+  String stockToConfirmCount(int count);
+
+  /// No description provided for @stockGodowns.
+  ///
+  /// In en, this message translates to:
+  /// **'Godowns'**
+  String get stockGodowns;
+
+  /// No description provided for @stockGodownLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Godown'**
+  String get stockGodownLabel;
+
+  /// No description provided for @stockSiteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Site'**
+  String get stockSiteLabel;
+
+  /// No description provided for @stockNoGodowns.
+  ///
+  /// In en, this message translates to:
+  /// **'No godowns yet.'**
+  String get stockNoGodowns;
+
+  /// No description provided for @stockNoGodownsAdmin.
+  ///
+  /// In en, this message translates to:
+  /// **'No godowns yet. Add one from the menu above.'**
+  String get stockNoGodownsAdmin;
+
+  /// No description provided for @stockArrivingCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} on the way'**
+  String stockArrivingCount(int count);
+
+  /// No description provided for @stockPlaceSupplier.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplier'**
+  String get stockPlaceSupplier;
+
+  /// No description provided for @stockPlaceUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Used'**
+  String get stockPlaceUsed;
+
+  /// No description provided for @stockPlaceWaste.
+  ///
+  /// In en, this message translates to:
+  /// **'Written off'**
+  String get stockPlaceWaste;
+
+  /// No description provided for @stockPlaceCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Count correction'**
+  String get stockPlaceCount;
+
+  /// No description provided for @stockKindPurchase.
+  ///
+  /// In en, this message translates to:
+  /// **'Bought'**
+  String get stockKindPurchase;
+
+  /// No description provided for @stockKindTransfer.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent'**
+  String get stockKindTransfer;
+
+  /// No description provided for @stockKindUsage.
+  ///
+  /// In en, this message translates to:
+  /// **'Used'**
+  String get stockKindUsage;
+
+  /// No description provided for @stockKindWriteOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Written off'**
+  String get stockKindWriteOff;
+
+  /// No description provided for @stockKindAdjustment.
+  ///
+  /// In en, this message translates to:
+  /// **'Count correction'**
+  String get stockKindAdjustment;
+
+  /// No description provided for @stockStatusOnTheWay.
+  ///
+  /// In en, this message translates to:
+  /// **'On the way'**
+  String get stockStatusOnTheWay;
+
+  /// No description provided for @stockStatusCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled'**
+  String get stockStatusCancelled;
+
+  /// No description provided for @stockStatusShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Short'**
+  String get stockStatusShort;
+
+  /// No description provided for @stockShortChip.
+  ///
+  /// In en, this message translates to:
+  /// **'{quantity} short'**
+  String stockShortChip(String quantity);
+
+  /// No description provided for @stockLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Low'**
+  String get stockLow;
+
+  /// No description provided for @stockAndMore.
+  ///
+  /// In en, this message translates to:
+  /// **'{first} and {count} more'**
+  String stockAndMore(String first, int count);
+
+  /// No description provided for @stockCountNoDifference.
+  ///
+  /// In en, this message translates to:
+  /// **'Counted: no difference'**
+  String get stockCountNoDifference;
+
+  /// No description provided for @stockEntryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock entry'**
+  String get stockEntryTitle;
+
+  /// No description provided for @stockConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm'**
+  String get stockConfirm;
+
+  /// No description provided for @stockConfirmReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm received'**
+  String get stockConfirmReceived;
+
+  /// No description provided for @stockReceiveIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent from {from} on {date}. Enter what actually arrived.'**
+  String stockReceiveIntro(String from, String date);
+
+  /// No description provided for @stockWhatArrived.
+  ///
+  /// In en, this message translates to:
+  /// **'What arrived'**
+  String get stockWhatArrived;
+
+  /// No description provided for @stockSentQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent: {quantity}'**
+  String stockSentQuantity(String quantity);
+
+  /// No description provided for @stockReceiveTooMuch.
+  ///
+  /// In en, this message translates to:
+  /// **'Only {quantity} was sent.'**
+  String stockReceiveTooMuch(String quantity);
+
+  /// No description provided for @stockShortNote.
+  ///
+  /// In en, this message translates to:
+  /// **'What happened to the rest?'**
+  String get stockShortNote;
+
+  /// No description provided for @stockReceivePhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos of what arrived'**
+  String get stockReceivePhotos;
+
+  /// No description provided for @stockPhotoRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Add at least one photo of what arrived.'**
+  String get stockPhotoRequired;
+
+  /// No description provided for @stockReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock received.'**
+  String get stockReceived;
+
+  /// No description provided for @stockReceivedTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Received'**
+  String get stockReceivedTitle;
+
+  /// No description provided for @stockReceivedOf.
+  ///
+  /// In en, this message translates to:
+  /// **'{received} of {sent} arrived'**
+  String stockReceivedOf(String received, String sent);
+
+  /// No description provided for @stockReceivedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed by {name}'**
+  String stockReceivedBy(String name);
+
+  /// No description provided for @stockRecordedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Recorded by {name}'**
+  String stockRecordedBy(String name);
+
+  /// No description provided for @stockDcNumberIs.
+  ///
+  /// In en, this message translates to:
+  /// **'DC {number}'**
+  String stockDcNumberIs(String number);
+
+  /// No description provided for @stockBillNoIs.
+  ///
+  /// In en, this message translates to:
+  /// **'Bill {number}'**
+  String stockBillNoIs(String number);
+
+  /// No description provided for @stockAtRate.
+  ///
+  /// In en, this message translates to:
+  /// **'{price} per {unit}'**
+  String stockAtRate(String price, String unit);
+
+  /// No description provided for @stockTotalAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Total'**
+  String get stockTotalAmount;
+
+  /// No description provided for @stockDcPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery challan photo'**
+  String get stockDcPhotos;
+
+  /// No description provided for @stockBillPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Bill photos'**
+  String get stockBillPhotos;
+
+  /// No description provided for @stockBillPhotosOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Bill photos (optional)'**
+  String get stockBillPhotosOptional;
+
+  /// No description provided for @stockPhotosOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Photos (optional)'**
+  String get stockPhotosOptional;
+
+  /// No description provided for @stockDcPhotoRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a photo of the delivery challan.'**
+  String get stockDcPhotoRequired;
+
+  /// No description provided for @stockCancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel entry'**
+  String get stockCancel;
+
+  /// No description provided for @stockCancelTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel this entry?'**
+  String get stockCancelTitle;
+
+  /// No description provided for @stockCancelBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The stock goes back to where it came from. The entry stays in the history, marked cancelled.'**
+  String get stockCancelBody;
+
+  /// No description provided for @stockCancelReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Why?'**
+  String get stockCancelReason;
+
+  /// No description provided for @stockCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Entry cancelled.'**
+  String get stockCancelled;
+
+  /// No description provided for @stockCancelledBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancelled by {name}: {reason}'**
+  String stockCancelledBy(String name, String reason);
+
+  /// No description provided for @stockActionPurchase.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock in'**
+  String get stockActionPurchase;
+
+  /// No description provided for @stockActionSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Send stock'**
+  String get stockActionSend;
+
+  /// No description provided for @stockActionSendOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to godown'**
+  String get stockActionSendOn;
+
+  /// No description provided for @stockActionUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Record usage'**
+  String get stockActionUse;
+
+  /// No description provided for @stockActionWriteOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Write off'**
+  String get stockActionWriteOff;
+
+  /// No description provided for @stockActionCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock count'**
+  String get stockActionCount;
+
+  /// No description provided for @stockIntoGodown.
+  ///
+  /// In en, this message translates to:
+  /// **'Into godown'**
+  String get stockIntoGodown;
+
+  /// No description provided for @stockSendFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Send from'**
+  String get stockSendFrom;
+
+  /// No description provided for @stockSendTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Send to'**
+  String get stockSendTo;
+
+  /// No description provided for @stockAt.
+  ///
+  /// In en, this message translates to:
+  /// **'At'**
+  String get stockAt;
+
+  /// No description provided for @stockChooseSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose where the stock comes from first.'**
+  String get stockChooseSource;
+
+  /// No description provided for @stockCountedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Counted on'**
+  String get stockCountedOn;
+
+  /// No description provided for @stockSupplier.
+  ///
+  /// In en, this message translates to:
+  /// **'Supplier (optional)'**
+  String get stockSupplier;
+
+  /// No description provided for @stockBillNo.
+  ///
+  /// In en, this message translates to:
+  /// **'Bill or invoice number (optional)'**
+  String get stockBillNo;
+
+  /// No description provided for @stockDcNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'DC number'**
+  String get stockDcNumber;
+
+  /// No description provided for @stockMaterials.
+  ///
+  /// In en, this message translates to:
+  /// **'Materials'**
+  String get stockMaterials;
+
+  /// No description provided for @stockMaterial.
+  ///
+  /// In en, this message translates to:
+  /// **'Material'**
+  String get stockMaterial;
+
+  /// No description provided for @stockQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get stockQuantity;
+
+  /// No description provided for @stockCountedQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Counted quantity'**
+  String get stockCountedQuantity;
+
+  /// No description provided for @stockRate.
+  ///
+  /// In en, this message translates to:
+  /// **'Price per unit (₹)'**
+  String get stockRate;
+
+  /// No description provided for @stockRatePer.
+  ///
+  /// In en, this message translates to:
+  /// **'Price per {unit} (₹)'**
+  String stockRatePer(String unit);
+
+  /// No description provided for @stockAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Available: {quantity}'**
+  String stockAvailable(String quantity);
+
+  /// No description provided for @stockOnBooks.
+  ///
+  /// In en, this message translates to:
+  /// **'On the books: {quantity}'**
+  String stockOnBooks(String quantity);
+
+  /// No description provided for @stockOnlyAvailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Only {quantity} available.'**
+  String stockOnlyAvailable(String quantity);
+
+  /// No description provided for @stockAddMaterial.
+  ///
+  /// In en, this message translates to:
+  /// **'Add material'**
+  String get stockAddMaterial;
+
+  /// No description provided for @stockRemoveLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get stockRemoveLine;
+
+  /// No description provided for @stockNothingToChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'There is no stock here to choose from.'**
+  String get stockNothingToChoose;
+
+  /// No description provided for @stockUsedFor.
+  ///
+  /// In en, this message translates to:
+  /// **'Used for, e.g. first floor slab (optional)'**
+  String get stockUsedFor;
+
+  /// No description provided for @stockWhatHappened.
+  ///
+  /// In en, this message translates to:
+  /// **'What happened to it'**
+  String get stockWhatHappened;
+
+  /// No description provided for @stockCountNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Why the count differs'**
+  String get stockCountNote;
+
+  /// No description provided for @stockSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock saved.'**
+  String get stockSaved;
+
+  /// No description provided for @stockCountMatched.
+  ///
+  /// In en, this message translates to:
+  /// **'The count matches the books. Nothing to correct.'**
+  String get stockCountMatched;
+
+  /// No description provided for @stockSendHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Send stock here'**
+  String get stockSendHere;
+
+  /// No description provided for @stockSendEverything.
+  ///
+  /// In en, this message translates to:
+  /// **'Return everything to a godown'**
+  String get stockSendEverything;
+
+  /// No description provided for @stockArrivingHere.
+  ///
+  /// In en, this message translates to:
+  /// **'On the way here'**
+  String get stockArrivingHere;
+
+  /// No description provided for @stockLeavingHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent, not yet confirmed'**
+  String get stockLeavingHere;
+
+  /// No description provided for @stockOnSite.
+  ///
+  /// In en, this message translates to:
+  /// **'On site'**
+  String get stockOnSite;
+
+  /// No description provided for @stockInGodown.
+  ///
+  /// In en, this message translates to:
+  /// **'In this godown'**
+  String get stockInGodown;
+
+  /// No description provided for @stockUsedUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Used up or sent on'**
+  String get stockUsedUp;
+
+  /// No description provided for @stockNothingHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here now.'**
+  String get stockNothingHere;
+
+  /// No description provided for @stockSiteEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No stock at this site yet'**
+  String get stockSiteEmpty;
+
+  /// No description provided for @stockSiteEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock sent from a godown shows here once the site confirms it.'**
+  String get stockSiteEmptyBody;
+
+  /// No description provided for @godownEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing in this godown yet'**
+  String get godownEmpty;
+
+  /// No description provided for @stockReceivedTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'Received {quantity}'**
+  String stockReceivedTotal(String quantity);
+
+  /// No description provided for @stockUsedTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'used {quantity}'**
+  String stockUsedTotal(String quantity);
+
+  /// No description provided for @stockSentOutTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'sent on {quantity}'**
+  String stockSentOutTotal(String quantity);
+
+  /// No description provided for @stockWastedTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'wasted {quantity}'**
+  String stockWastedTotal(String quantity);
+
+  /// No description provided for @stockWorth.
+  ///
+  /// In en, this message translates to:
+  /// **'worth {amount}'**
+  String stockWorth(String amount);
+
+  /// No description provided for @stockValueUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Material used'**
+  String get stockValueUsed;
+
+  /// No description provided for @stockValueOnSite.
+  ///
+  /// In en, this message translates to:
+  /// **'On site now'**
+  String get stockValueOnSite;
+
+  /// No description provided for @stockValueOnHand.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock value'**
+  String get stockValueOnHand;
+
+  /// No description provided for @stockHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'History'**
+  String get stockHistory;
+
+  /// No description provided for @stockToConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'To confirm'**
+  String get stockToConfirm;
+
+  /// No description provided for @stockNothingToConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing waiting for you to confirm.'**
+  String get stockNothingToConfirm;
+
+  /// No description provided for @stockNoEntries.
+  ///
+  /// In en, this message translates to:
+  /// **'No stock entries yet.'**
+  String get stockNoEntries;
+
+  /// No description provided for @stockSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search materials'**
+  String get stockSearch;
+
+  /// No description provided for @stockNoMaterials.
+  ///
+  /// In en, this message translates to:
+  /// **'No materials yet'**
+  String get stockNoMaterials;
+
+  /// No description provided for @stockNoMaterialsBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the materials you keep in stock. You can add more at any time.'**
+  String get stockNoMaterialsBody;
+
+  /// No description provided for @stockNoMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'No materials match.'**
+  String get stockNoMatch;
+
+  /// No description provided for @stockOnSitesTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'{quantity} at sites'**
+  String stockOnSitesTotal(String quantity);
+
+  /// No description provided for @stockInGodowns.
+  ///
+  /// In en, this message translates to:
+  /// **'In the godowns'**
+  String get stockInGodowns;
+
+  /// No description provided for @stockMinimum.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum {quantity}'**
+  String stockMinimum(String quantity);
+
+  /// No description provided for @stockInTransitTotal.
+  ///
+  /// In en, this message translates to:
+  /// **'{quantity} on the way'**
+  String stockInTransitTotal(String quantity);
+
+  /// No description provided for @stockAveragePrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Average {price} per {unit}'**
+  String stockAveragePrice(String price, String unit);
+
+  /// No description provided for @stockNoneInGodowns.
+  ///
+  /// In en, this message translates to:
+  /// **'None in the godowns now.'**
+  String get stockNoneInGodowns;
+
+  /// No description provided for @stockAtSites.
+  ///
+  /// In en, this message translates to:
+  /// **'At sites'**
+  String get stockAtSites;
+
+  /// No description provided for @stockNotAtSites.
+  ///
+  /// In en, this message translates to:
+  /// **'None at sites now.'**
+  String get stockNotAtSites;
+
+  /// No description provided for @stockLatest.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest'**
+  String get stockLatest;
+
+  /// No description provided for @stockStaffUsageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s material use'**
+  String get stockStaffUsageTitle;
+
+  /// No description provided for @stockUsageRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'Recorded'**
+  String get stockUsageRecorded;
+
+  /// No description provided for @stockUsageNotRecorded.
+  ///
+  /// In en, this message translates to:
+  /// **'Not recorded yet'**
+  String get stockUsageNotRecorded;
+
+  /// No description provided for @stockRecord.
+  ///
+  /// In en, this message translates to:
+  /// **'Record'**
+  String get stockRecord;
+
+  /// No description provided for @stockLeftTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock is still at this site'**
+  String get stockLeftTitle;
+
+  /// No description provided for @stockLeftMore.
+  ///
+  /// In en, this message translates to:
+  /// **'and {count} more'**
+  String stockLeftMore(int count);
+
+  /// No description provided for @stockLeftOnTheWay.
+  ///
+  /// In en, this message translates to:
+  /// **'Some stock is also on the way to or from this site.'**
+  String get stockLeftOnTheWay;
+
+  /// No description provided for @stockLeftBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Send it back to a godown from the site\'s Stock tab first, or complete the site now and deal with it later.'**
+  String get stockLeftBody;
+
+  /// No description provided for @stockLeftComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete anyway'**
+  String get stockLeftComplete;
+
+  /// No description provided for @godownNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New godown'**
+  String get godownNew;
+
+  /// No description provided for @godownEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit godown'**
+  String get godownEdit;
+
+  /// No description provided for @godownSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Godown saved.'**
+  String get godownSaved;
+
+  /// No description provided for @godownName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get godownName;
+
+  /// No description provided for @godownNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Main godown'**
+  String get godownNameHint;
+
+  /// No description provided for @godownAddress.
+  ///
+  /// In en, this message translates to:
+  /// **'Address (optional)'**
+  String get godownAddress;
+
+  /// No description provided for @godownActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get godownActive;
+
+  /// No description provided for @godownActiveHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'A closed godown takes no new stock. Its history stays. Move its stock out before closing it.'**
+  String get godownActiveHelper;
+
+  /// No description provided for @godownClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get godownClosed;
+
+  /// No description provided for @materialNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New material'**
+  String get materialNew;
+
+  /// No description provided for @materialEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit material'**
+  String get materialEdit;
+
+  /// No description provided for @materialSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Material saved.'**
+  String get materialSaved;
+
+  /// No description provided for @materialName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get materialName;
+
+  /// No description provided for @materialNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Cement OPC 53'**
+  String get materialNameHint;
+
+  /// No description provided for @materialUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit'**
+  String get materialUnit;
+
+  /// No description provided for @materialUnitHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'How it is counted. It can\'t change once stock is recorded.'**
+  String get materialUnitHelper;
+
+  /// No description provided for @materialCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Category (optional)'**
+  String get materialCategory;
+
+  /// No description provided for @materialCategoryHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Cement, Steel'**
+  String get materialCategoryHint;
+
+  /// No description provided for @materialMinimum.
+  ///
+  /// In en, this message translates to:
+  /// **'Minimum in godowns (optional)'**
+  String get materialMinimum;
+
+  /// No description provided for @materialMinimumHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Admins are alerted when all godowns together drop below this.'**
+  String get materialMinimumHelper;
+
+  /// No description provided for @materialActive.
+  ///
+  /// In en, this message translates to:
+  /// **'In use'**
+  String get materialActive;
+
+  /// No description provided for @materialActiveHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'Switched off, it can\'t be bought or sent from godowns. Its history stays.'**
+  String get materialActiveHelper;
+
+  /// No description provided for @materialInactive.
+  ///
+  /// In en, this message translates to:
+  /// **'Not in use'**
+  String get materialInactive;
+
+  /// No description provided for @reportsStockOpening.
+  ///
+  /// In en, this message translates to:
+  /// **'Opening'**
+  String get reportsStockOpening;
+
+  /// No description provided for @reportsStockReceived.
+  ///
+  /// In en, this message translates to:
+  /// **'Received'**
+  String get reportsStockReceived;
+
+  /// No description provided for @reportsStockUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Used'**
+  String get reportsStockUsed;
+
+  /// No description provided for @reportsStockClosing.
+  ///
+  /// In en, this message translates to:
+  /// **'Closing'**
+  String get reportsStockClosing;
+
+  /// No description provided for @reportsStockSentOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent out'**
+  String get reportsStockSentOut;
+
+  /// No description provided for @reportsStockWasted.
+  ///
+  /// In en, this message translates to:
+  /// **'Wasted'**
+  String get reportsStockWasted;
+
+  /// No description provided for @reportsStockAdjusted.
+  ///
+  /// In en, this message translates to:
+  /// **'Count corrections'**
+  String get reportsStockAdjusted;
+
+  /// No description provided for @reportsStockUsedValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Used value'**
+  String get reportsStockUsedValue;
+
+  /// No description provided for @roleGodownManager.
+  ///
+  /// In en, this message translates to:
+  /// **'Godown manager'**
+  String get roleGodownManager;
+
+  /// No description provided for @navRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'Requests'**
+  String get navRequests;
+
+  /// No description provided for @navStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Stock'**
+  String get navStock;
+
+  /// No description provided for @signUpLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up SiteWork (first admin)'**
+  String get signUpLink;
+
+  /// No description provided for @signUpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up SiteWork'**
+  String get signUpTitle;
+
+  /// No description provided for @signUpIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Create the first admin account. After this, admins add everyone else (engineers, staff, godown managers and other admins) from People.'**
+  String get signUpIntro;
+
+  /// No description provided for @signUpSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Create admin account'**
+  String get signUpSubmit;
+
+  /// No description provided for @godownManagersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Godown managers'**
+  String get godownManagersTitle;
+
+  /// No description provided for @godownManagersEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No godown managers yet.'**
+  String get godownManagersEmpty;
+
+  /// No description provided for @godownManagerNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New godown manager'**
+  String get godownManagerNew;
+
+  /// No description provided for @godownManagerEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit godown manager'**
+  String get godownManagerEdit;
+
+  /// No description provided for @adminsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Admins'**
+  String get adminsTitle;
+
+  /// No description provided for @adminsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No admins found.'**
+  String get adminsEmpty;
+
+  /// No description provided for @adminNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New admin'**
+  String get adminNew;
+
+  /// No description provided for @adminEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit admin'**
+  String get adminEdit;
+
+  /// No description provided for @personGodowns.
+  ///
+  /// In en, this message translates to:
+  /// **'Godowns'**
+  String get personGodowns;
+
+  /// No description provided for @personGodownsHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'They buy stock in, send it to sites against approved requests, and confirm returns at these godowns.'**
+  String get personGodownsHelper;
+
+  /// No description provided for @personNoGodowns.
+  ///
+  /// In en, this message translates to:
+  /// **'No godown yet'**
+  String get personNoGodowns;
+
+  /// No description provided for @godownManagedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Managed by {names}'**
+  String godownManagedBy(String names);
+
+  /// No description provided for @godownNoManager.
+  ///
+  /// In en, this message translates to:
+  /// **'No manager yet: admins confirm what arrives here.'**
+  String get godownNoManager;
+
+  /// No description provided for @godownsYours.
+  ///
+  /// In en, this message translates to:
+  /// **'Your godowns'**
+  String get godownsYours;
+
+  /// No description provided for @stockReturnTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Return to'**
+  String get stockReturnTo;
+
+  /// No description provided for @stockSendSitesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sites get stock only against an approved material request: open the request to send it.'**
+  String get stockSendSitesHint;
+
+  /// No description provided for @stockNoGodownsManager.
+  ///
+  /// In en, this message translates to:
+  /// **'No godown is assigned to you yet. Ask your admin.'**
+  String get stockNoGodownsManager;
+
+  /// No description provided for @stockReturnsToConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Returns to confirm'**
+  String get stockReturnsToConfirm;
+
+  /// No description provided for @stockLowTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Low stock'**
+  String get stockLowTitle;
+
+  /// No description provided for @stockLowSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All godowns together, below the minimum'**
+  String get stockLowSubtitle;
+
+  /// No description provided for @stockForRequest.
+  ///
+  /// In en, this message translates to:
+  /// **'For {code}'**
+  String stockForRequest(String code);
+
+  /// No description provided for @requestsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Material requests'**
+  String get requestsTitle;
+
+  /// No description provided for @requestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Material request'**
+  String get requestTitle;
+
+  /// No description provided for @requestsAdminSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve what sites ask for'**
+  String get requestsAdminSubtitle;
+
+  /// No description provided for @requestsEngineerSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask for material for your sites'**
+  String get requestsEngineerSubtitle;
+
+  /// No description provided for @requestsToApproveCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 waiting for approval} other{{count} waiting for approval}}'**
+  String requestsToApproveCount(int count);
+
+  /// No description provided for @requestsToSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Requests to send'**
+  String get requestsToSend;
+
+  /// No description provided for @requestsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No material requests here.'**
+  String get requestsEmpty;
+
+  /// No description provided for @requestsEmptyManager.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing to send. Approved requests for your godowns show up here.'**
+  String get requestsEmptyManager;
+
+  /// No description provided for @requestsOpenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Material requests'**
+  String get requestsOpenTitle;
+
+  /// No description provided for @requestsAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All requests'**
+  String get requestsAll;
+
+  /// No description provided for @requestsNoneOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'No open requests.'**
+  String get requestsNoneOpen;
+
+  /// No description provided for @requestFilterOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get requestFilterOpen;
+
+  /// No description provided for @requestFilterApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get requestFilterApproved;
+
+  /// No description provided for @requestStagePending.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for approval'**
+  String get requestStagePending;
+
+  /// No description provided for @requestStageToSend.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved · to send'**
+  String get requestStageToSend;
+
+  /// No description provided for @requestStagePartSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Part sent'**
+  String get requestStagePartSent;
+
+  /// No description provided for @requestStageOnTheWay.
+  ///
+  /// In en, this message translates to:
+  /// **'On the way'**
+  String get requestStageOnTheWay;
+
+  /// No description provided for @requestStageAtSite.
+  ///
+  /// In en, this message translates to:
+  /// **'At site'**
+  String get requestStageAtSite;
+
+  /// No description provided for @requestStageRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get requestStageRejected;
+
+  /// No description provided for @requestStageWithdrawn.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdrawn'**
+  String get requestStageWithdrawn;
+
+  /// No description provided for @requestStageClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed'**
+  String get requestStageClosed;
+
+  /// No description provided for @requestAskedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Asked by {name} · {date}'**
+  String requestAskedBy(String name, String date);
+
+  /// No description provided for @requestFromGodown.
+  ///
+  /// In en, this message translates to:
+  /// **'From {godown}'**
+  String requestFromGodown(String godown);
+
+  /// No description provided for @requestNeededBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Needed by {date}'**
+  String requestNeededBy(String date);
+
+  /// No description provided for @requestSiteStock.
+  ///
+  /// In en, this message translates to:
+  /// **'Site\'s stock'**
+  String get requestSiteStock;
+
+  /// No description provided for @requestMaterial.
+  ///
+  /// In en, this message translates to:
+  /// **'Request material'**
+  String get requestMaterial;
+
+  /// No description provided for @requestNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New request'**
+  String get requestNew;
+
+  /// No description provided for @requestNeededByOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Needed by (optional)'**
+  String get requestNeededByOptional;
+
+  /// No description provided for @requestQuantityNeeded.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity needed'**
+  String get requestQuantityNeeded;
+
+  /// No description provided for @requestWhatFor.
+  ///
+  /// In en, this message translates to:
+  /// **'What is it for? (optional)'**
+  String get requestWhatFor;
+
+  /// No description provided for @requestSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Send request'**
+  String get requestSubmit;
+
+  /// No description provided for @requestSent.
+  ///
+  /// In en, this message translates to:
+  /// **'{code} sent for approval.'**
+  String requestSent(String code);
+
+  /// No description provided for @requestApprove.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve'**
+  String get requestApprove;
+
+  /// No description provided for @requestApproveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve {code}'**
+  String requestApproveTitle(String code);
+
+  /// No description provided for @requestApproveIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'{site} asked for this ({name}). Choose the godown that sends it and how much of each material.'**
+  String requestApproveIntro(String site, String name);
+
+  /// No description provided for @requestSupplyFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Send from godown'**
+  String get requestSupplyFrom;
+
+  /// No description provided for @requestApprovedQuantities.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved quantities'**
+  String get requestApprovedQuantities;
+
+  /// No description provided for @requestApproveZeroHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 0 for a material that won\'t be sent.'**
+  String get requestApproveZeroHint;
+
+  /// No description provided for @requestApprovedQuantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved quantity'**
+  String get requestApprovedQuantity;
+
+  /// No description provided for @requestInGodown.
+  ///
+  /// In en, this message translates to:
+  /// **'In godown: {quantity}'**
+  String requestInGodown(String quantity);
+
+  /// No description provided for @requestNoteForSite.
+  ///
+  /// In en, this message translates to:
+  /// **'Note for the site (optional)'**
+  String get requestNoteForSite;
+
+  /// No description provided for @requestApproveSomething.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve at least one material, or reject the request.'**
+  String get requestApproveSomething;
+
+  /// No description provided for @requestApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'{code} approved. The godown will send it.'**
+  String requestApproved(String code);
+
+  /// No description provided for @requestReject.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject'**
+  String get requestReject;
+
+  /// No description provided for @requestRejectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject this request?'**
+  String get requestRejectTitle;
+
+  /// No description provided for @requestRejectReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Why? The site will see this.'**
+  String get requestRejectReason;
+
+  /// No description provided for @requestRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'{code} rejected.'**
+  String requestRejected(String code);
+
+  /// No description provided for @requestRejectedBecause.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected by {name}: {reason}'**
+  String requestRejectedBecause(String name, String reason);
+
+  /// No description provided for @requestApprovedFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved by {name} · sent from {godown}'**
+  String requestApprovedFrom(String name, String godown);
+
+  /// No description provided for @requestWithdraw.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdraw request'**
+  String get requestWithdraw;
+
+  /// No description provided for @requestWithdrawTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdraw {code}?'**
+  String requestWithdrawTitle(String code);
+
+  /// No description provided for @requestWithdrawBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It has not been approved yet. Withdrawing it means nothing will be sent.'**
+  String get requestWithdrawBody;
+
+  /// No description provided for @requestWithdrawn.
+  ///
+  /// In en, this message translates to:
+  /// **'{code} withdrawn.'**
+  String requestWithdrawn(String code);
+
+  /// No description provided for @requestSendNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Send material'**
+  String get requestSendNow;
+
+  /// No description provided for @requestSendTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Send {code}'**
+  String requestSendTitle(String code);
+
+  /// No description provided for @requestDeliveries.
+  ///
+  /// In en, this message translates to:
+  /// **'Deliveries and returns'**
+  String get requestDeliveries;
+
+  /// No description provided for @requestAsked.
+  ///
+  /// In en, this message translates to:
+  /// **'Asked {quantity}'**
+  String requestAsked(String quantity);
+
+  /// No description provided for @requestNotSupplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Not supplied'**
+  String get requestNotSupplied;
+
+  /// No description provided for @requestSentAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent {quantity}'**
+  String requestSentAmount(String quantity);
+
+  /// No description provided for @requestOnTheWayAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'{quantity} on the way'**
+  String requestOnTheWayAmount(String quantity);
+
+  /// No description provided for @requestArrivedAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrived {quantity}'**
+  String requestArrivedAmount(String quantity);
+
+  /// No description provided for @requestLeftAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'{quantity} left to send'**
+  String requestLeftAmount(String quantity);
+
+  /// No description provided for @requestConfirmFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm the delivery on its way before closing this request.'**
+  String get requestConfirmFirst;
+
+  /// No description provided for @requestClose.
+  ///
+  /// In en, this message translates to:
+  /// **'Close request'**
+  String get requestClose;
+
+  /// No description provided for @requestCloseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Close {code}'**
+  String requestCloseTitle(String code);
+
+  /// No description provided for @requestCloseIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Is the work done? Say whether everything was used, or send what is left back to the godown.'**
+  String get requestCloseIntro;
+
+  /// No description provided for @requestOutcomeAllUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'All used'**
+  String get requestOutcomeAllUsed;
+
+  /// No description provided for @requestOutcomeReturn.
+  ///
+  /// In en, this message translates to:
+  /// **'Return the leftover to {godown}'**
+  String requestOutcomeReturn(String godown);
+
+  /// No description provided for @requestGoingBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Going back'**
+  String get requestGoingBack;
+
+  /// No description provided for @requestNothingToReturn.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing from this request is left at the site.'**
+  String get requestNothingToReturn;
+
+  /// No description provided for @requestReturnZeroHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter 0 for anything staying at the site.'**
+  String get requestReturnZeroHint;
+
+  /// No description provided for @requestReturnSomething.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter what is going back, or choose \"All used\".'**
+  String get requestReturnSomething;
+
+  /// No description provided for @requestClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'{code} closed.'**
+  String requestClosed(String code);
+
+  /// No description provided for @requestClosedAllUsed.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed by {name}: all used.'**
+  String requestClosedAllUsed(String name);
+
+  /// No description provided for @requestClosedLeftover.
+  ///
+  /// In en, this message translates to:
+  /// **'Closed by {name}: leftover sent back to the godown.'**
+  String requestClosedLeftover(String name);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

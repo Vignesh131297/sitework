@@ -10,6 +10,15 @@ String formatInr(String amount) {
   return (value % 1 == 0 ? _rupees : _rupeesAndPaise).format(value);
 }
 
+final _quantity = NumberFormat('#,##,##0.###', 'en_IN');
+
+/// An API quantity ("1250", "12.5") with its unit: "1,250 bag" (or "1,250"
+/// without one). Display only: stock arithmetic happens on the server.
+String formatQuantity(String quantity, [String? unit]) {
+  final number = _quantity.format(num.parse(quantity));
+  return unit == null ? number : '$number $unit';
+}
+
 /// "10:42 AM" in the phone's time zone.
 String formatTime(DateTime time) => DateFormat.jm().format(time.toLocal());
 

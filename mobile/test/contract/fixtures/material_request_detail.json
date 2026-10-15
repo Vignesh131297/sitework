@@ -1,0 +1,145 @@
+{
+  "success": true,
+  "data": {
+    "id": "01a11c52-53ba-728d-8fad-827e33eaeb9b",
+    "code": "MR-0006",
+    "site": {
+      "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+      "code": "SITE-001",
+      "name": "ABC Apartment Project"
+    },
+    "requestedBy": {
+      "id": "01a11c52-51a9-726e-813a-f1fa901ee64b",
+      "name": "Arun Kumar"
+    },
+    "status": "APPROVED",
+    "neededBy": "2026-10-08",
+    "note": "Second floor slab.",
+    "createdAt": "2026-10-06T04:30:00.000Z",
+    "godown": {
+      "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+      "name": "Main godown"
+    },
+    "reviewedBy": {
+      "id": "01a11c52-519c-70a0-b260-8fee4ee49fa0",
+      "name": "Admin User"
+    },
+    "reviewedAt": "2026-10-06T07:30:00.000Z",
+    "reviewNote": null,
+    "outcome": null,
+    "closedBy": null,
+    "closedAt": null,
+    "closeNote": null,
+    "lines": [
+      {
+        "material": {
+          "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+          "name": "Cement OPC 53",
+          "unit": "bag"
+        },
+        "quantity": "100",
+        "approvedQuantity": "100",
+        "sent": "50",
+        "received": "0",
+        "onTheWay": "50",
+        "leftToSend": "50"
+      },
+      {
+        "material": {
+          "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+          "name": "M-Sand",
+          "unit": "cft"
+        },
+        "quantity": "300",
+        "approvedQuantity": "300",
+        "sent": "300",
+        "received": "0",
+        "onTheWay": "300",
+        "leftToSend": "0"
+      }
+    ],
+    "sentInFull": false,
+    "canApprove": false,
+    "canCancel": false,
+    "canSend": true,
+    "canClose": false,
+    "entries": [
+      {
+        "id": "01a11c52-5427-71ae-afef-c1e19a55bba1",
+        "requestId": "58f10ed0-2572-4440-889b-ee24f49da73a",
+        "kind": "TRANSFER",
+        "from": {
+          "place": "GODOWN",
+          "site": null,
+          "godown": {
+            "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+            "name": "Main godown"
+          }
+        },
+        "to": {
+          "place": "SITE",
+          "site": {
+            "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+            "code": "SITE-001",
+            "name": "ABC Apartment Project"
+          },
+          "godown": null
+        },
+        "status": "IN_TRANSIT",
+        "movedOn": "2026-10-07",
+        "dcNumber": "DC-0109",
+        "supplier": null,
+        "billNo": null,
+        "note": null,
+        "lines": [
+          {
+            "id": "01a11c52-5429-720b-ad44-d464d1f59d1b",
+            "material": {
+              "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+              "name": "Cement OPC 53",
+              "unit": "bag"
+            },
+            "quantity": "50",
+            "receivedQuantity": null,
+            "shortQuantity": null,
+            "rate": null,
+            "amount": null
+          },
+          {
+            "id": "01a11c52-5429-720b-ad44-db413229039d",
+            "material": {
+              "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+              "name": "M-Sand",
+              "unit": "cft"
+            },
+            "quantity": "300",
+            "receivedQuantity": null,
+            "shortQuantity": null,
+            "rate": null,
+            "amount": null
+          }
+        ],
+        "totalAmount": null,
+        "receivedOn": null,
+        "receivedAt": null,
+        "receivedBy": null,
+        "receiveNote": null,
+        "createdBy": {
+          "id": "01a11c52-51c6-71ca-932e-4422f8d77749",
+          "name": "Selvam"
+        },
+        "createdAt": "2026-10-07T04:30:00.000Z",
+        "voidedAt": null,
+        "voidedBy": null,
+        "voidReason": null,
+        "photoCount": 0,
+        "request": {
+          "id": "01a11c52-53ba-728d-8fad-827e33eaeb9b",
+          "code": "MR-0006"
+        },
+        "canReceive": true,
+        "canVoid": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "success": true,
+  "data": {
+    "site": {
+      "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+      "code": "SITE-001",
+      "name": "ABC Apartment Project",
+      "status": "IN_PROGRESS"
+    },
+    "items": [
+      {
+        "material": {
+          "id": "01a11c52-5385-771f-8454-9683c609d4b0",
+          "name": "Blue metal 20mm",
+          "unit": "cft",
+          "category": "Sand & aggregates",
+          "minStock": "300",
+          "isActive": true
+        },
+        "onHand": "320",
+        "received": "600",
+        "used": "280",
+        "sentOut": "0",
+        "wasted": "0",
+        "adjusted": "0",
+        "usedValue": null,
+        "onHandValue": null
+      },
+      {
+        "material": {
+          "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+          "name": "Cement OPC 53",
+          "unit": "bag",
+          "category": "Cement",
+          "minStock": "150",
+          "isActive": true
+        },
+        "onHand": "92",
+        "received": "148",
+        "used": "56",
+        "sentOut": "0",
+        "wasted": "0",
+        "adjusted": "0",
+        "usedValue": null,
+        "onHandValue": null
+      },
+      {
+        "material": {
+          "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+          "name": "M-Sand",
+          "unit": "cft",
+          "category": "Sand & aggregates",
+          "minStock": "500",
+          "isActive": true
+        },
+        "onHand": "580",
+        "received": "1000",
+        "used": "420",
+        "sentOut": "0",
+        "wasted": "0",
+        "adjusted": "0",
+        "usedValue": null,
+        "onHandValue": null
+      },
+      {
+        "material": {
+          "id": "01a11c52-5387-72c0-a7f2-f113520703e6",
+          "name": "Red bricks",
+          "unit": "nos",
+          "category": "Bricks & blocks",
+          "minStock": "5000",
+          "isActive": true
+        },
+        "onHand": "3700",
+        "received": "10000",
+        "used": "6300",
+        "sentOut": "0",
+        "wasted": "0",
+        "adjusted": "0",
+        "usedValue": null,
+        "onHandValue": null
+      },
+      {
+        "material": {
+          "id": "01a11c52-5381-735c-8b63-4354c3bde9e6",
+          "name": "TMT Steel 12mm",
+          "unit": "kg",
+          "category": "Steel",
+          "minStock": "2000",
+          "isActive": true
+        },
+        "onHand": "948",
+        "received": "2000",
+        "used": "1052",
+        "sentOut": "0",
+        "wasted": "0",
+        "adjusted": "0",
+        "usedValue": null,
+        "onHandValue": null
+      }
+    ],
+    "arriving": [
+      {
+        "id": "01a11c52-5427-71ae-afef-c1e19a55bba1",
+        "requestId": "58f10ed0-2572-4440-889b-ee24f49da73a",
+        "kind": "TRANSFER",
+        "from": {
+          "place": "GODOWN",
+          "site": null,
+          "godown": {
+            "id": "01a11c52-536d-71ff-bfce-5034172a9d94",
+            "name": "Main godown"
+          }
+        },
+        "to": {
+          "place": "SITE",
+          "site": {
+            "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
+            "code": "SITE-001",
+            "name": "ABC Apartment Project"
+          },
+          "godown": null
+        },
+        "status": "IN_TRANSIT",
+        "movedOn": "2026-10-07",
+        "dcNumber": "DC-0109",
+        "supplier": null,
+        "billNo": null,
+        "note": null,
+        "lines": [
+          {
+            "id": "01a11c52-5429-720b-ad44-d464d1f59d1b",
+            "material": {
+              "id": "01a11c52-537c-72b0-ab1c-15d83153225d",
+              "name": "Cement OPC 53",
+              "unit": "bag"
+            },
+            "quantity": "50",
+            "receivedQuantity": null,
+            "shortQuantity": null,
+            "rate": null,
+            "amount": null
+          },
+          {
+            "id": "01a11c52-5429-720b-ad44-db413229039d",
+            "material": {
+              "id": "01a11c52-5383-73d8-8146-60df1c8e4ef8",
+              "name": "M-Sand",
+              "unit": "cft"
+            },
+            "quantity": "300",
+            "receivedQuantity": null,
+            "shortQuantity": null,
+            "rate": null,
+            "amount": null
+          }
+        ],
+        "totalAmount": null,
+        "receivedOn": null,
+        "receivedAt": null,
+        "receivedBy": null,
+        "receiveNote": null,
+        "createdBy": {
+          "id": "01a11c52-51c6-71ca-932e-4422f8d77749",
+          "name": "Selvam"
+        },
+        "createdAt": "2026-10-07T04:30:00.000Z",
+        "voidedAt": null,
+        "voidedBy": null,
+        "voidReason": null,
+        "photoCount": 0,
+        "request": {
+          "id": "01a11c52-53ba-728d-8fad-827e33eaeb9b",
+          "code": "MR-0006"
+        },
+        "canReceive": false,
+        "canVoid": false
+      }
+    ],
+    "leaving": [],
+    "usedToday": false,
+    "value": null
+  }
+}

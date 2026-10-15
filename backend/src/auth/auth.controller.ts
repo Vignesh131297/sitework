@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  Get,
   HttpCode,
   Param,
   Patch,
@@ -23,6 +24,7 @@ import {
   LoginDto,
   RefreshDto,
   ResetPasswordDto,
+  SignUpDto,
 } from './auth.dto.js';
 import {
   AuthService,
@@ -57,6 +59,21 @@ export class AuthController {
       dto.password,
       clientContext(req, dto.deviceName),
     );
+  }
+
+  /** Whether the first admin can still sign up (the app shows the option). */
+  @Public()
+  @Get('signup')
+  async signupStatus(): Promise<{ open: boolean }> {
+    return { open: await this.auth.signupOpen() };
+  }
+
+  /** The first admin's own account; closed once any admin exists. */
+  @Public()
+  @Throttle(FORGOT_LIMIT)
+  @Post('signup')
+  signUp(@Body() dto: SignUpDto, @Req() req: Request): Promise<AuthResult> {
+    return this.auth.signUpFirstAdmin(dto, clientContext(req, dto.deviceName));
   }
 
   @Public()

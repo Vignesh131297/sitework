@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a11c52-519c-70a0-b260-8fee4ee49fa0",
+      "role": "ADMIN",
+      "name": "Admin User",
+      "phone": "+919000000001",
+      "email": "admin@sitework.test",
+      "employeeCode": "ADM-001",
+      "designation": null,
+      "joiningDate": "2024-04-21",
+      "isActive": true,
+      "lastLoginAt": "2026-10-08T16:22:24.364Z",
+      "sites": [],
+      "staffCount": 0,
+      "godowns": [],
+      "assignment": null
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 1,
+    "totalPages": 1
+  }
+}

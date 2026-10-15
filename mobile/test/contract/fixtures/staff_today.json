@@ -1,13 +1,13 @@
 {
   "success": true,
   "data": {
-    "serverTime": "2026-10-04T16:19:26.206Z",
-    "date": "2026-10-04",
-    "isWorkingDay": false,
+    "serverTime": "2026-10-08T16:22:26.090Z",
+    "date": "2026-10-08",
+    "isWorkingDay": true,
     "holiday": null,
     "assignment": {
       "site": {
-        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
         "code": "SITE-001",
         "name": "ABC Apartment Project",
         "address": "Plot 12, 3rd Main Road, Anna Nagar West, Chennai 600040",
@@ -16,59 +16,66 @@
         "geofenceRadiusM": 300
       },
       "engineer": {
-        "id": "01a10655-4e3a-726e-a1ad-f60170581b67",
+        "id": "01a11c52-51a9-726e-813a-f1fa901ee64b",
         "name": "Arun Kumar",
         "phone": "+919000000011"
       }
     },
     "attendance": {
-      "id": "01a1066e-f314-77cf-922c-af5bdf4d83c3",
-      "workDate": "2026-10-04",
-      "status": "LATE",
+      "id": "01a11c52-526b-714d-9f18-8ae67f6514c4",
+      "workDate": "2026-10-08",
+      "status": "PRESENT",
       "staff": {
-        "id": "01a10655-4e48-71da-850f-01840d2004af",
+        "id": "01a11c52-51b2-7218-a487-03eb31ca94b7",
         "name": "Ravi"
       },
       "site": {
-        "id": "01a10655-4e71-71c4-991e-21d37335e32e",
+        "id": "01a11c52-51d9-77f2-bced-f6bcc264a82e",
         "name": "ABC Apartment Project"
       },
-      "checkInAt": "2026-10-04T10:21:36.887Z",
-      "checkInLocationFlag": "UNAVAILABLE",
-      "checkOutAt": null,
-      "checkOutLocationFlag": null,
-      "workedMinutes": null,
+      "checkInAt": "2026-10-08T03:19:00.000Z",
+      "checkInLocationFlag": "OK",
+      "checkOutAt": "2026-10-08T12:30:00.000Z",
+      "checkOutLocationFlag": "OK",
+      "workedMinutes": 551,
       "correctionNote": null
     },
     "slots": [
       {
         "slot": "MORNING",
-        "state": "NOT_EXPECTED",
-        "start": "2026-10-04T04:30:00.000Z",
-        "end": "2026-10-04T06:30:00.000Z",
-        "closesAt": "2026-10-04T06:45:00.000Z",
-        "update": null
+        "state": "SUBMITTED",
+        "start": "2026-10-08T04:30:00.000Z",
+        "end": "2026-10-08T06:30:00.000Z",
+        "closesAt": "2026-10-08T06:45:00.000Z",
+        "update": {
+          "id": "bfdb1e47-1879-4dd9-ad9d-65f8da1abc93",
+          "submittedAt": "2026-10-08T05:48:00.000Z",
+          "submittedOffline": false,
+          "imageStatus": "DELETED",
+          "engineerViewedAt": "2026-10-08T06:16:00.000Z",
+          "adminViewedAt": "2026-10-08T06:01:00.000Z"
+        }
       },
       {
         "slot": "AFTERNOON",
-        "state": "NOT_EXPECTED",
-        "start": "2026-10-04T07:30:00.000Z",
-        "end": "2026-10-04T09:30:00.000Z",
-        "closesAt": "2026-10-04T09:45:00.000Z",
+        "state": "MISSING",
+        "start": "2026-10-08T07:30:00.000Z",
+        "end": "2026-10-08T09:30:00.000Z",
+        "closesAt": "2026-10-08T09:45:00.000Z",
         "update": null
       },
       {
         "slot": "EVENING",
         "state": "SUBMITTED",
-        "start": "2026-10-04T10:30:00.000Z",
-        "end": "2026-10-04T13:30:00.000Z",
-        "closesAt": "2026-10-04T13:45:00.000Z",
+        "start": "2026-10-08T10:30:00.000Z",
+        "end": "2026-10-08T13:30:00.000Z",
+        "closesAt": "2026-10-08T13:45:00.000Z",
         "update": {
-          "id": "01a10683-a923-7517-86c5-21502811c375",
-          "submittedAt": "2026-10-04T10:44:13.796Z",
+          "id": "9196482a-105c-4944-8186-7925cf8a2a7b",
+          "submittedAt": "2026-10-08T12:50:00.000Z",
           "submittedOffline": false,
           "imageStatus": "AVAILABLE",
-          "engineerViewedAt": "2026-10-04T14:57:58.105Z",
+          "engineerViewedAt": "2026-10-08T13:28:00.000Z",
           "adminViewedAt": null
         }
       }

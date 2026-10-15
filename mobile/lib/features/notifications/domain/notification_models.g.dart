@@ -42,6 +42,7 @@ const _$NotificationTypeEnumMap = {
   NotificationType.issue: 'ISSUE',
   NotificationType.attendance: 'ATTENDANCE',
   NotificationType.system: 'SYSTEM',
+  NotificationType.stock: 'STOCK',
 };
 
 const _$ReferenceTypeEnumMap = {
@@ -53,4 +54,6 @@ const _$ReferenceTypeEnumMap = {
   ReferenceType.paymentMilestone: 'PAYMENT_MILESTONE',
   ReferenceType.payment: 'PAYMENT',
   ReferenceType.attendance: 'ATTENDANCE',
+  ReferenceType.stockEntry: 'STOCK_ENTRY',
+  ReferenceType.materialRequest: 'MATERIAL_REQUEST',
 };

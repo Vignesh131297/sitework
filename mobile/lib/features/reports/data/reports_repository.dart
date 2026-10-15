@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/network/api_client.dart';
+import '../../stock/domain/stock_models.dart';
 import '../domain/report_models.dart';
 
 /// What to report on: the kind, the dates (both included) and optionally one site.
@@ -20,6 +21,7 @@ class ReportsRepository {
       ReportKind.staff => StaffReport(_list(data, StaffReportRow.fromJson)),
       ReportKind.engineers => EngineersReport(_list(data, EngineerReportRow.fromJson)),
       ReportKind.payments => PaymentsReport(PaymentReport.fromJson(data! as Map<String, dynamic>)),
+      ReportKind.stock => StockReport(_list(data, StockReportRow.fromJson)),
     },
   );
 

@@ -78,7 +78,12 @@ Map<String, dynamic> _$MeProfileToJson(_MeProfile instance) => <String, dynamic>
   'sites': instance.sites,
 };
 
-const _$UserRoleEnumMap = {UserRole.admin: 'ADMIN', UserRole.engineer: 'ENGINEER', UserRole.staff: 'STAFF'};
+const _$UserRoleEnumMap = {
+  UserRole.admin: 'ADMIN',
+  UserRole.engineer: 'ENGINEER',
+  UserRole.staff: 'STAFF',
+  UserRole.godownManager: 'GODOWN_MANAGER',
+};
 
 const _$DesignationEnumMap = {
   Designation.mason: 'MASON',

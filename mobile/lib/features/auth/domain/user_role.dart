@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import '../../../core/routing/app_routes.dart';
 
-/// The three roles. JSON values match the API's `Role` enum.
+/// The four roles. JSON values match the API's `Role` enum.
 @JsonEnum(valueField: 'apiValue')
 enum UserRole {
   admin(
@@ -22,6 +22,12 @@ enum UserRole {
     areaPath: AppRoutes.staffArea,
     homePath: AppRoutes.staffHome,
     profilePath: AppRoutes.staffProfile,
+  ),
+  godownManager(
+    apiValue: 'GODOWN_MANAGER',
+    areaPath: AppRoutes.godownArea,
+    homePath: AppRoutes.godownHome,
+    profilePath: AppRoutes.godownProfile,
   );
 
   const UserRole({required this.apiValue, required this.areaPath, required this.homePath, required this.profilePath});

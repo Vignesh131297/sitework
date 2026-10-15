@@ -27,6 +27,34 @@ class AuthRepository {
     return result.user;
   }
 
+  /// True until the first admin has signed up; after that admins create
+  /// every account.
+  Future<bool> signUpOpen() =>
+      _api.get('/auth/signup', decode: (data) => (data! as Map<String, dynamic>)['open'] == true);
+
+  /// The first admin's own account; signs them in.
+  Future<AppSession> signUp({
+    required String name,
+    required String phone,
+    String? email,
+    required String password,
+  }) async {
+    final result = await _api.post(
+      '/auth/signup',
+      public: true,
+      body: {
+        'name': name.trim(),
+        'phone': phone.trim(),
+        'email': ?email,
+        'password': password,
+        'deviceName': _deviceName(),
+      },
+      decode: (data) => AuthResult.fromJson(data! as Map<String, dynamic>),
+    );
+    await _store.write(StoredSession(tokens: result.tokens, user: result.user));
+    return result.user;
+  }
+
   Future<void> signOut() async {
     try {
       await _api.post('/auth/logout', decode: (_) {});
@@ -80,3 +108,6 @@ class AuthRepository {
 final authRepositoryProvider = Provider<AuthRepository>(
   (ref) => AuthRepository(ref.watch(apiClientProvider), ref.watch(sessionStoreProvider)),
 );
+
+/// Whether this server still needs its first admin (sign-up open).
+final signUpOpenProvider = FutureProvider.autoDispose<bool>((ref) => ref.watch(authRepositoryProvider).signUpOpen());

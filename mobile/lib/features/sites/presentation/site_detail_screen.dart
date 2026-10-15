@@ -25,6 +25,7 @@ import '../../auth/presentation/session_controller.dart';
 import '../../engineer_updates/presentation/engineer_updates_list.dart';
 import '../../issues/presentation/issues_list.dart';
 import '../../people/presentation/assign_staff_sheet.dart';
+import '../../stock/presentation/site_stock_tab.dart';
 import '../data/sites_repository.dart';
 import '../domain/site_models.dart';
 import 'engineer_picker.dart';
@@ -32,10 +33,11 @@ import 'site_day_tab.dart';
 import 'site_payments_tab.dart';
 
 /// The site's tabs, by the name used in links (`?tab=today`).
-const siteTabs = ['today', 'overview', 'team', 'updates', 'issues', 'payments'];
+const siteTabs = ['today', 'overview', 'team', 'updates', 'issues', 'stock', 'payments'];
 
-/// One site: today's staff board, overview, team, engineer updates, issues and
-/// money. Admins can edit; engineers report updates and issues.
+/// One site: today's staff board, overview, team, engineer updates, issues,
+/// stock and money. Admins can edit; engineers report updates and issues and
+/// look after the site's stock.
 class SiteDetailScreen extends ConsumerWidget {
   const SiteDetailScreen({super.key, required this.id, this.initialTab});
 
@@ -73,6 +75,7 @@ class SiteDetailScreen extends ConsumerWidget {
               Tab(text: l10n.siteTabTeam),
               Tab(text: l10n.siteTabUpdates),
               Tab(text: l10n.siteTabIssues),
+              Tab(text: l10n.siteTabStock),
               Tab(text: l10n.siteTabPayments),
             ],
           ),
@@ -118,6 +121,7 @@ class SiteDetailScreen extends ConsumerWidget {
                   ),
                 ),
               ),
+              SiteStockTab(siteId: id, isAdmin: isAdmin),
               _Refreshable(
                 id: id,
                 child: SitePaymentsTab(site: site, isAdmin: isAdmin),

@@ -8,7 +8,7 @@ import '../../auth/domain/user_role.dart';
 part 'person_models.freezed.dart';
 part 'person_models.g.dart';
 
-/// An engineer or staff member as listed by the API.
+/// A person as listed by the API: an engineer, staff member, godown manager or admin.
 @freezed
 abstract class PersonSummary with _$PersonSummary {
   const factory PersonSummary({
@@ -25,6 +25,9 @@ abstract class PersonSummary with _$PersonSummary {
     @Default(<SiteRef>[]) List<SiteRef> sites,
     @Default(0) int staffCount,
     StaffAssignmentInfo? assignment,
+
+    /// Godown managers: the godowns they run.
+    @Default(<IdName>[]) List<IdName> godowns,
   }) = _PersonSummary;
 
   factory PersonSummary.fromJson(Map<String, dynamic> json) => _$PersonSummaryFromJson(json);
@@ -60,12 +63,15 @@ abstract class PersonDetail with _$PersonDetail {
     StaffAssignmentInfo? assignment,
     required bool mustChangePassword,
     @Default(<SupervisedStaff>[]) List<SupervisedStaff> supervisedStaff,
+
+    /// Godown managers: the godowns they run.
+    @Default(<IdName>[]) List<IdName> godowns,
   }) = _PersonDetail;
 
   factory PersonDetail.fromJson(Map<String, dynamic> json) => _$PersonDetailFromJson(json);
 }
 
-/// Response of creating an engineer or staff member.
+/// Response of creating a person.
 @freezed
 abstract class CreatedPerson with _$CreatedPerson {
   const factory CreatedPerson({required PersonDetail person, required String temporaryPassword}) = _CreatedPerson;
