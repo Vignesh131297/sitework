@@ -20,6 +20,7 @@ import {
   accountLocked,
   invalidCredentials,
   invalidResetCode,
+  passwordLocked,
   samePassword,
   sessionRevoked,
   signupClosed,
@@ -29,6 +30,7 @@ import {
 } from './auth.errors.js';
 import type { AuthUser } from './auth-user.js';
 import { hashPassword, verifyPassword } from './password-hasher.js';
+import { isPasswordLocked } from './password-lock.js';
 import {
   afterFailedLogin,
   generateResetCode,
@@ -242,6 +244,7 @@ export class AuthService {
     newPassword: string,
   ): Promise<void> {
     const record = await this.requireUser(user.id);
+    if (isPasswordLocked(this.config, record)) throw passwordLocked();
     if (!(await verifyPassword(record.passwordHash, currentPassword)))
       throw wrongCurrentPassword();
     this.assertAcceptable(newPassword, record);
@@ -274,7 +277,12 @@ export class AuthService {
   ): Promise<{ message: string }> {
     const identifier = parseLoginIdentifier(identifierText);
     const user = identifier ? await this.users.findForLogin(identifier) : null;
-    if (user?.isActive && user.email && this.mail.enabled) {
+    if (
+      user?.isActive &&
+      user.email &&
+      this.mail.enabled &&
+      !isPasswordLocked(this.config, user)
+    ) {
       const code = generateResetCode();
       const now = new Date();
       await this.prisma.$transaction([
@@ -317,7 +325,8 @@ export class AuthService {
     const now = new Date();
     const identifier = parseLoginIdentifier(identifierText);
     const user = identifier ? await this.users.findForLogin(identifier) : null;
-    if (!user?.isActive) throw invalidResetCode();
+    if (!user?.isActive || isPasswordLocked(this.config, user))
+      throw invalidResetCode();
 
     const record = await this.prisma.passwordResetCode.findFirst({
       where: { userId: user.id, usedAt: null, expiresAt: { gt: now } },
@@ -359,7 +368,8 @@ export class AuthService {
     actor: AuthUser,
     targetUserId: string,
   ): Promise<{ temporaryPassword: string }> {
-    await this.requireUser(targetUserId);
+    const target = await this.requireUser(targetUserId);
+    if (isPasswordLocked(this.config, target)) throw passwordLocked();
     const temporaryPassword = generateTemporaryPassword();
     const passwordHash = await hashPassword(temporaryPassword);
     await this.prisma.$transaction(async (tx) => {

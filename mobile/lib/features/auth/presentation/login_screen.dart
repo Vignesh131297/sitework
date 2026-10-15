@@ -9,6 +9,7 @@ import '../../../core/network/error_messages.dart';
 import '../../../core/routing/app_routes.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/theme/status_colors.dart';
+import '../../../core/utils/validators.dart';
 import '../../../core/widgets/inline_message.dart';
 import '../../system/presentation/server_status.dart';
 import '../data/auth_repository.dart';
@@ -94,7 +95,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           labelText: l10n.loginIdentifierLabel,
                           prefixIcon: const Icon(Icons.person_outline),
                         ),
-                        validator: (value) => (value ?? '').trim().isEmpty ? l10n.loginIdentifierRequired : null,
+                        validator: loginIdentifierValidator(l10n),
                       ),
                       const SizedBox(height: AppSpacing.lg),
                       PasswordField(

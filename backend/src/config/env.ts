@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { normalizePhone } from '../common/identity/phone.js';
 
 /**
  * Express "trust proxy": false when clients connect directly; behind a load
@@ -49,6 +50,28 @@ export const envSchema = z
     FIREBASE_PROJECT_ID: z.string().optional(),
     FIREBASE_CLIENT_EMAIL: z.string().optional(),
     FIREBASE_PRIVATE_KEY: z.string().optional(),
+
+    /**
+     * Mobile numbers (comma-separated) whose password can't be changed or reset
+     * in any way, e.g. a shared admin while the app is being tried out.
+     */
+    PASSWORD_LOCKED_PHONES: z
+      .string()
+      .default('')
+      .transform((value, ctx) => {
+        const phones: string[] = [];
+        for (const entry of value.split(',')) {
+          if (!entry.trim()) continue;
+          const phone = normalizePhone(entry);
+          if (phone) phones.push(phone);
+          else
+            ctx.addIssue({
+              code: 'custom',
+              message: `"${entry.trim()}" is not a mobile number`,
+            });
+        }
+        return phones;
+      }),
 
     /** Requests per minute per signed-in user (sign-in and resets have their own, stricter limits). */
     RATE_LIMIT_PER_MINUTE: z.coerce.number().int().min(30).default(300),

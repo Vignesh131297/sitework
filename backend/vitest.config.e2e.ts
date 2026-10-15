@@ -26,6 +26,8 @@ export default defineConfig({
       JOBS_ENABLED: 'false',
       STORAGE_DRIVER: 'local',
       LOCAL_STORAGE_DIR: './.test-storage',
+      // Fixtures never generate this number unless a test asks for it.
+      PASSWORD_LOCKED_PHONES: '+919999999901',
     },
     // Test files share one database.
     fileParallelism: false,

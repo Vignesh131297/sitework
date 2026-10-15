@@ -8,6 +8,7 @@ import '../../../core/network/app_exception.dart';
 import '../../../core/network/error_messages.dart';
 import '../../../core/routing/app_routes.dart';
 import '../../../core/theme/app_spacing.dart';
+import '../../../core/utils/validators.dart';
 import '../../../core/widgets/inline_message.dart';
 import '../data/auth_repository.dart';
 import 'password_field.dart';
@@ -81,7 +82,7 @@ class _ResetPasswordScreenState extends ConsumerState<ResetPasswordScreen> {
                     labelText: l10n.loginIdentifierLabel,
                     prefixIcon: const Icon(Icons.person_outline),
                   ),
-                  validator: (value) => (value ?? '').trim().isEmpty ? l10n.loginIdentifierRequired : null,
+                  validator: loginIdentifierValidator(l10n),
                 ),
                 const SizedBox(height: AppSpacing.lg),
                 TextFormField(
