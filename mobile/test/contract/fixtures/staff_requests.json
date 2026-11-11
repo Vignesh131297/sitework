@@ -1,0 +1,92 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a1c8ff-891c-71bd-bd37-3379fc1f4fdb",
+      "code": "RQ-0001",
+      "kind": "MONEY",
+      "staff": {
+        "id": "01a1c8ff-866d-759d-a1c5-8eee20c68aed",
+        "name": "Ravi",
+        "employeeCode": "STF-001"
+      },
+      "site": {
+        "id": "01a1c8ff-868f-73de-84b7-b6f27089e7a1",
+        "name": "ABC Apartment Project"
+      },
+      "amount": "2000.00",
+      "forDate": null,
+      "meal": null,
+      "note": "Advance for my son's school fees",
+      "status": "PENDING",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "reviewNote": null,
+      "createdAt": "2026-11-10T13:40:00.000Z",
+      "canApprove": true,
+      "canCancel": false
+    },
+    {
+      "id": "01a1c8ff-891f-7004-ad82-b05eab87a769",
+      "code": "RQ-0002",
+      "kind": "FOOD",
+      "staff": {
+        "id": "01a1c8ff-8670-76b8-aa55-1cf40435d3b4",
+        "name": "Kumar",
+        "employeeCode": "STF-002"
+      },
+      "site": {
+        "id": "01a1c8ff-868f-73de-84b7-b6f27089e7a1",
+        "name": "ABC Apartment Project"
+      },
+      "amount": null,
+      "forDate": "2026-11-11",
+      "meal": "LUNCH",
+      "note": null,
+      "status": "APPROVED",
+      "reviewedBy": {
+        "id": "01a1c8ff-8664-7510-9fde-3f74ea230f45",
+        "name": "Arun Kumar"
+      },
+      "reviewedAt": "2026-11-10T12:00:00.000Z",
+      "reviewNote": "From the canteen near the site.",
+      "createdAt": "2026-11-10T11:30:00.000Z",
+      "canApprove": false,
+      "canCancel": false
+    },
+    {
+      "id": "01a1c8ff-8922-774b-a9c5-4ac11fcb2606",
+      "code": "RQ-0003",
+      "kind": "MONEY",
+      "staff": {
+        "id": "01a1c8ff-8678-74b9-9892-07d0ea747411",
+        "name": "Sathish",
+        "employeeCode": "STF-004"
+      },
+      "site": {
+        "id": "01a1c8ff-8697-7111-859d-5e5b9ef2102b",
+        "name": "Green Valley Villa"
+      },
+      "amount": "5000.00",
+      "forDate": null,
+      "meal": null,
+      "note": "House rent",
+      "status": "REJECTED",
+      "reviewedBy": {
+        "id": "01a1c8ff-865c-7267-91d8-5fde56bc8f05",
+        "name": "Admin User"
+      },
+      "reviewedAt": "2026-11-08T05:50:00.000Z",
+      "reviewNote": "An advance was already given this month.",
+      "createdAt": "2026-11-07T03:20:00.000Z",
+      "canApprove": false,
+      "canCancel": false
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 3,
+    "totalPages": 1
+  }
+}

@@ -81,6 +81,7 @@ extension AttendanceStatusLabel on AttendanceStatus {
     AttendanceStatus.late => l10n.attendanceLate,
     AttendanceStatus.halfDay => l10n.attendanceHalfDay,
     AttendanceStatus.absent => l10n.attendanceAbsent,
+    AttendanceStatus.onLeave => l10n.attendanceOnLeave,
   };
 
   StatusTone get tone => switch (this) {
@@ -88,6 +89,7 @@ extension AttendanceStatusLabel on AttendanceStatus {
     AttendanceStatus.late => StatusTone.warning,
     AttendanceStatus.halfDay => StatusTone.info,
     AttendanceStatus.absent => StatusTone.danger,
+    AttendanceStatus.onLeave => StatusTone.neutral,
   };
 }
 
@@ -173,5 +175,37 @@ extension StockKindLabel on StockKind {
     StockKind.usage => l10n.stockKindUsage,
     StockKind.writeOff => l10n.stockKindWriteOff,
     StockKind.adjustment => l10n.stockKindAdjustment,
+  };
+}
+
+extension LeaveTypeLabel on LeaveType {
+  String label(AppLocalizations l10n) => switch (this) {
+    LeaveType.sick => l10n.leaveTypeSick,
+    LeaveType.casual => l10n.leaveTypeCasual,
+    LeaveType.other => l10n.leaveTypeOther,
+  };
+}
+
+extension ApprovalStatusLabel on ApprovalStatus {
+  String label(AppLocalizations l10n) => switch (this) {
+    ApprovalStatus.pending => l10n.approvalPending,
+    ApprovalStatus.approved => l10n.approvalApproved,
+    ApprovalStatus.rejected => l10n.approvalRejected,
+    ApprovalStatus.cancelled => l10n.approvalCancelled,
+  };
+
+  StatusTone get tone => switch (this) {
+    ApprovalStatus.pending => StatusTone.warning,
+    ApprovalStatus.approved => StatusTone.success,
+    ApprovalStatus.rejected => StatusTone.danger,
+    ApprovalStatus.cancelled => StatusTone.neutral,
+  };
+}
+
+extension MealLabel on Meal {
+  String label(AppLocalizations l10n) => switch (this) {
+    Meal.breakfast => l10n.mealBreakfast,
+    Meal.lunch => l10n.mealLunch,
+    Meal.dinner => l10n.mealDinner,
   };
 }

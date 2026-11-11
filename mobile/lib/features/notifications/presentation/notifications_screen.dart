@@ -25,12 +25,20 @@ import '../domain/notification_models.dart';
   final area = role.areaPath;
   final siteId = n.data?['siteId'];
   final id = n.referenceId;
+  final requestId = n.data?['requestId'];
   if (role == UserRole.staff) {
+    // Their requests open the request; a missed update, Home.
+    final own = switch (n.referenceType) {
+      ReferenceType.leaveRequest when id != null => AppRoutes.leave(area, id),
+      ReferenceType.staffRequest when id != null => AppRoutes.staffRequest(area, id),
+      _ when requestId != null => AppRoutes.request(area, requestId),
+      _ => null,
+    };
+    if (own != null) return (path: own, isTab: false);
     return n.type == NotificationType.missingUpdate ? (path: AppRoutes.staffHome, isTab: true) : null;
   }
   final materialId = n.data?['materialId'];
   final godownId = n.data?['godownId'];
-  final requestId = n.data?['requestId'];
   final path = switch (n.referenceType) {
     // Material requests open the request.
     _ when requestId != null => AppRoutes.request(area, requestId),
@@ -50,6 +58,8 @@ import '../domain/notification_models.dart';
     ReferenceType.staffUpdate when id != null => AppRoutes.staffUpdate(area, id),
     ReferenceType.engineerUpdate when id != null => AppRoutes.engineerUpdate(area, id),
     ReferenceType.issue when id != null => AppRoutes.issue(area, id),
+    ReferenceType.leaveRequest when id != null => AppRoutes.leave(area, id),
+    ReferenceType.staffRequest when id != null => AppRoutes.staffRequest(area, id),
     ReferenceType.paymentMilestone || ReferenceType.payment when siteId != null && role == UserRole.admin =>
       AppRoutes.site(area, siteId, tab: 'payments'),
     _ when n.type == NotificationType.missingUpdate && siteId != null => AppRoutes.site(area, siteId, tab: 'today'),
@@ -144,6 +154,8 @@ class NotificationTile extends ConsumerWidget {
       NotificationType.attendance => (Icons.how_to_reg_outlined, StatusTone.neutral),
       NotificationType.system => (Icons.info_outline, StatusTone.neutral),
       NotificationType.stock => (Icons.inventory_2_outlined, StatusTone.warning),
+      NotificationType.leave => (Icons.event_busy_outlined, StatusTone.info),
+      NotificationType.staffRequest => (Icons.receipt_long_outlined, StatusTone.info),
     };
     final colors = context.tone(tone);
     return ListTile(

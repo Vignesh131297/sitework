@@ -231,7 +231,8 @@ class _RequestBodyState extends ConsumerState<_RequestBody> {
           Align(
             child: TextButton(onPressed: _busy ? null : _withdraw, child: Text(l10n.requestWithdraw)),
           ),
-        if (r.entries.isNotEmpty) ...[
+        // Staff don't open stock entries (their own requests show what arrived above).
+        if (r.entries.isNotEmpty && role != UserRole.staff) ...[
           SectionHeader(l10n.requestDeliveries),
           for (final e in r.entries)
             EntryTile(

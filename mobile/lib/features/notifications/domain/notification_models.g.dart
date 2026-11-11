@@ -43,6 +43,8 @@ const _$NotificationTypeEnumMap = {
   NotificationType.attendance: 'ATTENDANCE',
   NotificationType.system: 'SYSTEM',
   NotificationType.stock: 'STOCK',
+  NotificationType.leave: 'LEAVE',
+  NotificationType.staffRequest: 'STAFF_REQUEST',
 };
 
 const _$ReferenceTypeEnumMap = {
@@ -56,4 +58,6 @@ const _$ReferenceTypeEnumMap = {
   ReferenceType.attendance: 'ATTENDANCE',
   ReferenceType.stockEntry: 'STOCK_ENTRY',
   ReferenceType.materialRequest: 'MATERIAL_REQUEST',
+  ReferenceType.leaveRequest: 'LEAVE_REQUEST',
+  ReferenceType.staffRequest: 'STAFF_REQUEST',
 };

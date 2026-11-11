@@ -1764,5 +1764,134 @@
         "type": "String"
       }
     }
-  }
+  },
+  "attendanceOnLeave": "On leave",
+  "requestsMyTitle": "My requests",
+  "requestsSeeAll": "See all",
+  "requestsTabLeave": "Leave",
+  "requestsTabMoneyFood": "Money & food",
+  "requestsTabMaterial": "Material",
+  "requestsNew": "New request",
+  "requestsChooseKind": "What do you need?",
+  "requestKindLeave": "Leave",
+  "requestKindLeaveHint": "Days off work",
+  "requestKindMoney": "Money",
+  "requestKindMoneyHint": "An advance on your wages",
+  "requestKindFood": "Food",
+  "requestKindFoodHint": "A meal for yourself",
+  "requestKindMaterial": "Material",
+  "requestKindMaterialHint": "Material for your site",
+  "requestSendForApproval": "Send for approval",
+  "requestSentForApproval": "{code} sent for approval.",
+  "@requestSentForApproval": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "requestAskedByLabel": "Asked by",
+  "requestAskedOn": "Asked on",
+  "approvalPending": "Waiting",
+  "approvalApproved": "Approved",
+  "approvalRejected": "Rejected",
+  "approvalCancelled": "Withdrawn",
+  "approvalApprovedBy": "Approved by {name}",
+  "@approvalApprovedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "approvalApprovedDone": "{code} approved.",
+  "@approvalApprovedDone": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "approvalWithdrawnNote": "Withdrawn by the person who asked.",
+  "approvalApproveTitle": "Approve {code}?",
+  "@approvalApproveTitle": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "approvalRejectTitle": "Reject {code}?",
+  "@approvalRejectTitle": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "approvalRejectReason": "Why? The person who asked will see this.",
+  "approvalWithdrawBody": "No one will be able to approve it after this.",
+  "approvalsTitle": "Leave & requests",
+  "approvalsSubtitle": "Leave, money and food to approve",
+  "approvalsWaitingCount": "{count} waiting for you",
+  "@approvalsWaitingCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "approvalsWaitingForYou": "Waiting for you",
+  "approvalsEmpty": "Nothing here.",
+  "myLeaveTitle": "My leave",
+  "leaveTitle": "Leave",
+  "leaveNewTitle": "Ask for leave",
+  "leaveType": "Kind of leave",
+  "leaveTypeSick": "Sick",
+  "leaveTypeCasual": "Casual",
+  "leaveTypeOther": "Other",
+  "leaveFrom": "First day",
+  "leaveTo": "Last day",
+  "leaveToBeforeFrom": "The last day can't be before the first day.",
+  "leaveReason": "Reason",
+  "leaveWhen": "When",
+  "leaveDays": "{count, plural, =1{1 day} other{{count} days}}",
+  "@leaveDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "leaveEmpty": "No leave asked for yet.",
+  "staffRequestTitle": "Request",
+  "staffRequestsEmpty": "No money or food asked for yet.",
+  "moneyNewTitle": "Ask for money",
+  "moneyAmount": "Amount",
+  "moneyAmountHelper": "An advance on your wages",
+  "moneyAdvance": "{amount} advance",
+  "@moneyAdvance": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "foodNewTitle": "Ask for food",
+  "foodDay": "Day",
+  "foodMeal": "Meal",
+  "foodMealOn": "{meal} on {date}",
+  "@foodMealOn": {
+    "placeholders": {
+      "meal": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "mealBreakfast": "Breakfast",
+  "mealLunch": "Lunch",
+  "mealDinner": "Dinner"
 }

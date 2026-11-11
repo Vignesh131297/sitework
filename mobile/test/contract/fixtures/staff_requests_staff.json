@@ -1,0 +1,36 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a1c8ff-891c-71bd-bd37-3379fc1f4fdb",
+      "code": "RQ-0001",
+      "kind": "MONEY",
+      "staff": {
+        "id": "01a1c8ff-866d-759d-a1c5-8eee20c68aed",
+        "name": "Ravi",
+        "employeeCode": "STF-001"
+      },
+      "site": {
+        "id": "01a1c8ff-868f-73de-84b7-b6f27089e7a1",
+        "name": "ABC Apartment Project"
+      },
+      "amount": "2000.00",
+      "forDate": null,
+      "meal": null,
+      "note": "Advance for my son's school fees",
+      "status": "PENDING",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "reviewNote": null,
+      "createdAt": "2026-11-10T13:40:00.000Z",
+      "canApprove": false,
+      "canCancel": true
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 1,
+    "totalPages": 1
+  }
+}

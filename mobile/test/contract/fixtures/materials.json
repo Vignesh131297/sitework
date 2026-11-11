@@ -1,0 +1,53 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a1c8ff-8812-750a-ab3b-2ff6e0016952",
+      "name": "Blue metal 20mm",
+      "unit": "cft",
+      "category": "Sand & aggregates",
+      "minStock": "300",
+      "isActive": true
+    },
+    {
+      "id": "01a1c8ff-880e-7190-854f-d22e23f4572b",
+      "name": "Cement OPC 53",
+      "unit": "bag",
+      "category": "Cement",
+      "minStock": "150",
+      "isActive": true
+    },
+    {
+      "id": "01a1c8ff-8811-7769-a5d5-25abd90c83d3",
+      "name": "M-Sand",
+      "unit": "cft",
+      "category": "Sand & aggregates",
+      "minStock": "500",
+      "isActive": true
+    },
+    {
+      "id": "01a1c8ff-8813-756a-9322-88183e59732d",
+      "name": "Red bricks",
+      "unit": "nos",
+      "category": "Bricks & blocks",
+      "minStock": "5000",
+      "isActive": true
+    },
+    {
+      "id": "01a1c8ff-880f-7149-a563-4edc4838b3f6",
+      "name": "TMT Steel 12mm",
+      "unit": "kg",
+      "category": "Steel",
+      "minStock": "2000",
+      "isActive": true
+    },
+    {
+      "id": "01a1c8ff-8815-73fe-ad99-059b5395fa62",
+      "name": "Wall putty",
+      "unit": "bag",
+      "category": "Finishing",
+      "minStock": null,
+      "isActive": true
+    }
+  ]
+}

@@ -273,6 +273,7 @@ The source of truth is [`backend/prisma/schema.prisma`](../backend/prisma/schema
 | Sites | `clients`, `sites`, `engineer_assignments`, `staff_assignments`, `assignment_history` |
 | Field activity | `attendance`, `staff_updates`, `missed_updates`, `engineer_updates`, `issues`, `attachments` |
 | Money | `payment_milestones`, `payments` |
+| Requests | `leave_requests`, `staff_requests` (money and food) |
 | Stock | `godowns`, `godown_assignments` (managers), `materials`, `stock_entries` (one per form), `stock_movements` (one line per material), `material_requests`, `material_request_lines` |
 | Platform | `notifications` (inbox and push outbox), `app_settings`, `holidays`, `audit_logs` |
 
@@ -724,3 +725,37 @@ Added on 2026-10-08: stock reaches a site only through a request.
   each one (`canApprove`, `canCancel`, `canSend`, `canClose`).
 - **Dashboards.** Admins see requests to approve, engineers their open requests, and godown
   managers requests still to send, returns to confirm and low stock (`GET /dashboard/godown`).
+
+## 16. Leave and labour requests
+
+Added on 2026-11-11. Staff (labourers) ask for leave, money (an advance on wages), food (a
+meal for themselves) and material for their site; engineers ask for leave.
+
+| Request | Who asks | Who decides |
+|---|---|---|
+| Leave (`/leave-requests`, `LV-0001`) | Staff, engineers | Staff leave: an engineer on their site, or an admin. Engineer leave: an admin only. Nobody decides their own. |
+| Money, food (`/staff-requests`, `RQ-0001`) | Staff | An engineer on their site, or an admin |
+| Material (`/material-requests`, `MR-0001`) | Engineers, admins, and now staff for their own site | An admin (see 15.5) |
+
+- **States.** `PENDING` → `APPROVED` or `REJECTED` (a reason is required), or `CANCELLED` when
+  the person who asked withdraws it: while it waits, or (leave) once approved until it starts.
+  Decisions are made with a conditional update on `PENDING`, so two people deciding at once
+  can't both win (`REQUEST_ALREADY_DECIDED`). Every change is audited and notifies the other
+  side (`LEAVE` and `STAFF_REQUEST` notifications).
+- **Leave and attendance.** Approved staff leave is recorded in attendance as `ON_LEAVE`
+  (a new `AttendanceStatus`): working days up to today are written when it is approved (an
+  `ABSENT` day becomes `ON_LEAVE`; a day they worked is left alone) and later days by the
+  end-of-day job instead of `ABSENT`. Missed-update alerts for those days are cleared. Someone
+  on leave owes no photo updates, gets no reminders and is not "not checked in"; if they turn
+  up anyway, checking in makes it a normal day. Reports count `onLeave` days. Engineers have no
+  attendance, so their leave is a record only.
+- **Rules.** Leave may start up to 30 days ago, end within a year, last at most 60 days, and
+  must not overlap the person's waiting or approved leave (`LEAVE_OVERLAPS`). An advance is
+  up to ₹1,00,000; a meal is for today or the next 30 days, once per day and meal.
+- **Who sees what.** Admins see everything; engineers their own leave and their sites'
+  staff requests; staff only their own (including their material requests). Each view says
+  what the caller may do (`canApprove`, `canCancel`); `?toReview=true` lists what is waiting
+  for the caller, and `?mine=true` the caller's own.
+- **App.** Staff open "My requests" from Home (leave, money and food, material, with one-tap
+  shortcuts). Admins and engineers open "Leave & requests" from the dashboard, which shows how
+  many are waiting; engineers ask for their own leave from there ("My leave").

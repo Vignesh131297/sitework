@@ -55,7 +55,8 @@ enum AttendanceStatus {
   present('PRESENT'),
   late('LATE'),
   halfDay('HALF_DAY'),
-  absent('ABSENT');
+  absent('ABSENT'),
+  onLeave('ON_LEAVE');
 
   const AttendanceStatus(this.apiValue);
   final String apiValue;
@@ -136,7 +137,9 @@ enum NotificationType {
   issue('ISSUE'),
   attendance('ATTENDANCE'),
   system('SYSTEM'),
-  stock('STOCK');
+  stock('STOCK'),
+  leave('LEAVE'),
+  staffRequest('STAFF_REQUEST');
 
   const NotificationType(this.apiValue);
   final String apiValue;
@@ -153,7 +156,9 @@ enum ReferenceType {
   payment('PAYMENT'),
   attendance('ATTENDANCE'),
   stockEntry('STOCK_ENTRY'),
-  materialRequest('MATERIAL_REQUEST');
+  materialRequest('MATERIAL_REQUEST'),
+  leaveRequest('LEAVE_REQUEST'),
+  staffRequest('STAFF_REQUEST');
 
   const ReferenceType(this.apiValue);
   final String apiValue;
@@ -259,5 +264,47 @@ enum StockPhotoStage {
   received('RECEIVED');
 
   const StockPhotoStage(this.apiValue);
+  final String apiValue;
+}
+
+@JsonEnum(valueField: 'apiValue')
+enum LeaveType {
+  sick('SICK'),
+  casual('CASUAL'),
+  other('OTHER');
+
+  const LeaveType(this.apiValue);
+  final String apiValue;
+}
+
+/// Leave and staff (money, food) requests: waiting, decided or withdrawn.
+@JsonEnum(valueField: 'apiValue')
+enum ApprovalStatus {
+  pending('PENDING'),
+  approved('APPROVED'),
+  rejected('REJECTED'),
+  cancelled('CANCELLED');
+
+  const ApprovalStatus(this.apiValue);
+  final String apiValue;
+}
+
+/// What a staff member asks for besides leave and material.
+@JsonEnum(valueField: 'apiValue')
+enum StaffRequestKind {
+  money('MONEY'),
+  food('FOOD');
+
+  const StaffRequestKind(this.apiValue);
+  final String apiValue;
+}
+
+@JsonEnum(valueField: 'apiValue')
+enum Meal {
+  breakfast('BREAKFAST'),
+  lunch('LUNCH'),
+  dinner('DINNER');
+
+  const Meal(this.apiValue);
   final String apiValue;
 }

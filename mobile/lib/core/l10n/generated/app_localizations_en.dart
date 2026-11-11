@@ -2658,4 +2658,217 @@ class AppLocalizationsEn extends AppLocalizations {
   String requestClosedLeftover(String name) {
     return 'Closed by $name: leftover sent back to the godown.';
   }
+
+  @override
+  String get attendanceOnLeave => 'On leave';
+
+  @override
+  String get requestsMyTitle => 'My requests';
+
+  @override
+  String get requestsSeeAll => 'See all';
+
+  @override
+  String get requestsTabLeave => 'Leave';
+
+  @override
+  String get requestsTabMoneyFood => 'Money & food';
+
+  @override
+  String get requestsTabMaterial => 'Material';
+
+  @override
+  String get requestsNew => 'New request';
+
+  @override
+  String get requestsChooseKind => 'What do you need?';
+
+  @override
+  String get requestKindLeave => 'Leave';
+
+  @override
+  String get requestKindLeaveHint => 'Days off work';
+
+  @override
+  String get requestKindMoney => 'Money';
+
+  @override
+  String get requestKindMoneyHint => 'An advance on your wages';
+
+  @override
+  String get requestKindFood => 'Food';
+
+  @override
+  String get requestKindFoodHint => 'A meal for yourself';
+
+  @override
+  String get requestKindMaterial => 'Material';
+
+  @override
+  String get requestKindMaterialHint => 'Material for your site';
+
+  @override
+  String get requestSendForApproval => 'Send for approval';
+
+  @override
+  String requestSentForApproval(String code) {
+    return '$code sent for approval.';
+  }
+
+  @override
+  String get requestAskedByLabel => 'Asked by';
+
+  @override
+  String get requestAskedOn => 'Asked on';
+
+  @override
+  String get approvalPending => 'Waiting';
+
+  @override
+  String get approvalApproved => 'Approved';
+
+  @override
+  String get approvalRejected => 'Rejected';
+
+  @override
+  String get approvalCancelled => 'Withdrawn';
+
+  @override
+  String approvalApprovedBy(String name) {
+    return 'Approved by $name';
+  }
+
+  @override
+  String approvalApprovedDone(String code) {
+    return '$code approved.';
+  }
+
+  @override
+  String get approvalWithdrawnNote => 'Withdrawn by the person who asked.';
+
+  @override
+  String approvalApproveTitle(String code) {
+    return 'Approve $code?';
+  }
+
+  @override
+  String approvalRejectTitle(String code) {
+    return 'Reject $code?';
+  }
+
+  @override
+  String get approvalRejectReason => 'Why? The person who asked will see this.';
+
+  @override
+  String get approvalWithdrawBody => 'No one will be able to approve it after this.';
+
+  @override
+  String get approvalsTitle => 'Leave & requests';
+
+  @override
+  String get approvalsSubtitle => 'Leave, money and food to approve';
+
+  @override
+  String approvalsWaitingCount(int count) {
+    return '$count waiting for you';
+  }
+
+  @override
+  String get approvalsWaitingForYou => 'Waiting for you';
+
+  @override
+  String get approvalsEmpty => 'Nothing here.';
+
+  @override
+  String get myLeaveTitle => 'My leave';
+
+  @override
+  String get leaveTitle => 'Leave';
+
+  @override
+  String get leaveNewTitle => 'Ask for leave';
+
+  @override
+  String get leaveType => 'Kind of leave';
+
+  @override
+  String get leaveTypeSick => 'Sick';
+
+  @override
+  String get leaveTypeCasual => 'Casual';
+
+  @override
+  String get leaveTypeOther => 'Other';
+
+  @override
+  String get leaveFrom => 'First day';
+
+  @override
+  String get leaveTo => 'Last day';
+
+  @override
+  String get leaveToBeforeFrom => 'The last day can\'t be before the first day.';
+
+  @override
+  String get leaveReason => 'Reason';
+
+  @override
+  String get leaveWhen => 'When';
+
+  @override
+  String leaveDays(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count days',
+      one: '1 day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get leaveEmpty => 'No leave asked for yet.';
+
+  @override
+  String get staffRequestTitle => 'Request';
+
+  @override
+  String get staffRequestsEmpty => 'No money or food asked for yet.';
+
+  @override
+  String get moneyNewTitle => 'Ask for money';
+
+  @override
+  String get moneyAmount => 'Amount';
+
+  @override
+  String get moneyAmountHelper => 'An advance on your wages';
+
+  @override
+  String moneyAdvance(String amount) {
+    return '$amount advance';
+  }
+
+  @override
+  String get foodNewTitle => 'Ask for food';
+
+  @override
+  String get foodDay => 'Day';
+
+  @override
+  String get foodMeal => 'Meal';
+
+  @override
+  String foodMealOn(String meal, String date) {
+    return '$meal on $date';
+  }
+
+  @override
+  String get mealBreakfast => 'Breakfast';
+
+  @override
+  String get mealLunch => 'Lunch';
+
+  @override
+  String get mealDinner => 'Dinner';
 }

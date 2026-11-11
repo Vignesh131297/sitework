@@ -99,6 +99,12 @@ Future<void> main(List<String> args) async {
             as Map<String, dynamic>)['id'];
     await save('material_request_detail', '/material-requests/$approved', admin);
 
+    // Leave, and staff members' money and food requests.
+    final leaveId = await save('leave_requests', '/leave-requests?limit=5', admin);
+    await save('leave_request_detail', '/leave-requests/$leaveId', admin);
+    final staffRequestId = await save('staff_requests', '/staff-requests?limit=5', admin);
+    await save('staff_request_detail', '/staff-requests/$staffRequestId', admin);
+
     // Godown managers and admins.
     final managerId = await save('godown_managers', '/godown-managers?limit=5', admin);
     await save('godown_manager_detail', '/godown-managers/$managerId', admin);
@@ -120,6 +126,10 @@ Future<void> main(List<String> args) async {
     final today = (await call('GET', '/me/today', token: staff))['data'] as Map<String, dynamic>;
     final staffSite = ((today['assignment'] as Map<String, dynamic>)['site'] as Map<String, dynamic>)['id'];
     await save('site_stock_staff', '/sites/$staffSite/stock', staff);
+    await save('materials', '/materials', staff);
+    await save('leave_requests_staff', '/leave-requests?mine=true&limit=5', staff);
+    await save('staff_requests_staff', '/staff-requests?limit=5', staff);
+    await save('material_requests_staff', '/material-requests?limit=10', staff);
 
     final manager = await signIn('+919000000201', 'Godown@123');
     await save('dashboard_godown', '/dashboard/godown', manager);

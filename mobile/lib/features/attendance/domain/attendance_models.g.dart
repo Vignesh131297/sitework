@@ -39,6 +39,7 @@ const _$AttendanceStatusEnumMap = {
   AttendanceStatus.late: 'LATE',
   AttendanceStatus.halfDay: 'HALF_DAY',
   AttendanceStatus.absent: 'ABSENT',
+  AttendanceStatus.onLeave: 'ON_LEAVE',
 };
 
 const _$LocationFlagEnumMap = {

@@ -13,14 +13,15 @@ import '../../../core/widgets/periodic_refresh.dart';
 import '../../attendance/presentation/attendance_card.dart';
 import '../../auth/presentation/session_controller.dart';
 import '../../notifications/presentation/notification_bell.dart';
+import '../../requests/presentation/staff_requests_card.dart';
 import '../../stock/presentation/staff_usage_card.dart';
 import '../data/staff_updates_repository.dart';
 import '../domain/staff_update_models.dart';
 import 'pending_updates_card.dart';
 import 'today_slots.dart';
 
-/// Staff "Home": the site, today's attendance, the three updates and the
-/// day's material use.
+/// Staff "Home": the site, today's attendance, the three updates, the day's
+/// material use, and quick ways to ask for leave, money, food or material.
 class StaffHomeScreen extends ConsumerWidget {
   const StaffHomeScreen({super.key});
 
@@ -38,6 +39,7 @@ class StaffHomeScreen extends ConsumerWidget {
             AttendanceCard(today: today),
             TodaySlots(today: today),
             StaffUsageCard(siteId: today.assignment!.site.id, siteName: today.assignment!.site.name),
+            const StaffRequestsCard(),
           ],
           const PendingUpdatesCard(),
         ],

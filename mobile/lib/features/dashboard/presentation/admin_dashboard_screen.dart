@@ -10,6 +10,7 @@ import '../../../core/utils/formatters.dart';
 import '../../../core/widgets/async_value_view.dart';
 import '../../../core/widgets/info_widgets.dart';
 import '../../../core/widgets/profile_action.dart';
+import '../../requests/presentation/approvals_tile.dart';
 import '../data/dashboard_repository.dart';
 import '../domain/admin_dashboard.dart';
 import 'dashboard_widgets.dart';
@@ -141,6 +142,7 @@ class _DashboardBody extends StatelessWidget {
           onTap: () => context.push(AppRoutes.reports(area)),
         ),
         AttentionSection(items: d.attention, onOpen: (item) => openAttention(context, area, item)),
+        const ApprovalsTile(),
         SectionHeader(l10n.siteActivityTitle),
         for (final site in d.sites) ...[
           SiteActivityCard(

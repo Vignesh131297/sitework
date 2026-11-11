@@ -38,9 +38,16 @@ FakeApi recordedApi({
   String stockOverview = 'stock_overview',
   String siteStock = 'site_stock',
   String requests = 'material_requests',
+  String leaveRequests = 'leave_requests',
+  String staffRequests = 'staff_requests',
 }) {
   FakeRaw json(String name) => FakeRaw(_raw(name), contentType: 'application/json');
   return FakeApi()
+    ..on('GET', '/leave-requests', (_) => json(leaveRequests))
+    ..on('GET', '/leave-requests/:id', (_) => json('leave_request_detail'))
+    ..on('GET', '/staff-requests', (_) => json(staffRequests))
+    ..on('GET', '/staff-requests/:id', (_) => json('staff_request_detail'))
+    ..on('GET', '/materials', (_) => json('materials'))
     ..on('GET', '/dashboard/admin', (_) => json('dashboard_admin'))
     ..on('GET', '/dashboard/engineer', (_) => json('dashboard_engineer'))
     ..on('GET', '/dashboard/godown', (_) => json('dashboard_godown'))
@@ -100,6 +107,8 @@ Future<FakeApi> startTour(
   String stockOverview = 'stock_overview',
   String siteStock = 'site_stock',
   String requests = 'material_requests',
+  String leaveRequests = 'leave_requests',
+  String staffRequests = 'staff_requests',
 }) async {
   final api = recordedApi(
     reportSites: reportSites,
@@ -107,6 +116,8 @@ Future<FakeApi> startTour(
     stockOverview: stockOverview,
     siteStock: siteStock,
     requests: requests,
+    leaveRequests: leaveRequests,
+    staffRequests: staffRequests,
   );
   await pumpSiteWorkApp(
     tester,
@@ -155,6 +166,8 @@ void main() {
   final entryId = _firstId('stock_entries');
   final requestId = _firstId('material_requests');
   final managerId = _firstId('godown_managers');
+  final leaveId = _firstId('leave_requests');
+  final staffRequestId = _firstId('staff_requests');
 
   testWidgets('admin: every tab and detail screen renders the recorded data', (tester) async {
     final api = await startTour(tester, signedInAdmin(), reportSites: 'report_sites');
@@ -188,6 +201,9 @@ void main() {
       '/admin/people/godown-managers/$managerId/edit',
       '/admin/people/godown-managers/new',
       '/admin/people/admins/new',
+      '/admin/approvals',
+      '/admin/leave/$leaveId',
+      '/admin/staff-requests/$staffRequestId',
       '/admin/requests',
     ]) {
       await visit(tester, location);
@@ -227,6 +243,11 @@ void main() {
       '/engineer/requests',
       '/engineer/requests/new?siteId=$siteId',
       '/engineer/requests/$requestId',
+      '/engineer/approvals',
+      '/engineer/my-requests',
+      '/engineer/leave/new',
+      '/engineer/leave/$leaveId',
+      '/engineer/staff-requests/$staffRequestId',
       '/engineer/reports',
     ]) {
       await visit(tester, location);
@@ -269,8 +290,16 @@ void main() {
     expect(api.unanswered, isEmpty);
   });
 
-  testWidgets('staff: every tab renders the recorded data', (tester) async {
-    final api = await startTour(tester, signedInStaff(), reportSites: 'report_sites', siteStock: 'site_stock_staff');
+  testWidgets('staff: every tab and their requests render the recorded data', (tester) async {
+    final api = await startTour(
+      tester,
+      signedInStaff(),
+      reportSites: 'report_sites',
+      siteStock: 'site_stock_staff',
+      requests: 'material_requests_staff',
+      leaveRequests: 'leave_requests_staff',
+      staffRequests: 'staff_requests_staff',
+    );
     for (final location in [
       '/staff/dashboard',
       '/staff/attendance',
@@ -278,6 +307,15 @@ void main() {
       '/staff/history',
       '/staff/profile',
       '/staff/notifications',
+      '/staff/my-requests',
+      '/staff/my-requests?tab=money',
+      '/staff/my-requests?tab=material',
+      '/staff/leave/new',
+      '/staff/staff-requests/new?kind=MONEY',
+      '/staff/staff-requests/new?kind=FOOD',
+      '/staff/requests/new',
+      '/staff/leave/${_firstId('leave_requests_staff')}',
+      '/staff/staff-requests/${_firstId('staff_requests_staff')}',
     ]) {
       await visit(tester, location);
     }

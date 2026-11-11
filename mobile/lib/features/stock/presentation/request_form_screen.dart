@@ -5,6 +5,7 @@ import 'package:uuid/uuid.dart';
 
 import '../../../core/data/revision.dart';
 import '../../../core/l10n/generated/app_localizations.dart';
+import '../../../core/models/refs.dart';
 import '../../../core/routing/app_routes.dart';
 import '../../../core/routing/area.dart';
 import '../../../core/theme/app_spacing.dart';
@@ -15,12 +16,40 @@ import '../../../core/widgets/form_fields.dart';
 import '../../../core/widgets/info_widgets.dart';
 import '../../../core/widgets/inline_message.dart';
 import '../../../core/widgets/submit_state.dart';
+import '../../auth/domain/user_role.dart';
+import '../../auth/presentation/session_controller.dart';
+import '../../staff_updates/data/staff_updates_repository.dart';
 import '../data/material_requests_repository.dart';
 import '../data/stock_repository.dart';
 import '../domain/stock_models.dart';
 
+/// What the form offers: materials in use, and the sites the user may ask for.
+/// Staff ask for their own site only, and don't see godown stock.
+final _formOptionsProvider = FutureProvider.autoDispose<({List<StockMaterial> materials, List<SiteRef> sites})>((
+  ref,
+) async {
+  if (ref.watch(sessionProvider).value?.role == UserRole.staff) {
+    final repository = ref.watch(stockRepositoryProvider);
+    final today = await ref.watch(staffTodayProvider.future);
+    final site = today.assignment?.site;
+    return (
+      materials: await repository.activeMaterials(),
+      sites: [if (site != null) SiteRef(id: site.id, code: site.code, name: site.name)],
+    );
+  }
+  final overview = await ref.watch(stockOverviewProvider.future);
+  return (
+    materials: [
+      for (final row in overview.materials)
+        if (row.material.isActive) row.material,
+    ],
+    sites: overview.sites,
+  );
+});
+
 /// A site asks for material: what, how much, and by when. An admin approves
-/// it from a godown, whose manager sends it.
+/// it from a godown, whose manager sends it. Engineers ask for their sites,
+/// staff for their own.
 class RequestFormScreen extends ConsumerStatefulWidget {
   const RequestFormScreen({super.key, this.siteId});
 
@@ -82,18 +111,17 @@ class _RequestFormScreenState extends ConsumerState<RequestFormScreen> with Subm
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     const gap = SizedBox(height: AppSpacing.md);
-    final overview = ref.watch(stockOverviewProvider);
+    final options = ref.watch(_formOptionsProvider);
     return Scaffold(
       appBar: AppBar(title: Text(l10n.requestNew)),
       body: AsyncValueView(
-        value: overview,
-        onRetry: () => ref.invalidate(stockOverviewProvider),
-        data: (overview) {
-          final materials = [
-            for (final row in overview.materials)
-              if (row.material.isActive) row.material,
-          ];
-          final sites = overview.sites;
+        value: options,
+        onRetry: () => ref.invalidate(_formOptionsProvider),
+        data: (options) {
+          final materials = options.materials;
+          final sites = options.sites;
+          // Someone with one site (staff) needn't choose it.
+          _siteId ??= sites.length == 1 ? sites.single.id : null;
           return Form(
             key: _formKey,
             child: ListView(

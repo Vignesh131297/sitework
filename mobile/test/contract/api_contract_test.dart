@@ -13,6 +13,7 @@ import 'package:sitework/features/notifications/domain/notification_models.dart'
 import 'package:sitework/features/payments/domain/payment_models.dart';
 import 'package:sitework/features/people/domain/person_models.dart';
 import 'package:sitework/features/reports/domain/report_models.dart';
+import 'package:sitework/features/requests/domain/request_models.dart';
 import 'package:sitework/features/sites/domain/site_day.dart';
 import 'package:sitework/features/sites/domain/site_models.dart';
 import 'package:sitework/features/staff_updates/domain/staff_update_models.dart';
@@ -151,5 +152,23 @@ void main() {
     final payments = PaymentReport.fromJson(_data('report_payments'));
     expect(payments.sites, isNotEmpty);
     expect(payments.payments, isNotEmpty);
+  });
+
+  test('leave, money and food requests', () {
+    final leave = _rows('leave_requests').map(LeaveRequest.fromJson).toList();
+    expect(leave.map((l) => l.status).toSet(), containsAll([ApprovalStatus.pending, ApprovalStatus.approved]));
+    expect(leave.where((l) => l.site == null), isNotEmpty, reason: "an engineer's leave");
+    expect(LeaveRequest.fromJson(_data('leave_request_detail')).days, greaterThan(0));
+    final requests = _rows('staff_requests').map(StaffRequest.fromJson).toList();
+    expect(requests.map((r) => r.kind).toSet(), {StaffRequestKind.money, StaffRequestKind.food});
+    expect(requests.where((r) => r.kind == StaffRequestKind.food).every((r) => r.meal != null), isTrue);
+    expect(StaffRequest.fromJson(_data('staff_request_detail')).code, startsWith('RQ-'));
+  });
+
+  test("a staff member's own requests and the materials they can ask for", () {
+    expect(_rows('leave_requests_staff').map(LeaveRequest.fromJson).every((l) => l.canCancel), isTrue);
+    expect(_rows('staff_requests_staff').map(StaffRequest.fromJson), isNotEmpty);
+    expect(_rows('material_requests_staff').map(MaterialRequest.fromJson), isEmpty);
+    expect(_rows('materials').map(StockMaterial.fromJson).every((m) => m.isActive), isTrue);
   });
 }

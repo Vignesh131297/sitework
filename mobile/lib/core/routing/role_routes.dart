@@ -24,6 +24,11 @@ import '../../features/people/presentation/person_detail_screen.dart';
 import '../../features/people/presentation/person_form_screen.dart';
 import '../../features/profile/presentation/profile_screen.dart';
 import '../../features/reports/presentation/reports_screen.dart';
+import '../../features/requests/presentation/approvals_screen.dart';
+import '../../features/requests/presentation/leave_form_screen.dart';
+import '../../features/requests/presentation/my_requests_screen.dart';
+import '../../features/requests/presentation/request_detail_screens.dart';
+import '../../features/requests/presentation/staff_request_form_screen.dart';
 import '../../features/sites/presentation/engineer_sites_screen.dart';
 import '../../features/sites/presentation/site_detail_screen.dart';
 import '../../features/sites/presentation/site_form_screen.dart';
@@ -126,9 +131,11 @@ final List<RouteBase> adminRoutes = [
   ..._reviewRoutes(AppRoutes.adminArea),
 ];
 
-/// Photos, reports, issues, stock and material requests: the same screens for
-/// admins and engineers.
+/// Photos, reports, issues, stock, material requests, and leave, money and food
+/// to decide: the same screens for admins and engineers.
 List<RouteBase> _reviewRoutes(String area) => [
+  GoRoute(path: AppRoutes.approvals(area), builder: (context, state) => const ApprovalsScreen()),
+  ..._requestDetailRoutes(area),
   GoRoute(path: AppRoutes.stock(area), builder: (context, state) => const StockScreen()),
   GoRoute(
     path: '$area/requests',
@@ -187,6 +194,28 @@ List<RouteBase> _stockRoutes(String area) => [
     path: '$area/stock/entries/:id',
     builder: (context, state) => EntryDetailScreen(id: state.pathParameters['id']!),
   ),
+];
+
+/// One leave request, or one money or food request: for everyone who may see them.
+List<RouteBase> _requestDetailRoutes(String area) => [
+  GoRoute(
+    path: '$area/leave/:id',
+    builder: (context, state) => LeaveDetailScreen(id: state.pathParameters['id']!),
+  ),
+  GoRoute(
+    path: '$area/staff-requests/:id',
+    builder: (context, state) => StaffRequestDetailScreen(id: state.pathParameters['id']!),
+  ),
+];
+
+/// The caller's own requests and the leave form (staff and engineers). Put
+/// before [_requestDetailRoutes] so "new" is not read as an id.
+List<RouteBase> _myRequestRoutes(String area) => [
+  GoRoute(
+    path: AppRoutes.myRequests(area),
+    builder: (context, state) => MyRequestsScreen(initialTab: MyRequestsTab.fromName(state.uri.queryParameters['tab'])),
+  ),
+  GoRoute(path: AppRoutes.leaveNew(area), builder: (context, state) => const LeaveFormScreen()),
 ];
 
 List<RouteBase> _personRoutes(UserRole role, String base) => [
@@ -249,6 +278,7 @@ final List<RouteBase> engineerRoutes = [
     path: AppRoutes.engineerUpdateNew,
     builder: (context, state) => EngineerUpdateFormScreen(siteId: state.uri.queryParameters['siteId']),
   ),
+  ..._myRequestRoutes(AppRoutes.engineerArea),
   ..._reviewRoutes(AppRoutes.engineerArea),
 ];
 
@@ -296,6 +326,26 @@ final List<RouteBase> staffRoutes = [
     ),
   ),
   GoRoute(path: AppRoutes.staffNotifications, builder: (context, state) => const NotificationsScreen()),
+  // Their requests: leave, money and food, and material for their site. "new" before ":id".
+  ..._myRequestRoutes(AppRoutes.staffArea),
+  GoRoute(
+    path: '${AppRoutes.staffArea}/staff-requests/new',
+    builder: (context, state) => StaffRequestFormScreen(
+      kind: StaffRequestKind.values.firstWhere(
+        (kind) => kind.apiValue == state.uri.queryParameters['kind'],
+        orElse: () => StaffRequestKind.money,
+      ),
+    ),
+  ),
+  ..._requestDetailRoutes(AppRoutes.staffArea),
+  GoRoute(
+    path: '${AppRoutes.staffArea}/requests/new',
+    builder: (context, state) => RequestFormScreen(siteId: state.uri.queryParameters['siteId']),
+  ),
+  GoRoute(
+    path: '${AppRoutes.staffArea}/requests/:id',
+    builder: (context, state) => RequestDetailScreen(id: state.pathParameters['id']!),
+  ),
   GoRoute(
     path: AppRoutes.staffCapturePath,
     redirect: (context, state) =>

@@ -12,6 +12,9 @@ enum DataSet {
   issues,
   notifications,
   stock,
+
+  /// Leave, and staff members' money and food requests.
+  requests,
 }
 
 /// A counter per data set. Screens watch it; anything that changes that data

@@ -4770,6 +4770,383 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Closed by {name}: leftover sent back to the godown.'**
   String requestClosedLeftover(String name);
+  /// No description provided for @attendanceOnLeave.
+  ///
+  /// In en, this message translates to:
+  /// **'On leave'**
+  String get attendanceOnLeave;
+
+  /// No description provided for @requestsMyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My requests'**
+  String get requestsMyTitle;
+
+  /// No description provided for @requestsSeeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get requestsSeeAll;
+
+  /// No description provided for @requestsTabLeave.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave'**
+  String get requestsTabLeave;
+
+  /// No description provided for @requestsTabMoneyFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Money & food'**
+  String get requestsTabMoneyFood;
+
+  /// No description provided for @requestsTabMaterial.
+  ///
+  /// In en, this message translates to:
+  /// **'Material'**
+  String get requestsTabMaterial;
+
+  /// No description provided for @requestsNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New request'**
+  String get requestsNew;
+
+  /// No description provided for @requestsChooseKind.
+  ///
+  /// In en, this message translates to:
+  /// **'What do you need?'**
+  String get requestsChooseKind;
+
+  /// No description provided for @requestKindLeave.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave'**
+  String get requestKindLeave;
+
+  /// No description provided for @requestKindLeaveHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Days off work'**
+  String get requestKindLeaveHint;
+
+  /// No description provided for @requestKindMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'Money'**
+  String get requestKindMoney;
+
+  /// No description provided for @requestKindMoneyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'An advance on your wages'**
+  String get requestKindMoneyHint;
+
+  /// No description provided for @requestKindFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Food'**
+  String get requestKindFood;
+
+  /// No description provided for @requestKindFoodHint.
+  ///
+  /// In en, this message translates to:
+  /// **'A meal for yourself'**
+  String get requestKindFoodHint;
+
+  /// No description provided for @requestKindMaterial.
+  ///
+  /// In en, this message translates to:
+  /// **'Material'**
+  String get requestKindMaterial;
+
+  /// No description provided for @requestKindMaterialHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Material for your site'**
+  String get requestKindMaterialHint;
+
+  /// No description provided for @requestSendForApproval.
+  ///
+  /// In en, this message translates to:
+  /// **'Send for approval'**
+  String get requestSendForApproval;
+
+  /// No description provided for @requestSentForApproval.
+  ///
+  /// In en, this message translates to:
+  /// **'{code} sent for approval.'**
+  String requestSentForApproval(String code);
+
+  /// No description provided for @requestAskedByLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Asked by'**
+  String get requestAskedByLabel;
+
+  /// No description provided for @requestAskedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Asked on'**
+  String get requestAskedOn;
+
+  /// No description provided for @approvalPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting'**
+  String get approvalPending;
+
+  /// No description provided for @approvalApproved.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved'**
+  String get approvalApproved;
+
+  /// No description provided for @approvalRejected.
+  ///
+  /// In en, this message translates to:
+  /// **'Rejected'**
+  String get approvalRejected;
+
+  /// No description provided for @approvalCancelled.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdrawn'**
+  String get approvalCancelled;
+
+  /// No description provided for @approvalApprovedBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Approved by {name}'**
+  String approvalApprovedBy(String name);
+
+  /// No description provided for @approvalApprovedDone.
+  ///
+  /// In en, this message translates to:
+  /// **'{code} approved.'**
+  String approvalApprovedDone(String code);
+
+  /// No description provided for @approvalWithdrawnNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Withdrawn by the person who asked.'**
+  String get approvalWithdrawnNote;
+
+  /// No description provided for @approvalApproveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Approve {code}?'**
+  String approvalApproveTitle(String code);
+
+  /// No description provided for @approvalRejectTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reject {code}?'**
+  String approvalRejectTitle(String code);
+
+  /// No description provided for @approvalRejectReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Why? The person who asked will see this.'**
+  String get approvalRejectReason;
+
+  /// No description provided for @approvalWithdrawBody.
+  ///
+  /// In en, this message translates to:
+  /// **'No one will be able to approve it after this.'**
+  String get approvalWithdrawBody;
+
+  /// No description provided for @approvalsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave & requests'**
+  String get approvalsTitle;
+
+  /// No description provided for @approvalsSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave, money and food to approve'**
+  String get approvalsSubtitle;
+
+  /// No description provided for @approvalsWaitingCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} waiting for you'**
+  String approvalsWaitingCount(int count);
+
+  /// No description provided for @approvalsWaitingForYou.
+  ///
+  /// In en, this message translates to:
+  /// **'Waiting for you'**
+  String get approvalsWaitingForYou;
+
+  /// No description provided for @approvalsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing here.'**
+  String get approvalsEmpty;
+
+  /// No description provided for @myLeaveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My leave'**
+  String get myLeaveTitle;
+
+  /// No description provided for @leaveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave'**
+  String get leaveTitle;
+
+  /// No description provided for @leaveNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask for leave'**
+  String get leaveNewTitle;
+
+  /// No description provided for @leaveType.
+  ///
+  /// In en, this message translates to:
+  /// **'Kind of leave'**
+  String get leaveType;
+
+  /// No description provided for @leaveTypeSick.
+  ///
+  /// In en, this message translates to:
+  /// **'Sick'**
+  String get leaveTypeSick;
+
+  /// No description provided for @leaveTypeCasual.
+  ///
+  /// In en, this message translates to:
+  /// **'Casual'**
+  String get leaveTypeCasual;
+
+  /// No description provided for @leaveTypeOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get leaveTypeOther;
+
+  /// No description provided for @leaveFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'First day'**
+  String get leaveFrom;
+
+  /// No description provided for @leaveTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Last day'**
+  String get leaveTo;
+
+  /// No description provided for @leaveToBeforeFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'The last day can\'t be before the first day.'**
+  String get leaveToBeforeFrom;
+
+  /// No description provided for @leaveReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Reason'**
+  String get leaveReason;
+
+  /// No description provided for @leaveWhen.
+  ///
+  /// In en, this message translates to:
+  /// **'When'**
+  String get leaveWhen;
+
+  /// No description provided for @leaveDays.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 day} other{{count} days}}'**
+  String leaveDays(int count);
+
+  /// No description provided for @leaveEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No leave asked for yet.'**
+  String get leaveEmpty;
+
+  /// No description provided for @staffRequestTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Request'**
+  String get staffRequestTitle;
+
+  /// No description provided for @staffRequestsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No money or food asked for yet.'**
+  String get staffRequestsEmpty;
+
+  /// No description provided for @moneyNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask for money'**
+  String get moneyNewTitle;
+
+  /// No description provided for @moneyAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get moneyAmount;
+
+  /// No description provided for @moneyAmountHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'An advance on your wages'**
+  String get moneyAmountHelper;
+
+  /// No description provided for @moneyAdvance.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} advance'**
+  String moneyAdvance(String amount);
+
+  /// No description provided for @foodNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask for food'**
+  String get foodNewTitle;
+
+  /// No description provided for @foodDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get foodDay;
+
+  /// No description provided for @foodMeal.
+  ///
+  /// In en, this message translates to:
+  /// **'Meal'**
+  String get foodMeal;
+
+  /// No description provided for @foodMealOn.
+  ///
+  /// In en, this message translates to:
+  /// **'{meal} on {date}'**
+  String foodMealOn(String meal, String date);
+
+  /// No description provided for @mealBreakfast.
+  ///
+  /// In en, this message translates to:
+  /// **'Breakfast'**
+  String get mealBreakfast;
+
+  /// No description provided for @mealLunch.
+  ///
+  /// In en, this message translates to:
+  /// **'Lunch'**
+  String get mealLunch;
+
+  /// No description provided for @mealDinner.
+  ///
+  /// In en, this message translates to:
+  /// **'Dinner'**
+  String get mealDinner;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

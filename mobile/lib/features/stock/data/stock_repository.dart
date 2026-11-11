@@ -27,6 +27,12 @@ class StockRepository {
 
   Future<MaterialDetail> material(String id) => _api.get('/materials/$id', decode: _material);
 
+  /// Materials in use, by name (no stock or prices): what a site may ask for.
+  Future<List<StockMaterial>> activeMaterials() => _api.get(
+    '/materials',
+    decode: (data) => [for (final row in data! as List<dynamic>) StockMaterial.fromJson(row as Map<String, dynamic>)],
+  );
+
   Future<MaterialDetail> createMaterial({
     required String name,
     required String unit,

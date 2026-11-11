@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a1c8ff-890f-760b-bc3b-503ff2679547",
+      "code": "LV-0001",
+      "user": {
+        "id": "01a1c8ff-866d-759d-a1c5-8eee20c68aed",
+        "name": "Ravi",
+        "role": "STAFF",
+        "employeeCode": "STF-001"
+      },
+      "site": {
+        "id": "01a1c8ff-868f-73de-84b7-b6f27089e7a1",
+        "name": "ABC Apartment Project"
+      },
+      "type": "CASUAL",
+      "fromDate": "2026-11-14",
+      "toDate": "2026-11-15",
+      "days": 2,
+      "reason": "Sister's wedding in the village",
+      "status": "PENDING",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "reviewNote": null,
+      "createdAt": "2026-11-10T13:00:00.000Z",
+      "canApprove": false,
+      "canCancel": true
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 1,
+    "totalPages": 1
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a1c8ff-8919-71ea-a34c-1e34cf964d42",
+      "code": "LV-0004",
+      "user": {
+        "id": "01a1c8ff-8667-777e-8e25-78f0399326fc",
+        "name": "Prakash",
+        "role": "ENGINEER",
+        "employeeCode": "ENG-002"
+      },
+      "site": null,
+      "type": "CASUAL",
+      "fromDate": "2026-11-21",
+      "toDate": "2026-11-23",
+      "days": 3,
+      "reason": "Family function in Madurai",
+      "status": "PENDING",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "reviewNote": null,
+      "createdAt": "2026-11-10T14:30:00.000Z",
+      "canApprove": true,
+      "canCancel": false
+    },
+    {
+      "id": "01a1c8ff-890f-760b-bc3b-503ff2679547",
+      "code": "LV-0001",
+      "user": {
+        "id": "01a1c8ff-866d-759d-a1c5-8eee20c68aed",
+        "name": "Ravi",
+        "role": "STAFF",
+        "employeeCode": "STF-001"
+      },
+      "site": {
+        "id": "01a1c8ff-868f-73de-84b7-b6f27089e7a1",
+        "name": "ABC Apartment Project"
+      },
+      "type": "CASUAL",
+      "fromDate": "2026-11-14",
+      "toDate": "2026-11-15",
+      "days": 2,
+      "reason": "Sister's wedding in the village",
+      "status": "PENDING",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "reviewNote": null,
+      "createdAt": "2026-11-10T13:00:00.000Z",
+      "canApprove": true,
+      "canCancel": false
+    },
+    {
+      "id": "01a1c8ff-8913-703d-b918-2f01e0f1e43c",
+      "code": "LV-0002",
+      "user": {
+        "id": "01a1c8ff-8670-76b8-aa55-1cf40435d3b4",
+        "name": "Kumar",
+        "role": "STAFF",
+        "employeeCode": "STF-002"
+      },
+      "site": {
+        "id": "01a1c8ff-868f-73de-84b7-b6f27089e7a1",
+        "name": "ABC Apartment Project"
+      },
+      "type": "SICK",
+      "fromDate": "2026-11-12",
+      "toDate": "2026-11-12",
+      "days": 1,
+      "reason": "Dental appointment at the government hospital",
+      "status": "APPROVED",
+      "reviewedBy": {
+        "id": "01a1c8ff-8664-7510-9fde-3f74ea230f45",
+        "name": "Arun Kumar"
+      },
+      "reviewedAt": "2026-11-10T03:45:00.000Z",
+      "reviewNote": "Fine. Manoj covers the plastering.",
+      "createdAt": "2026-11-09T12:15:00.000Z",
+      "canApprove": false,
+      "canCancel": false
+    },
+    {
+      "id": "01a1c8ff-8916-768d-a6bc-9160376ca774",
+      "code": "LV-0003",
+      "user": {
+        "id": "01a1c8ff-8674-7160-8a45-d6d5a40104e7",
+        "name": "Manoj",
+        "role": "STAFF",
+        "employeeCode": "STF-003"
+      },
+      "site": {
+        "id": "01a1c8ff-8697-7111-859d-5e5b9ef2102b",
+        "name": "Green Valley Villa"
+      },
+      "type": "OTHER",
+      "fromDate": "2026-11-17",
+      "toDate": "2026-11-17",
+      "days": 1,
+      "reason": "Bank work",
+      "status": "REJECTED",
+      "reviewedBy": {
+        "id": "01a1c8ff-8667-777e-8e25-78f0399326fc",
+        "name": "Prakash"
+      },
+      "reviewedAt": "2026-11-09T04:35:00.000Z",
+      "reviewNote": "Slab casting that day. Please choose another day.",
+      "createdAt": "2026-11-08T06:40:00.000Z",
+      "canApprove": false,
+      "canCancel": false
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 5,
+    "total": 4,
+    "totalPages": 1
+  }
+}

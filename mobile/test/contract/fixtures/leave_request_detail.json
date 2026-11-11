@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "data": {
+    "id": "01a1c8ff-8919-71ea-a34c-1e34cf964d42",
+    "code": "LV-0004",
+    "user": {
+      "id": "01a1c8ff-8667-777e-8e25-78f0399326fc",
+      "name": "Prakash",
+      "role": "ENGINEER",
+      "employeeCode": "ENG-002"
+    },
+    "site": null,
+    "type": "CASUAL",
+    "fromDate": "2026-11-21",
+    "toDate": "2026-11-23",
+    "days": 3,
+    "reason": "Family function in Madurai",
+    "status": "PENDING",
+    "reviewedBy": null,
+    "reviewedAt": null,
+    "reviewNote": null,
+    "createdAt": "2026-11-10T14:30:00.000Z",
+    "canApprove": true,
+    "canCancel": false
+  }
+}

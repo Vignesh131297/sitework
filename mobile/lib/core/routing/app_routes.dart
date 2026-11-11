@@ -107,6 +107,18 @@ abstract final class AppRoutes {
   /// A material's page (admins only: it shows prices).
   static String adminMaterial(String id) => '$adminArea/stock/materials/$id';
 
+  // Leave, and staff members' money and food requests.
+  /// The caller's own requests (staff: [tab] is 'leave', 'money' or 'material'; engineers: their leave).
+  static String myRequests(String area, {String? tab}) => '$area/my-requests${tab == null ? '' : '?tab=$tab'}';
+
+  /// Leave, money and food waiting for an admin or engineer to decide.
+  static String approvals(String area) => '$area/approvals';
+  static String leave(String area, String id) => '$area/leave/$id';
+  static String leaveNew(String area) => '$area/leave/new';
+  static String staffRequest(String area, String id) => '$area/staff-requests/$id';
+  static String staffRequestNew(String area, StaffRequestKind kind) =>
+      '$area/staff-requests/new?kind=${kind.apiValue}';
+
   // Staff full-screen routes.
   static const staffNotifications = '$staffArea/notifications';
   static const staffCapturePath = '$staffArea/capture/:slot';

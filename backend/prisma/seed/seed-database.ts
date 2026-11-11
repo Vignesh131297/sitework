@@ -36,6 +36,7 @@ import {
   type SeededIssue,
 } from './notifications.js';
 import { createRandom } from './random.js';
+import { seedRequests } from './requests.js';
 import { seedStock } from './stock.js';
 
 const HISTORY_DAYS = 14;
@@ -369,8 +370,32 @@ export async function seedDatabase(
     adminIds: [adminId],
   });
 
+  const requests = await seedRequests(prisma, {
+    today,
+    timeZone,
+    userId,
+    userName: (key) => required(users.get(key), `user ${key}`).name,
+    siteOf: (staffKey) => {
+      const assignment = required(
+        STAFF_ASSIGNMENTS.find((a) => a.staffKey === staffKey),
+        `assignment of ${staffKey}`,
+      );
+      const seed = required(
+        SITES.find((s) => s.key === assignment.siteKey),
+        `site ${assignment.siteKey}`,
+      );
+      const site = siteOf(assignment.siteKey);
+      return {
+        id: site.id,
+        name: site.name,
+        engineerIds: seed.engineerKeys.map(userId),
+      };
+    },
+    adminId,
+  });
+
   await prisma.notification.createMany({
-    data: [...notifications, ...stock.notifications],
+    data: [...notifications, ...stock.notifications, ...requests.notifications],
   });
 
   return {
@@ -388,7 +413,12 @@ export async function seedDatabase(
     materials: stock.materials,
     materialRequests: stock.materialRequests,
     stockEntries: stock.stockEntries,
-    notifications: notifications.length + stock.notifications.length,
+    leaveRequests: requests.leaveRequests,
+    staffRequests: requests.staffRequests,
+    notifications:
+      notifications.length +
+      stock.notifications.length +
+      requests.notifications.length,
   };
 }
 
@@ -399,7 +429,7 @@ async function truncateAllTables(prisma: PrismaClient): Promise<void> {
   if (tables.length === 0) return;
   // Names come from the catalog, not user input.
   const list = tables.map((t) => `"public"."${t.tablename}"`).join(', ');
-  // RESTART IDENTITY: material requests are numbered from MR-0001 again.
+  // RESTART IDENTITY: requests are numbered from MR-0001, LV-0001, RQ-0001 again.
   await prisma.$executeRawUnsafe(
     `TRUNCATE TABLE ${list} RESTART IDENTITY CASCADE`,
   );
