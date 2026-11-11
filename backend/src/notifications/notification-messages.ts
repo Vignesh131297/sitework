@@ -2,7 +2,10 @@ import { formatInr, type Paise } from '../common/money/money.js';
 import { formatShortDate, formatTime } from '../common/time/business-time.js';
 import type {
   EngineerUpdateType,
+  LeaveType,
+  Meal,
   Priority,
+  StaffRequestKind,
   TimeSlot,
 } from '../generated/prisma/enums.js';
 import { summarizeLines } from '../stock/stock-ledger.js';
@@ -241,5 +244,99 @@ export function requestClosed(input: {
     message: input.leftover
       ? 'Leftover sent back to the godown.'
       : 'All of it was used.',
+  };
+}
+
+const LEAVE_LABEL: Record<LeaveType, string> = {
+  SICK: 'sick leave',
+  CASUAL: 'casual leave',
+  OTHER: 'leave',
+};
+
+export const MEAL_LABEL: Record<Meal, string> = {
+  BREAKFAST: 'Breakfast',
+  LUNCH: 'Lunch',
+  DINNER: 'Dinner',
+};
+
+/** "Thu 12 Nov" or "Thu 12 Nov – Sat 14 Nov". */
+function dateRange(from: string, to: string): string {
+  return from === to
+    ? formatShortDate(from)
+    : `${formatShortDate(from)} – ${formatShortDate(to)}`;
+}
+
+/** For whoever may approve it. */
+export function leaveRequested(input: {
+  code: string;
+  name: string;
+  type: LeaveType;
+  from: string;
+  to: string;
+  siteName: string | null;
+}): NotificationText {
+  return {
+    title: `${input.name} asked for ${LEAVE_LABEL[input.type]}`,
+    message: [input.code, dateRange(input.from, input.to), input.siteName]
+      .filter(Boolean)
+      .join(' · '),
+  };
+}
+
+/** For the person who asked. */
+export function leaveDecided(input: {
+  code: string;
+  approved: boolean;
+  from: string;
+  to: string;
+  byName: string;
+  note: string | null;
+}): NotificationText {
+  return {
+    title: `Your leave ${dateRange(input.from, input.to)} was ${input.approved ? 'approved' : 'rejected'}`,
+    message: [input.code, `by ${input.byName}`, input.note]
+      .filter(Boolean)
+      .join(' · '),
+  };
+}
+
+/** "₹500 advance" or "Lunch on Thu 12 Nov". */
+export function staffRequestSummary(input: {
+  kind: StaffRequestKind;
+  amount: Paise | null;
+  forDate: string | null;
+  meal: Meal | null;
+}): string {
+  return input.kind === 'MONEY'
+    ? `${formatInr(input.amount!)} advance`
+    : `${MEAL_LABEL[input.meal!]} on ${formatShortDate(input.forDate!)}`;
+}
+
+/** For the site's engineers and admins. */
+export function staffRequestCreated(input: {
+  code: string;
+  name: string;
+  summary: string;
+  siteName: string;
+}): NotificationText {
+  return {
+    title: `${input.name} asked for ${input.summary.charAt(0).toLowerCase()}${input.summary.slice(1)}`,
+    message: `${input.code} · ${input.siteName}`,
+  };
+}
+
+/** For the staff member who asked. */
+export function staffRequestDecided(input: {
+  code: string;
+  summary: string;
+  approved: boolean;
+  byName: string;
+  note: string | null;
+}): NotificationText {
+  return {
+    title: `${input.summary} ${input.approved ? 'approved' : 'rejected'}`,
+    message: [input.code, `by ${input.byName}`, input.note]
+      .filter(Boolean)
+      .join(' · '),
   };
 }

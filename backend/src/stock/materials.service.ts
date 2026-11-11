@@ -13,7 +13,11 @@ import { PrismaService } from '../prisma/prisma.service.js';
 import type { CreateMaterialDto, UpdateMaterialDto } from './stock.dto.js';
 import { holderIds, onHandAt, totalsFor } from './stock-ledger.js';
 import { ledgerSums, purchaseRates } from './stock-queries.js';
-import { toMaterialView, type MaterialDetail } from './stock-views.js';
+import {
+  toMaterialView,
+  type MaterialDetail,
+  type MaterialView,
+} from './stock-views.js';
 
 /** The materials list (admins): names, units, minimum levels. Never deleted. */
 @Injectable()
@@ -22,6 +26,15 @@ export class MaterialsService {
     private readonly prisma: PrismaService,
     private readonly audit: AuditService,
   ) {}
+
+  /** Materials in use, by name: what a site may ask for. */
+  async listActive(): Promise<MaterialView[]> {
+    const rows = await this.prisma.material.findMany({
+      where: { isActive: true },
+      orderBy: { name: 'asc' },
+    });
+    return rows.map(toMaterialView);
+  }
 
   async create(
     actor: AuthUser,

@@ -28,6 +28,7 @@ import type {
   LocationFlag,
 } from '../generated/prisma/enums.js';
 import { PrismaService } from '../prisma/prisma.service.js';
+import { staffOnLeave } from '../requests/request-common.js';
 import { CalendarService } from '../settings/calendar.service.js';
 import { SettingsService } from '../settings/settings.service.js';
 import type {
@@ -135,7 +136,7 @@ export class AttendanceService {
     };
     try {
       const row = existing
-        ? // A day marked absent in advance becomes a normal day once they turn up.
+        ? // A day marked absent or on leave becomes a normal day once they turn up.
           await this.prisma.attendance.update({
             where: { id: existing.id },
             data,
@@ -365,8 +366,9 @@ export class AttendanceService {
   }
 
   /**
-   * End of a working day: assigned staff with no record are marked absent. Run by
-   * a job; safe to run more than once.
+   * End of a working day: assigned staff with no record are marked absent, or
+   * on leave when they have approved leave that day. Run by a job; safe to run
+   * more than once.
    */
   async markAbsentees(date: string): Promise<number> {
     if (!(await this.calendar.isWorkingDay(date))) return 0;
@@ -375,12 +377,19 @@ export class AttendanceService {
       where: { staff: { isActive: true, attendance: { none: { workDate } } } },
       select: { staffId: true, siteId: true },
     });
+    const onLeave = await staffOnLeave(
+      this.prisma,
+      assignments.map((a) => a.staffId),
+      date,
+    );
     const { count } = await this.prisma.attendance.createMany({
       data: assignments.map((a) => ({
         staffId: a.staffId,
         siteId: a.siteId,
         workDate,
-        status: 'ABSENT' as const,
+        status: onLeave.has(a.staffId)
+          ? ('ON_LEAVE' as const)
+          : ('ABSENT' as const),
       })),
       skipDuplicates: true,
     });

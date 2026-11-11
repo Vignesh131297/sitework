@@ -76,6 +76,10 @@ export const ErrorCode = {
   STOCK_ALREADY_VOIDED: 'STOCK_ALREADY_VOIDED',
   REQUEST_NOT_OPEN: 'REQUEST_NOT_OPEN',
   REQUEST_EXCEEDED: 'REQUEST_EXCEEDED',
+
+  // Leave and labour requests
+  LEAVE_OVERLAPS: 'LEAVE_OVERLAPS',
+  REQUEST_ALREADY_DECIDED: 'REQUEST_ALREADY_DECIDED',
 } as const;
 
 export type ErrorCode = (typeof ErrorCode)[keyof typeof ErrorCode];

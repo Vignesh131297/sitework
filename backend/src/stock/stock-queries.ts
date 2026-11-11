@@ -198,6 +198,9 @@ export function requestScope(user: AuthUser): Prisma.MaterialRequestWhereInput {
         godown: godownScope(user),
         status: { in: ['APPROVED', 'CLOSED'] },
       };
+    case 'STAFF':
+      // Staff see the requests they made.
+      return { requestedById: user.id };
     default:
       return { site: siteScope(user) };
   }

@@ -145,7 +145,8 @@ type RequestRow = Prisma.MaterialRequestGetPayload<{
 }>;
 
 /**
- * Material requests: an engineer asks for material for their site, an admin
+ * Material requests: an engineer (or a staff member) asks for material for
+ * their site, an admin
  * approves (choosing the godown and quantities) or rejects it, the godown's
  * manager sends it (see StockEntriesService.transfer), and the engineer
  * closes it when the work is done, returning any leftover.
@@ -265,13 +266,19 @@ export class MaterialRequestsService {
           },
           tx,
         );
+        // Admins approve. A staff member's request also goes to the site's
+        // engineers, who look after the site's material.
+        const recipients = [
+          ...(await this.notifications.adminIds(tx)),
+          ...(user.role === 'STAFF'
+            ? site.engineerAssignments.map((a) => a.engineerId)
+            : []),
+        ].filter((id) => id !== user.id);
         await this.notifications.notify(
           [
             this.notice(
               request.id,
-              (await this.notifications.adminIds(tx)).filter(
-                (id) => id !== user.id,
-              ),
+              recipients,
               requestCreated({
                 code,
                 siteName: site.name,

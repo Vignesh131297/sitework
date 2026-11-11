@@ -154,7 +154,7 @@ describe('Reports (e2e)', () => {
         locationFlagged: 1,
         compliancePercent: 50,
       },
-      attendance: { present: 1, late: 0, halfDay: 0, absent: 1 },
+      attendance: { present: 1, late: 0, halfDay: 0, absent: 1, onLeave: 0 },
       engineerUpdates: 1,
       issues: { opened: 1, resolved: 0, openNow: 1 },
       received: '100000.00',

@@ -42,6 +42,7 @@ import type {
   GodownStock,
   GodownView,
   MaterialDetail,
+  MaterialView,
   SiteStock,
   StockEntryView,
   StockOverview,
@@ -85,6 +86,13 @@ export class StockController {
     @Body() dto: CreateMaterialDto,
   ): Promise<MaterialDetail> {
     return this.materials.create(user, dto);
+  }
+
+  /** Materials in use (no stock or prices), e.g. for a staff member's request form. */
+  @Roles('ADMIN', 'ENGINEER', 'STAFF', 'GODOWN_MANAGER')
+  @Get('materials')
+  listMaterials(): Promise<MaterialView[]> {
+    return this.materials.listActive();
   }
 
   @Roles('ADMIN')

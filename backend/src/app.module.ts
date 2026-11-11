@@ -31,6 +31,7 @@ import { PeopleModule } from './people/people.module.js';
 import { PrismaModule } from './prisma/prisma.module.js';
 import { PushModule } from './push/push.module.js';
 import { ReportsModule } from './reports/reports.module.js';
+import { RequestsModule } from './requests/requests.module.js';
 import { SettingsModule } from './settings/settings.module.js';
 import { SitesModule } from './sites/sites.module.js';
 import { StaffUpdatesModule } from './staff-updates/staff-updates.module.js';
@@ -90,6 +91,7 @@ import { UsersModule } from './users/users.module.js';
     IssuesModule,
     PaymentsModule,
     StockModule,
+    RequestsModule,
     ReportsModule,
     JobsModule,
     DashboardModule,

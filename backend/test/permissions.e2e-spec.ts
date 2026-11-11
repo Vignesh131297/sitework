@@ -167,17 +167,32 @@ describe('Permission matrix (e2e)', () => {
     expect(unrestricted).toEqual(ANY_SIGNED_IN);
   });
 
-  it('gives staff only their own day: check-in, check-out, photo updates and site usage', () => {
+  it('gives staff only their own day, site usage and their own requests', () => {
     const forStaff = routes
       .filter((r) => r.roles?.includes('STAFF'))
       .map(key)
       .sort();
     expect(forStaff).toEqual([
+      // Their own leave, money and food requests (scoped to the caller).
+      'GET /api/v1/leave-requests',
+      'GET /api/v1/leave-requests/:id',
+      // The materials in use, to ask for some (names and units only).
+      'GET /api/v1/material-requests',
+      'GET /api/v1/material-requests/:id',
+      'GET /api/v1/materials',
       'GET /api/v1/me/today',
       // Their own site's stock, to record (and correct) its daily usage.
       'GET /api/v1/sites/:id/stock',
+      'GET /api/v1/staff-requests',
+      'GET /api/v1/staff-requests/:id',
       'POST /api/v1/attendance/check-in',
       'POST /api/v1/attendance/check-out',
+      'POST /api/v1/leave-requests',
+      'POST /api/v1/leave-requests/:id/cancel',
+      'POST /api/v1/material-requests',
+      'POST /api/v1/material-requests/:id/cancel',
+      'POST /api/v1/staff-requests',
+      'POST /api/v1/staff-requests/:id/cancel',
       'POST /api/v1/staff-updates',
       'POST /api/v1/stock/entries/:id/void',
       'POST /api/v1/stock/usage',
@@ -193,6 +208,7 @@ describe('Permission matrix (e2e)', () => {
       'GET /api/v1/dashboard/godown',
       'GET /api/v1/material-requests',
       'GET /api/v1/material-requests/:id',
+      'GET /api/v1/materials',
       'GET /api/v1/stock/entries',
       'GET /api/v1/stock/entries/:id',
       'GET /api/v1/stock/godowns/:id',

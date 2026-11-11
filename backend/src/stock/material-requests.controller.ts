@@ -26,8 +26,9 @@ import {
 } from './material-requests.service.js';
 
 /**
- * Engineers (and admins) request material for a site; admins approve or
- * reject; godown managers see what they have to send; the site closes it.
+ * Engineers (and admins) request material for a site, and staff for their own
+ * site; admins approve or reject; godown managers see what they have to send;
+ * the site closes it.
  * Sending itself is a transfer: POST /stock/transfers with materialRequestId.
  */
 @ApiTags('material-requests')
@@ -36,7 +37,7 @@ import {
 export class MaterialRequestsController {
   constructor(private readonly requests: MaterialRequestsService) {}
 
-  @Roles('ADMIN', 'ENGINEER')
+  @Roles('ADMIN', 'ENGINEER', 'STAFF')
   @Post()
   create(
     @CurrentUser() user: AuthUser,
@@ -45,7 +46,7 @@ export class MaterialRequestsController {
     return this.requests.create(user, dto);
   }
 
-  @Roles('ADMIN', 'ENGINEER', 'GODOWN_MANAGER')
+  @Roles('ADMIN', 'ENGINEER', 'STAFF', 'GODOWN_MANAGER')
   @Get()
   list(
     @CurrentUser() user: AuthUser,
@@ -54,7 +55,7 @@ export class MaterialRequestsController {
     return this.requests.list(user, query);
   }
 
-  @Roles('ADMIN', 'ENGINEER', 'GODOWN_MANAGER')
+  @Roles('ADMIN', 'ENGINEER', 'STAFF', 'GODOWN_MANAGER')
   @Get(':id')
   get(
     @CurrentUser() user: AuthUser,
@@ -85,7 +86,7 @@ export class MaterialRequestsController {
     return this.requests.reject(user, id, dto.reason);
   }
 
-  @Roles('ADMIN', 'ENGINEER')
+  @Roles('ADMIN', 'ENGINEER', 'STAFF')
   @Post(':id/cancel')
   @HttpCode(HttpStatus.OK)
   cancel(

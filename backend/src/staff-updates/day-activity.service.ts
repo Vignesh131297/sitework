@@ -12,6 +12,7 @@ import type {
   TimeSlot,
 } from '../generated/prisma/enums.js';
 import { PrismaService } from '../prisma/prisma.service.js';
+import { staffOnLeave } from '../requests/request-common.js';
 import { CalendarService } from '../settings/calendar.service.js';
 import { SettingsService } from '../settings/settings.service.js';
 import { slotState, slotWindows, type SlotState } from './slot-status.js';
@@ -48,6 +49,8 @@ export interface StaffDay {
   } | null;
   /** True once the shift's late threshold has passed without a check-in. */
   notCheckedIn: boolean;
+  /** Approved leave that day and not checked in: no check-in or updates expected. */
+  onLeave: boolean;
   slots: StaffDaySlot[];
 }
 
@@ -114,7 +117,7 @@ export class DayActivityService {
     });
     const staffIds = assignments.map((a) => a.staff.id);
     const workDate = toDbDate(date);
-    const [updates, attendance] = await Promise.all([
+    const [updates, attendance, leave] = await Promise.all([
       this.prisma.staffUpdate.findMany({
         where: { workDate, staffId: { in: staffIds } },
         select: {
@@ -137,6 +140,7 @@ export class DayActivityService {
           checkOutAt: true,
         },
       }),
+      staffOnLeave(this.prisma, staffIds, date),
     ]);
     const updateByKey = new Map(
       updates.map((u) => [`${u.staffId}:${u.slot}`, u]),
@@ -146,7 +150,11 @@ export class DayActivityService {
     const staff = assignments.map((assignment): StaffDay => {
       const record = attendanceByStaff.get(assignment.staff.id);
       const checkedIn = Boolean(record?.checkInAt);
-      const absent = record?.status === 'ABSENT';
+      // Someone on leave who turns up anyway works a normal day.
+      const onLeave =
+        !checkedIn &&
+        (record?.status === 'ON_LEAVE' || leave.has(assignment.staff.id));
+      const absent = record?.status === 'ABSENT' || onLeave;
       return {
         staff: assignment.staff,
         site: assignment.site,
@@ -158,7 +166,8 @@ export class DayActivityService {
               checkOutAt: record.checkOutAt?.toISOString() ?? null,
             }
           : null,
-        notCheckedIn: isWorkingDay && !checkedIn && now > lateAfter,
+        notCheckedIn: isWorkingDay && !checkedIn && !onLeave && now > lateAfter,
+        onLeave,
         slots: windows.map((window) => {
           const update = updateByKey.get(
             `${assignment.staff.id}:${window.slot}`,

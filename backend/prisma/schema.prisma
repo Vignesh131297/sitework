@@ -90,6 +90,36 @@ enum AttendanceStatus {
   LATE
   HALF_DAY
   ABSENT
+  /// Approved leave (see leave_requests): not counted as absent, no updates expected.
+  ON_LEAVE
+}
+
+enum LeaveType {
+  SICK
+  CASUAL
+  OTHER
+}
+
+/// Leave and labour requests: waiting, decided, or withdrawn by the requester.
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  CANCELLED
+}
+
+/// What a labourer (staff member) asks for, besides leave and material.
+enum StaffRequestKind {
+  /// An advance against wages.
+  MONEY
+  /// A meal for the person asking.
+  FOOD
+}
+
+enum Meal {
+  BREAKFAST
+  LUNCH
+  DINNER
 }
 
 enum PaymentMethod {
@@ -158,6 +188,8 @@ enum NotificationType {
   ATTENDANCE
   SYSTEM
   STOCK
+  LEAVE
+  STAFF_REQUEST
 }
 
 enum ReferenceType {
@@ -171,6 +203,8 @@ enum ReferenceType {
   ATTENDANCE
   STOCK_ENTRY
   MATERIAL_REQUEST
+  LEAVE_REQUEST
+  STAFF_REQUEST
 }
 
 enum PushStatus {
@@ -242,6 +276,10 @@ model User {
   materialRequests            MaterialRequest[]    @relation("MaterialRequestRequestedBy")
   materialRequestsReviewed    MaterialRequest[]    @relation("MaterialRequestReviewedBy")
   materialRequestsClosed      MaterialRequest[]    @relation("MaterialRequestClosedBy")
+  leaveRequests               LeaveRequest[]       @relation("LeaveRequestUser")
+  leaveRequestsReviewed       LeaveRequest[]       @relation("LeaveRequestReviewedBy")
+  staffRequests               StaffRequest[]       @relation("StaffRequestStaff")
+  staffRequestsReviewed       StaffRequest[]       @relation("StaffRequestReviewedBy")
 
   @@index([role, isActive])
   @@map("users")
@@ -356,6 +394,8 @@ model Site {
   stockMovementsOut   StockMovement[]      @relation("StockMovementFromSite")
   stockMovementsIn    StockMovement[]      @relation("StockMovementToSite")
   materialRequests    MaterialRequest[]
+  leaveRequests       LeaveRequest[]
+  staffRequests       StaffRequest[]
 
   @@index([clientId])
   @@index([status])
@@ -677,6 +717,77 @@ model Payment {
   @@index([siteId, paidOn])
   @@index([paidOn])
   @@map("payments")
+}
+
+// ──────────────────── Leave and labour requests ────────────────────
+
+/// Leave asked for by a staff member (approved by an engineer on their site or an
+/// admin) or an engineer (approved by an admin). Approved staff leave shows as
+/// ON_LEAVE in attendance and no photo updates are expected on those days.
+model LeaveRequest {
+  id           String         @id @default(uuid(7)) @db.Uuid
+  /// Human reference, shown as LV-0001.
+  number       Int            @unique @default(autoincrement())
+  /// Idempotency key from the phone.
+  requestId    String         @unique @map("request_id") @db.Uuid
+  userId       String         @map("user_id") @db.Uuid
+  /// Staff only: their site when they asked (whose engineers may approve).
+  siteId       String?        @map("site_id") @db.Uuid
+  type         LeaveType
+  fromDate     DateTime       @map("from_date") @db.Date
+  toDate       DateTime       @map("to_date") @db.Date
+  reason       String
+  status       ApprovalStatus @default(PENDING)
+  reviewedById String?        @map("reviewed_by") @db.Uuid
+  reviewedAt   DateTime?      @map("reviewed_at") @db.Timestamptz(3)
+  /// The reviewer's note, or why it was rejected.
+  reviewNote   String?        @map("review_note")
+  createdAt    DateTime       @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt    DateTime       @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  user       User  @relation("LeaveRequestUser", fields: [userId], references: [id], onDelete: Restrict)
+  site       Site? @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  reviewedBy User? @relation("LeaveRequestReviewedBy", fields: [reviewedById], references: [id], onDelete: SetNull)
+
+  @@index([userId, fromDate])
+  @@index([status, createdAt])
+  @@index([siteId, status])
+  @@map("leave_requests")
+}
+
+/// Money (an advance) or food asked for by a staff member, approved by an
+/// engineer on their site or an admin.
+model StaffRequest {
+  id           String           @id @default(uuid(7)) @db.Uuid
+  /// Human reference, shown as RQ-0001.
+  number       Int              @unique @default(autoincrement())
+  /// Idempotency key from the phone.
+  requestId    String           @unique @map("request_id") @db.Uuid
+  kind         StaffRequestKind
+  staffId      String           @map("staff_id") @db.Uuid
+  siteId       String           @map("site_id") @db.Uuid
+  /// MONEY only.
+  amount       Decimal?         @db.Decimal(14, 2)
+  /// FOOD only: the day and the meal.
+  forDate      DateTime?        @map("for_date") @db.Date
+  meal         Meal?
+  note         String?
+  status       ApprovalStatus   @default(PENDING)
+  reviewedById String?          @map("reviewed_by") @db.Uuid
+  reviewedAt   DateTime?        @map("reviewed_at") @db.Timestamptz(3)
+  /// The reviewer's note, or why it was rejected.
+  reviewNote   String?          @map("review_note")
+  createdAt    DateTime         @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt    DateTime         @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  staff      User  @relation("StaffRequestStaff", fields: [staffId], references: [id], onDelete: Restrict)
+  site       Site  @relation(fields: [siteId], references: [id], onDelete: Restrict)
+  reviewedBy User? @relation("StaffRequestReviewedBy", fields: [reviewedById], references: [id], onDelete: SetNull)
+
+  @@index([staffId, createdAt])
+  @@index([status, createdAt])
+  @@index([siteId, status])
+  @@map("staff_requests")
 }
 
 // ───────────────────────────── Stock ─────────────────────────────

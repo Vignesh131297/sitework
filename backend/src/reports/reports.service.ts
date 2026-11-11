@@ -43,7 +43,7 @@ export interface UpdateCounts {
 }
 
 export type AttendanceCounts = Record<
-  'present' | 'late' | 'halfDay' | 'absent',
+  'present' | 'late' | 'halfDay' | 'absent' | 'onLeave',
   number
 >;
 
@@ -714,5 +714,6 @@ function attendanceCounts(
     late: of('LATE'),
     halfDay: of('HALF_DAY'),
     absent: of('ABSENT'),
+    onLeave: of('ON_LEAVE'),
   };
 }
