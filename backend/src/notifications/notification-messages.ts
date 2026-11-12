@@ -340,3 +340,57 @@ export function staffRequestDecided(input: {
       .join(' · '),
   };
 }
+
+/** For the person the vehicle was given to. */
+export function vehicleGiven(input: {
+  code: string;
+  /** "Hero Splendor Plus · TN09AB1234" */
+  label: string;
+  byName: string;
+}): NotificationText {
+  return {
+    title: `${input.label} was given to you`,
+    message: `${input.code} · by ${input.byName}`,
+  };
+}
+
+/** For the person it was taken back from. */
+export function vehicleTakenBack(input: {
+  code: string;
+  label: string;
+  byName: string;
+}): NotificationText {
+  return {
+    title: `${input.label} was taken back`,
+    message: `${input.code} · by ${input.byName}`,
+  };
+}
+
+/** For admins: the holder asked for money to repair the vehicle. */
+export function repairMoneyRequested(input: {
+  code: string;
+  name: string;
+  amount: Paise;
+  label: string;
+}): NotificationText {
+  return {
+    title: `${input.name} asked for ${formatInr(input.amount)} for a repair`,
+    message: `${input.code} · ${input.label}`,
+  };
+}
+
+/** For the person who asked. */
+export function repairMoneyDecided(input: {
+  code: string;
+  amount: Paise;
+  approved: boolean;
+  byName: string;
+  note: string | null;
+}): NotificationText {
+  return {
+    title: `${formatInr(input.amount)} repair money ${input.approved ? 'approved' : 'rejected'}`,
+    message: [input.code, `by ${input.byName}`, input.note]
+      .filter(Boolean)
+      .join(' · '),
+  };
+}

@@ -759,3 +759,29 @@ meal for themselves) and material for their site; engineers ask for leave.
 - **App.** Staff open "My requests" from Home (leave, money and food, material, with one-tap
   shortcuts). Admins and engineers open "Leave & requests" from the dashboard, which shows how
   many are waiting; engineers ask for their own leave from there ("My leave").
+
+## 17. Company vehicles
+
+Added on 2026-11-12. The company gives bikes (and other vehicles) to staff and engineers. The
+app records who has which vehicle and the money asked to repair it. Petrol is handled outside
+the app.
+
+| What | Who | Notes |
+|---|---|---|
+| Vehicles (`/vehicles`, `VH-0001`) | Admins add, edit, give, take back, and mark out of use | Registration numbers are stored upper-case without spaces and are unique |
+| Repair money (`/vehicle-repair-requests`, `VR-0001`) | The staff member or engineer who holds a vehicle asks; only an admin decides | Up to `vehicles.maxRepairRupees` (₹50,000 by default, in app settings) |
+
+- **Hand-overs.** `vehicle_assignments` keeps every hand-over; the row with no `returned_on`
+  is the current holder. Partial unique indexes allow one holder per vehicle and one vehicle
+  per person, and giving a vehicle locks its row, so two admins can't give it at once. Dates
+  can't be in the future, and a new hand-over can't start before the last one ended. A vehicle
+  with a holder can't be marked out of use. Deactivating a person takes their vehicle back.
+- **Repair money.** Same states and rules as section 16 (`PENDING` → `APPROVED`, `REJECTED` with
+  a reason, or `CANCELLED` by the person who asked). Every admin is told of a new request; the
+  person who asked is told of the decision (`VEHICLE` notifications). Engineers see only their
+  own requests, never their staff's. Taking a vehicle back leaves its requests in place.
+- **App.** Admins open "Vehicles" from the dashboard, give or take back a vehicle from its
+  page or from a person's profile, and decide repair money under "Leave & requests" (Bike
+  repair tab, counted in the waiting number). Whoever holds a vehicle sees "My vehicle" on
+  Home (staff) or the dashboard (engineers), with "Ask for repair money"; their requests are
+  under "My requests".

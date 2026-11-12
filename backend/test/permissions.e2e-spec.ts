@@ -185,6 +185,11 @@ describe('Permission matrix (e2e)', () => {
       'GET /api/v1/sites/:id/stock',
       'GET /api/v1/staff-requests',
       'GET /api/v1/staff-requests/:id',
+      // Money asked for the repair of the company vehicle they hold.
+      'GET /api/v1/vehicle-repair-requests',
+      'GET /api/v1/vehicle-repair-requests/:id',
+      // The company vehicle they hold now.
+      'GET /api/v1/vehicles/mine',
       'POST /api/v1/attendance/check-in',
       'POST /api/v1/attendance/check-out',
       'POST /api/v1/leave-requests',
@@ -196,6 +201,8 @@ describe('Permission matrix (e2e)', () => {
       'POST /api/v1/staff-updates',
       'POST /api/v1/stock/entries/:id/void',
       'POST /api/v1/stock/usage',
+      'POST /api/v1/vehicle-repair-requests',
+      'POST /api/v1/vehicle-repair-requests/:id/cancel',
     ]);
   });
 

@@ -19,9 +19,15 @@ import { contains } from '../common/pagination/page-query.dto.js';
 import { fromDbDate, toDbDate } from '../common/time/business-time.js';
 import type { Env } from '../config/env.js';
 import type { Prisma } from '../generated/prisma/client.js';
-import type { Designation, Role } from '../generated/prisma/enums.js';
+import type {
+  Designation,
+  Role,
+  VehicleType,
+} from '../generated/prisma/enums.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { AssignmentsService } from '../sites/assignments.service.js';
+import { vehicleCode } from '../vehicles/vehicle-common.js';
+import { VehiclesService } from '../vehicles/vehicles.service.js';
 import { nextEmployeeCode } from './employee-codes.js';
 import type {
   CreateAdminDto,
@@ -75,6 +81,15 @@ export interface PersonSummary {
 
 export interface PersonDetail extends PersonSummary {
   mustChangePassword: boolean;
+  /** Staff and engineers: the company vehicle they hold now. */
+  vehicle: {
+    id: string;
+    code: string;
+    type: VehicleType;
+    registrationNo: string;
+    makeModel: string;
+    givenOn: string;
+  } | null;
   supervisedStaff: {
     id: string;
     name: string;
@@ -121,6 +136,7 @@ export class PeopleService {
     private readonly assignments: AssignmentsService,
     private readonly audit: AuditService,
     private readonly config: ConfigService<Env, true>,
+    private readonly vehicles: VehiclesService,
   ) {}
 
   async list(
@@ -189,12 +205,38 @@ export class PeopleService {
           },
           orderBy: { staff: { name: 'asc' } },
         },
+        vehicleAssignments: {
+          where: { returnedOn: null },
+          select: {
+            givenOn: true,
+            vehicle: {
+              select: {
+                id: true,
+                number: true,
+                type: true,
+                registrationNo: true,
+                makeModel: true,
+              },
+            },
+          },
+        },
       },
     });
     if (!person) throw notFound(ROLE_LABEL[role]);
+    const held = person.vehicleAssignments[0];
     return {
       ...toSummary(person),
       mustChangePassword: person.mustChangePassword,
+      vehicle: held
+        ? {
+            id: held.vehicle.id,
+            code: vehicleCode(held.vehicle.number),
+            type: held.vehicle.type,
+            registrationNo: held.vehicle.registrationNo,
+            makeModel: held.vehicle.makeModel,
+            givenOn: fromDbDate(held.givenOn),
+          }
+        : null,
       supervisedStaff: person.supervisedStaff.map((s) => ({
         ...s.staff,
         site: s.site,
@@ -384,6 +426,7 @@ export class PeopleService {
             await this.assignments.unassignStaff(actor.id, id, tx);
           if (role === 'GODOWN_MANAGER')
             await tx.godownAssignment.deleteMany({ where: { userId: id } });
+          await this.vehicles.releaseHolder(actor.id, id, tx);
           await tx.authSession.updateMany({
             where: { userId: id, revokedAt: null },
             data: { revokedAt: new Date() },

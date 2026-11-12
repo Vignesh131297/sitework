@@ -190,6 +190,7 @@ enum NotificationType {
   STOCK
   LEAVE
   STAFF_REQUEST
+  VEHICLE
 }
 
 enum ReferenceType {
@@ -205,6 +206,16 @@ enum ReferenceType {
   MATERIAL_REQUEST
   LEAVE_REQUEST
   STAFF_REQUEST
+  VEHICLE
+  VEHICLE_REPAIR_REQUEST
+}
+
+enum VehicleType {
+  BIKE
+  SCOOTER
+  CAR
+  VAN
+  OTHER
 }
 
 enum PushStatus {
@@ -244,42 +255,48 @@ model User {
   passwordResetCodes PasswordResetCode[]
   notifications      Notification[]
 
-  sitesCreated                Site[]               @relation("SiteCreatedBy")
-  engineerAssignments         EngineerAssignment[] @relation("EngineerAssignmentEngineer")
-  engineerAssignmentsMade     EngineerAssignment[] @relation("EngineerAssignmentAssignedBy")
-  staffAssignment             StaffAssignment?     @relation("StaffAssignmentStaff")
-  supervisedStaff             StaffAssignment[]    @relation("StaffAssignmentEngineer")
-  staffAssignmentsMade        StaffAssignment[]    @relation("StaffAssignmentAssignedBy")
-  assignmentHistory           AssignmentHistory[]  @relation("AssignmentHistoryUser")
-  assignmentHistoryAsEngineer AssignmentHistory[]  @relation("AssignmentHistoryEngineer")
-  assignmentHistoryEnded      AssignmentHistory[]  @relation("AssignmentHistoryEndedBy")
-  attendance                  Attendance[]         @relation("AttendanceStaff")
-  attendanceCorrections       Attendance[]         @relation("AttendanceCorrectedBy")
-  staffUpdates                StaffUpdate[]        @relation("StaffUpdateStaff")
-  staffUpdatesToReview        StaffUpdate[]        @relation("StaffUpdateEngineer")
-  staffUpdatesAdminViewed     StaffUpdate[]        @relation("StaffUpdateAdminViewedBy")
-  missedUpdates               MissedUpdate[]       @relation("MissedUpdateStaff")
-  missedUpdatesAsEngineer     MissedUpdate[]       @relation("MissedUpdateEngineer")
-  engineerUpdates             EngineerUpdate[]     @relation("EngineerUpdateEngineer")
-  engineerUpdatesAdminViewed  EngineerUpdate[]     @relation("EngineerUpdateAdminViewedBy")
-  issuesReported              Issue[]              @relation("IssueReportedBy")
-  issuesResolved              Issue[]              @relation("IssueResolvedBy")
+  sitesCreated                Site[]                 @relation("SiteCreatedBy")
+  engineerAssignments         EngineerAssignment[]   @relation("EngineerAssignmentEngineer")
+  engineerAssignmentsMade     EngineerAssignment[]   @relation("EngineerAssignmentAssignedBy")
+  staffAssignment             StaffAssignment?       @relation("StaffAssignmentStaff")
+  supervisedStaff             StaffAssignment[]      @relation("StaffAssignmentEngineer")
+  staffAssignmentsMade        StaffAssignment[]      @relation("StaffAssignmentAssignedBy")
+  assignmentHistory           AssignmentHistory[]    @relation("AssignmentHistoryUser")
+  assignmentHistoryAsEngineer AssignmentHistory[]    @relation("AssignmentHistoryEngineer")
+  assignmentHistoryEnded      AssignmentHistory[]    @relation("AssignmentHistoryEndedBy")
+  attendance                  Attendance[]           @relation("AttendanceStaff")
+  attendanceCorrections       Attendance[]           @relation("AttendanceCorrectedBy")
+  staffUpdates                StaffUpdate[]          @relation("StaffUpdateStaff")
+  staffUpdatesToReview        StaffUpdate[]          @relation("StaffUpdateEngineer")
+  staffUpdatesAdminViewed     StaffUpdate[]          @relation("StaffUpdateAdminViewedBy")
+  missedUpdates               MissedUpdate[]         @relation("MissedUpdateStaff")
+  missedUpdatesAsEngineer     MissedUpdate[]         @relation("MissedUpdateEngineer")
+  engineerUpdates             EngineerUpdate[]       @relation("EngineerUpdateEngineer")
+  engineerUpdatesAdminViewed  EngineerUpdate[]       @relation("EngineerUpdateAdminViewedBy")
+  issuesReported              Issue[]                @relation("IssueReportedBy")
+  issuesResolved              Issue[]                @relation("IssueResolvedBy")
   attachmentsUploaded         Attachment[]
   milestonesCreated           PaymentMilestone[]
-  paymentsRecorded            Payment[]            @relation("PaymentRecordedBy")
-  paymentsVoided              Payment[]            @relation("PaymentVoidedBy")
-  stockEntriesCreated         StockEntry[]         @relation("StockEntryCreatedBy")
-  stockEntriesReceived        StockEntry[]         @relation("StockEntryReceivedBy")
-  stockEntriesVoided          StockEntry[]         @relation("StockEntryVoidedBy")
-  godownAssignments           GodownAssignment[]   @relation("GodownAssignmentManager")
-  godownAssignmentsMade       GodownAssignment[]   @relation("GodownAssignmentAssignedBy")
-  materialRequests            MaterialRequest[]    @relation("MaterialRequestRequestedBy")
-  materialRequestsReviewed    MaterialRequest[]    @relation("MaterialRequestReviewedBy")
-  materialRequestsClosed      MaterialRequest[]    @relation("MaterialRequestClosedBy")
-  leaveRequests               LeaveRequest[]       @relation("LeaveRequestUser")
-  leaveRequestsReviewed       LeaveRequest[]       @relation("LeaveRequestReviewedBy")
-  staffRequests               StaffRequest[]       @relation("StaffRequestStaff")
-  staffRequestsReviewed       StaffRequest[]       @relation("StaffRequestReviewedBy")
+  paymentsRecorded            Payment[]              @relation("PaymentRecordedBy")
+  paymentsVoided              Payment[]              @relation("PaymentVoidedBy")
+  stockEntriesCreated         StockEntry[]           @relation("StockEntryCreatedBy")
+  stockEntriesReceived        StockEntry[]           @relation("StockEntryReceivedBy")
+  stockEntriesVoided          StockEntry[]           @relation("StockEntryVoidedBy")
+  godownAssignments           GodownAssignment[]     @relation("GodownAssignmentManager")
+  godownAssignmentsMade       GodownAssignment[]     @relation("GodownAssignmentAssignedBy")
+  materialRequests            MaterialRequest[]      @relation("MaterialRequestRequestedBy")
+  materialRequestsReviewed    MaterialRequest[]      @relation("MaterialRequestReviewedBy")
+  materialRequestsClosed      MaterialRequest[]      @relation("MaterialRequestClosedBy")
+  leaveRequests               LeaveRequest[]         @relation("LeaveRequestUser")
+  leaveRequestsReviewed       LeaveRequest[]         @relation("LeaveRequestReviewedBy")
+  staffRequests               StaffRequest[]         @relation("StaffRequestStaff")
+  staffRequestsReviewed       StaffRequest[]         @relation("StaffRequestReviewedBy")
+  vehiclesCreated             Vehicle[]              @relation("VehicleCreatedBy")
+  vehicleAssignments          VehicleAssignment[]    @relation("VehicleAssignmentUser")
+  vehicleAssignmentsGiven     VehicleAssignment[]    @relation("VehicleAssignmentGivenBy")
+  vehicleAssignmentsReturned  VehicleAssignment[]    @relation("VehicleAssignmentReturnedBy")
+  vehicleRepairRequests       VehicleRepairRequest[] @relation("VehicleRepairRequestUser")
+  vehicleRepairsReviewed      VehicleRepairRequest[] @relation("VehicleRepairRequestReviewedBy")
 
   @@index([role, isActive])
   @@map("users")
@@ -788,6 +805,91 @@ model StaffRequest {
   @@index([status, createdAt])
   @@index([siteId, status])
   @@map("staff_requests")
+}
+
+// ──────────────────────────── Vehicles ────────────────────────────
+
+/// A company vehicle (bike, car, ...) that an admin gives to a staff member or an
+/// engineer. Never deleted: one no longer in use is deactivated.
+model Vehicle {
+  id             String      @id @default(uuid(7)) @db.Uuid
+  /// Human reference, shown as VH-0001.
+  number         Int         @unique @default(autoincrement())
+  type           VehicleType
+  /// Upper-case, no spaces, e.g. TN09AB1234.
+  registrationNo String      @unique @map("registration_no")
+  /// e.g. "Hero Splendor Plus".
+  makeModel      String      @map("make_model")
+  note           String?
+  isActive       Boolean     @default(true) @map("is_active")
+  createdById    String      @map("created_by") @db.Uuid
+  createdAt      DateTime    @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt      DateTime    @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  createdBy      User                   @relation("VehicleCreatedBy", fields: [createdById], references: [id], onDelete: Restrict)
+  assignments    VehicleAssignment[]
+  repairRequests VehicleRepairRequest[]
+
+  @@index([isActive])
+  @@map("vehicles")
+}
+
+/// Who holds a vehicle, and who held it before. The open row (no returned_on) is
+/// the current holder: at most one per vehicle and one per person (partial unique
+/// indexes in the migration).
+model VehicleAssignment {
+  id           String    @id @default(uuid(7)) @db.Uuid
+  vehicleId    String    @map("vehicle_id") @db.Uuid
+  userId       String    @map("user_id") @db.Uuid
+  givenOn      DateTime  @map("given_on") @db.Date
+  returnedOn   DateTime? @map("returned_on") @db.Date
+  /// Said when it was given, e.g. the condition or what came with it.
+  note         String?
+  /// Said when it came back.
+  returnNote   String?   @map("return_note")
+  givenById    String    @map("given_by") @db.Uuid
+  returnedById String?   @map("returned_by") @db.Uuid
+  createdAt    DateTime  @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt    DateTime  @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  vehicle    Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Restrict)
+  user       User    @relation("VehicleAssignmentUser", fields: [userId], references: [id], onDelete: Restrict)
+  givenBy    User    @relation("VehicleAssignmentGivenBy", fields: [givenById], references: [id], onDelete: Restrict)
+  returnedBy User?   @relation("VehicleAssignmentReturnedBy", fields: [returnedById], references: [id], onDelete: SetNull)
+
+  @@index([vehicleId, givenOn])
+  @@index([userId, givenOn])
+  @@map("vehicle_assignments")
+}
+
+/// Money for a repair, asked for by whoever holds the vehicle. Only an admin decides.
+model VehicleRepairRequest {
+  id           String         @id @default(uuid(7)) @db.Uuid
+  /// Human reference, shown as VR-0001.
+  number       Int            @unique @default(autoincrement())
+  /// Idempotency key from the phone.
+  requestId    String         @unique @map("request_id") @db.Uuid
+  vehicleId    String         @map("vehicle_id") @db.Uuid
+  userId       String         @map("user_id") @db.Uuid
+  amount       Decimal        @db.Decimal(14, 2)
+  /// What needs repair.
+  note         String
+  status       ApprovalStatus @default(PENDING)
+  reviewedById String?        @map("reviewed_by") @db.Uuid
+  reviewedAt   DateTime?      @map("reviewed_at") @db.Timestamptz(3)
+  /// The admin's note, or why it was rejected.
+  reviewNote   String?        @map("review_note")
+  createdAt    DateTime       @default(now()) @map("created_at") @db.Timestamptz(3)
+  updatedAt    DateTime       @updatedAt @map("updated_at") @db.Timestamptz(3)
+
+  vehicle    Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Restrict)
+  user       User    @relation("VehicleRepairRequestUser", fields: [userId], references: [id], onDelete: Restrict)
+  reviewedBy User?   @relation("VehicleRepairRequestReviewedBy", fields: [reviewedById], references: [id], onDelete: SetNull)
+
+  @@index([userId, createdAt])
+  @@index([status, createdAt])
+  @@index([vehicleId, createdAt])
+  @@map("vehicle_repair_requests")
 }
 
 // ───────────────────────────── Stock ─────────────────────────────

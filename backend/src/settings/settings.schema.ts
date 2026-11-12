@@ -76,6 +76,10 @@ export const settingsSchemas = {
     /** When, on working days (business time). */
     usageReminderAt: timeOfDay,
   }),
+  vehicles: z.object({
+    /** Largest amount one repair request may ask for, in rupees. */
+    maxRepairRupees: z.number().int().min(1).max(10_000_000),
+  }),
 };
 
 export type SettingsKey = keyof typeof settingsSchemas;
@@ -126,6 +130,9 @@ export const DEFAULT_SETTINGS: Settings = {
   stock: {
     usageReminders: true,
     usageReminderAt: '18:30',
+  },
+  vehicles: {
+    maxRepairRupees: 50_000,
   },
 };
 

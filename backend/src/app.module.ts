@@ -38,6 +38,7 @@ import { StaffUpdatesModule } from './staff-updates/staff-updates.module.js';
 import { StockModule } from './stock/stock.module.js';
 import { StorageModule } from './storage/storage.module.js';
 import { UsersModule } from './users/users.module.js';
+import { VehiclesModule } from './vehicles/vehicles.module.js';
 
 @Module({
   imports: [
@@ -92,6 +93,7 @@ import { UsersModule } from './users/users.module.js';
     PaymentsModule,
     StockModule,
     RequestsModule,
+    VehiclesModule,
     ReportsModule,
     JobsModule,
     DashboardModule,

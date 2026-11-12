@@ -4,11 +4,15 @@ import {
   leaveDecided,
   leaveRequested,
   milestoneOverdue,
+  repairMoneyDecided,
+  repairMoneyRequested,
   staffRequestCreated,
   staffRequestDecided,
   staffRequestSummary,
   staffUpdateSubmitted,
   updatesMissed,
+  vehicleGiven,
+  vehicleTakenBack,
 } from './notification-messages.js';
 
 // Wording follows the examples in the product spec.
@@ -162,6 +166,55 @@ describe('notification messages', () => {
     ).toEqual({
       title: '₹2,500 advance rejected',
       message: 'RQ-0001 · by Admin · Already given this month',
+    });
+  });
+
+  it('tells the holder about their vehicle and the admins about repair money', () => {
+    const label = 'Hero Splendor Plus · TN09BK4821';
+    expect(vehicleGiven({ code: 'VH-0001', label, byName: 'Admin' })).toEqual({
+      title: 'Hero Splendor Plus · TN09BK4821 was given to you',
+      message: 'VH-0001 · by Admin',
+    });
+    expect(
+      vehicleTakenBack({ code: 'VH-0001', label, byName: 'Admin' }),
+    ).toEqual({
+      title: 'Hero Splendor Plus · TN09BK4821 was taken back',
+      message: 'VH-0001 · by Admin',
+    });
+    expect(
+      repairMoneyRequested({
+        code: 'VR-0004',
+        name: 'Ravi',
+        amount: toPaise('850'),
+        label,
+      }),
+    ).toEqual({
+      title: 'Ravi asked for ₹850 for a repair',
+      message: 'VR-0004 · Hero Splendor Plus · TN09BK4821',
+    });
+    expect(
+      repairMoneyDecided({
+        code: 'VR-0004',
+        amount: toPaise('850'),
+        approved: true,
+        byName: 'Admin',
+        note: null,
+      }),
+    ).toEqual({
+      title: '₹850 repair money approved',
+      message: 'VR-0004 · by Admin',
+    });
+    expect(
+      repairMoneyDecided({
+        code: 'VR-0004',
+        amount: toPaise('2400.50'),
+        approved: false,
+        byName: 'Admin',
+        note: 'Get a second quote',
+      }),
+    ).toEqual({
+      title: '₹2,400.50 repair money rejected',
+      message: 'VR-0004 · by Admin · Get a second quote',
     });
   });
 });

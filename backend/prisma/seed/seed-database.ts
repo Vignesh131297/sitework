@@ -38,6 +38,7 @@ import {
 import { createRandom } from './random.js';
 import { seedRequests } from './requests.js';
 import { seedStock } from './stock.js';
+import { seedVehicles } from './vehicles.js';
 
 const HISTORY_DAYS = 14;
 const NOTIFICATION_DAYS = 3;
@@ -394,8 +395,22 @@ export async function seedDatabase(
     adminId,
   });
 
+  const vehicles = await seedVehicles(prisma, {
+    today,
+    timeZone,
+    userId,
+    userName: (key) => required(users.get(key), `user ${key}`).name,
+    adminId,
+    adminName: required(users.get('admin'), 'user admin').name,
+  });
+
   await prisma.notification.createMany({
-    data: [...notifications, ...stock.notifications, ...requests.notifications],
+    data: [
+      ...notifications,
+      ...stock.notifications,
+      ...requests.notifications,
+      ...vehicles.notifications,
+    ],
   });
 
   return {
@@ -415,10 +430,13 @@ export async function seedDatabase(
     stockEntries: stock.stockEntries,
     leaveRequests: requests.leaveRequests,
     staffRequests: requests.staffRequests,
+    vehicles: vehicles.vehicles,
+    vehicleRepairRequests: vehicles.vehicleRepairRequests,
     notifications:
       notifications.length +
       stock.notifications.length +
-      requests.notifications.length,
+      requests.notifications.length +
+      vehicles.notifications.length,
   };
 }
 
@@ -429,7 +447,7 @@ async function truncateAllTables(prisma: PrismaClient): Promise<void> {
   if (tables.length === 0) return;
   // Names come from the catalog, not user input.
   const list = tables.map((t) => `"public"."${t.tablename}"`).join(', ');
-  // RESTART IDENTITY: requests are numbered from MR-0001, LV-0001, RQ-0001 again.
+  // RESTART IDENTITY: numbering starts again from MR-0001, LV-0001, RQ-0001, VH-0001.
   await prisma.$executeRawUnsafe(
     `TRUNCATE TABLE ${list} RESTART IDENTITY CASCADE`,
   );
