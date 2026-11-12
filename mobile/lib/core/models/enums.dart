@@ -139,7 +139,8 @@ enum NotificationType {
   system('SYSTEM'),
   stock('STOCK'),
   leave('LEAVE'),
-  staffRequest('STAFF_REQUEST');
+  staffRequest('STAFF_REQUEST'),
+  vehicle('VEHICLE');
 
   const NotificationType(this.apiValue);
   final String apiValue;
@@ -158,7 +159,9 @@ enum ReferenceType {
   stockEntry('STOCK_ENTRY'),
   materialRequest('MATERIAL_REQUEST'),
   leaveRequest('LEAVE_REQUEST'),
-  staffRequest('STAFF_REQUEST');
+  staffRequest('STAFF_REQUEST'),
+  vehicle('VEHICLE'),
+  vehicleRepairRequest('VEHICLE_REPAIR_REQUEST');
 
   const ReferenceType(this.apiValue);
   final String apiValue;
@@ -296,6 +299,19 @@ enum StaffRequestKind {
   food('FOOD');
 
   const StaffRequestKind(this.apiValue);
+  final String apiValue;
+}
+
+/// A company vehicle given to a staff member or an engineer.
+@JsonEnum(valueField: 'apiValue')
+enum VehicleType {
+  bike('BIKE'),
+  scooter('SCOOTER'),
+  car('CAR'),
+  van('VAN'),
+  other('OTHER');
+
+  const VehicleType(this.apiValue);
   final String apiValue;
 }
 

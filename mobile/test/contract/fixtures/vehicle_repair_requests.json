@@ -1,0 +1,147 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a1cfa9-2004-765a-aa72-58b3ecd179b2",
+      "code": "VR-0001",
+      "vehicle": {
+        "id": "01a1cfa9-1fce-757e-be01-522ff60a2cc7",
+        "code": "VH-0001",
+        "type": "BIKE",
+        "registrationNo": "TN09BK4821",
+        "makeModel": "Hero Splendor Plus"
+      },
+      "user": {
+        "id": "01a1cfa9-1a0c-7081-98c8-531f41e757c9",
+        "name": "Ravi",
+        "role": "STAFF",
+        "employeeCode": "STF-001"
+      },
+      "amount": "850.00",
+      "note": "Rear tyre puncture and a new tube",
+      "status": "PENDING",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "reviewNote": null,
+      "createdAt": "2026-11-12T03:10:00.000Z",
+      "canApprove": true,
+      "canCancel": false
+    },
+    {
+      "id": "01a1cfa9-2013-7299-b829-eb5e361bb7c0",
+      "code": "VR-0002",
+      "vehicle": {
+        "id": "01a1cfa9-1feb-7195-9940-c302afeac1f3",
+        "code": "VH-0002",
+        "type": "BIKE",
+        "registrationNo": "TN10CQ7730",
+        "makeModel": "Honda Shine 125"
+      },
+      "user": {
+        "id": "01a1cfa9-19fb-778c-abbc-c9f98fe80ad9",
+        "name": "Arun Kumar",
+        "role": "ENGINEER",
+        "employeeCode": "ENG-001"
+      },
+      "amount": "2400.00",
+      "note": "Chain and sprocket set is worn out",
+      "status": "PENDING",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "reviewNote": null,
+      "createdAt": "2026-11-11T13:40:00.000Z",
+      "canApprove": true,
+      "canCancel": false
+    },
+    {
+      "id": "01a1cfa9-2019-7181-8d40-6ccfe62c9bd4",
+      "code": "VR-0003",
+      "vehicle": {
+        "id": "01a1cfa9-1fce-757e-be01-522ff60a2cc7",
+        "code": "VH-0001",
+        "type": "BIKE",
+        "registrationNo": "TN09BK4821",
+        "makeModel": "Hero Splendor Plus"
+      },
+      "user": {
+        "id": "01a1cfa9-1a0c-7081-98c8-531f41e757c9",
+        "name": "Ravi",
+        "role": "STAFF",
+        "employeeCode": "STF-001"
+      },
+      "amount": "1200.00",
+      "note": "General service and engine oil change",
+      "status": "APPROVED",
+      "reviewedBy": {
+        "id": "01a1cfa9-19e4-77b0-9bb3-63573a02aa44",
+        "name": "Admin User"
+      },
+      "reviewedAt": "2026-10-31T06:00:00.000Z",
+      "reviewNote": "Use the Hero service centre on the main road.",
+      "createdAt": "2026-10-31T03:35:00.000Z",
+      "canApprove": false,
+      "canCancel": false
+    },
+    {
+      "id": "01a1cfa9-201f-74aa-8e10-6ee465adc15d",
+      "code": "VR-0004",
+      "vehicle": {
+        "id": "01a1cfa9-1ff4-737c-ba23-6b8093b1219a",
+        "code": "VH-0003",
+        "type": "SCOOTER",
+        "registrationNo": "TN09AZ1164",
+        "makeModel": "Honda Activa 6G"
+      },
+      "user": {
+        "id": "01a1cfa9-1a14-711a-a6d9-25b9c51c046d",
+        "name": "Kumar",
+        "role": "STAFF",
+        "employeeCode": "STF-002"
+      },
+      "amount": "6500.00",
+      "note": "New seat cover, mirrors and body polish",
+      "status": "REJECTED",
+      "reviewedBy": {
+        "id": "01a1cfa9-19e4-77b0-9bb3-63573a02aa44",
+        "name": "Admin User"
+      },
+      "reviewedAt": "2026-11-07T04:45:00.000Z",
+      "reviewNote": "Not needed now. Ask again for the mirrors alone.",
+      "createdAt": "2026-11-06T07:50:00.000Z",
+      "canApprove": false,
+      "canCancel": false
+    },
+    {
+      "id": "01a1cfa9-2024-766a-8034-04518c13c3f5",
+      "code": "VR-0005",
+      "vehicle": {
+        "id": "01a1cfa9-1feb-7195-9940-c302afeac1f3",
+        "code": "VH-0002",
+        "type": "BIKE",
+        "registrationNo": "TN10CQ7730",
+        "makeModel": "Honda Shine 125"
+      },
+      "user": {
+        "id": "01a1cfa9-19fb-778c-abbc-c9f98fe80ad9",
+        "name": "Arun Kumar",
+        "role": "ENGINEER",
+        "employeeCode": "ENG-001"
+      },
+      "amount": "300.00",
+      "note": "Brake cable adjustment",
+      "status": "CANCELLED",
+      "reviewedBy": null,
+      "reviewedAt": null,
+      "reviewNote": null,
+      "createdAt": "2026-11-03T11:30:00.000Z",
+      "canApprove": false,
+      "canCancel": false
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 10,
+    "total": 5,
+    "totalPages": 1
+  }
+}

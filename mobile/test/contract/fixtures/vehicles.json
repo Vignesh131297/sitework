@@ -1,0 +1,93 @@
+{
+  "success": true,
+  "data": [
+    {
+      "id": "01a1cfa9-1fce-757e-be01-522ff60a2cc7",
+      "code": "VH-0001",
+      "type": "BIKE",
+      "registrationNo": "TN09BK4821",
+      "makeModel": "Hero Splendor Plus",
+      "note": null,
+      "isActive": true,
+      "holder": {
+        "user": {
+          "id": "01a1cfa9-1a0c-7081-98c8-531f41e757c9",
+          "name": "Ravi",
+          "role": "STAFF",
+          "employeeCode": "STF-001"
+        },
+        "givenOn": "2026-09-28",
+        "note": "With helmet and tool kit"
+      },
+      "createdAt": "2026-04-06T04:30:00.000Z"
+    },
+    {
+      "id": "01a1cfa9-1feb-7195-9940-c302afeac1f3",
+      "code": "VH-0002",
+      "type": "BIKE",
+      "registrationNo": "TN10CQ7730",
+      "makeModel": "Honda Shine 125",
+      "note": "Insurance renewed in June",
+      "isActive": true,
+      "holder": {
+        "user": {
+          "id": "01a1cfa9-19fb-778c-abbc-c9f98fe80ad9",
+          "name": "Arun Kumar",
+          "role": "ENGINEER",
+          "employeeCode": "ENG-001"
+        },
+        "givenOn": "2026-04-26",
+        "note": null
+      },
+      "createdAt": "2026-04-06T04:30:00.000Z"
+    },
+    {
+      "id": "01a1cfa9-1ff4-737c-ba23-6b8093b1219a",
+      "code": "VH-0003",
+      "type": "SCOOTER",
+      "registrationNo": "TN09AZ1164",
+      "makeModel": "Honda Activa 6G",
+      "note": null,
+      "isActive": true,
+      "holder": {
+        "user": {
+          "id": "01a1cfa9-1a14-711a-a6d9-25b9c51c046d",
+          "name": "Kumar",
+          "role": "STAFF",
+          "employeeCode": "STF-002"
+        },
+        "givenOn": "2026-10-23",
+        "note": null
+      },
+      "createdAt": "2026-04-06T04:30:00.000Z"
+    },
+    {
+      "id": "01a1cfa9-1ffc-77d4-88eb-a2c748cea5c9",
+      "code": "VH-0004",
+      "type": "BIKE",
+      "registrationNo": "TN22DE0915",
+      "makeModel": "TVS XL100",
+      "note": null,
+      "isActive": true,
+      "holder": null,
+      "createdAt": "2026-04-06T04:30:00.000Z"
+    },
+    {
+      "id": "01a1cfa9-2000-740f-a65f-2cf303420a10",
+      "code": "VH-0005",
+      "type": "VAN",
+      "registrationNo": "TN09T5502",
+      "makeModel": "Mahindra Bolero Pickup",
+      "note": "Sold in August",
+      "isActive": false,
+      "holder": null,
+      "createdAt": "2026-04-06T04:30:00.000Z"
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "limit": 10,
+    "total": 5,
+    "totalPages": 1
+  }
+}

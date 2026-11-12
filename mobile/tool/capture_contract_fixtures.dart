@@ -105,6 +105,15 @@ Future<void> main(List<String> args) async {
     final staffRequestId = await save('staff_requests', '/staff-requests?limit=5', admin);
     await save('staff_request_detail', '/staff-requests/$staffRequestId', admin);
 
+    // Company vehicles, who holds them, and the repair money asked for them.
+    final vehicleId = await save('vehicles', '/vehicles?limit=10', admin);
+    await save('vehicle_detail', '/vehicles/$vehicleId', admin);
+    final vehicle = (await call('GET', '/vehicles/$vehicleId', token: admin))['data'] as Map<String, dynamic>;
+    final holderId = ((vehicle['holder'] as Map<String, dynamic>)['user'] as Map<String, dynamic>)['id'] as String;
+    await save('staff_detail_with_vehicle', '/staff/$holderId', admin);
+    final repairId = await save('vehicle_repair_requests', '/vehicle-repair-requests?limit=10', admin);
+    await save('vehicle_repair_request_detail', '/vehicle-repair-requests/$repairId', admin);
+
     // Godown managers and admins.
     final managerId = await save('godown_managers', '/godown-managers?limit=5', admin);
     await save('godown_manager_detail', '/godown-managers/$managerId', admin);
@@ -119,6 +128,7 @@ Future<void> main(List<String> args) async {
     await save('report_sites_engineer', '/reports/sites?$range', engineer);
     await save('report_stock_engineer', '/reports/stock?$range', engineer);
     await save('stock_overview_engineer', '/stock/overview', engineer);
+    await save('vehicle_mine_engineer', '/vehicles/mine', engineer);
 
     final staff = await signIn('+919000000101', 'Staff@123');
     await save('staff_today', '/me/today', staff);
@@ -130,6 +140,8 @@ Future<void> main(List<String> args) async {
     await save('leave_requests_staff', '/leave-requests?mine=true&limit=5', staff);
     await save('staff_requests_staff', '/staff-requests?limit=5', staff);
     await save('material_requests_staff', '/material-requests?limit=10', staff);
+    await save('vehicle_mine_staff', '/vehicles/mine', staff);
+    await save('vehicle_repair_requests_staff', '/vehicle-repair-requests?mine=true&limit=5', staff);
 
     final manager = await signIn('+919000000201', 'Godown@123');
     await save('dashboard_godown', '/dashboard/godown', manager);

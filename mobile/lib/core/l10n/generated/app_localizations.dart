@@ -4770,6 +4770,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Closed by {name}: leftover sent back to the godown.'**
   String requestClosedLeftover(String name);
+
   /// No description provided for @attendanceOnLeave.
   ///
   /// In en, this message translates to:
@@ -5147,6 +5148,420 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dinner'**
   String get mealDinner;
+
+  /// No description provided for @vehiclesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicles'**
+  String get vehiclesTitle;
+
+  /// No description provided for @vehiclesSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Company bikes and who has them'**
+  String get vehiclesSubtitle;
+
+  /// No description provided for @vehiclesRepairWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 repair request waiting} other{{count} repair requests waiting}}'**
+  String vehiclesRepairWaiting(int count);
+
+  /// No description provided for @vehiclesSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search vehicle or person'**
+  String get vehiclesSearch;
+
+  /// No description provided for @vehiclesFilterGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'Given'**
+  String get vehiclesFilterGiven;
+
+  /// No description provided for @vehiclesFilterFree.
+  ///
+  /// In en, this message translates to:
+  /// **'Free'**
+  String get vehiclesFilterFree;
+
+  /// No description provided for @vehiclesEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No vehicles here.'**
+  String get vehiclesEmpty;
+
+  /// No description provided for @vehicleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle'**
+  String get vehicleTitle;
+
+  /// No description provided for @vehicleNewTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add vehicle'**
+  String get vehicleNewTitle;
+
+  /// No description provided for @vehicleEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit vehicle'**
+  String get vehicleEditTitle;
+
+  /// No description provided for @vehicleType.
+  ///
+  /// In en, this message translates to:
+  /// **'Kind of vehicle'**
+  String get vehicleType;
+
+  /// No description provided for @vehicleTypeBike.
+  ///
+  /// In en, this message translates to:
+  /// **'Bike'**
+  String get vehicleTypeBike;
+
+  /// No description provided for @vehicleTypeScooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Scooter'**
+  String get vehicleTypeScooter;
+
+  /// No description provided for @vehicleTypeCar.
+  ///
+  /// In en, this message translates to:
+  /// **'Car'**
+  String get vehicleTypeCar;
+
+  /// No description provided for @vehicleTypeVan.
+  ///
+  /// In en, this message translates to:
+  /// **'Van'**
+  String get vehicleTypeVan;
+
+  /// No description provided for @vehicleTypeOther.
+  ///
+  /// In en, this message translates to:
+  /// **'Other'**
+  String get vehicleTypeOther;
+
+  /// No description provided for @vehicleRegistration.
+  ///
+  /// In en, this message translates to:
+  /// **'Registration number'**
+  String get vehicleRegistration;
+
+  /// No description provided for @vehicleRegistrationHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'As on the number plate'**
+  String get vehicleRegistrationHelper;
+
+  /// No description provided for @vehicleMakeModel.
+  ///
+  /// In en, this message translates to:
+  /// **'Make and model'**
+  String get vehicleMakeModel;
+
+  /// No description provided for @vehicleMakeModelHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'For example, Hero Splendor Plus'**
+  String get vehicleMakeModelHelper;
+
+  /// No description provided for @vehicleSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save vehicle'**
+  String get vehicleSave;
+
+  /// No description provided for @vehicleSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'{code} saved'**
+  String vehicleSaved(String code);
+
+  /// No description provided for @vehicleWith.
+  ///
+  /// In en, this message translates to:
+  /// **'With {name}'**
+  String vehicleWith(String name);
+
+  /// No description provided for @vehicleFree.
+  ///
+  /// In en, this message translates to:
+  /// **'With nobody'**
+  String get vehicleFree;
+
+  /// No description provided for @vehicleOutOfUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Out of use'**
+  String get vehicleOutOfUse;
+
+  /// No description provided for @vehicleHolder.
+  ///
+  /// In en, this message translates to:
+  /// **'With'**
+  String get vehicleHolder;
+
+  /// No description provided for @vehicleSince.
+  ///
+  /// In en, this message translates to:
+  /// **'Since {date}'**
+  String vehicleSince(String date);
+
+  /// No description provided for @vehicleGive.
+  ///
+  /// In en, this message translates to:
+  /// **'Give to someone'**
+  String get vehicleGive;
+
+  /// No description provided for @vehicleGiveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Give {vehicle}'**
+  String vehicleGiveTitle(String vehicle);
+
+  /// No description provided for @vehicleGiveToTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Give a vehicle to {name}'**
+  String vehicleGiveToTitle(String name);
+
+  /// No description provided for @vehicleGiveTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Give to'**
+  String get vehicleGiveTo;
+
+  /// No description provided for @vehicleChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Vehicle'**
+  String get vehicleChoose;
+
+  /// No description provided for @vehicleGivenOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Given on'**
+  String get vehicleGivenOn;
+
+  /// No description provided for @vehicleNoFree.
+  ///
+  /// In en, this message translates to:
+  /// **'No free vehicle. Add one, or take one back first.'**
+  String get vehicleNoFree;
+
+  /// No description provided for @vehicleGiveSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Give vehicle'**
+  String get vehicleGiveSave;
+
+  /// No description provided for @vehicleGivenTo.
+  ///
+  /// In en, this message translates to:
+  /// **'{vehicle} given to {name}'**
+  String vehicleGivenTo(String vehicle, String name);
+
+  /// No description provided for @vehicleTakeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Take back'**
+  String get vehicleTakeBack;
+
+  /// No description provided for @vehicleTakeBackTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Take back {vehicle}'**
+  String vehicleTakeBackTitle(String vehicle);
+
+  /// No description provided for @vehicleTakeBackFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'From {name}'**
+  String vehicleTakeBackFrom(String name);
+
+  /// No description provided for @vehicleReturnedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Came back on'**
+  String get vehicleReturnedOn;
+
+  /// No description provided for @vehicleTakenBack.
+  ///
+  /// In en, this message translates to:
+  /// **'{vehicle} taken back'**
+  String vehicleTakenBack(String vehicle);
+
+  /// No description provided for @vehicleHistory.
+  ///
+  /// In en, this message translates to:
+  /// **'Who had it'**
+  String get vehicleHistory;
+
+  /// No description provided for @vehicleHistoryEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Not given to anyone yet.'**
+  String get vehicleHistoryEmpty;
+
+  /// No description provided for @vehicleHistoryRange.
+  ///
+  /// In en, this message translates to:
+  /// **'{from} – {to}'**
+  String vehicleHistoryRange(String from, String to);
+
+  /// No description provided for @vehicleHistoryNow.
+  ///
+  /// In en, this message translates to:
+  /// **'{from} – now'**
+  String vehicleHistoryNow(String from);
+
+  /// No description provided for @vehicleMarkOutOfUse.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark out of use'**
+  String get vehicleMarkOutOfUse;
+
+  /// No description provided for @vehicleMarkOutOfUseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark {vehicle} out of use?'**
+  String vehicleMarkOutOfUseTitle(String vehicle);
+
+  /// No description provided for @vehicleMarkOutOfUseBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It can no longer be given to anyone. Its history is kept.'**
+  String get vehicleMarkOutOfUseBody;
+
+  /// No description provided for @vehicleBringBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Bring back into use'**
+  String get vehicleBringBack;
+
+  /// No description provided for @vehicleMarkedOutOfUse.
+  ///
+  /// In en, this message translates to:
+  /// **'{vehicle} is out of use'**
+  String vehicleMarkedOutOfUse(String vehicle);
+
+  /// No description provided for @vehicleBackInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'{vehicle} is back in use'**
+  String vehicleBackInUse(String vehicle);
+
+  /// No description provided for @vehicleRepairs.
+  ///
+  /// In en, this message translates to:
+  /// **'Repair money'**
+  String get vehicleRepairs;
+
+  /// No description provided for @vehicleRepairsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No repair money asked for.'**
+  String get vehicleRepairsEmpty;
+
+  /// No description provided for @myVehicleTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'My vehicle'**
+  String get myVehicleTitle;
+
+  /// No description provided for @repairTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Repair money'**
+  String get repairTitle;
+
+  /// No description provided for @repairAsk.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask for repair money'**
+  String get repairAsk;
+
+  /// No description provided for @repairAmount.
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get repairAmount;
+
+  /// No description provided for @repairAmountHelper.
+  ///
+  /// In en, this message translates to:
+  /// **'What the repair will cost'**
+  String get repairAmountHelper;
+
+  /// No description provided for @repairWhat.
+  ///
+  /// In en, this message translates to:
+  /// **'What needs repair?'**
+  String get repairWhat;
+
+  /// No description provided for @repairMoney.
+  ///
+  /// In en, this message translates to:
+  /// **'{amount} for repair'**
+  String repairMoney(String amount);
+
+  /// No description provided for @repairMine.
+  ///
+  /// In en, this message translates to:
+  /// **'My repair requests'**
+  String get repairMine;
+
+  /// No description provided for @repairNoVehicle.
+  ///
+  /// In en, this message translates to:
+  /// **'You do not have a company vehicle now.'**
+  String get repairNoVehicle;
+
+  /// No description provided for @requestsTabRepair.
+  ///
+  /// In en, this message translates to:
+  /// **'Bike repair'**
+  String get requestsTabRepair;
+
+  /// No description provided for @requestKindRepair.
+  ///
+  /// In en, this message translates to:
+  /// **'Bike repair'**
+  String get requestKindRepair;
+
+  /// No description provided for @requestKindRepairHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Money to repair your company vehicle'**
+  String get requestKindRepairHint;
+
+  /// No description provided for @personVehicle.
+  ///
+  /// In en, this message translates to:
+  /// **'Company vehicle'**
+  String get personVehicle;
+
+  /// No description provided for @personNoVehicle.
+  ///
+  /// In en, this message translates to:
+  /// **'No company vehicle'**
+  String get personNoVehicle;
+
+  /// No description provided for @personGiveVehicle.
+  ///
+  /// In en, this message translates to:
+  /// **'Give a vehicle'**
+  String get personGiveVehicle;
+
+  /// No description provided for @approvalsSubtitleAdmin.
+  ///
+  /// In en, this message translates to:
+  /// **'Leave, money, food and bike repair to approve'**
+  String get approvalsSubtitleAdmin;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

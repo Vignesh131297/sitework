@@ -45,6 +45,21 @@ abstract class SupervisedStaff with _$SupervisedStaff {
   factory SupervisedStaff.fromJson(Map<String, dynamic> json) => _$SupervisedStaffFromJson(json);
 }
 
+/// The company vehicle a staff member or an engineer holds.
+@freezed
+abstract class PersonVehicle with _$PersonVehicle {
+  const factory PersonVehicle({
+    required String id,
+    required String code,
+    required VehicleType type,
+    required String registrationNo,
+    required String makeModel,
+    required String givenOn,
+  }) = _PersonVehicle;
+
+  factory PersonVehicle.fromJson(Map<String, dynamic> json) => _$PersonVehicleFromJson(json);
+}
+
 @freezed
 abstract class PersonDetail with _$PersonDetail {
   const factory PersonDetail({
@@ -63,6 +78,9 @@ abstract class PersonDetail with _$PersonDetail {
     StaffAssignmentInfo? assignment,
     required bool mustChangePassword,
     @Default(<SupervisedStaff>[]) List<SupervisedStaff> supervisedStaff,
+
+    /// Staff and engineers: the company vehicle they hold now.
+    PersonVehicle? vehicle,
 
     /// Godown managers: the godowns they run.
     @Default(<IdName>[]) List<IdName> godowns,

@@ -6,10 +6,13 @@ import '../../../core/l10n/generated/app_localizations.dart';
 import '../../../core/routing/app_routes.dart';
 import '../../../core/routing/area.dart';
 import '../../../core/theme/status_colors.dart';
+import '../../auth/domain/user_role.dart';
+import '../../auth/presentation/session_controller.dart';
 import '../../dashboard/presentation/dashboard_widgets.dart';
 import '../data/requests_repository.dart';
 
-/// Dashboard link to leave, money and food waiting for the admin or engineer,
+/// Dashboard link to leave, money and food (and, for admins, bike repair money)
+/// waiting for the admin or engineer,
 /// with how many are waiting (none shown until it loads, or if it can't).
 class ApprovalsTile extends ConsumerWidget {
   const ApprovalsTile({super.key});
@@ -19,11 +22,14 @@ class ApprovalsTile extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final area = ref.watch(areaPathProvider);
     final waiting = ref.watch(requestsToReviewProvider).value ?? 0;
+    final admin = ref.watch(sessionProvider).value?.role == UserRole.admin;
     return CountTile(
       icon: Icons.event_note_outlined,
       tone: waiting > 0 ? StatusTone.warning : StatusTone.neutral,
       title: l10n.approvalsTitle,
-      subtitle: waiting > 0 ? l10n.approvalsWaitingCount(waiting) : l10n.approvalsSubtitle,
+      subtitle: waiting > 0
+          ? l10n.approvalsWaitingCount(waiting)
+          : (admin ? l10n.approvalsSubtitleAdmin : l10n.approvalsSubtitle),
       count: waiting > 0 ? waiting : null,
       onTap: () => context.push(AppRoutes.approvals(area)),
     );

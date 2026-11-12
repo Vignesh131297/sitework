@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/data/revision.dart';
 import '../../../core/models/enums.dart';
 import '../../../core/network/api_client.dart';
+import '../../auth/domain/user_role.dart';
+import '../../auth/presentation/session_controller.dart';
+import '../../vehicles/data/vehicles_repository.dart';
 import '../domain/request_models.dart';
 
 /// Leave (`/leave-requests`) and staff money and food requests (`/staff-requests`).
@@ -42,13 +45,7 @@ class RequestsRepository {
     required String reason,
   }) => _api.post(
     '/leave-requests',
-    body: {
-      'requestId': requestId,
-      'type': type.apiValue,
-      'fromDate': fromDate,
-      'toDate': toDate,
-      'reason': reason,
-    },
+    body: {'requestId': requestId, 'type': type.apiValue, 'fromDate': fromDate, 'toDate': toDate, 'reason': reason},
     decode: _leave,
   );
 
@@ -101,8 +98,7 @@ class RequestsRepository {
   Future<StaffRequest> rejectStaffRequest(String id, String reason) =>
       _api.post('/staff-requests/$id/reject', body: {'reason': reason}, decode: _staffRequest);
 
-  Future<StaffRequest> cancelStaffRequest(String id) =>
-      _api.post('/staff-requests/$id/cancel', decode: _staffRequest);
+  Future<StaffRequest> cancelStaffRequest(String id) => _api.post('/staff-requests/$id/cancel', decode: _staffRequest);
 
   static LeaveRequest _leave(Object? data) => LeaveRequest.fromJson(data! as Map<String, dynamic>);
 
@@ -123,13 +119,21 @@ final staffRequestProvider = FutureProvider.autoDispose.family<StaffRequest, Str
   return ref.watch(requestsRepositoryProvider).staffRequest(id);
 });
 
-/// Leave and money or food requests waiting for the caller (admins and engineers).
+/// Leave and money or food requests waiting for the caller (admins and
+/// engineers), and for admins the repair money requests too.
 final requestsToReviewProvider = FutureProvider.autoDispose<int>((ref) async {
   ref.watch(revisionProvider(DataSet.requests));
+  ref.watch(revisionProvider(DataSet.vehicles));
   final repository = ref.watch(requestsRepositoryProvider);
+  final admin = ref.watch(sessionProvider).value?.role == UserRole.admin;
   final totals = await Future.wait([
     repository.leave(page: 1, limit: 1, toReview: true).then((page) => page.total),
     repository.staffRequests(page: 1, limit: 1, toReview: true).then((page) => page.total),
+    if (admin)
+      ref
+          .watch(vehiclesRepositoryProvider)
+          .repairRequests(page: 1, limit: 1, toReview: true)
+          .then((page) => page.total),
   ]);
-  return totals[0] + totals[1];
+  return totals.fold<int>(0, (sum, total) => sum + total);
 });

@@ -13,6 +13,8 @@ import '../../auth/domain/user_role.dart';
 import '../../auth/presentation/session_controller.dart';
 import '../../stock/data/material_requests_repository.dart';
 import '../../stock/presentation/request_widgets.dart';
+import '../../vehicles/data/vehicles_repository.dart';
+import '../../vehicles/presentation/vehicle_widgets.dart';
 import '../data/requests_repository.dart';
 import 'request_widgets.dart';
 
@@ -20,14 +22,16 @@ import 'request_widgets.dart';
 enum MyRequestsTab {
   leave,
   money,
-  material;
+  material,
+  repair;
 
   /// The tab a link's `?tab=` value opens, if any.
   static MyRequestsTab? fromName(String? name) => values.where((tab) => tab.name == name).firstOrNull;
 }
 
-/// The caller's own requests. Staff: leave, money and food, and material for
-/// their site, with "New request" to ask for any of them. Engineers: their leave.
+/// The caller's own requests. Staff: leave, money and food, material for their
+/// site, and repair money for their company vehicle, with "New request" to ask
+/// for any of them. Engineers: their leave and their repair money.
 class MyRequestsScreen extends ConsumerWidget {
   const MyRequestsScreen({super.key, this.initialTab});
 
@@ -38,14 +42,26 @@ class MyRequestsScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     final staff = ref.watch(sessionProvider).value?.role == UserRole.staff;
     if (!staff) {
-      return Scaffold(
-        appBar: AppBar(title: Text(l10n.myLeaveTitle)),
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () => context.push(AppRoutes.leaveNew(ref.read(areaPathProvider))),
-          icon: const Icon(Icons.event_busy_outlined),
-          label: Text(l10n.leaveNewTitle),
+      return DefaultTabController(
+        length: 2,
+        initialIndex: initialTab == MyRequestsTab.repair ? 1 : 0,
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(l10n.requestsMyTitle),
+            bottom: TabBar(
+              tabs: [
+                Tab(text: l10n.requestsTabLeave),
+                Tab(text: l10n.requestsTabRepair),
+              ],
+            ),
+          ),
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () => context.push(AppRoutes.leaveNew(ref.read(areaPathProvider))),
+            icon: const Icon(Icons.event_busy_outlined),
+            label: Text(l10n.leaveNewTitle),
+          ),
+          body: const TabBarView(children: [_LeaveList(), _RepairList()]),
         ),
-        body: const _LeaveList(),
       );
     }
     return DefaultTabController(
@@ -55,10 +71,14 @@ class MyRequestsScreen extends ConsumerWidget {
         appBar: AppBar(
           title: Text(l10n.requestsMyTitle),
           bottom: TabBar(
+            // Four tabs don't fit a small phone side by side.
+            isScrollable: true,
+            tabAlignment: TabAlignment.start,
             tabs: [
               Tab(text: l10n.requestsTabLeave),
               Tab(text: l10n.requestsTabMoneyFood),
               Tab(text: l10n.requestsTabMaterial),
+              Tab(text: l10n.requestsTabRepair),
             ],
           ),
         ),
@@ -67,13 +87,13 @@ class MyRequestsScreen extends ConsumerWidget {
           icon: const Icon(Icons.add),
           label: Text(l10n.requestsNew),
         ),
-        body: const TabBarView(children: [_LeaveList(), _MoneyFoodList(), _MaterialList()]),
+        body: const TabBarView(children: [_LeaveList(), _MoneyFoodList(), _MaterialList(), _RepairList()]),
       ),
     );
   }
 }
 
-/// Leave, money, food or material: opens the form for the chosen one.
+/// Leave, money, food, material or bike repair: opens the form for the chosen one.
 Future<void> showNewRequestSheet(BuildContext context, String area) {
   final l10n = AppLocalizations.of(context);
   void open(String path) {
@@ -118,6 +138,12 @@ Future<void> showNewRequestSheet(BuildContext context, String area) {
             title: Text(l10n.requestKindMaterial),
             subtitle: Text(l10n.requestKindMaterialHint),
             onTap: () => open(AppRoutes.requestNew(area)),
+          ),
+          ListTile(
+            leading: const Icon(Icons.build_outlined),
+            title: Text(l10n.requestKindRepair),
+            subtitle: Text(l10n.requestKindRepairHint),
+            onTap: () => open(AppRoutes.repairRequestNew(area)),
           ),
           const SizedBox(height: AppSpacing.sm),
         ],
@@ -174,6 +200,24 @@ class _MaterialList extends ConsumerWidget {
       fetch: (page) => repository.list(page: page),
       itemBuilder: (context, request) => RequestTile(request: request),
       empty: EmptyList(icon: Icons.assignment_outlined, message: l10n.requestsEmpty),
+    );
+  }
+}
+
+/// Repair money the caller asked for, for a company vehicle they hold or held.
+class _RepairList extends ConsumerWidget {
+  const _RepairList();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final revision = ref.watch(revisionProvider(DataSet.vehicles));
+    final repository = ref.watch(vehiclesRepositoryProvider);
+    return PagedListView(
+      key: ValueKey('my-repair-requests-$revision'),
+      fetch: (page) => repository.repairRequests(page: page, mine: true),
+      itemBuilder: (context, request) => RepairRequestTile(request: request),
+      empty: EmptyList(icon: Icons.build_outlined, message: l10n.vehicleRepairsEmpty),
     );
   }
 }

@@ -115,12 +115,16 @@ class StaffRequestTile extends ConsumerWidget {
 
 /// Asks for an optional note before approving. Completes with the note ('' for
 /// none), or null if cancelled.
-Future<String?> showApproveDialog(BuildContext context, String code) =>
-    showDialog<String>(context: context, builder: (_) => _NoteDialog(code: code, reject: false));
+Future<String?> showApproveDialog(BuildContext context, String code) => showDialog<String>(
+  context: context,
+  builder: (_) => _NoteDialog(code: code, reject: false),
+);
 
 /// Asks why before rejecting. Completes with the reason, or null if cancelled.
-Future<String?> showRejectDialog(BuildContext context, String code) =>
-    showDialog<String>(context: context, builder: (_) => _NoteDialog(code: code, reject: true));
+Future<String?> showRejectDialog(BuildContext context, String code) => showDialog<String>(
+  context: context,
+  builder: (_) => _NoteDialog(code: code, reject: true),
+);
 
 class _NoteDialog extends StatefulWidget {
   const _NoteDialog({required this.code, required this.reject});
@@ -156,12 +160,8 @@ class _NoteDialogState extends State<_NoteDialog> {
           maxLength: 500,
           minLines: 1,
           maxLines: 3,
-          decoration: InputDecoration(
-            labelText: widget.reject ? l10n.approvalRejectReason : l10n.fieldNoteOptional,
-          ),
-          validator: widget.reject
-              ? (value) => (value?.trim().length ?? 0) < 3 ? l10n.validationRequired : null
-              : null,
+          decoration: InputDecoration(labelText: widget.reject ? l10n.approvalRejectReason : l10n.fieldNoteOptional),
+          validator: widget.reject ? (value) => (value?.trim().length ?? 0) < 3 ? l10n.validationRequired : null : null,
         ),
       ),
       actions: [

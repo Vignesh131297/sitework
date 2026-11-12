@@ -15,6 +15,9 @@ enum DataSet {
 
   /// Leave, and staff members' money and food requests.
   requests,
+
+  /// Company vehicles, who holds them, and money asked for their repair.
+  vehicles,
 }
 
 /// A counter per data set. Screens watch it; anything that changes that data

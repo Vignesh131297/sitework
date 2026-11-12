@@ -61,6 +61,7 @@ class _PushListenerState extends ConsumerState<PushListener> {
       NotificationType.attendance => DataSet.attendance,
       NotificationType.stock => DataSet.stock,
       NotificationType.leave || NotificationType.staffRequest => DataSet.requests,
+      NotificationType.vehicle => DataSet.vehicles,
       NotificationType.system => null,
     };
     if (related != null) ref.bump(related);

@@ -69,8 +69,7 @@ class _LeaveBody extends ConsumerWidget {
           ],
         ),
         DetailRow(icon: Icons.person_outline, label: l10n.requestAskedByLabel, value: l.user.name),
-        if (l.site case final site?)
-          DetailRow(icon: Icons.apartment_outlined, label: l10n.fieldSite, value: site.name),
+        if (l.site case final site?) DetailRow(icon: Icons.apartment_outlined, label: l10n.fieldSite, value: site.name),
         DetailRow(
           icon: Icons.event_outlined,
           label: l10n.leaveWhen,
@@ -78,8 +77,8 @@ class _LeaveBody extends ConsumerWidget {
         ),
         DetailRow(icon: Icons.notes_outlined, label: l10n.leaveReason, value: l.reason),
         DetailRow(icon: Icons.schedule_outlined, label: l10n.requestAskedOn, value: formatDateTime(l.createdAt)),
-        _Decision(status: l.status, reviewedBy: l.reviewedBy, note: l.reviewNote),
-        _Actions(
+        RequestDecision(status: l.status, reviewedBy: l.reviewedBy, note: l.reviewNote),
+        RequestActions(
           code: l.code,
           canApprove: l.canApprove,
           canCancel: l.canCancel,
@@ -145,8 +144,8 @@ class _StaffRequestBody extends ConsumerWidget {
         DetailRow(icon: Icons.apartment_outlined, label: l10n.fieldSite, value: r.site.name),
         if (r.note case final note?) DetailRow(icon: Icons.notes_outlined, label: l10n.fieldNotes, value: note),
         DetailRow(icon: Icons.schedule_outlined, label: l10n.requestAskedOn, value: formatDateTime(r.createdAt)),
-        _Decision(status: r.status, reviewedBy: r.reviewedBy, note: r.reviewNote),
-        _Actions(
+        RequestDecision(status: r.status, reviewedBy: r.reviewedBy, note: r.reviewNote),
+        RequestActions(
           code: r.code,
           canApprove: r.canApprove,
           canCancel: r.canCancel,
@@ -159,9 +158,9 @@ class _StaffRequestBody extends ConsumerWidget {
   }
 }
 
-/// Who decided, and their note or reason.
-class _Decision extends StatelessWidget {
-  const _Decision({required this.status, required this.reviewedBy, required this.note});
+/// Who decided, and their note or reason. Shared with repair money requests.
+class RequestDecision extends StatelessWidget {
+  const RequestDecision({super.key, required this.status, required this.reviewedBy, required this.note});
 
   final ApprovalStatus status;
   final IdName? reviewedBy;
@@ -186,8 +185,10 @@ class _Decision extends StatelessWidget {
 }
 
 /// Approve and reject (for whoever may decide), or withdraw (for whoever asked).
-class _Actions extends ConsumerStatefulWidget {
-  const _Actions({
+/// Shared with repair money requests.
+class RequestActions extends ConsumerStatefulWidget {
+  const RequestActions({
+    super.key,
     required this.code,
     required this.canApprove,
     required this.canCancel,
@@ -204,10 +205,10 @@ class _Actions extends ConsumerStatefulWidget {
   final Future<Object?> Function() cancel;
 
   @override
-  ConsumerState<_Actions> createState() => _ActionsState();
+  ConsumerState<RequestActions> createState() => _RequestActionsState();
 }
 
-class _ActionsState extends ConsumerState<_Actions> {
+class _RequestActionsState extends ConsumerState<RequestActions> {
   var _busy = false;
 
   Future<void> _run(Future<Object?> Function() change, String done) async {
@@ -217,6 +218,7 @@ class _ActionsState extends ConsumerState<_Actions> {
       ref
         ..bump(DataSet.requests)
         ..bump(DataSet.attendance)
+        ..bump(DataSet.vehicles)
         ..bump(DataSet.notifications);
       if (mounted) showSnack(context, done);
     } on AppException catch (error) {

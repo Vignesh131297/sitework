@@ -659,9 +659,295 @@ $IdNameCopyWith<$Res> get site {
 
 
 /// @nodoc
+mixin _$PersonVehicle {
+
+ String get id; String get code; VehicleType get type; String get registrationNo; String get makeModel; String get givenOn;
+/// Create a copy of PersonVehicle
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PersonVehicleCopyWith<PersonVehicle> get copyWith => _$PersonVehicleCopyWithImpl<PersonVehicle>(this as PersonVehicle, _$identity);
+
+  /// Serializes this PersonVehicle to a JSON map.
+  Map<String, dynamic> toJson();
+
+
+@override
+bool operator ==(Object other) {
+  final _this = this as PersonVehicle;
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PersonVehicle&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.code, _this.code) || other.code == _this.code)&&(identical(other.type, _this.type) || other.type == _this.type)&&(identical(other.registrationNo, _this.registrationNo) || other.registrationNo == _this.registrationNo)&&(identical(other.makeModel, _this.makeModel) || other.makeModel == _this.makeModel)&&(identical(other.givenOn, _this.givenOn) || other.givenOn == _this.givenOn));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+  final _this = this as PersonVehicle;
+  return Object.hash(runtimeType,_this.id,_this.code,_this.type,_this.registrationNo,_this.makeModel,_this.givenOn);
+}
+
+@override
+String toString() {
+  final _this = this as PersonVehicle;
+  return 'PersonVehicle(id: ${_this.id}, code: ${_this.code}, type: ${_this.type}, registrationNo: ${_this.registrationNo}, makeModel: ${_this.makeModel}, givenOn: ${_this.givenOn})';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $PersonVehicleCopyWith<$Res>  {
+  factory $PersonVehicleCopyWith(PersonVehicle value, $Res Function(PersonVehicle) _then) = _$PersonVehicleCopyWithImpl;
+@useResult
+$Res call({
+ String id, String code, VehicleType type, String registrationNo, String makeModel, String givenOn
+});
+
+
+
+
+}
+/// @nodoc
+class _$PersonVehicleCopyWithImpl<$Res>
+    implements $PersonVehicleCopyWith<$Res> {
+  _$PersonVehicleCopyWithImpl(this._self, this._then);
+
+  final PersonVehicle _self;
+  final $Res Function(PersonVehicle) _then;
+
+/// Create a copy of PersonVehicle
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? code = null,Object? type = null,Object? registrationNo = null,Object? makeModel = null,Object? givenOn = null,}) {
+  return _then(PersonVehicle(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
+as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as VehicleType,registrationNo: null == registrationNo ? _self.registrationNo : registrationNo // ignore: cast_nullable_to_non_nullable
+as String,makeModel: null == makeModel ? _self.makeModel : makeModel // ignore: cast_nullable_to_non_nullable
+as String,givenOn: null == givenOn ? _self.givenOn : givenOn // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [PersonVehicle].
+extension PersonVehiclePatterns on PersonVehicle {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PersonVehicle value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PersonVehicle() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PersonVehicle value)  $default,){
+final _that = this;
+switch (_that) {
+case _PersonVehicle():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PersonVehicle value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PersonVehicle() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String code,  VehicleType type,  String registrationNo,  String makeModel,  String givenOn)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PersonVehicle() when $default != null:
+return $default(_that.id,_that.code,_that.type,_that.registrationNo,_that.makeModel,_that.givenOn);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String code,  VehicleType type,  String registrationNo,  String makeModel,  String givenOn)  $default,) {final _that = this;
+switch (_that) {
+case _PersonVehicle():
+return $default(_that.id,_that.code,_that.type,_that.registrationNo,_that.makeModel,_that.givenOn);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String code,  VehicleType type,  String registrationNo,  String makeModel,  String givenOn)?  $default,) {final _that = this;
+switch (_that) {
+case _PersonVehicle() when $default != null:
+return $default(_that.id,_that.code,_that.type,_that.registrationNo,_that.makeModel,_that.givenOn);case _:
+  return null;
+
+}
+}
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _PersonVehicle implements PersonVehicle {
+  const _PersonVehicle({required this.id, required this.code, required this.type, required this.registrationNo, required this.makeModel, required this.givenOn});
+  factory _PersonVehicle.fromJson(Map<String, dynamic> json) => _$PersonVehicleFromJson(json);
+
+@override final  String id;
+@override final  String code;
+@override final  VehicleType type;
+@override final  String registrationNo;
+@override final  String makeModel;
+@override final  String givenOn;
+
+/// Create a copy of PersonVehicle
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PersonVehicleCopyWith<_PersonVehicle> get copyWith => __$PersonVehicleCopyWithImpl<_PersonVehicle>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$PersonVehicleToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PersonVehicle&&(identical(other.id, id) || other.id == id)&&(identical(other.code, code) || other.code == code)&&(identical(other.type, type) || other.type == type)&&(identical(other.registrationNo, registrationNo) || other.registrationNo == registrationNo)&&(identical(other.makeModel, makeModel) || other.makeModel == makeModel)&&(identical(other.givenOn, givenOn) || other.givenOn == givenOn));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode {
+    return Object.hash(runtimeType,id,code,type,registrationNo,makeModel,givenOn);
+}
+
+@override
+String toString() {
+    return 'PersonVehicle(id: $id, code: $code, type: $type, registrationNo: $registrationNo, makeModel: $makeModel, givenOn: $givenOn)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PersonVehicleCopyWith<$Res> implements $PersonVehicleCopyWith<$Res> {
+  factory _$PersonVehicleCopyWith(_PersonVehicle value, $Res Function(_PersonVehicle) _then) = __$PersonVehicleCopyWithImpl;
+@override @useResult
+$Res call({
+ String id, String code, VehicleType type, String registrationNo, String makeModel, String givenOn
+});
+
+
+
+
+}
+/// @nodoc
+class __$PersonVehicleCopyWithImpl<$Res>
+    implements _$PersonVehicleCopyWith<$Res> {
+  __$PersonVehicleCopyWithImpl(this._self, this._then);
+
+  final _PersonVehicle _self;
+  final $Res Function(_PersonVehicle) _then;
+
+/// Create a copy of PersonVehicle
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? code = null,Object? type = null,Object? registrationNo = null,Object? makeModel = null,Object? givenOn = null,}) {
+  return _then(_PersonVehicle(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,code: null == code ? _self.code : code // ignore: cast_nullable_to_non_nullable
+as String,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
+as VehicleType,registrationNo: null == registrationNo ? _self.registrationNo : registrationNo // ignore: cast_nullable_to_non_nullable
+as String,makeModel: null == makeModel ? _self.makeModel : makeModel // ignore: cast_nullable_to_non_nullable
+as String,givenOn: null == givenOn ? _self.givenOn : givenOn // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+
+/// @nodoc
 mixin _$PersonDetail {
 
- String get id; UserRole get role; String get name; String get phone; String? get email; String get employeeCode; Designation? get designation; String? get joiningDate; bool get isActive; DateTime? get lastLoginAt; List<SiteRef> get sites; int get staffCount; StaffAssignmentInfo? get assignment; bool get mustChangePassword; List<SupervisedStaff> get supervisedStaff;/// Godown managers: the godowns they run.
+ String get id; UserRole get role; String get name; String get phone; String? get email; String get employeeCode; Designation? get designation; String? get joiningDate; bool get isActive; DateTime? get lastLoginAt; List<SiteRef> get sites; int get staffCount; StaffAssignmentInfo? get assignment; bool get mustChangePassword; List<SupervisedStaff> get supervisedStaff;/// Staff and engineers: the company vehicle they hold now.
+ PersonVehicle? get vehicle;/// Godown managers: the godowns they run.
  List<IdName> get godowns;
 /// Create a copy of PersonDetail
 /// with the given fields replaced by the non-null parameter values.
@@ -676,20 +962,20 @@ $PersonDetailCopyWith<PersonDetail> get copyWith => _$PersonDetailCopyWithImpl<P
 @override
 bool operator ==(Object other) {
   final _this = this as PersonDetail;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is PersonDetail&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.role, _this.role) || other.role == _this.role)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.employeeCode, _this.employeeCode) || other.employeeCode == _this.employeeCode)&&(identical(other.designation, _this.designation) || other.designation == _this.designation)&&(identical(other.joiningDate, _this.joiningDate) || other.joiningDate == _this.joiningDate)&&(identical(other.isActive, _this.isActive) || other.isActive == _this.isActive)&&(identical(other.lastLoginAt, _this.lastLoginAt) || other.lastLoginAt == _this.lastLoginAt)&&const DeepCollectionEquality().equals(other.sites, _this.sites)&&(identical(other.staffCount, _this.staffCount) || other.staffCount == _this.staffCount)&&(identical(other.assignment, _this.assignment) || other.assignment == _this.assignment)&&(identical(other.mustChangePassword, _this.mustChangePassword) || other.mustChangePassword == _this.mustChangePassword)&&const DeepCollectionEquality().equals(other.supervisedStaff, _this.supervisedStaff)&&const DeepCollectionEquality().equals(other.godowns, _this.godowns));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PersonDetail&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.role, _this.role) || other.role == _this.role)&&(identical(other.name, _this.name) || other.name == _this.name)&&(identical(other.phone, _this.phone) || other.phone == _this.phone)&&(identical(other.email, _this.email) || other.email == _this.email)&&(identical(other.employeeCode, _this.employeeCode) || other.employeeCode == _this.employeeCode)&&(identical(other.designation, _this.designation) || other.designation == _this.designation)&&(identical(other.joiningDate, _this.joiningDate) || other.joiningDate == _this.joiningDate)&&(identical(other.isActive, _this.isActive) || other.isActive == _this.isActive)&&(identical(other.lastLoginAt, _this.lastLoginAt) || other.lastLoginAt == _this.lastLoginAt)&&const DeepCollectionEquality().equals(other.sites, _this.sites)&&(identical(other.staffCount, _this.staffCount) || other.staffCount == _this.staffCount)&&(identical(other.assignment, _this.assignment) || other.assignment == _this.assignment)&&(identical(other.mustChangePassword, _this.mustChangePassword) || other.mustChangePassword == _this.mustChangePassword)&&const DeepCollectionEquality().equals(other.supervisedStaff, _this.supervisedStaff)&&(identical(other.vehicle, _this.vehicle) || other.vehicle == _this.vehicle)&&const DeepCollectionEquality().equals(other.godowns, _this.godowns));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as PersonDetail;
-  return Object.hash(runtimeType,_this.id,_this.role,_this.name,_this.phone,_this.email,_this.employeeCode,_this.designation,_this.joiningDate,_this.isActive,_this.lastLoginAt,const DeepCollectionEquality().hash(_this.sites),_this.staffCount,_this.assignment,_this.mustChangePassword,const DeepCollectionEquality().hash(_this.supervisedStaff),const DeepCollectionEquality().hash(_this.godowns));
+  return Object.hash(runtimeType,_this.id,_this.role,_this.name,_this.phone,_this.email,_this.employeeCode,_this.designation,_this.joiningDate,_this.isActive,_this.lastLoginAt,const DeepCollectionEquality().hash(_this.sites),_this.staffCount,_this.assignment,_this.mustChangePassword,const DeepCollectionEquality().hash(_this.supervisedStaff),_this.vehicle,const DeepCollectionEquality().hash(_this.godowns));
 }
 
 @override
 String toString() {
   final _this = this as PersonDetail;
-  return 'PersonDetail(id: ${_this.id}, role: ${_this.role}, name: ${_this.name}, phone: ${_this.phone}, email: ${_this.email}, employeeCode: ${_this.employeeCode}, designation: ${_this.designation}, joiningDate: ${_this.joiningDate}, isActive: ${_this.isActive}, lastLoginAt: ${_this.lastLoginAt}, sites: ${_this.sites}, staffCount: ${_this.staffCount}, assignment: ${_this.assignment}, mustChangePassword: ${_this.mustChangePassword}, supervisedStaff: ${_this.supervisedStaff}, godowns: ${_this.godowns})';
+  return 'PersonDetail(id: ${_this.id}, role: ${_this.role}, name: ${_this.name}, phone: ${_this.phone}, email: ${_this.email}, employeeCode: ${_this.employeeCode}, designation: ${_this.designation}, joiningDate: ${_this.joiningDate}, isActive: ${_this.isActive}, lastLoginAt: ${_this.lastLoginAt}, sites: ${_this.sites}, staffCount: ${_this.staffCount}, assignment: ${_this.assignment}, mustChangePassword: ${_this.mustChangePassword}, supervisedStaff: ${_this.supervisedStaff}, vehicle: ${_this.vehicle}, godowns: ${_this.godowns})';
 }
 
 
@@ -700,11 +986,11 @@ abstract mixin class $PersonDetailCopyWith<$Res>  {
   factory $PersonDetailCopyWith(PersonDetail value, $Res Function(PersonDetail) _then) = _$PersonDetailCopyWithImpl;
 @useResult
 $Res call({
- String id, UserRole role, String name, String phone, String? email, String employeeCode, Designation? designation, String? joiningDate, bool isActive, DateTime? lastLoginAt, List<SiteRef> sites, int staffCount, StaffAssignmentInfo? assignment, bool mustChangePassword, List<SupervisedStaff> supervisedStaff, List<IdName> godowns
+ String id, UserRole role, String name, String phone, String? email, String employeeCode, Designation? designation, String? joiningDate, bool isActive, DateTime? lastLoginAt, List<SiteRef> sites, int staffCount, StaffAssignmentInfo? assignment, bool mustChangePassword, List<SupervisedStaff> supervisedStaff, PersonVehicle? vehicle, List<IdName> godowns
 });
 
 
-$StaffAssignmentInfoCopyWith<$Res>? get assignment;
+$StaffAssignmentInfoCopyWith<$Res>? get assignment;$PersonVehicleCopyWith<$Res>? get vehicle;
 
 }
 /// @nodoc
@@ -717,7 +1003,7 @@ class _$PersonDetailCopyWithImpl<$Res>
 
 /// Create a copy of PersonDetail
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? role = null,Object? name = null,Object? phone = null,Object? email = freezed,Object? employeeCode = null,Object? designation = freezed,Object? joiningDate = freezed,Object? isActive = null,Object? lastLoginAt = freezed,Object? sites = null,Object? staffCount = null,Object? assignment = freezed,Object? mustChangePassword = null,Object? supervisedStaff = null,Object? godowns = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? role = null,Object? name = null,Object? phone = null,Object? email = freezed,Object? employeeCode = null,Object? designation = freezed,Object? joiningDate = freezed,Object? isActive = null,Object? lastLoginAt = freezed,Object? sites = null,Object? staffCount = null,Object? assignment = freezed,Object? mustChangePassword = null,Object? supervisedStaff = null,Object? vehicle = freezed,Object? godowns = null,}) {
   return _then(PersonDetail(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
@@ -734,7 +1020,8 @@ as List<SiteRef>,staffCount: null == staffCount ? _self.staffCount : staffCount 
 as int,assignment: freezed == assignment ? _self.assignment : assignment // ignore: cast_nullable_to_non_nullable
 as StaffAssignmentInfo?,mustChangePassword: null == mustChangePassword ? _self.mustChangePassword : mustChangePassword // ignore: cast_nullable_to_non_nullable
 as bool,supervisedStaff: null == supervisedStaff ? _self.supervisedStaff : supervisedStaff // ignore: cast_nullable_to_non_nullable
-as List<SupervisedStaff>,godowns: null == godowns ? _self.godowns : godowns // ignore: cast_nullable_to_non_nullable
+as List<SupervisedStaff>,vehicle: freezed == vehicle ? _self.vehicle : vehicle // ignore: cast_nullable_to_non_nullable
+as PersonVehicle?,godowns: null == godowns ? _self.godowns : godowns // ignore: cast_nullable_to_non_nullable
 as List<IdName>,
   ));
 }
@@ -749,6 +1036,18 @@ $StaffAssignmentInfoCopyWith<$Res>? get assignment {
 
   return $StaffAssignmentInfoCopyWith<$Res>(_self.assignment!, (value) {
     return _then(_self.copyWith(assignment: value));
+  });
+}/// Create a copy of PersonDetail
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PersonVehicleCopyWith<$Res>? get vehicle {
+    if (_self.vehicle == null) {
+    return null;
+  }
+
+  return $PersonVehicleCopyWith<$Res>(_self.vehicle!, (value) {
+    return _then(_self.copyWith(vehicle: value));
   });
 }
 }
@@ -832,10 +1131,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  bool mustChangePassword,  List<SupervisedStaff> supervisedStaff,  List<IdName> godowns)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  bool mustChangePassword,  List<SupervisedStaff> supervisedStaff,  PersonVehicle? vehicle,  List<IdName> godowns)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PersonDetail() when $default != null:
-return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.mustChangePassword,_that.supervisedStaff,_that.godowns);case _:
+return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.mustChangePassword,_that.supervisedStaff,_that.vehicle,_that.godowns);case _:
   return orElse();
 
 }
@@ -853,10 +1152,10 @@ return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.emp
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  bool mustChangePassword,  List<SupervisedStaff> supervisedStaff,  List<IdName> godowns)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  bool mustChangePassword,  List<SupervisedStaff> supervisedStaff,  PersonVehicle? vehicle,  List<IdName> godowns)  $default,) {final _that = this;
 switch (_that) {
 case _PersonDetail():
-return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.mustChangePassword,_that.supervisedStaff,_that.godowns);case _:
+return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.mustChangePassword,_that.supervisedStaff,_that.vehicle,_that.godowns);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -873,10 +1172,10 @@ return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.emp
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  bool mustChangePassword,  List<SupervisedStaff> supervisedStaff,  List<IdName> godowns)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  UserRole role,  String name,  String phone,  String? email,  String employeeCode,  Designation? designation,  String? joiningDate,  bool isActive,  DateTime? lastLoginAt,  List<SiteRef> sites,  int staffCount,  StaffAssignmentInfo? assignment,  bool mustChangePassword,  List<SupervisedStaff> supervisedStaff,  PersonVehicle? vehicle,  List<IdName> godowns)?  $default,) {final _that = this;
 switch (_that) {
 case _PersonDetail() when $default != null:
-return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.mustChangePassword,_that.supervisedStaff,_that.godowns);case _:
+return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.employeeCode,_that.designation,_that.joiningDate,_that.isActive,_that.lastLoginAt,_that.sites,_that.staffCount,_that.assignment,_that.mustChangePassword,_that.supervisedStaff,_that.vehicle,_that.godowns);case _:
   return null;
 
 }
@@ -888,7 +1187,7 @@ return $default(_that.id,_that.role,_that.name,_that.phone,_that.email,_that.emp
 @JsonSerializable()
 
 class _PersonDetail implements PersonDetail {
-  const _PersonDetail({required this.id, required this.role, required this.name, required this.phone, this.email, required this.employeeCode, this.designation, this.joiningDate, required this.isActive, this.lastLoginAt,  List<SiteRef> sites = const <SiteRef>[], this.staffCount = 0, this.assignment, required this.mustChangePassword,  List<SupervisedStaff> supervisedStaff = const <SupervisedStaff>[],  List<IdName> godowns = const <IdName>[]}): _sites = sites,_supervisedStaff = supervisedStaff,_godowns = godowns;
+  const _PersonDetail({required this.id, required this.role, required this.name, required this.phone, this.email, required this.employeeCode, this.designation, this.joiningDate, required this.isActive, this.lastLoginAt,  List<SiteRef> sites = const <SiteRef>[], this.staffCount = 0, this.assignment, required this.mustChangePassword,  List<SupervisedStaff> supervisedStaff = const <SupervisedStaff>[], this.vehicle,  List<IdName> godowns = const <IdName>[]}): _sites = sites,_supervisedStaff = supervisedStaff,_godowns = godowns;
   factory _PersonDetail.fromJson(Map<String, dynamic> json) => _$PersonDetailFromJson(json);
 
 @override final  String id;
@@ -918,6 +1217,8 @@ class _PersonDetail implements PersonDetail {
   return EqualUnmodifiableListView(_supervisedStaff);
 }
 
+/// Staff and engineers: the company vehicle they hold now.
+@override final  PersonVehicle? vehicle;
 /// Godown managers: the godowns they run.
  final  List<IdName> _godowns;
 /// Godown managers: the godowns they run.
@@ -941,18 +1242,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PersonDetail&&(identical(other.id, id) || other.id == id)&&(identical(other.role, role) || other.role == role)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.employeeCode, employeeCode) || other.employeeCode == employeeCode)&&(identical(other.designation, designation) || other.designation == designation)&&(identical(other.joiningDate, joiningDate) || other.joiningDate == joiningDate)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.lastLoginAt, lastLoginAt) || other.lastLoginAt == lastLoginAt)&&const DeepCollectionEquality().equals(other.sites, _sites)&&(identical(other.staffCount, staffCount) || other.staffCount == staffCount)&&(identical(other.assignment, assignment) || other.assignment == assignment)&&(identical(other.mustChangePassword, mustChangePassword) || other.mustChangePassword == mustChangePassword)&&const DeepCollectionEquality().equals(other.supervisedStaff, _supervisedStaff)&&const DeepCollectionEquality().equals(other.godowns, _godowns));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _PersonDetail&&(identical(other.id, id) || other.id == id)&&(identical(other.role, role) || other.role == role)&&(identical(other.name, name) || other.name == name)&&(identical(other.phone, phone) || other.phone == phone)&&(identical(other.email, email) || other.email == email)&&(identical(other.employeeCode, employeeCode) || other.employeeCode == employeeCode)&&(identical(other.designation, designation) || other.designation == designation)&&(identical(other.joiningDate, joiningDate) || other.joiningDate == joiningDate)&&(identical(other.isActive, isActive) || other.isActive == isActive)&&(identical(other.lastLoginAt, lastLoginAt) || other.lastLoginAt == lastLoginAt)&&const DeepCollectionEquality().equals(other.sites, _sites)&&(identical(other.staffCount, staffCount) || other.staffCount == staffCount)&&(identical(other.assignment, assignment) || other.assignment == assignment)&&(identical(other.mustChangePassword, mustChangePassword) || other.mustChangePassword == mustChangePassword)&&const DeepCollectionEquality().equals(other.supervisedStaff, _supervisedStaff)&&(identical(other.vehicle, vehicle) || other.vehicle == vehicle)&&const DeepCollectionEquality().equals(other.godowns, _godowns));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,id,role,name,phone,email,employeeCode,designation,joiningDate,isActive,lastLoginAt,const DeepCollectionEquality().hash(_sites),staffCount,assignment,mustChangePassword,const DeepCollectionEquality().hash(_supervisedStaff),const DeepCollectionEquality().hash(_godowns));
+    return Object.hash(runtimeType,id,role,name,phone,email,employeeCode,designation,joiningDate,isActive,lastLoginAt,const DeepCollectionEquality().hash(_sites),staffCount,assignment,mustChangePassword,const DeepCollectionEquality().hash(_supervisedStaff),vehicle,const DeepCollectionEquality().hash(_godowns));
 }
 
 @override
 String toString() {
-    return 'PersonDetail(id: $id, role: $role, name: $name, phone: $phone, email: $email, employeeCode: $employeeCode, designation: $designation, joiningDate: $joiningDate, isActive: $isActive, lastLoginAt: $lastLoginAt, sites: $sites, staffCount: $staffCount, assignment: $assignment, mustChangePassword: $mustChangePassword, supervisedStaff: $supervisedStaff, godowns: $godowns)';
+    return 'PersonDetail(id: $id, role: $role, name: $name, phone: $phone, email: $email, employeeCode: $employeeCode, designation: $designation, joiningDate: $joiningDate, isActive: $isActive, lastLoginAt: $lastLoginAt, sites: $sites, staffCount: $staffCount, assignment: $assignment, mustChangePassword: $mustChangePassword, supervisedStaff: $supervisedStaff, vehicle: $vehicle, godowns: $godowns)';
 }
 
 
@@ -963,11 +1264,11 @@ abstract mixin class _$PersonDetailCopyWith<$Res> implements $PersonDetailCopyWi
   factory _$PersonDetailCopyWith(_PersonDetail value, $Res Function(_PersonDetail) _then) = __$PersonDetailCopyWithImpl;
 @override @useResult
 $Res call({
- String id, UserRole role, String name, String phone, String? email, String employeeCode, Designation? designation, String? joiningDate, bool isActive, DateTime? lastLoginAt, List<SiteRef> sites, int staffCount, StaffAssignmentInfo? assignment, bool mustChangePassword, List<SupervisedStaff> supervisedStaff, List<IdName> godowns
+ String id, UserRole role, String name, String phone, String? email, String employeeCode, Designation? designation, String? joiningDate, bool isActive, DateTime? lastLoginAt, List<SiteRef> sites, int staffCount, StaffAssignmentInfo? assignment, bool mustChangePassword, List<SupervisedStaff> supervisedStaff, PersonVehicle? vehicle, List<IdName> godowns
 });
 
 
-@override $StaffAssignmentInfoCopyWith<$Res>? get assignment;
+@override $StaffAssignmentInfoCopyWith<$Res>? get assignment;@override $PersonVehicleCopyWith<$Res>? get vehicle;
 
 }
 /// @nodoc
@@ -980,7 +1281,7 @@ class __$PersonDetailCopyWithImpl<$Res>
 
 /// Create a copy of PersonDetail
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? role = null,Object? name = null,Object? phone = null,Object? email = freezed,Object? employeeCode = null,Object? designation = freezed,Object? joiningDate = freezed,Object? isActive = null,Object? lastLoginAt = freezed,Object? sites = null,Object? staffCount = null,Object? assignment = freezed,Object? mustChangePassword = null,Object? supervisedStaff = null,Object? godowns = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? role = null,Object? name = null,Object? phone = null,Object? email = freezed,Object? employeeCode = null,Object? designation = freezed,Object? joiningDate = freezed,Object? isActive = null,Object? lastLoginAt = freezed,Object? sites = null,Object? staffCount = null,Object? assignment = freezed,Object? mustChangePassword = null,Object? supervisedStaff = null,Object? vehicle = freezed,Object? godowns = null,}) {
   return _then(_PersonDetail(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,role: null == role ? _self.role : role // ignore: cast_nullable_to_non_nullable
@@ -997,7 +1298,8 @@ as List<SiteRef>,staffCount: null == staffCount ? _self.staffCount : staffCount 
 as int,assignment: freezed == assignment ? _self.assignment : assignment // ignore: cast_nullable_to_non_nullable
 as StaffAssignmentInfo?,mustChangePassword: null == mustChangePassword ? _self.mustChangePassword : mustChangePassword // ignore: cast_nullable_to_non_nullable
 as bool,supervisedStaff: null == supervisedStaff ? _self._supervisedStaff : supervisedStaff // ignore: cast_nullable_to_non_nullable
-as List<SupervisedStaff>,godowns: null == godowns ? _self._godowns : godowns // ignore: cast_nullable_to_non_nullable
+as List<SupervisedStaff>,vehicle: freezed == vehicle ? _self.vehicle : vehicle // ignore: cast_nullable_to_non_nullable
+as PersonVehicle?,godowns: null == godowns ? _self._godowns : godowns // ignore: cast_nullable_to_non_nullable
 as List<IdName>,
   ));
 }
@@ -1013,6 +1315,18 @@ $StaffAssignmentInfoCopyWith<$Res>? get assignment {
 
   return $StaffAssignmentInfoCopyWith<$Res>(_self.assignment!, (value) {
     return _then(_self.copyWith(assignment: value));
+  });
+}/// Create a copy of PersonDetail
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PersonVehicleCopyWith<$Res>? get vehicle {
+    if (_self.vehicle == null) {
+    return null;
+  }
+
+  return $PersonVehicleCopyWith<$Res>(_self.vehicle!, (value) {
+    return _then(_self.copyWith(vehicle: value));
   });
 }
 }

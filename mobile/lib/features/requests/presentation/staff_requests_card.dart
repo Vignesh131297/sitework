@@ -52,10 +52,7 @@ class StaffRequestsCard extends StatelessWidget {
                     style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
                   ),
                 ),
-                TextButton(
-                  onPressed: () => context.push(AppRoutes.myRequests(area)),
-                  child: Text(l10n.requestsSeeAll),
-                ),
+                TextButton(onPressed: () => context.push(AppRoutes.myRequests(area)), child: Text(l10n.requestsSeeAll)),
               ],
             ),
             Row(

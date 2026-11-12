@@ -11,6 +11,7 @@ import '../../../core/widgets/info_widgets.dart';
 import '../../../core/widgets/periodic_refresh.dart';
 import '../../../core/widgets/profile_action.dart';
 import '../../requests/presentation/approvals_tile.dart';
+import '../../vehicles/presentation/my_vehicle_card.dart';
 import '../data/dashboard_repository.dart';
 import '../domain/admin_dashboard.dart';
 import 'admin_dashboard_screen.dart';
@@ -115,6 +116,7 @@ class _Body extends StatelessWidget {
         ),
         AttentionSection(items: d.attention, onOpen: (item) => openAttention(context, area, item)),
         const ApprovalsTile(),
+        const MyVehicleCard(),
         SectionHeader(l10n.siteActivityTitle),
         for (final site in d.sites) ...[
           SiteActivityCard(

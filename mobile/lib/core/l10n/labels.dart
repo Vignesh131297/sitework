@@ -202,6 +202,16 @@ extension ApprovalStatusLabel on ApprovalStatus {
   };
 }
 
+extension VehicleTypeLabel on VehicleType {
+  String label(AppLocalizations l10n) => switch (this) {
+    VehicleType.bike => l10n.vehicleTypeBike,
+    VehicleType.scooter => l10n.vehicleTypeScooter,
+    VehicleType.car => l10n.vehicleTypeCar,
+    VehicleType.van => l10n.vehicleTypeVan,
+    VehicleType.other => l10n.vehicleTypeOther,
+  };
+}
+
 extension MealLabel on Meal {
   String label(AppLocalizations l10n) => switch (this) {
     Meal.breakfast => l10n.mealBreakfast,

@@ -1,0 +1,39 @@
+{
+  "success": true,
+  "data": {
+    "id": "01a1cfa9-1a0c-7081-98c8-531f41e757c9",
+    "role": "STAFF",
+    "name": "Ravi",
+    "phone": "+919000000101",
+    "email": null,
+    "employeeCode": "STF-001",
+    "designation": "MASON",
+    "joiningDate": "2025-03-12",
+    "isActive": true,
+    "lastLoginAt": null,
+    "sites": [],
+    "staffCount": 0,
+    "godowns": [],
+    "assignment": {
+      "site": {
+        "id": "01a1cfa9-1a55-7758-84f5-11c6337d2139",
+        "code": "SITE-001",
+        "name": "ABC Apartment Project"
+      },
+      "engineer": {
+        "id": "01a1cfa9-19fb-778c-abbc-c9f98fe80ad9",
+        "name": "Arun Kumar"
+      }
+    },
+    "mustChangePassword": false,
+    "vehicle": {
+      "id": "01a1cfa9-1fce-757e-be01-522ff60a2cc7",
+      "code": "VH-0001",
+      "type": "BIKE",
+      "registrationNo": "TN09BK4821",
+      "makeModel": "Hero Splendor Plus",
+      "givenOn": "2026-09-28"
+    },
+    "supervisedStaff": []
+  }
+}

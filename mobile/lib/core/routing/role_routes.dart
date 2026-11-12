@@ -48,6 +48,11 @@ import '../../features/stock/presentation/request_form_screen.dart';
 import '../../features/stock/presentation/requests_screen.dart';
 import '../../features/stock/presentation/stock_history_screen.dart';
 import '../../features/stock/presentation/stock_screen.dart';
+import '../../features/vehicles/presentation/repair_request_detail_screen.dart';
+import '../../features/vehicles/presentation/repair_request_form_screen.dart';
+import '../../features/vehicles/presentation/vehicle_detail_screen.dart';
+import '../../features/vehicles/presentation/vehicle_form_screen.dart';
+import '../../features/vehicles/presentation/vehicles_screen.dart';
 import '../models/enums.dart';
 import 'app_routes.dart';
 import 'role_shell.dart';
@@ -128,6 +133,19 @@ final List<RouteBase> adminRoutes = [
     path: '${AppRoutes.adminArea}/stock/materials/:id',
     builder: (context, state) => MaterialDetailScreen(id: state.pathParameters['id']!),
   ),
+  GoRoute(path: AppRoutes.adminVehicles, builder: (context, state) => const VehiclesScreen()),
+  // "new" before ":id".
+  GoRoute(path: AppRoutes.adminVehicleNew, builder: (context, state) => const VehicleFormScreen()),
+  GoRoute(
+    path: '${AppRoutes.adminVehicles}/:id',
+    builder: (context, state) => VehicleDetailScreen(id: state.pathParameters['id']!),
+    routes: [
+      GoRoute(
+        path: 'edit',
+        builder: (context, state) => VehicleFormScreen(id: state.pathParameters['id']),
+      ),
+    ],
+  ),
   ..._reviewRoutes(AppRoutes.adminArea),
 ];
 
@@ -196,7 +214,8 @@ List<RouteBase> _stockRoutes(String area) => [
   ),
 ];
 
-/// One leave request, or one money or food request: for everyone who may see them.
+/// One leave request, one money or food request, or one repair money request:
+/// for everyone who may see them.
 List<RouteBase> _requestDetailRoutes(String area) => [
   GoRoute(
     path: '$area/leave/:id',
@@ -206,9 +225,13 @@ List<RouteBase> _requestDetailRoutes(String area) => [
     path: '$area/staff-requests/:id',
     builder: (context, state) => StaffRequestDetailScreen(id: state.pathParameters['id']!),
   ),
+  GoRoute(
+    path: '$area/vehicle-repairs/:id',
+    builder: (context, state) => RepairRequestDetailScreen(id: state.pathParameters['id']!),
+  ),
 ];
 
-/// The caller's own requests and the leave form (staff and engineers). Put
+/// The caller's own requests, and the leave and repair money forms (staff and engineers). Put
 /// before [_requestDetailRoutes] so "new" is not read as an id.
 List<RouteBase> _myRequestRoutes(String area) => [
   GoRoute(
@@ -216,6 +239,7 @@ List<RouteBase> _myRequestRoutes(String area) => [
     builder: (context, state) => MyRequestsScreen(initialTab: MyRequestsTab.fromName(state.uri.queryParameters['tab'])),
   ),
   GoRoute(path: AppRoutes.leaveNew(area), builder: (context, state) => const LeaveFormScreen()),
+  GoRoute(path: AppRoutes.repairRequestNew(area), builder: (context, state) => const RepairRequestFormScreen()),
 ];
 
 List<RouteBase> _personRoutes(UserRole role, String base) => [

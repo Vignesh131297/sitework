@@ -22,6 +22,8 @@ import '../../../core/widgets/submit_state.dart';
 import '../../auth/domain/user_role.dart';
 import '../../auth/presentation/session_controller.dart';
 import '../../auth/presentation/user_role_label.dart';
+import '../../vehicles/presentation/vehicle_sheets.dart';
+import '../../vehicles/presentation/vehicle_widgets.dart';
 import '../data/people_repository.dart';
 import '../domain/person_models.dart';
 import 'assign_staff_sheet.dart';
@@ -184,6 +186,8 @@ class _PersonDetailScreenState extends ConsumerState<PersonDetailScreen> {
                 UserRole.godownManager => _godownSection(context, person),
                 UserRole.admin => const <Widget>[],
               },
+              if (person.role == UserRole.staff || person.role == UserRole.engineer)
+                ..._vehicleSection(context, person),
             ],
           ),
         ),
@@ -225,6 +229,52 @@ class _PersonDetailScreenState extends ConsumerState<PersonDetailScreen> {
               if (assignment != null)
                 OutlinedButton(onPressed: _busy ? null : () => _unassign(person), child: Text(l10n.personUnassign)),
             ],
+          ),
+        ),
+    ];
+  }
+
+  /// The company vehicle they hold, with "Give a vehicle" or "Take back".
+  List<Widget> _vehicleSection(BuildContext context, PersonDetail person) {
+    final l10n = AppLocalizations.of(context);
+    final vehicle = person.vehicle;
+    return [
+      _Padded(SectionHeader(l10n.personVehicle)),
+      if (vehicle == null)
+        ListTile(leading: const Icon(Icons.two_wheeler), title: Text(l10n.personNoVehicle))
+      else
+        ListTile(
+          leading: Icon(vehicleIcon(vehicle.type)),
+          title: Text(vehicle.makeModel),
+          subtitle: Text('${vehicle.registrationNo} · ${l10n.vehicleSince(formatDate(vehicle.givenOn))}'),
+          onTap: () => context.push(AppRoutes.adminVehicle(vehicle.id)),
+        ),
+      if (person.isActive)
+        _Padded(
+          Align(
+            alignment: Alignment.centerLeft,
+            child: vehicle == null
+                ? FilledButton.tonalIcon(
+                    onPressed: _busy
+                        ? null
+                        : () => showGiveVehicleSheet(
+                            context,
+                            person: IdName(id: person.id, name: person.name),
+                          ),
+                    icon: const Icon(Icons.two_wheeler),
+                    label: Text(l10n.personGiveVehicle),
+                  )
+                : OutlinedButton(
+                    onPressed: _busy
+                        ? null
+                        : () => showTakeBackVehicleSheet(
+                            context,
+                            vehicle: (id: vehicle.id, name: vehicleName(vehicle.makeModel, vehicle.registrationNo)),
+                            holderName: person.name,
+                            givenOn: vehicle.givenOn,
+                          ),
+                    child: Text(l10n.vehicleTakeBack),
+                  ),
           ),
         ),
     ];

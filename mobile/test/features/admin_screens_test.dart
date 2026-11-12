@@ -5,7 +5,7 @@ import '../helpers/admin_fixtures.dart';
 import '../helpers/fake_api.dart';
 import '../helpers/pump_app.dart';
 
-const tallScreen = Size(1080, 6000);
+const tallScreen = Size(1080, 7200);
 
 Finder navTab(String label) => find.descendant(of: find.byType(NavigationBar), matching: find.text(label));
 

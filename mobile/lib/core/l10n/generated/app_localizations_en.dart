@@ -2817,12 +2817,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String leaveDays(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: '$count days',
-      one: '1 day',
-    );
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count days', one: '1 day');
     return '$_temp0';
   }
 
@@ -2871,4 +2866,249 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get mealDinner => 'Dinner';
+
+  @override
+  String get vehiclesTitle => 'Vehicles';
+
+  @override
+  String get vehiclesSubtitle => 'Company bikes and who has them';
+
+  @override
+  String vehiclesRepairWaiting(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count repair requests waiting',
+      one: '1 repair request waiting',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get vehiclesSearch => 'Search vehicle or person';
+
+  @override
+  String get vehiclesFilterGiven => 'Given';
+
+  @override
+  String get vehiclesFilterFree => 'Free';
+
+  @override
+  String get vehiclesEmpty => 'No vehicles here.';
+
+  @override
+  String get vehicleTitle => 'Vehicle';
+
+  @override
+  String get vehicleNewTitle => 'Add vehicle';
+
+  @override
+  String get vehicleEditTitle => 'Edit vehicle';
+
+  @override
+  String get vehicleType => 'Kind of vehicle';
+
+  @override
+  String get vehicleTypeBike => 'Bike';
+
+  @override
+  String get vehicleTypeScooter => 'Scooter';
+
+  @override
+  String get vehicleTypeCar => 'Car';
+
+  @override
+  String get vehicleTypeVan => 'Van';
+
+  @override
+  String get vehicleTypeOther => 'Other';
+
+  @override
+  String get vehicleRegistration => 'Registration number';
+
+  @override
+  String get vehicleRegistrationHelper => 'As on the number plate';
+
+  @override
+  String get vehicleMakeModel => 'Make and model';
+
+  @override
+  String get vehicleMakeModelHelper => 'For example, Hero Splendor Plus';
+
+  @override
+  String get vehicleSave => 'Save vehicle';
+
+  @override
+  String vehicleSaved(String code) {
+    return '$code saved';
+  }
+
+  @override
+  String vehicleWith(String name) {
+    return 'With $name';
+  }
+
+  @override
+  String get vehicleFree => 'With nobody';
+
+  @override
+  String get vehicleOutOfUse => 'Out of use';
+
+  @override
+  String get vehicleHolder => 'With';
+
+  @override
+  String vehicleSince(String date) {
+    return 'Since $date';
+  }
+
+  @override
+  String get vehicleGive => 'Give to someone';
+
+  @override
+  String vehicleGiveTitle(String vehicle) {
+    return 'Give $vehicle';
+  }
+
+  @override
+  String vehicleGiveToTitle(String name) {
+    return 'Give a vehicle to $name';
+  }
+
+  @override
+  String get vehicleGiveTo => 'Give to';
+
+  @override
+  String get vehicleChoose => 'Vehicle';
+
+  @override
+  String get vehicleGivenOn => 'Given on';
+
+  @override
+  String get vehicleNoFree => 'No free vehicle. Add one, or take one back first.';
+
+  @override
+  String get vehicleGiveSave => 'Give vehicle';
+
+  @override
+  String vehicleGivenTo(String vehicle, String name) {
+    return '$vehicle given to $name';
+  }
+
+  @override
+  String get vehicleTakeBack => 'Take back';
+
+  @override
+  String vehicleTakeBackTitle(String vehicle) {
+    return 'Take back $vehicle';
+  }
+
+  @override
+  String vehicleTakeBackFrom(String name) {
+    return 'From $name';
+  }
+
+  @override
+  String get vehicleReturnedOn => 'Came back on';
+
+  @override
+  String vehicleTakenBack(String vehicle) {
+    return '$vehicle taken back';
+  }
+
+  @override
+  String get vehicleHistory => 'Who had it';
+
+  @override
+  String get vehicleHistoryEmpty => 'Not given to anyone yet.';
+
+  @override
+  String vehicleHistoryRange(String from, String to) {
+    return '$from – $to';
+  }
+
+  @override
+  String vehicleHistoryNow(String from) {
+    return '$from – now';
+  }
+
+  @override
+  String get vehicleMarkOutOfUse => 'Mark out of use';
+
+  @override
+  String vehicleMarkOutOfUseTitle(String vehicle) {
+    return 'Mark $vehicle out of use?';
+  }
+
+  @override
+  String get vehicleMarkOutOfUseBody => 'It can no longer be given to anyone. Its history is kept.';
+
+  @override
+  String get vehicleBringBack => 'Bring back into use';
+
+  @override
+  String vehicleMarkedOutOfUse(String vehicle) {
+    return '$vehicle is out of use';
+  }
+
+  @override
+  String vehicleBackInUse(String vehicle) {
+    return '$vehicle is back in use';
+  }
+
+  @override
+  String get vehicleRepairs => 'Repair money';
+
+  @override
+  String get vehicleRepairsEmpty => 'No repair money asked for.';
+
+  @override
+  String get myVehicleTitle => 'My vehicle';
+
+  @override
+  String get repairTitle => 'Repair money';
+
+  @override
+  String get repairAsk => 'Ask for repair money';
+
+  @override
+  String get repairAmount => 'Amount';
+
+  @override
+  String get repairAmountHelper => 'What the repair will cost';
+
+  @override
+  String get repairWhat => 'What needs repair?';
+
+  @override
+  String repairMoney(String amount) {
+    return '$amount for repair';
+  }
+
+  @override
+  String get repairMine => 'My repair requests';
+
+  @override
+  String get repairNoVehicle => 'You do not have a company vehicle now.';
+
+  @override
+  String get requestsTabRepair => 'Bike repair';
+
+  @override
+  String get requestKindRepair => 'Bike repair';
+
+  @override
+  String get requestKindRepairHint => 'Money to repair your company vehicle';
+
+  @override
+  String get personVehicle => 'Company vehicle';
+
+  @override
+  String get personNoVehicle => 'No company vehicle';
+
+  @override
+  String get personGiveVehicle => 'Give a vehicle';
+
+  @override
+  String get approvalsSubtitleAdmin => 'Leave, money, food and bike repair to approve';
 }

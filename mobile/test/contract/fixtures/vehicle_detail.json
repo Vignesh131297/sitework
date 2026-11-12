@@ -1,0 +1,64 @@
+{
+  "success": true,
+  "data": {
+    "id": "01a1cfa9-1fce-757e-be01-522ff60a2cc7",
+    "code": "VH-0001",
+    "type": "BIKE",
+    "registrationNo": "TN09BK4821",
+    "makeModel": "Hero Splendor Plus",
+    "note": null,
+    "isActive": true,
+    "holder": {
+      "user": {
+        "id": "01a1cfa9-1a0c-7081-98c8-531f41e757c9",
+        "name": "Ravi",
+        "role": "STAFF",
+        "employeeCode": "STF-001"
+      },
+      "givenOn": "2026-09-28",
+      "note": "With helmet and tool kit"
+    },
+    "createdAt": "2026-04-06T04:30:00.000Z",
+    "history": [
+      {
+        "id": "01a1cfa9-1fe3-73fa-b103-b0aae5f5553d",
+        "user": {
+          "id": "01a1cfa9-1a0c-7081-98c8-531f41e757c9",
+          "name": "Ravi",
+          "role": "STAFF",
+          "employeeCode": "STF-001"
+        },
+        "givenOn": "2026-09-28",
+        "returnedOn": null,
+        "note": "With helmet and tool kit",
+        "returnNote": null,
+        "givenBy": {
+          "id": "01a1cfa9-19e4-77b0-9bb3-63573a02aa44",
+          "name": "Admin User"
+        },
+        "returnedBy": null
+      },
+      {
+        "id": "01a1cfa9-1fd9-752f-97d4-157f16b7ae0f",
+        "user": {
+          "id": "01a1cfa9-1a1b-70ef-add3-588abc1058c0",
+          "name": "Manoj",
+          "role": "STAFF",
+          "employeeCode": "STF-003"
+        },
+        "givenOn": "2026-07-15",
+        "returnedOn": "2026-09-27",
+        "note": "With helmet and tool kit",
+        "returnNote": "Moved to the Villa site, close to home",
+        "givenBy": {
+          "id": "01a1cfa9-19e4-77b0-9bb3-63573a02aa44",
+          "name": "Admin User"
+        },
+        "returnedBy": {
+          "id": "01a1cfa9-19e4-77b0-9bb3-63573a02aa44",
+          "name": "Admin User"
+        }
+      }
+    ]
+  }
+}

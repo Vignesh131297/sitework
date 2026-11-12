@@ -18,6 +18,7 @@ import 'package:sitework/features/sites/domain/site_day.dart';
 import 'package:sitework/features/sites/domain/site_models.dart';
 import 'package:sitework/features/staff_updates/domain/staff_update_models.dart';
 import 'package:sitework/features/stock/domain/stock_models.dart';
+import 'package:sitework/features/vehicles/domain/vehicle_models.dart';
 
 // Responses recorded from the real API (seed data) decode into the app's
 // models. Refresh the fixtures when the API changes: see test/contract/README.md.
@@ -163,6 +164,30 @@ void main() {
     expect(requests.map((r) => r.kind).toSet(), {StaffRequestKind.money, StaffRequestKind.food});
     expect(requests.where((r) => r.kind == StaffRequestKind.food).every((r) => r.meal != null), isTrue);
     expect(StaffRequest.fromJson(_data('staff_request_detail')).code, startsWith('RQ-'));
+  });
+
+  test('company vehicles, who holds them, and repair money', () {
+    final vehicles = _rows('vehicles').map(Vehicle.fromJson).toList();
+    expect(vehicles.where((v) => v.holder != null), isNotEmpty);
+    expect(vehicles.where((v) => v.holder == null && v.isActive), isNotEmpty);
+    expect(vehicles.where((v) => !v.isActive), isNotEmpty);
+    final detail = VehicleDetail.fromJson(_data('vehicle_detail'));
+    expect(detail.vehicle.code, startsWith('VH-'));
+    expect(detail.history.length, greaterThan(1), reason: 'a past holder too');
+    expect(detail.history.where((h) => h.returnedOn != null), isNotEmpty);
+    final person = PersonDetail.fromJson(_data('staff_detail_with_vehicle'));
+    expect(person.vehicle?.id, detail.vehicle.id);
+    final repairs = _rows('vehicle_repair_requests').map(RepairRequest.fromJson).toList();
+    expect(
+      repairs.map((r) => r.status).toSet(),
+      containsAll([ApprovalStatus.pending, ApprovalStatus.approved, ApprovalStatus.rejected]),
+    );
+    expect(repairs.where((r) => r.status == ApprovalStatus.pending).every((r) => r.canApprove), isTrue);
+    expect(RepairRequest.fromJson(_data('vehicle_repair_request_detail')).code, startsWith('VR-'));
+    final mine = _data('vehicle_mine_staff')['vehicle'];
+    expect(Vehicle.fromJson(mine! as Map<String, dynamic>).holder, isNotNull);
+    expect(_data('vehicle_mine_engineer')['vehicle'], isNotNull);
+    expect(_rows('vehicle_repair_requests_staff').map(RepairRequest.fromJson), isNotEmpty);
   });
 
   test("a staff member's own requests and the materials they can ask for", () {

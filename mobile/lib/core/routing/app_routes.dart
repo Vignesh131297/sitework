@@ -108,7 +108,8 @@ abstract final class AppRoutes {
   static String adminMaterial(String id) => '$adminArea/stock/materials/$id';
 
   // Leave, and staff members' money and food requests.
-  /// The caller's own requests (staff: [tab] is 'leave', 'money' or 'material'; engineers: their leave).
+  /// The caller's own requests (staff: [tab] is 'leave', 'money', 'material' or
+  /// 'repair'; engineers: 'leave' or 'repair').
   static String myRequests(String area, {String? tab}) => '$area/my-requests${tab == null ? '' : '?tab=$tab'}';
 
   /// Leave, money and food waiting for an admin or engineer to decide.
@@ -116,8 +117,15 @@ abstract final class AppRoutes {
   static String leave(String area, String id) => '$area/leave/$id';
   static String leaveNew(String area) => '$area/leave/new';
   static String staffRequest(String area, String id) => '$area/staff-requests/$id';
-  static String staffRequestNew(String area, StaffRequestKind kind) =>
-      '$area/staff-requests/new?kind=${kind.apiValue}';
+  static String staffRequestNew(String area, StaffRequestKind kind) => '$area/staff-requests/new?kind=${kind.apiValue}';
+
+  // Company vehicles (admins), and money asked for their repair.
+  static const adminVehicles = '$adminArea/vehicles';
+  static const adminVehicleNew = '$adminVehicles/new';
+  static String adminVehicle(String id) => '$adminVehicles/$id';
+  static String adminVehicleEdit(String id) => '$adminVehicles/$id/edit';
+  static String repairRequest(String area, String id) => '$area/vehicle-repairs/$id';
+  static String repairRequestNew(String area) => '$area/vehicle-repairs/new';
 
   // Staff full-screen routes.
   static const staffNotifications = '$staffArea/notifications';

@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "data": {
+    "vehicle": {
+      "id": "01a1cfa9-1feb-7195-9940-c302afeac1f3",
+      "code": "VH-0002",
+      "type": "BIKE",
+      "registrationNo": "TN10CQ7730",
+      "makeModel": "Honda Shine 125",
+      "note": "Insurance renewed in June",
+      "isActive": true,
+      "holder": {
+        "user": {
+          "id": "01a1cfa9-19fb-778c-abbc-c9f98fe80ad9",
+          "name": "Arun Kumar",
+          "role": "ENGINEER",
+          "employeeCode": "ENG-001"
+        },
+        "givenOn": "2026-04-26",
+        "note": null
+      },
+      "createdAt": "2026-04-06T04:30:00.000Z"
+    }
+  }
+}

@@ -78,6 +78,32 @@ Map<String, dynamic> _$SupervisedStaffToJson(_SupervisedStaff instance) => <Stri
   'site': instance.site,
 };
 
+_PersonVehicle _$PersonVehicleFromJson(Map<String, dynamic> json) => _PersonVehicle(
+  id: json['id'] as String,
+  code: json['code'] as String,
+  type: $enumDecode(_$VehicleTypeEnumMap, json['type']),
+  registrationNo: json['registrationNo'] as String,
+  makeModel: json['makeModel'] as String,
+  givenOn: json['givenOn'] as String,
+);
+
+Map<String, dynamic> _$PersonVehicleToJson(_PersonVehicle instance) => <String, dynamic>{
+  'id': instance.id,
+  'code': instance.code,
+  'type': _$VehicleTypeEnumMap[instance.type]!,
+  'registrationNo': instance.registrationNo,
+  'makeModel': instance.makeModel,
+  'givenOn': instance.givenOn,
+};
+
+const _$VehicleTypeEnumMap = {
+  VehicleType.bike: 'BIKE',
+  VehicleType.scooter: 'SCOOTER',
+  VehicleType.car: 'CAR',
+  VehicleType.van: 'VAN',
+  VehicleType.other: 'OTHER',
+};
+
 _PersonDetail _$PersonDetailFromJson(Map<String, dynamic> json) => _PersonDetail(
   id: json['id'] as String,
   role: $enumDecode(_$UserRoleEnumMap, json['role']),
@@ -102,6 +128,7 @@ _PersonDetail _$PersonDetailFromJson(Map<String, dynamic> json) => _PersonDetail
           ?.map((e) => SupervisedStaff.fromJson(e as Map<String, dynamic>))
           .toList() ??
       const <SupervisedStaff>[],
+  vehicle: json['vehicle'] == null ? null : PersonVehicle.fromJson(json['vehicle'] as Map<String, dynamic>),
   godowns:
       (json['godowns'] as List<dynamic>?)?.map((e) => IdName.fromJson(e as Map<String, dynamic>)).toList() ??
       const <IdName>[],
@@ -123,6 +150,7 @@ Map<String, dynamic> _$PersonDetailToJson(_PersonDetail instance) => <String, dy
   'assignment': instance.assignment,
   'mustChangePassword': instance.mustChangePassword,
   'supervisedStaff': instance.supervisedStaff,
+  'vehicle': instance.vehicle,
   'godowns': instance.godowns,
 };
 

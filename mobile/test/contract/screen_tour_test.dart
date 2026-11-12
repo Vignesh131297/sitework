@@ -40,6 +40,8 @@ FakeApi recordedApi({
   String requests = 'material_requests',
   String leaveRequests = 'leave_requests',
   String staffRequests = 'staff_requests',
+  String myVehicle = 'vehicle_mine_staff',
+  String repairRequests = 'vehicle_repair_requests',
 }) {
   FakeRaw json(String name) => FakeRaw(_raw(name), contentType: 'application/json');
   return FakeApi()
@@ -48,6 +50,12 @@ FakeApi recordedApi({
     ..on('GET', '/staff-requests', (_) => json(staffRequests))
     ..on('GET', '/staff-requests/:id', (_) => json('staff_request_detail'))
     ..on('GET', '/materials', (_) => json('materials'))
+    ..on('GET', '/vehicles', (_) => json('vehicles'))
+    // Later registrations are matched first, so "mine" comes after ":id".
+    ..on('GET', '/vehicles/:id', (_) => json('vehicle_detail'))
+    ..on('GET', '/vehicles/mine', (_) => json(myVehicle))
+    ..on('GET', '/vehicle-repair-requests', (_) => json(repairRequests))
+    ..on('GET', '/vehicle-repair-requests/:id', (_) => json('vehicle_repair_request_detail'))
     ..on('GET', '/dashboard/admin', (_) => json('dashboard_admin'))
     ..on('GET', '/dashboard/engineer', (_) => json('dashboard_engineer'))
     ..on('GET', '/dashboard/godown', (_) => json('dashboard_godown'))
@@ -109,6 +117,8 @@ Future<FakeApi> startTour(
   String requests = 'material_requests',
   String leaveRequests = 'leave_requests',
   String staffRequests = 'staff_requests',
+  String myVehicle = 'vehicle_mine_staff',
+  String repairRequests = 'vehicle_repair_requests',
 }) async {
   final api = recordedApi(
     reportSites: reportSites,
@@ -118,6 +128,8 @@ Future<FakeApi> startTour(
     requests: requests,
     leaveRequests: leaveRequests,
     staffRequests: staffRequests,
+    myVehicle: myVehicle,
+    repairRequests: repairRequests,
   );
   await pumpSiteWorkApp(
     tester,
@@ -168,6 +180,8 @@ void main() {
   final managerId = _firstId('godown_managers');
   final leaveId = _firstId('leave_requests');
   final staffRequestId = _firstId('staff_requests');
+  final vehicleId = _firstId('vehicles');
+  final repairId = _firstId('vehicle_repair_requests');
 
   testWidgets('admin: every tab and detail screen renders the recorded data', (tester) async {
     final api = await startTour(tester, signedInAdmin(), reportSites: 'report_sites');
@@ -204,11 +218,22 @@ void main() {
       '/admin/approvals',
       '/admin/leave/$leaveId',
       '/admin/staff-requests/$staffRequestId',
+      '/admin/vehicles',
+      '/admin/vehicles/new',
+      '/admin/vehicles/$vehicleId',
+      '/admin/vehicles/$vehicleId/edit',
+      '/admin/vehicle-repairs/$repairId',
       '/admin/requests',
     ]) {
       await visit(tester, location);
     }
     await tapEach(tester, ['Waiting for approval', 'Approved', 'Closed', 'All', 'Open']);
+    await visit(tester, '/admin/approvals');
+    await tester.tap(find.widgetWithText(Tab, 'Bike repair'));
+    await tester.pumpAndSettle();
+    expect(find.byType(ErrorView), findsNothing, reason: 'Bike repair');
+    await visit(tester, '/admin/vehicles');
+    await tapEach(tester, ['Given', 'Free', 'Out of use']);
     await visit(tester, '/admin/reports');
     await tapEach(tester, ['Staff', 'Engineers', 'Payments', 'Stock', 'Sites']);
     expect(api.unanswered, isEmpty);
@@ -221,6 +246,7 @@ void main() {
       reportSites: 'report_sites_engineer',
       reportStock: 'report_stock_engineer',
       stockOverview: 'stock_overview_engineer',
+      myVehicle: 'vehicle_mine_engineer',
     );
     for (final location in [
       '/engineer/dashboard',
@@ -248,6 +274,9 @@ void main() {
       '/engineer/leave/new',
       '/engineer/leave/$leaveId',
       '/engineer/staff-requests/$staffRequestId',
+      '/engineer/my-requests?tab=repair',
+      '/engineer/vehicle-repairs/new',
+      '/engineer/vehicle-repairs/$repairId',
       '/engineer/reports',
     ]) {
       await visit(tester, location);
@@ -299,6 +328,7 @@ void main() {
       requests: 'material_requests_staff',
       leaveRequests: 'leave_requests_staff',
       staffRequests: 'staff_requests_staff',
+      repairRequests: 'vehicle_repair_requests_staff',
     );
     for (final location in [
       '/staff/dashboard',
@@ -316,6 +346,9 @@ void main() {
       '/staff/requests/new',
       '/staff/leave/${_firstId('leave_requests_staff')}',
       '/staff/staff-requests/${_firstId('staff_requests_staff')}',
+      '/staff/my-requests?tab=repair',
+      '/staff/vehicle-repairs/new',
+      '/staff/vehicle-repairs/${_firstId('vehicle_repair_requests_staff')}',
     ]) {
       await visit(tester, location);
     }

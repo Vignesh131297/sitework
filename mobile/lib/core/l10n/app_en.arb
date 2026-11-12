@@ -1893,5 +1893,192 @@
   },
   "mealBreakfast": "Breakfast",
   "mealLunch": "Lunch",
-  "mealDinner": "Dinner"
+  "mealDinner": "Dinner",
+  "vehiclesTitle": "Vehicles",
+  "vehiclesSubtitle": "Company bikes and who has them",
+  "vehiclesRepairWaiting": "{count, plural, =1{1 repair request waiting} other{{count} repair requests waiting}}",
+  "@vehiclesRepairWaiting": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "vehiclesSearch": "Search vehicle or person",
+  "vehiclesFilterGiven": "Given",
+  "vehiclesFilterFree": "Free",
+  "vehiclesEmpty": "No vehicles here.",
+  "vehicleTitle": "Vehicle",
+  "vehicleNewTitle": "Add vehicle",
+  "vehicleEditTitle": "Edit vehicle",
+  "vehicleType": "Kind of vehicle",
+  "vehicleTypeBike": "Bike",
+  "vehicleTypeScooter": "Scooter",
+  "vehicleTypeCar": "Car",
+  "vehicleTypeVan": "Van",
+  "vehicleTypeOther": "Other",
+  "vehicleRegistration": "Registration number",
+  "vehicleRegistrationHelper": "As on the number plate",
+  "vehicleMakeModel": "Make and model",
+  "vehicleMakeModelHelper": "For example, Hero Splendor Plus",
+  "vehicleSave": "Save vehicle",
+  "vehicleSaved": "{code} saved",
+  "@vehicleSaved": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleWith": "With {name}",
+  "@vehicleWith": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleFree": "With nobody",
+  "vehicleOutOfUse": "Out of use",
+  "vehicleHolder": "With",
+  "vehicleSince": "Since {date}",
+  "@vehicleSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleGive": "Give to someone",
+  "vehicleGiveTitle": "Give {vehicle}",
+  "@vehicleGiveTitle": {
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleGiveToTitle": "Give a vehicle to {name}",
+  "@vehicleGiveToTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleGiveTo": "Give to",
+  "vehicleChoose": "Vehicle",
+  "vehicleGivenOn": "Given on",
+  "vehicleNoFree": "No free vehicle. Add one, or take one back first.",
+  "vehicleGiveSave": "Give vehicle",
+  "vehicleGivenTo": "{vehicle} given to {name}",
+  "@vehicleGivenTo": {
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleTakeBack": "Take back",
+  "vehicleTakeBackTitle": "Take back {vehicle}",
+  "@vehicleTakeBackTitle": {
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleTakeBackFrom": "From {name}",
+  "@vehicleTakeBackFrom": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleReturnedOn": "Came back on",
+  "vehicleTakenBack": "{vehicle} taken back",
+  "@vehicleTakenBack": {
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleHistory": "Who had it",
+  "vehicleHistoryEmpty": "Not given to anyone yet.",
+  "vehicleHistoryRange": "{from} – {to}",
+  "@vehicleHistoryRange": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleHistoryNow": "{from} – now",
+  "@vehicleHistoryNow": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleMarkOutOfUse": "Mark out of use",
+  "vehicleMarkOutOfUseTitle": "Mark {vehicle} out of use?",
+  "@vehicleMarkOutOfUseTitle": {
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleMarkOutOfUseBody": "It can no longer be given to anyone. Its history is kept.",
+  "vehicleBringBack": "Bring back into use",
+  "vehicleMarkedOutOfUse": "{vehicle} is out of use",
+  "@vehicleMarkedOutOfUse": {
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleBackInUse": "{vehicle} is back in use",
+  "@vehicleBackInUse": {
+    "placeholders": {
+      "vehicle": {
+        "type": "String"
+      }
+    }
+  },
+  "vehicleRepairs": "Repair money",
+  "vehicleRepairsEmpty": "No repair money asked for.",
+  "myVehicleTitle": "My vehicle",
+  "repairTitle": "Repair money",
+  "repairAsk": "Ask for repair money",
+  "repairAmount": "Amount",
+  "repairAmountHelper": "What the repair will cost",
+  "repairWhat": "What needs repair?",
+  "repairMoney": "{amount} for repair",
+  "@repairMoney": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "repairMine": "My repair requests",
+  "repairNoVehicle": "You do not have a company vehicle now.",
+  "requestsTabRepair": "Bike repair",
+  "requestKindRepair": "Bike repair",
+  "requestKindRepairHint": "Money to repair your company vehicle",
+  "personVehicle": "Company vehicle",
+  "personNoVehicle": "No company vehicle",
+  "personGiveVehicle": "Give a vehicle",
+  "approvalsSubtitleAdmin": "Leave, money, food and bike repair to approve"
 }

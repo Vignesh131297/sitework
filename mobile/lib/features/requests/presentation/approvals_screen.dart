@@ -12,21 +12,26 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/paged_list_view.dart';
 import '../../auth/domain/user_role.dart';
 import '../../auth/presentation/session_controller.dart';
+import '../../vehicles/data/vehicles_repository.dart';
+import '../../vehicles/presentation/vehicle_widgets.dart';
 import '../data/requests_repository.dart';
 import 'request_widgets.dart';
 
-/// Leave and staff money and food requests for admins and engineers to decide:
-/// what is waiting for them first, or everything they may see.
+/// Leave and staff money and food requests for admins and engineers to decide,
+/// and for admins the repair money asked for company vehicles: what is waiting
+/// for them first, or everything they may see.
 class ApprovalsScreen extends ConsumerWidget {
   const ApprovalsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
-    final engineer = ref.watch(sessionProvider).value?.role == UserRole.engineer;
+    final role = ref.watch(sessionProvider).value?.role;
+    final engineer = role == UserRole.engineer;
+    final admin = role == UserRole.admin;
     final area = ref.watch(areaPathProvider);
     return DefaultTabController(
-      length: 2,
+      length: admin ? 3 : 2,
       child: Scaffold(
         appBar: AppBar(
           title: Text(l10n.approvalsTitle),
@@ -43,10 +48,11 @@ class ApprovalsScreen extends ConsumerWidget {
             tabs: [
               Tab(text: l10n.requestsTabLeave),
               Tab(text: l10n.requestsTabMoneyFood),
+              if (admin) Tab(text: l10n.requestsTabRepair),
             ],
           ),
         ),
-        body: const TabBarView(children: [_Leave(), _MoneyFood()]),
+        body: TabBarView(children: [const _Leave(), const _MoneyFood(), if (admin) const _Repair()]),
       ),
     );
   }
@@ -152,6 +158,42 @@ class _MoneyFoodState extends ConsumerState<_MoneyFood> {
             ),
             itemBuilder: (context, request) => StaffRequestTile(request: request),
             empty: EmptyList(icon: Icons.receipt_long_outlined, message: l10n.approvalsEmpty),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// Money asked for the repair of a company vehicle (admins decide).
+class _Repair extends ConsumerStatefulWidget {
+  const _Repair();
+
+  @override
+  ConsumerState<_Repair> createState() => _RepairState();
+}
+
+class _RepairState extends ConsumerState<_Repair> {
+  var _filter = _Filter.waiting;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final revision = ref.watch(revisionProvider(DataSet.vehicles));
+    final repository = ref.watch(vehiclesRepositoryProvider);
+    return Column(
+      children: [
+        _Filters(selected: _filter, onSelected: (filter) => setState(() => _filter = filter)),
+        Expanded(
+          child: PagedListView(
+            key: ValueKey('approvals-repair-$revision-$_filter'),
+            fetch: (page) => repository.repairRequests(
+              page: page,
+              toReview: _filter == _Filter.waiting,
+              status: _filter == _Filter.approved ? ApprovalStatus.approved : null,
+            ),
+            itemBuilder: (context, request) => RepairRequestTile(request: request),
+            empty: EmptyList(icon: Icons.build_outlined, message: l10n.approvalsEmpty),
           ),
         ),
       ],

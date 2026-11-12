@@ -1,0 +1,29 @@
+{
+  "success": true,
+  "data": {
+    "id": "01a1cfa9-2004-765a-aa72-58b3ecd179b2",
+    "code": "VR-0001",
+    "vehicle": {
+      "id": "01a1cfa9-1fce-757e-be01-522ff60a2cc7",
+      "code": "VH-0001",
+      "type": "BIKE",
+      "registrationNo": "TN09BK4821",
+      "makeModel": "Hero Splendor Plus"
+    },
+    "user": {
+      "id": "01a1cfa9-1a0c-7081-98c8-531f41e757c9",
+      "name": "Ravi",
+      "role": "STAFF",
+      "employeeCode": "STF-001"
+    },
+    "amount": "850.00",
+    "note": "Rear tyre puncture and a new tube",
+    "status": "PENDING",
+    "reviewedBy": null,
+    "reviewedAt": null,
+    "reviewNote": null,
+    "createdAt": "2026-11-12T03:10:00.000Z",
+    "canApprove": true,
+    "canCancel": false
+  }
+}
